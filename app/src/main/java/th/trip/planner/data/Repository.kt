@@ -79,6 +79,11 @@ class Repository(private val context: Context) {
         get() = prefs.getString("lang", null) ?: if (prefs.contains("thai")) (if (prefs.getBoolean("thai", true)) "th" else "en") else ""
         set(v) = prefs.edit().putString("lang", v).apply()
 
+    /** Set when the user leaves for Booking.com / Agoda: "placeId|source|timeMillis", "" = none. */
+    var pendingBooking: String
+        get() = prefs.getString("pending_booking", "") ?: ""
+        set(v) = prefs.edit().putString("pending_booking", v).apply()
+
     var checkInHour: Int
         get() = prefs.getInt("checkin_hour", 10)
         set(v) = prefs.edit().putInt("checkin_hour", v).apply()

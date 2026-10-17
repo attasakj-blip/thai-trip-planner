@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Notification icon: pin with a waving flag. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
     android:width="24dp" android:height="24dp" android:viewportWidth="60" android:viewportHeight="60" android:tint="#FFFFFFFF">
     <group android:translateX="-24" android:translateY="-25">
-        <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
-            android:pathData="M54,82 C49,72 35,62 35,47 A19,19 0 1,1 73,47 C73,62 59,72 54,82 Z M45.5,55 h17 v3 h-17 Z M47.5,52.3 h13 v2.7 h-13 Z M48.6,52.3 C48.6,46.6 50.8,44.2 54,42.6 C57.2,44.2 59.4,46.6 59.4,52.3 Z M51.6,40.3 h4.8 v2.3 h-4.8 Z M52.6,40.3 L54,33.6 L55.4,40.3 Z"/>
+    <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd" android:pathData="M54,82 C49,72 35,62 35,47 A19,19 0 1,1 73,47 C73,62 59,72 54,82 Z M44,40 C51,37.40 58,42.60 65,40 L65,54 C58,56.60 51,51.40 44,54 Z M44,44.67 C51,42.07 58,47.27 65,44.67 L65,49.33 C58,51.93 51,46.73 44,49.33 Z M42.5,38.5 h1.4 v18.5 h-1.4 Z"/>
     </group>
 </vector>

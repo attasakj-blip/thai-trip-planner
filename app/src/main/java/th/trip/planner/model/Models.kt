@@ -72,7 +72,19 @@ data class Leg(
 )
 
 @Serializable
-data class Lodging(val name: String = "", val url: String = "", val note: String = "")
+data class Lodging(
+    val name: String = "",
+    val url: String = "",
+    val note: String = "",
+    val address: String = "",
+    val phone: String = "",
+    /** Booking or reference number. */
+    val bookingRef: String = "",
+    /** Where it was booked: "booking.com", "agoda", "osm", or "" when typed in by the user. */
+    val source: String = "",
+) {
+    val isEmpty: Boolean get() = name.isBlank() && address.isBlank() && phone.isBlank() && bookingRef.isBlank() && note.isBlank()
+}
 
 /** A photo the traveller added to the trip album. [file] is relative to the trip folder. */
 @Serializable

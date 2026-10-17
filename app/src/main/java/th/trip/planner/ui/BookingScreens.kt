@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
@@ -85,7 +86,7 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
         LazyColumn(Modifier.padding(pad), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
                 Text(
-                    tr("ดูราคาและห้องว่างจริงได้ที่เว็บจองที่พัก แล้วบันทึกที่พักที่เลือกไว้ในแอป", "Check live prices and availability on booking sites, then save your choice here."),
+                    tr("กด Booking.com หรือ Agoda เพื่อดูราคาและจอง เมื่อกลับมาที่แอป แอปจะถามและบันทึกข้อมูลที่พักไว้กับสถานที่นั้นให้ ถ้าจองไว้ทางอื่นแล้วก็กรอกข้อมูลเองได้", "Tap Booking.com or Agoda to see prices and book. When you come back, the app asks for the stay details and saves them under that place. Booked another way? Enter the details yourself."),
                     fontSize = 14.sp, color = Color.DarkGray,
                 )
             }
@@ -106,23 +107,29 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
                         VSpace()
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             OutlinedButton(onClick = {
+                                vm.startBooking(p.id, "booking.com")
                                 open(ctx, "https://www.booking.com/searchresults.html?ss=${enc(city)}" + (if (checkIn != null) "&checkin=$checkIn&checkout=$checkOut" else ""))
                             }) { Text("Booking.com") }
                             OutlinedButton(onClick = {
+                                vm.startBooking(p.id, "agoda")
                                 open(ctx, "https://www.agoda.com/search?textToSearch=${enc(city)}" + (if (checkIn != null) "&checkIn=$checkIn&checkOut=$checkOut" else ""))
                             }) { Text("Agoda") }
                             OutlinedButton(onClick = { open(ctx, mapsSearch("hotels", p.lat, p.lon)) }) { Text("Google Maps") }
                             OutlinedButton(onClick = { picking = p }) { Text(tr("ดูรายการที่พักใกล้เคียง", "Browse nearby stays")) }
                         }
                         VSpace()
-                        OutlinedTextField(
-                            value = lodging.name, onValueChange = { vm.setLodging(p.id, lodging.copy(name = it)) },
-                            label = { Text(tr("ที่พักที่เลือก", "Chosen stay")) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
-                        )
-                        OutlinedTextField(
-                            value = lodging.note, onValueChange = { vm.setLodging(p.id, lodging.copy(note = it)) },
-                            label = { Text(tr("หมายเหตุ เช่น เลขที่การจอง", "Note, e.g. booking number")) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
-                        )
+                        if (lodging.isEmpty) {
+                            Text(tr("ยังไม่ได้บันทึกที่พัก", "No stay saved yet"), fontSize = 13.sp, color = Color.Gray)
+                        } else {
+                            StaySummary(lodging)
+                        }
+                        VSpace(4)
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            androidx.compose.material3.Button(onClick = { vm.stayForm = TripViewModel.StayForm(p.id, lodging, afterBooking = false) }) {
+                                Text(if (lodging.isEmpty) tr("✏️ กรอกข้อมูลที่พักเอง", "✏️ Enter my own stay") else tr("✏️ แก้ไขข้อมูลที่พัก", "✏️ Edit stay details"))
+                            }
+                            if (!lodging.isEmpty) TextButton(onClick = { vm.setLodging(p.id, Lodging()) }) { Text(tr("ลบ", "Remove")) }
+                        }
                     }
                 }
             }
@@ -135,12 +142,103 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
             title = { Text(tr("ที่พักใกล้ ${p.name.th}", "Stays near ${p.name.en}")) },
             text = {
                 PoiList(vm, p.lat, p.lon, "lodging", modifier = Modifier.heightIn(max = 480.dp)) { poi ->
-                    vm.setLodging(p.id, Lodging(poi.name, poi.website ?: mapsPoint(poi), poi.phone ?: ""))
+                    vm.setLodging(p.id, Lodging(name = poi.name, url = poi.website ?: mapsPoint(poi), phone = poi.phone ?: "", address = poi.address, source = "osm"))
                     picking = null
                 }
             },
         )
     }
+}
+
+fun sourceLabel(source: String) = when (source) {
+    "booking.com" -> "Booking.com"
+    "agoda" -> "Agoda"
+    "osm" -> "OpenStreetMap"
+    else -> ""
+}
+
+/** The saved stay: name, address (opens the map), phone (dials), booking number. */
+@Composable
+fun StaySummary(l: Lodging) {
+    val ctx = LocalContext.current
+    Column {
+        if (l.name.isNotBlank()) Text("🏨 ${l.name}", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+        if (l.address.isNotBlank()) Text("📍 ${l.address}", fontSize = 13.sp, color = Teal,
+            modifier = Modifier.clickable { open(ctx, "https://www.google.com/maps/search/?api=1&query=${enc(listOf(l.name, l.address).filter { it.isNotBlank() }.joinToString(", "))}") })
+        if (l.phone.isNotBlank()) Text("📞 ${l.phone}", fontSize = 13.sp, color = Teal, modifier = Modifier.clickable { dial(ctx, l.phone) })
+        if (l.bookingRef.isNotBlank()) Text(tr("🔖 หมายเลขการจอง: ${l.bookingRef}", "🔖 Booking number: ${l.bookingRef}"), fontSize = 13.sp)
+        if (l.note.isNotBlank()) Text("📝 ${l.note}", fontSize = 13.sp, color = Color.DarkGray)
+        val src = sourceLabel(l.source)
+        if (src.isNotBlank()) Text(tr("จองผ่าน $src", "Booked via $src"), fontSize = 12.sp, color = Color.Gray)
+        if (l.url.startsWith("http")) TextButton(onClick = { open(ctx, l.url) }, contentPadding = PaddingValues(0.dp)) { Text(tr("เปิดลิงก์ที่พัก", "Open stay link")) }
+    }
+}
+
+/**
+ * Form for the user's own stay details. Shown from the stay step, when the user comes back
+ * from Booking.com / Agoda, or when a booking confirmation is shared into the app.
+ */
+@Composable
+fun StayFormDialog(vm: TripViewModel) {
+    val form = vm.stayForm ?: return
+    val thai = LocalThai.current
+    val clipboard = androidx.compose.ui.platform.LocalClipboardManager.current
+    var placeId by remember(form) { mutableStateOf(form.placeId) }
+    var l by remember(form) { mutableStateOf(form.prefill) }
+    var pasteMsg by remember(form) { mutableStateOf<String?>(null) }
+    val place = vm.repo.placeById[placeId]
+    val src = sourceLabel(l.source)
+    AlertDialog(
+        onDismissRequest = { },
+        confirmButton = {
+            androidx.compose.material3.Button(onClick = { vm.closeStayForm(placeId, l) }) { Text(tr("บันทึก", "Save")) }
+        },
+        dismissButton = {
+            TextButton(onClick = { vm.closeStayForm(null, null) }) {
+                Text(if (form.afterBooking) tr("ยังไม่ได้จอง", "Not booked") else tr("ยกเลิก", "Cancel"))
+            }
+        },
+        title = { Text(if (form.afterBooking && src.isNotBlank()) tr("จองที่พักผ่าน $src สำเร็จไหม?", "Did your $src booking go through?") else tr("ข้อมูลที่พัก", "Stay details")) },
+        text = {
+            Column(Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                if (form.afterBooking) Text(
+                    tr("ถ้าจองแล้ว ใส่ข้อมูลที่พักไว้ที่นี่ แอปจะบันทึกเป็นที่พักของ ${place?.name?.th ?: ""}",
+                        "If you booked, add the stay here and it will be saved for ${place?.name?.en ?: ""}."),
+                    fontSize = 13.sp,
+                )
+                if (vm.trip.stops.size > 1) {
+                    Text(tr("ที่พักสำหรับ", "Stay for"), fontSize = 12.sp, color = Color.Gray)
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        vm.trip.stops.forEach { s ->
+                            val stopPlace = vm.repo.placeById[s.placeId] ?: return@forEach
+                            FilterChip(selected = s.placeId == placeId, onClick = { placeId = s.placeId }, label = { Text(stopPlace.name.get(thai), fontSize = 12.sp) })
+                        }
+                    }
+                } else if (place != null) Text(tr("ที่พักสำหรับ ${place.name.th}", "Stay for ${place.name.en}"), fontSize = 12.sp, color = Color.Gray)
+                OutlinedButton(onClick = {
+                    val text = clipboard.getText()?.text.orEmpty()
+                    if (text.isBlank()) pasteMsg = tr("ยังไม่ได้คัดลอกข้อความ", "Nothing copied yet")
+                    else {
+                        val filled = vm.fillFrom(l, text)
+                        pasteMsg = if (filled == l) tr("ไม่พบข้อมูลที่พักในข้อความ กรอกเองได้เลย", "No stay details found in the text; type them in below.") else tr("เติมข้อมูลจากข้อความแล้ว ตรวจดูอีกครั้ง", "Filled in from the text; please check it.")
+                        l = filled
+                    }
+                }) { Text(tr("📋 วางข้อความยืนยันการจอง", "📋 Paste booking confirmation")) }
+                Text(
+                    tr("คัดลอกข้อความหรือลิงก์จากอีเมลหรือแอปที่จองไว้แล้วกดปุ่มนี้ หรือกด \"แชร์\" ในแอปจองแล้วเลือก Thai Trip Planner",
+                        "Copy the text or link from the confirmation email or booking app and tap this, or tap \"Share\" in the booking app and pick Thai Trip Planner."),
+                    fontSize = 12.sp, color = Color.Gray,
+                )
+                pasteMsg?.let { Text(it, fontSize = 12.sp, color = Coral) }
+                OutlinedTextField(l.name, { l = l.copy(name = it) }, label = { Text(tr("ชื่อที่พัก", "Stay name")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(l.address, { l = l.copy(address = it) }, label = { Text(tr("ที่ตั้ง / ที่อยู่", "Location / address")) }, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(l.phone, { l = l.copy(phone = it) }, label = { Text(tr("เบอร์โทรติดต่อ", "Contact phone")) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Phone))
+                OutlinedTextField(l.bookingRef, { l = l.copy(bookingRef = it) }, label = { Text(tr("หมายเลขการจอง / อ้างอิง", "Booking / reference number")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
+                OutlinedTextField(l.note, { l = l.copy(note = it) }, label = { Text(tr("หมายเหตุ", "Note")) }, modifier = Modifier.fillMaxWidth())
+            }
+        },
+    )
 }
 
 // ---------------------------------------------------------------- Step 3: transport
@@ -384,7 +482,7 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                             Column(Modifier.padding(12.dp)) {
                                 Text("📍 ${i + 1}. ${p.name.get(thai)}", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                                 Text(fmtDates(d, thai), fontSize = 13.sp, color = Color.Gray)
-                                if (!lodging?.name.isNullOrBlank()) Text("🏨 ${lodging!!.name}" + (if (lodging.note.isNotBlank()) " · ${lodging.note}" else ""), fontSize = 13.sp)
+                                if (lodging != null && !lodging.isEmpty) StaySummary(lodging)
                                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                     OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "food")) }) { Text(tr("🍜 ร้านอาหาร/กาแฟ", "🍜 Food & cafés")) }
                                     OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "hospital")) }) { Text(tr("🏥 โรงพยาบาล", "🏥 Hospitals")) }

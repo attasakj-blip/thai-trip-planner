@@ -76,6 +76,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent { AppRoot(vm, onExit = { finishAndRemoveTask() }) }
+        if (savedInstanceState == null) handleShare(intent)
+    }
+
+    override fun onNewIntent(intent: android.content.Intent) {
+        super.onNewIntent(intent)
+        handleShare(intent)
+    }
+
+    private fun handleShare(intent: android.content.Intent?) {
+        if (intent?.action != android.content.Intent.ACTION_SEND) return
+        val text = listOfNotNull(intent.getStringExtra(android.content.Intent.EXTRA_SUBJECT), intent.getStringExtra(android.content.Intent.EXTRA_TEXT)).joinToString("\n")
+        if (text.isNotBlank()) vm.onSharedText(text)
     }
 
     // The album collects photos taken while the user switched away to the camera app.
@@ -146,7 +158,73 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         t.copy(legs = legs)
     }
 
-    fun setLodging(placeId: String, lodging: Lodging) = update { it.copy(lodgings = it.lodgings + (placeId to lodging)) }
+    fun setLodging(placeId: String, lodging: Lodging) = update {
+        it.copy(lodgings = if (lodging.isEmpty) it.lodgings - placeId else it.lodgings + (placeId to lodging))
+    }
+
+    /**
+     * The stay form to show: after coming back from Booking.com / Agoda, after a booking was
+     * shared into the app, or when the user taps "enter my own stay".
+     */
+    data class StayForm(val placeId: String, val prefill: Lodging, val afterBooking: Boolean)
+
+    var stayForm by mutableStateOf<StayForm?>(null)
+
+    /** The user is leaving for a booking site to book a stay for this place. */
+    fun startBooking(placeId: String, source: String) {
+        repo.pendingBooking = "$placeId|$source|${System.currentTimeMillis()}"
+    }
+
+    private fun pending(): Triple<String, String, Long>? {
+        val parts = repo.pendingBooking.split('|')
+        if (parts.size != 3) return null
+        val at = parts[2].toLongOrNull() ?: return null
+        if (System.currentTimeMillis() - at > 2 * 24 * 3600_000L || repo.placeById[parts[0]] == null) { repo.pendingBooking = ""; return null }
+        return Triple(parts[0], parts[1], at)
+    }
+
+    /** Back from the booking site: ask whether the booking went through and offer the form. */
+    private fun checkBookingReturn() {
+        val (placeId, source, at) = pending() ?: return
+        if (System.currentTimeMillis() - at < 10_000L || stayForm != null) return
+        val old = trip.lodgings[placeId] ?: Lodging()
+        stayForm = StayForm(placeId, old.copy(source = source), afterBooking = true)
+    }
+
+    /** A confirmation shared from another app: fill the form for the place the user was booking. */
+    fun onSharedText(text: String) {
+        val p = pending()
+        val placeId = p?.first ?: stayForm?.placeId
+            ?: trip.stops.firstOrNull { trip.lodgings[it.placeId] == null }?.placeId
+            ?: trip.stops.firstOrNull()?.placeId ?: return
+        val base = stayForm?.prefill ?: trip.lodgings[placeId] ?: Lodging()
+        stayForm = StayForm(placeId, fillFrom(base.copy(source = p?.second ?: sourceOf(text, base.source)), text), afterBooking = p != null)
+    }
+
+    fun fillFrom(l: Lodging, text: String): Lodging {
+        val f = th.trip.planner.logic.BookingText.parse(text)
+        return l.copy(
+            name = f.name.ifBlank { l.name },
+            address = f.address.ifBlank { l.address },
+            phone = f.phone.ifBlank { l.phone },
+            bookingRef = f.ref.ifBlank { l.bookingRef },
+            url = f.url.ifBlank { l.url },
+            source = l.source.ifBlank { sourceOf(text, "") },
+        )
+    }
+
+    private fun sourceOf(text: String, fallback: String) = when {
+        "agoda" in text.lowercase() -> "agoda"
+        "booking.com" in text.lowercase() -> "booking.com"
+        else -> fallback
+    }
+
+    /** Closes the form; [lodging] null = not booked / cancelled. */
+    fun closeStayForm(placeId: String?, lodging: Lodging?) {
+        if (stayForm?.afterBooking == true || lodging != null) repo.pendingBooking = ""
+        if (placeId != null && lodging != null) setLodging(placeId, lodging)
+        stayForm = null
+    }
 
     fun activate() {
         update { it.copy(activated = true, finished = false) }
@@ -180,6 +258,7 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
     fun onAppLeft() { if (collectingToday()) repo.leftAt = System.currentTimeMillis() }
 
     fun onAppReturned() {
+        checkBookingReturn()
         val since = repo.leftAt
         if (since == 0L || !collectingToday()) return
         repo.leftAt = 0L

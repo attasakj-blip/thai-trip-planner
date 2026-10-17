@@ -483,10 +483,6 @@
   "th": "ต่อไป: การเดินทาง",
   "file": "ui/BookingScreens.kt"
  },
- "Check live prices and availability on booking sites, then save your choice here.": {
-  "th": "ดูราคาและห้องว่างจริงได้ที่เว็บจองที่พัก แล้วบันทึกที่พักที่เลือกไว้ในแอป",
-  "file": "ui/BookingScreens.kt"
- },
  "Check-in {0} · Check-out {1}": {
   "th": "เช็กอิน {0} · เช็กเอาต์ {1}",
   "file": "ui/BookingScreens.kt"
@@ -497,14 +493,6 @@
  },
  "Browse nearby stays": {
   "th": "ดูรายการที่พักใกล้เคียง",
-  "file": "ui/BookingScreens.kt"
- },
- "Chosen stay": {
-  "th": "ที่พักที่เลือก",
-  "file": "ui/BookingScreens.kt"
- },
- "Note, e.g. booking number": {
-  "th": "หมายเหตุ เช่น เลขที่การจอง",
   "file": "ui/BookingScreens.kt"
  },
  "Stays near {0}": {
@@ -1110,5 +1098,105 @@
  "Flute & music box": {
   "th": "ขลุ่ยกับกล่องดนตรี",
   "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Tap Booking.com or Agoda to see prices and book. When you come back, the app asks for the stay details and saves them under that place. Booked another way? Enter the details yourself.": {
+  "th": "กด Booking.com หรือ Agoda เพื่อดูราคาและจอง เมื่อกลับมาที่แอป แอปจะถามและบันทึกข้อมูลที่พักไว้กับสถานที่นั้นให้ ถ้าจองไว้ทางอื่นแล้วก็กรอกข้อมูลเองได้",
+  "file": "ui/BookingScreens.kt"
+ },
+ "No stay saved yet": {
+  "th": "ยังไม่ได้บันทึกที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✏️ Enter my own stay": {
+  "th": "✏️ กรอกข้อมูลที่พักเอง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✏️ Edit stay details": {
+  "th": "✏️ แก้ไขข้อมูลที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Remove": {
+  "th": "ลบ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🔖 Booking number: {0}": {
+  "th": "🔖 หมายเลขการจอง: {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Booked via {0}": {
+  "th": "จองผ่าน {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open stay link": {
+  "th": "เปิดลิงก์ที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Save": {
+  "th": "บันทึก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Not booked": {
+  "th": "ยังไม่ได้จอง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Did your {0} booking go through?": {
+  "th": "จองที่พักผ่าน {0} สำเร็จไหม?",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stay details": {
+  "th": "ข้อมูลที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "If you booked, add the stay here and it will be saved for {0}.": {
+  "th": "ถ้าจองแล้ว ใส่ข้อมูลที่พักไว้ที่นี่ แอปจะบันทึกเป็นที่พักของ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stay for": {
+  "th": "ที่พักสำหรับ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stay for {0}": {
+  "th": "ที่พักสำหรับ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Nothing copied yet": {
+  "th": "ยังไม่ได้คัดลอกข้อความ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "No stay details found in the text; type them in below.": {
+  "th": "ไม่พบข้อมูลที่พักในข้อความ กรอกเองได้เลย",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Filled in from the text; please check it.": {
+  "th": "เติมข้อมูลจากข้อความแล้ว ตรวจดูอีกครั้ง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "📋 Paste booking confirmation": {
+  "th": "📋 วางข้อความยืนยันการจอง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Copy the text or link from the confirmation email or booking app and tap this, or tap \"Share\" in the booking app and pick Thai Trip Planner.": {
+  "th": "คัดลอกข้อความหรือลิงก์จากอีเมลหรือแอปที่จองไว้แล้วกดปุ่มนี้ หรือกด \"แชร์\" ในแอปจองแล้วเลือก Thai Trip Planner",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stay name": {
+  "th": "ชื่อที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Location / address": {
+  "th": "ที่ตั้ง / ที่อยู่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Contact phone": {
+  "th": "เบอร์โทรติดต่อ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Booking / reference number": {
+  "th": "หมายเลขการจอง / อ้างอิง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Note": {
+  "th": "หมายเหตุ",
+  "file": "ui/BookingScreens.kt"
  }
 }

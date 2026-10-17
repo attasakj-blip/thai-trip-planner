@@ -138,6 +138,7 @@ fun AppRoot(vm: TripViewModel, onExit: () -> Unit) {
                     composable(Routes.MY_TRIPS) { MyTripsScreen(vm, nav) }
                 }
                 ImportDialog(vm)
+                StayFormDialog(vm)
             }
         }
     }
