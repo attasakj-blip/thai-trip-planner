@@ -43,6 +43,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -151,8 +152,17 @@ private fun regionLabel(r: Region, thai: Boolean) = when (r) {
 @Composable
 fun CatalogScreen(vm: TripViewModel, nav: NavHostController) {
     val thai = LocalThai.current
-    var region by remember { mutableStateOf<Region?>(null) }
-    val list = vm.repo.places.filter { region == null || it.region == region }
+    // Browse one region and one province at a time; the whole country is too long a list.
+    val firstPicked = vm.trip.stops.firstOrNull()?.let { vm.repo.placeById[it.placeId] }
+    var region by remember { mutableStateOf(firstPicked?.region ?: Region.BANGKOK) }
+    var province by remember { mutableStateOf(firstPicked?.province?.en) }
+    var query by remember { mutableStateOf("") }
+    val provinces = vm.repo.places.filter { it.region == region }.map { it.province }.distinctBy { it.en }.sortedBy { it.get(thai) }
+    val shownProvince = province?.takeIf { pr -> provinces.any { it.en == pr } } ?: provinces.firstOrNull()?.en
+    val q = query.trim()
+    val list = if (q.isNotEmpty()) {
+        vm.repo.places.filter { p -> listOf(p.name.th, p.name.en, p.province.th, p.province.en).any { it.contains(q, ignoreCase = true) } }
+    } else vm.repo.places.filter { it.region == region && it.province.en == shownProvince }
     val count = vm.trip.stops.size
     Page(
         tr("1. เลือกสถานที่ท่องเที่ยว", "1. Choose places"), nav, step = 1,
@@ -160,11 +170,22 @@ fun CatalogScreen(vm: TripViewModel, nav: NavHostController) {
     ) { pad ->
         LazyColumn(Modifier.padding(pad), contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    item { FilterChip(selected = region == null, onClick = { region = null }, label = { Text(tr("ทั้งหมด", "All")) }) }
-                    items(Region.entries.toList()) { r -> FilterChip(selected = region == r, onClick = { region = r }, label = { Text(regionLabel(r, thai)) }) }
+                OutlinedTextField(
+                    value = query, onValueChange = { query = it }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text(tr("🔎 ค้นหาชื่อสถานที่หรือจังหวัด", "🔎 Search a place or province")) },
+                )
+            }
+            if (q.isEmpty()) item {
+                Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        items(Region.entries.toList()) { r -> FilterChip(selected = region == r, onClick = { region = r; province = null }, label = { Text(regionLabel(r, thai)) }) }
+                    }
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        items(provinces) { pr -> FilterChip(selected = shownProvince == pr.en, onClick = { province = pr.en }, label = { Text(pr.get(thai)) }) }
+                    }
                 }
             }
+            if (q.isNotEmpty() && list.isEmpty()) item { Text(tr("ไม่พบสถานที่ที่ค้นหา", "No places match your search"), color = Color.Gray) }
             items(list, key = { it.id }) { p -> PlaceCard(vm, p, nav) }
             item { Spacer(Modifier.height(24.dp)) }
         }

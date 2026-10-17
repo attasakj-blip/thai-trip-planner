@@ -19,11 +19,13 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -56,6 +58,7 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import th.trip.planner.TripViewModel
 import th.trip.planner.data.Poi
+import th.trip.planner.logic.Health
 import th.trip.planner.logic.TripLogic
 import th.trip.planner.model.Hub
 import th.trip.planner.model.HubType
@@ -473,7 +476,11 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
         value = vm.remote.nearby(lat, lon, type, thai)
     }.value
     when {
-        result == null -> CircularProgressIndicator(Modifier.padding(24.dp))
+        result == null -> Row(Modifier.padding(vertical = 24.dp), verticalAlignment = Alignment.CenterVertically) {
+            CircularProgressIndicator(Modifier.size(28.dp))
+            Spacer(Modifier.width(12.dp))
+            Text(tr("กำลังค้นหาจากแผนที่ อาจใช้เวลาสักครู่", "Searching the map, this can take a moment"), fontSize = 13.sp, color = Color.Gray)
+        }
         result.isFailure -> Column {
             Text(tr("โหลดรายการไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่", "Couldn't load the list. Check your internet and try again."), color = Coral, fontSize = 13.sp)
             TextButton(onClick = { attempt++ }) { Text(tr("ลองใหม่", "Try again")) }
@@ -484,8 +491,24 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                 Card(Modifier.fillMaxWidth().clickable { if (onPick != null) onPick(poi) else open(ctx, mapsPoint(poi)) }) {
                     Column(Modifier.padding(12.dp)) {
                         Text(poi.name, fontWeight = FontWeight.SemiBold)
+                        poi.logo?.let { logo ->
+                            AsyncImage(logo, null, contentScale = ContentScale.Fit, alignment = Alignment.CenterStart,
+                                modifier = Modifier.padding(vertical = 4.dp).height(44.dp).widthIn(max = 160.dp))
+                        }
+                        val kindLabel = when (poi.health) {
+                            Health.Kind.HOSPITAL -> when (poi.owner) {
+                                Health.Owner.PUBLIC -> tr("🏥 โรงพยาบาลรัฐ", "🏥 Public hospital")
+                                Health.Owner.PRIVATE -> tr("🏥 โรงพยาบาลเอกชน", "🏥 Private hospital")
+                                null -> tr("🏥 โรงพยาบาล", "🏥 Hospital")
+                            }
+                            Health.Kind.HEALTH_CENTRE -> tr("⛑️ สถานีอนามัย / รพ.สต.", "⛑️ Health centre")
+                            Health.Kind.CLINIC -> tr("🩺 คลินิก", "🩺 Clinic")
+                            null -> null
+                        }
                         val meta = listOfNotNull(
                             String.format(java.util.Locale.US, "%.1f km", poi.distanceKm),
+                            kindLabel,
+                            poi.beds?.let { tr("$it เตียง", "$it beds") },
                             poi.cuisine,
                             if (poi.emergency) tr("🚑 มีห้องฉุกเฉิน", "🚑 Emergency room") else null,
                         ).joinToString(" · ")
@@ -496,10 +519,22 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                             poi.phone?.let { ph -> TextButton(onClick = { dial(ctx, ph) }) { Text("📞 $ph") } }
                             TextButton(onClick = { open(ctx, "https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lon}") }) { Text(tr("🧭 นำทาง", "🧭 Directions")) }
                         }
+                        if (type == "restaurant" || type == "cafe") {
+                            Text(tr("⭐ ดูคะแนนรีวิว:", "⭐ See review scores:"), fontSize = 12.sp, color = Color.DarkGray)
+                            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                AssistChip(onClick = { open(ctx, mapsPoint(poi)) }, label = { Text("Google", fontSize = 12.sp) })
+                                AssistChip(onClick = { open(ctx, "https://www.wongnai.com/search?q=" + enc(poi.name)) }, label = { Text("Wongnai", fontSize = 12.sp) })
+                                AssistChip(onClick = { open(ctx, "https://www.tripadvisor.com/Search?q=" + enc(poi.name)) }, label = { Text("Tripadvisor", fontSize = 12.sp) })
+                            }
+                        }
                     }
                 }
             }
-            item { Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล", "Data © OpenStreetMap contributors, nearest first"), fontSize = 11.sp, color = Color.Gray) }
+            item {
+                Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล", "Data © OpenStreetMap contributors, nearest first"), fontSize = 11.sp, color = Color.Gray)
+                if (type == "hospital") Text(tr("แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons", "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons."), fontSize = 11.sp, color = Color.Gray)
+                if (type == "restaurant" || type == "cafe") Text(tr("คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน", "Review scores open from each place's Google / Wongnai / Tripadvisor button"), fontSize = 11.sp, color = Color.Gray)
+            }
         }
     }
 }

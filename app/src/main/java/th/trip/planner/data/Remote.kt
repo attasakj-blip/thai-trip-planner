@@ -1,6 +1,7 @@
 package th.trip.planner.data
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonArray
@@ -51,6 +52,12 @@ data class Poi(
     val lat: Double,
     val lon: Double,
     val distanceKm: Double,
+    val health: th.trip.planner.logic.Health.Kind? = null,
+    val owner: th.trip.planner.logic.Health.Owner? = null,
+    /** Logo or photo (Wikimedia Commons thumbnail) for hospitals that have one. */
+    val logo: String? = null,
+    val beds: Int? = null,
+    val wikidata: String? = null,
 )
 
 /** Calls to outside services. Every call returns a Result so the UI can show "not available". */
@@ -217,54 +224,130 @@ class Remote {
     /**
      * Nearby places from OpenStreetMap (Overpass API), nearest first. [type] is one of
      * restaurant, cafe, hospital, police, lodging. Free, no key; data © OpenStreetMap contributors.
+     * Medical places are filtered strictly (see [th.trip.planner.logic.Health]) and get logos from Wikidata.
      */
-    suspend fun nearby(lat: Double, lon: Double, type: String, thai: Boolean, limit: Int = 25): Result<List<Poi>> = runCatching {
-        val filter = when (type) {
-            "restaurant" -> "[\"amenity\"~\"^(restaurant|food_court)$\"]"
-            "cafe" -> "[\"amenity\"=\"cafe\"]"
-            "hospital" -> "[\"amenity\"~\"^(hospital|clinic)$\"]"
-            "police" -> "[\"amenity\"=\"police\"]"
-            else -> "[\"tourism\"~\"^(hotel|guest_house|hostel|resort|motel|apartment)$\"]"
+    suspend fun nearby(lat: Double, lon: Double, type: String, thai: Boolean, limit: Int = 60): Result<List<Poi>> = runCatching {
+        cached("nb:$type:${"%.3f".format(lat)}:${"%.3f".format(lon)}:$thai") { loadNearby(lat, lon, type, thai, limit) }
+    }
+
+    private suspend fun loadNearby(lat: Double, lon: Double, type: String, thai: Boolean, limit: Int): List<Poi> {
+        val medical = type == "hospital"
+        val filters = when (type) {
+            "restaurant" -> listOf("[\"amenity\"~\"^(restaurant|food_court)$\"]")
+            "cafe" -> listOf("[\"amenity\"=\"cafe\"]")
+            "hospital" -> listOf("[\"amenity\"~\"^(hospital|clinic|doctors)$\"]", "[\"healthcare\"~\"^(hospital|clinic)$\"]")
+            "police" -> listOf("[\"amenity\"=\"police\"]")
+            else -> listOf("[\"tourism\"~\"^(hotel|guest_house|hostel|resort|motel|apartment)$\"]")
         }
-        val radius = if (type == "hospital" || type == "police") 25000 else 6000
-        val query = "[out:json][timeout:25];(nwr$filter(around:$radius,$lat,$lon););out center tags 150;"
-        val text = overpass(query)
-        val elements = json.parseToJsonElement(text).jsonObject["elements"].arr() ?: return@runCatching emptyList()
-        elements.mapNotNull { e ->
+        val radius = when (type) { "hospital" -> 30000; "police" -> 25000; "restaurant", "cafe" -> 4000; else -> 6000 }
+        val parts = filters.joinToString("") { "nwr$it(around:$radius,$lat,$lon);" }
+        val query = "[out:json][timeout:50];($parts);out center tags 400;"
+        val elements = json.parseToJsonElement(overpass(query)).jsonObject["elements"].arr() ?: return emptyList()
+        val list = elements.mapNotNull { e ->
             val o = e.obj() ?: return@mapNotNull null
             val t = o["tags"].obj() ?: return@mapNotNull null
+            val tags = t.mapValues { it.value.str() ?: "" }
+            val isArea = o["type"].str() != "node"
+            val kind = if (medical) th.trip.planner.logic.Health.classify(tags, isArea) ?: return@mapNotNull null else null
             val pLat = o["lat"].num() ?: o["center"].obj()?.get("lat").num() ?: return@mapNotNull null
             val pLon = o["lon"].num() ?: o["center"].obj()?.get("lon").num() ?: return@mapNotNull null
-            val name = (if (thai) t["name:th"].str() else t["name:en"].str()) ?: t["name"].str() ?: return@mapNotNull null
+            val name = (if (thai) tags["name:th"] else tags["name:en"])?.ifBlank { null } ?: tags["name"]?.ifBlank { null } ?: return@mapNotNull null
             val address = listOfNotNull(
-                t["addr:housenumber"].str(), (if (thai) null else t["addr:street:en"].str()) ?: t["addr:street"].str(),
-                t["addr:subdistrict"].str(), t["addr:district"].str(), t["addr:city"].str(),
-            ).joinToString(" ")
+                tags["addr:housenumber"], (if (thai) null else tags["addr:street:en"]) ?: tags["addr:street"],
+                tags["addr:subdistrict"], tags["addr:district"], tags["addr:city"], tags["addr:province"],
+            ).filter { it.isNotBlank() }.distinct().joinToString(" ")
+            val image = tags["image"]?.takeIf { it.startsWith("File:") }?.let { th.trip.planner.logic.CommonsThumb.url(it) }
+                ?: tags["wikimedia_commons"]?.takeIf { it.startsWith("File:") }?.let { th.trip.planner.logic.CommonsThumb.url(it) }
             Poi(
                 name = name,
                 address = address,
-                phone = (t["phone"].str() ?: t["contact:phone"].str())?.split(';')?.first()?.trim(),
-                website = t["website"].str() ?: t["contact:website"].str(),
-                hours = t["opening_hours"].str(),
-                cuisine = t["cuisine"].str()?.replace(';', ' ')?.replace('_', ' '),
-                emergency = t["emergency"].str() == "yes",
+                phone = (tags["phone"] ?: tags["contact:phone"] ?: tags["emergency:phone"])?.split(';')?.first()?.trim()?.ifBlank { null },
+                website = tags["website"] ?: tags["contact:website"],
+                hours = tags["opening_hours"],
+                cuisine = tags["cuisine"]?.replace(';', ' ')?.replace('_', ' '),
+                emergency = tags["emergency"] == "yes",
                 lat = pLat, lon = pLon,
                 distanceKm = TripLogic.distanceKm(lat, lon, pLat, pLon),
+                health = kind,
+                owner = if (medical) th.trip.planner.logic.Health.owner(tags) else null,
+                logo = image,
+                beds = tags["beds"]?.toIntOrNull(),
+                wikidata = tags["wikidata"]?.takeIf { it.matches(Regex("Q\\d+")) },
             )
-        }.distinctBy { it.name to (it.lat * 1000).toInt() }.sortedBy { it.distanceKm }.take(limit)
+        }.distinctBy { it.name to (it.lat * 200).toInt() }
+        val sorted = if (medical) {
+            // Hospitals first (nearest first), then health centres and clinics.
+            list.sortedWith(compareBy<Poi>({ it.health?.ordinal ?: 9 }, { it.distanceKm }))
+        } else list.sortedBy { it.distanceKm }
+        val top = sorted.take(limit)
+        return if (medical) withLogos(top) else top
     }
 
-    private suspend fun overpass(query: String): String = withContext(Dispatchers.IO) {
+    /** Fills in hospital logos (or a photo) from Wikidata for places linked to it. Best effort. */
+    private suspend fun withLogos(list: List<Poi>): List<Poi> {
+        val ids = list.filter { it.logo == null }.mapNotNull { it.wikidata }.distinct().take(50)
+        if (ids.isEmpty()) return list
+        val files = runCatching {
+            val url = "https://www.wikidata.org/w/api.php".toHttpUrl().newBuilder()
+                .addQueryParameter("action", "wbgetentities").addQueryParameter("format", "json")
+                .addQueryParameter("props", "claims").addQueryParameter("ids", ids.joinToString("|")).build().toString()
+            val entities = json.parseToJsonElement(get(url)).jsonObject["entities"].obj() ?: return@runCatching emptyMap()
+            entities.mapNotNull { (id, ent) ->
+                val claims = ent.obj()?.get("claims").obj() ?: return@mapNotNull null
+                val file = listOf("P154", "P18").firstNotNullOfOrNull { p ->
+                    claims[p].arr()?.firstOrNull().obj()?.get("mainsnak").obj()?.get("datavalue").obj()?.get("value").str()
+                } ?: return@mapNotNull null
+                id to file
+            }.toMap()
+        }.getOrDefault(emptyMap())
+        return list.map { p -> files[p.wikidata]?.let { p.copy(logo = th.trip.planner.logic.CommonsThumb.url(it)) } ?: p }
+    }
+
+    // Public Overpass servers. They are free but often slow or busy, so we ask them all at once
+    // and use whichever answers first.
+    private val overpassHosts = listOf(
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.private.coffee/api/interpreter",
+        "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+    )
+    private val slowHttp = http.newBuilder().readTimeout(75, TimeUnit.SECONDS).callTimeout(90, TimeUnit.SECONDS).build()
+
+    private suspend fun postOverpass(host: String, query: String): String {
         val body = okhttp3.FormBody.Builder().add("data", query).build()
-        var last: Throwable? = null
-        for (host in listOf("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter")) {
-            val r = runCatching {
-                http.newCall(Request.Builder().url(host).post(body).build()).execute().use { r ->
-                    if (!r.isSuccessful) error("HTTP ${r.code}")
-                    r.body?.string() ?: error("empty body")
+        val call = slowHttp.newCall(Request.Builder().url(host).post(body).build())
+        val text = kotlinx.coroutines.suspendCancellableCoroutine<String> { cont ->
+            cont.invokeOnCancellation { call.cancel() }
+            call.enqueue(object : okhttp3.Callback {
+                override fun onFailure(call: okhttp3.Call, e: java.io.IOException) { if (cont.isActive) cont.resumeWith(Result.failure(e)) }
+                override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    val r = runCatching {
+                        response.use { if (!it.isSuccessful) error("HTTP ${it.code}"); it.body?.string() ?: error("empty body") }
+                    }
+                    if (cont.isActive) cont.resumeWith(r)
                 }
+            })
+        }
+        // A busy server can answer 200 with no data and a "runtime error" remark.
+        val compact = text.replace(" ", "").replace("\n", "")
+        if (!text.trimStart().startsWith("{") || ("runtime error" in text && "\"elements\":[]" in compact))
+            error("server busy")
+        return text
+    }
+
+    private suspend fun overpass(query: String): String = kotlinx.coroutines.coroutineScope {
+        val results = kotlinx.coroutines.channels.Channel<Result<String>>(overpassHosts.size)
+        val jobs = overpassHosts.mapIndexed { i, host ->
+            launch {
+                // The last server is a backup: only ask it if the others are slow.
+                if (i == overpassHosts.lastIndex) kotlinx.coroutines.delay(8000)
+                results.send(runCatching { postOverpass(host, query) })
             }
-            if (r.isSuccess) return@withContext r.getOrThrow()
+        }
+        var last: Throwable? = null
+        repeat(overpassHosts.size) {
+            val r = results.receive()
+            if (r.isSuccess) { jobs.forEach { it.cancel() }; return@coroutineScope r.getOrThrow() }
             last = r.exceptionOrNull()
         }
         throw last ?: IllegalStateException("no server")
