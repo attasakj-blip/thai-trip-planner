@@ -71,7 +71,7 @@ def main():
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     (ROOT / "site" / "index.html").write_text(
         "<!doctype html><meta charset='utf-8'><title>Thai Trip data</title>"
-        f"<p>Data for the เที่ยวไทย Trip app. Version {version}, {len(places)} places, {len(hubs)} hubs.</p>",
+        f"<p>Data for the Thai Trip Planner app. Version {version}, {len(places)} places, {len(hubs)} hubs.</p>",
         encoding="utf-8",
     )
     print(json.dumps(meta, ensure_ascii=False))

@@ -1,0 +1,1114 @@
+{
+ "On the way": {
+  "th": "ระหว่างการเดินทาง",
+  "file": "App.kt"
+ },
+ "STOP {0} OF {1}": {
+  "th": "จุดหมายที่ {0} จาก {1}",
+  "file": "App.kt"
+ },
+ "Thailand seasonal climate pattern (typical, not a forecast)": {
+  "th": "ข้อมูลภูมิอากาศตามฤดูกาลของประเทศไทย (ค่าเฉลี่ย ไม่ใช่พยากรณ์)",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Park closure info in the app's place library": {
+  "th": "ข้อมูลการปิดอุทยานในคลังสถานที่ของแอป",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Haze and forest-fire season": {
+  "th": "ช่วงหมอกควันและไฟป่า",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Northern Thailand often has many fire hotspots and high PM2.5 in Feb–Apr (worst around March). Bring N95 masks and check air quality before going.": {
+  "th": "ภาคเหนือมักมีจุดความร้อนและค่า PM2.5 สูงช่วง ก.พ.–เม.ย. (สูงสุดราว มี.ค.) ควรเตรียมหน้ากาก N95 และตรวจค่าฝุ่นก่อนเดินทาง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Possible haze": {
+  "th": "อาจมีหมอกควัน",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Open burning in the northeast in Jan–Apr can raise PM2.5 on some days.": {
+  "th": "ภาคอีสานมีการเผาในที่โล่งช่วง ม.ค.–เม.ย. ค่าฝุ่นอาจสูงบางวัน",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "City PM2.5": {
+  "th": "ฝุ่น PM2.5 ในเมือง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Bangkok and the central plains often see high PM2.5 in Dec–Feb when the air is still.": {
+  "th": "กรุงเทพฯ และภาคกลางมักมีค่าฝุ่นสูงช่วง ธ.ค.–ก.พ. เมื่ออากาศนิ่ง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Hot season": {
+  "th": "ฤดูร้อน",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Mar–May can exceed 38–40°C. Drink often and avoid the midday sun.": {
+  "th": "มี.ค.–พ.ค. อุณหภูมิอาจเกิน 38–40°C ดื่มน้ำบ่อยๆ และหลีกเลี่ยงแดดจัดช่วงเที่ยง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Rainy season (southwest monsoon)": {
+  "th": "ฤดูฝน (มรสุมตะวันตกเฉียงใต้)",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Frequent rain May–Oct, heaviest around Aug–Oct. Follow Thai Meteorological Department warnings.": {
+  "th": "ฝนตกบ่อยช่วง พ.ค.–ต.ค. หนักที่สุดราว ส.ค.–ต.ค. ควรติดตามประกาศเตือนภัยของกรมอุตุนิยมวิทยา",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Flash flood and landslide risk": {
+  "th": "เสี่ยงน้ำป่าไหลหลากและดินถล่ม",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Mountain areas face flash floods and landslides in Jul–Oct. Keep away from streams and waterfalls after heavy rain.": {
+  "th": "พื้นที่ภูเขาและเชิงเขามีความเสี่ยงน้ำป่าและดินถล่มช่วง ก.ค.–ต.ค. หลีกเลี่ยงลำห้วยและน้ำตกเมื่อฝนตกหนัก",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Rough Andaman Sea": {
+  "th": "ทะเลอันดามันมีคลื่นลมแรง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "May–Oct brings high waves; some boat routes stop and some islands close for the monsoon.": {
+  "th": "พ.ค.–ต.ค. คลื่นสูง เรือบางเส้นทางงดให้บริการ และบางเกาะปิดฤดูมรสุม",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Flood risk": {
+  "th": "เสี่ยงน้ำท่วม",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "The central plains can flood in Sep–Oct when water flows down from the north.": {
+  "th": "ภาคกลางมีโอกาสน้ำท่วมช่วง ก.ย.–ต.ค. เมื่อน้ำเหนือไหลลงมา",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Heavy rain on the Gulf coast (northeast monsoon)": {
+  "th": "ฝนตกหนักฝั่งอ่าวไทย (มรสุมตะวันออกเฉียงเหนือ)",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "The southern Gulf coast (Samui, Nakhon Si Thammarat, Songkhla) gets heavy rain Oct–Jan (worst Nov–Dec), with floods and high waves possible.": {
+  "th": "ภาคใต้ฝั่งตะวันออก เช่น เกาะสมุย นครศรีธรรมราช สงขลา ฝนตกหนักช่วง ต.ค.–ม.ค. (หนักสุด พ.ย.–ธ.ค.) อาจมีน้ำท่วมและคลื่นสูง",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "May be closed at this time": {
+  "th": "สถานที่อาจปิดในช่วงนี้",
+  "file": "logic/SeasonalRisk.kt"
+ },
+ "Trip starts {0}": {
+  "th": "ทริปยังไม่เริ่ม เริ่ม {0}",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "You're at ": {
+  "th": "ตอนนี้อยู่ที่ ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "On the way to ": {
+  "th": "กำลังเดินทางไป ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "A break from sightseeing": {
+  "th": "พักจากการเที่ยว",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "You've arrived": {
+  "th": "ถึงจุดหมายแล้ว",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "My trip": {
+  "th": "ทริปของฉัน",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Turn on GPS and allow location so the app knows where you are. Using calendar dates for now.": {
+  "th": "เปิด GPS และอนุญาตตำแหน่งเพื่อให้แอปรู้ว่าคุณอยู่ที่ไหน ตอนนี้ใช้วันที่ในปฏิทินแทน",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Tap a place to see food, hospitals and police": {
+  "th": "แตะสถานที่เพื่อดูร้านอาหาร โรงพยาบาล และสถานีตำรวจ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Is today going to plan?": {
+  "th": "วันนี้เป็นไปตามแผนไหม?",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Yes": {
+  "th": "ตามแผน",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "No": {
+  "th": "ไม่ตามแผน",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Trip summary": {
+  "th": "ดูสรุปทริป",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Adjust the plan": {
+  "th": "ปรับแผนการเดินทาง",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "I've reached my final destination": {
+  "th": "ฉันถึงจุดหมายสุดท้ายแล้ว",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "1. 🍜 Restaurants / cafés": {
+  "th": "1. 🍜 ร้านอาหาร / ร้านกาแฟ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "2. 🏥 Hospitals": {
+  "th": "2. 🏥 โรงพยาบาล",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "3. 👮 Police stations": {
+  "th": "3. 👮 สถานีตำรวจ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Start": {
+  "th": "เริ่ม",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "End": {
+  "th": "ปลายทาง",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Adjust the trip": {
+  "th": "ปรับแผนทริป",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "What would you like to change? Everything else is kept. When you're done, confirm the update on the summary page.": {
+  "th": "จะปรับเปลี่ยนตั้งแต่ส่วนไหน? ข้อมูลส่วนอื่นของทริปเดิมจะถูกเก็บไว้ เมื่อแก้เสร็จให้กดยืนยันการอัปเดตทริปในหน้าสรุป",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "📅 Same places, change days or order": {
+  "th": "📅 สถานที่เดิม แต่เปลี่ยนวัน/ลำดับ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "🚆 Same places and days, change transport": {
+  "th": "🚆 สถานที่และวันเดิม แต่เปลี่ยนการเดินทาง",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "🏨 Change where to stay": {
+  "th": "🏨 เปลี่ยนที่พัก",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "➕ Add or remove places": {
+  "th": "➕ เพิ่มหรือลบสถานที่",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "🔄 Start a completely new plan": {
+  "th": "🔄 เริ่มแพลนใหม่ทั้งหมด",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Your photo": {
+  "th": "ภาพของคุณ",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "You've completed every stop you planned 🎉": {
+  "th": "คุณได้เดินทางท่องเที่ยวครบตามที่วางแผนไว้แล้ว 🎉",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "We hope this trip leaves you with wonderful memories, and that you'll come back to Thailand again.": {
+  "th": "หวังว่าคุณจะมีความทรงจำที่ดีกับทริปนี้ และหวังว่าจะได้กลับมาเที่ยวประเทศไทยอีกในอนาคต",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "📔 Finish album & make slideshow": {
+  "th": "📔 ทำอัลบั้มให้สมบูรณ์และสร้างสไลด์โชว์",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "End trip": {
+  "th": "สิ้นสุดทริป",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Settings": {
+  "th": "ตั้งค่า",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Menu language": {
+  "th": "ภาษาของเมนู",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Daily check-in time": {
+  "th": "เวลาเช็กอินประจำวัน",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "Data sources": {
+  "th": "แหล่งข้อมูล",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "• Place photos: Wikimedia Commons (free licences, author credited on every photo)\n• PM2.5: Pollution Control Department (Air4Thai), or the CAMS model via Open-Meteo\n• Weather and flood forecasts: Open-Meteo\n• Fire hotspots: VIIRS satellite via NASA FIRMS\n• Food, stays, hospitals, police: OpenStreetMap\n• Place and transport-hub library: curated by the app team, updated every Wednesday\nAll sources are free; no keys needed.": {
+  "th": "• รูปสถานที่: Wikimedia Commons (สัญญาอนุญาตเสรี แสดงชื่อผู้ถ่ายทุกภาพ)\n• ค่าฝุ่น PM2.5: กรมควบคุมมลพิษ (Air4Thai) หรือแบบจำลอง CAMS ผ่าน Open-Meteo\n• พยากรณ์อากาศและน้ำท่วม: Open-Meteo\n• จุดความร้อน: ดาวเทียม VIIRS ผ่าน NASA FIRMS\n• ร้าน ที่พัก โรงพยาบาล ตำรวจ: OpenStreetMap\n• คลังสถานที่และจุดขนส่ง: รวบรวมโดยทีมแอป อัปเดตทุกวันพุธ\nทุกแหล่งใช้ได้ฟรี ไม่ต้องใส่ key",
+  "file": "ui/ActiveScreens.kt"
+ },
+ "🪘 Thai local": {
+  "th": "🪘 ดนตรีท้องถิ่น",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🎁 Music box": {
+  "th": "🎁 กล่องดนตรี",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🪉 Harp": {
+  "th": "🪉 ฮาร์ป",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🎷 Jazz": {
+  "th": "🎷 แจ๊ส",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🪇 Samba": {
+  "th": "🪇 แซมบ้า",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🪈 Flute (khlui)": {
+  "th": "🪈 ขลุ่ย",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Slow": {
+  "th": "ช้า",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Medium": {
+  "th": "ปานกลาง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Fast": {
+  "th": "เร็ว",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Soft morph": {
+  "th": "เปลี่ยนภาพแบบ morph นุ่มนวล",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Zoom & fade": {
+  "th": "ซูมและจางเข้า",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Slide": {
+  "th": "เลื่อนภาพ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "📷 Collect today's photos for your trip album?": {
+  "th": "📷 วันนี้อยากเก็บภาพที่คุณถ่ายเข้าอัลบั้มทริปไหม?",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Keep GPS on and use your camera app. When you come back here, you'll pick which photos to add.": {
+  "th": "เปิด GPS ไว้ แล้วถ่ายด้วยแอปกล้องได้เลย เมื่อกลับมาที่แอปนี้จะให้เลือกภาพเข้าอัลบั้ม",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Not today": {
+  "th": "วันนี้ไม่ต้อง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "📷 Open camera": {
+  "th": "📷 เปิดกล้อง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "⚠️ GPS is off": {
+  "th": "⚠️ GPS ปิดอยู่",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "📔 Trip album ({0} photos)": {
+  "th": "📔 อัลบั้มทริป ({0} ภาพ)",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "It's the last day. Finish the album now?": {
+  "th": "วันนี้เป็นวันสุดท้ายของทริป ทำอัลบั้มให้สมบูรณ์เลยไหม?",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Photo import stops and a slideshow is made with the music you choose.": {
+  "th": "จะหยุดนำเข้าภาพเพิ่ม แล้วสร้างสไลด์โชว์พร้อมเพลงที่คุณเลือก",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Make the slideshow": {
+  "th": "สร้างสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "OK": {
+  "th": "ตกลง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "GPS is off": {
+  "th": "GPS ปิดอยู่",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Photos taken with GPS off can't go into the album. Turn GPS on and take them again.": {
+  "th": "ภาพที่ถ่ายตอน GPS ปิดจะเข้าอัลบั้มไม่ได้ เปิด GPS แล้วถ่ายใหม่นะครับ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Add the photos you just took?": {
+  "th": "เพิ่มภาพที่เพิ่งถ่ายเข้าอัลบั้มไหม?",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Tap to select or unselect each photo": {
+  "th": "แตะเพื่อเลือกหรือยกเลิกแต่ละภาพ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Photos taken more than 40 km from every planned place, or without a location, can't go into this trip's album.": {
+  "th": "ภาพที่ถ่ายห่างจากสถานที่ในแพลนเกิน 40 กม. หรือไม่มีข้อมูลตำแหน่ง จะเพิ่มเข้าอัลบั้มทริปนี้ไม่ได้",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "No location": {
+  "th": "ไม่มีตำแหน่ง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "{0} km away": {
+  "th": "ห่าง {0} กม.",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Add {0}": {
+  "th": "เพิ่ม {0} ภาพ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Skip": {
+  "th": "ไม่เพิ่ม",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Trip album": {
+  "th": "อัลบั้มทริป",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "▶ Play slideshow": {
+  "th": "▶ เล่นสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Finish album & make slideshow": {
+  "th": "ทำอัลบั้มให้สมบูรณ์ + สร้างสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "No photos yet": {
+  "th": "ยังไม่มีภาพในอัลบั้ม",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Close": {
+  "th": "ปิด",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Confirm delete": {
+  "th": "ยืนยันลบ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🗑 Remove": {
+  "th": "🗑 ลบออกจากอัลบั้ม",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Create slideshow": {
+  "th": "ประมวลผลเป็นสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Once created, no more photos are imported. Each place opens with a decorated title card, then its photos with transitions that suit the tempo, fading out at the end.": {
+  "th": "เมื่อสร้างแล้วจะหยุดนำเข้าภาพเพิ่ม แต่ละสถานที่จะเริ่มด้วยป้ายชื่อที่ตกแต่งสวยงาม ตามด้วยภาพถ่ายพร้อมเอฟเฟกต์ที่เข้ากับจังหวะเพลง แล้วค่อยๆ จางหายเมื่อภาพของที่นั่นหมด",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Background music": {
+  "th": "มีเสียงเพลงบรรเลงประกอบ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Pick a piece (1 minute each, looped until this place's photos end)": {
+  "th": "เลือกเพลง (ยาวเพลงละ 1 นาที วนต่อเนื่องจนภาพของที่นี่หมด)",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "⏹ Stop": {
+  "th": "⏹ หยุดฟัง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "▶ Preview": {
+  "th": "▶ ฟังตัวอย่าง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Remake": {
+  "th": "ทำวิดีโอใหม่",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Saved in this trip's folder and in Movies/ThaiTrip": {
+  "th": "เก็บไว้ในโฟลเดอร์ทริปนี้ และใน Movies/ThaiTrip ของเครื่อง",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Making your slideshow video": {
+  "th": "กำลังสร้างวิดีโอสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Keep the app open until it's done. Title cards, photos and each place's music are being combined into an MP4.": {
+  "th": "เปิดแอปค้างไว้จนเสร็จนะครับ ป้ายชื่อสถานที่ ภาพ และเพลงของแต่ละที่จะถูกรวมเป็นไฟล์ MP4",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Cancel": {
+  "th": "ยกเลิก",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Couldn't make the video: {0}": {
+  "th": "สร้างวิดีโอไม่สำเร็จ: {0}",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "🎬 Make the video": {
+  "th": "🎬 สร้างไฟล์วิดีโอ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "My trips": {
+  "th": "ทริปของฉัน",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "No trips yet": {
+  "th": "ยังไม่มีทริป",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Current trip · ": {
+  "th": "ทริปปัจจุบัน · ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "{0} photos": {
+  "th": "{0} ภาพ",
+  "file": "ui/AlbumScreens.kt"
+ },
+ " · slideshow ready": {
+  "th": " · มีสไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "📔 Album": {
+  "th": "📔 อัลบั้ม",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "▶ Slideshow": {
+  "th": "▶ สไลด์โชว์",
+  "file": "ui/AlbumScreens.kt"
+ },
+ "Back": {
+  "th": "กลับ",
+  "file": "ui/AppRoot.kt"
+ },
+ "Language": {
+  "th": "เลือกภาษา",
+  "file": "ui/AppRoot.kt"
+ },
+ "2. Choose where to stay": {
+  "th": "2. เลือกที่พัก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Next: transport": {
+  "th": "ต่อไป: การเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Check live prices and availability on booking sites, then save your choice here.": {
+  "th": "ดูราคาและห้องว่างจริงได้ที่เว็บจองที่พัก แล้วบันทึกที่พักที่เลือกไว้ในแอป",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Check-in {0} · Check-out {1}": {
+  "th": "เช็กอิน {0} · เช็กเอาต์ {1}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Days aren't consecutive; you may need separate bookings.": {
+  "th": "วันไม่ต่อเนื่อง อาจต้องจองแยกเป็นช่วงๆ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Browse nearby stays": {
+  "th": "ดูรายการที่พักใกล้เคียง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Chosen stay": {
+  "th": "ที่พักที่เลือก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Note, e.g. booking number": {
+  "th": "หมายเหตุ เช่น เลขที่การจอง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stays near {0}": {
+  "th": "ที่พักใกล้ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "3. Plan your transport": {
+  "th": "3. วางแผนการเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Summarise the plan": {
+  "th": "สรุปแผนการเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Where will you start from?": {
+  "th": "คุณจะเริ่มเดินทางจากที่ไหน?",
+  "file": "ui/BookingScreens.kt"
+ },
+ "City": {
+  "th": "เมือง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Country": {
+  "th": "ประเทศ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Departure point in that city": {
+  "th": "จุดขึ้นรถ/เรือ/เครื่องบินในเมืองนั้น",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Choose station / airport / pier": {
+  "th": "เลือกสถานี / สนามบิน / ท่าเรือ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "From abroad: fly into Suvarnabhumi, Don Mueang or an international airport near your first place.": {
+  "th": "เดินทางจากต่างประเทศ: แนะนำบินเข้าสุวรรณภูมิ ดอนเมือง หรือสนามบินนานาชาติใกล้สถานที่แรก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Leg {0}": {
+  "th": "ช่วงที่ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "(choose the end point below)": {
+  "th": "(เลือกจุดหมายสุดท้ายด้านล่าง)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "About {0} km in a straight line": {
+  "th": "ระยะทางตรงราว {0} กม.",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Travel day: ": {
+  "th": "วันเดินทาง: ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "After the last place, where will you go?": {
+  "th": "หลังเที่ยวที่สุดท้าย คุณจะเดินทางไปที่ใด?",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Choose airport / bus terminal / station": {
+  "th": "เลือกสนามบิน / สถานีขนส่ง / สถานีรถไฟ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Board at: ": {
+  "th": "ขึ้นที่: ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Get off at: ": {
+  "th": "ลงที่: ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Choose a transport point": {
+  "th": "เลือกจุดเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Search province or name": {
+  "th": "ค้นหาจังหวัดหรือชื่อ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "See flights & arrival times (Google Flights)": {
+  "th": "ดูเที่ยวบินและเวลาถึง (Google Flights)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Airports of Thailand call centre": {
+  "th": "ศูนย์บริการข้อมูลท่าอากาศยาน (ทอท.)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Book train tickets (SRT D-Ticket)": {
+  "th": "จองตั๋วรถไฟ D-Ticket (การรถไฟฯ)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "State Railway of Thailand hotline": {
+  "th": "สายด่วนการรถไฟแห่งประเทศไทย",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Transport Co., Ltd. (BKS)": {
+  "th": "บริษัท ขนส่ง จำกัด (บขส.)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Find and book buses on 12Go": {
+  "th": "ค้นหาเที่ยวรถและจองผ่าน 12Go",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Find and book ferries on 12Go": {
+  "th": "ค้นหาเรือข้ามฟากและจองผ่าน 12Go",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Driving route (Google Maps)": {
+  "th": "เส้นทางขับรถ (Google Maps)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open trip progress": {
+  "th": "ดูความคืบหน้าทริป",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✅ Confirm trip update & activate": {
+  "th": "✅ ยืนยันการอัปเดตทริป และ Activate",
+  "file": "ui/BookingScreens.kt"
+ },
+ "No transport chosen": {
+  "th": "ยังไม่เลือกวิธีเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open": {
+  "th": "เปิด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🍜 Food & cafés": {
+  "th": "🍜 ร้านอาหาร/กาแฟ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Hospitals": {
+  "th": "🏥 โรงพยาบาล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Police": {
+  "th": "👮 สถานีตำรวจ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Free": {
+  "th": "ว่าง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Final destination": {
+  "th": "จุดหมายสุดท้าย",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Emergency numbers": {
+  "th": "เบอร์ฉุกเฉิน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🍜 Restaurants": {
+  "th": "🍜 ร้านอาหาร",
+  "file": "ui/BookingScreens.kt"
+ },
+ "☕ Cafés": {
+  "th": "☕ ร้านกาแฟ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Police stations": {
+  "th": "👮 สถานีตำรวจ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open in Google Maps": {
+  "th": "เปิดใน Google Maps",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Couldn't load the list. Check your internet and try again.": {
+  "th": "โหลดรายการไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Try again": {
+  "th": "ลองใหม่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Nothing found on OpenStreetMap here yet; try Google Maps instead.": {
+  "th": "ยังไม่พบข้อมูลในแผนที่ OpenStreetMap ลองเปิดใน Google Maps แทน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🚑 Emergency room": {
+  "th": "🚑 มีห้องฉุกเฉิน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🧭 Directions": {
+  "th": "🧭 นำทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Data © OpenStreetMap contributors, nearest first": {
+  "th": "ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✈️ Flight": {
+  "th": "✈️ เครื่องบิน",
+  "file": "ui/Format.kt"
+ },
+ "🚆 Train": {
+  "th": "🚆 รถไฟ",
+  "file": "ui/Format.kt"
+ },
+ "🚌 Bus": {
+  "th": "🚌 รถโดยสาร",
+  "file": "ui/Format.kt"
+ },
+ "⛴️ Boat": {
+  "th": "⛴️ เรือ",
+  "file": "ui/Format.kt"
+ },
+ "🚐 Car / van": {
+  "th": "🚐 รถยนต์/รถตู้",
+  "file": "ui/Format.kt"
+ },
+ "✈️ Airport": {
+  "th": "✈️ สนามบิน",
+  "file": "ui/Format.kt"
+ },
+ "🚌 Bus terminal": {
+  "th": "🚌 สถานีขนส่ง",
+  "file": "ui/Format.kt"
+ },
+ "🚆 Railway station": {
+  "th": "🚆 สถานีรถไฟ",
+  "file": "ui/Format.kt"
+ },
+ "⛴️ Pier": {
+  "th": "⛴️ ท่าเรือ",
+  "file": "ui/Format.kt"
+ },
+ "💼 Work / errands": {
+  "th": "💼 ทำงาน/ภารกิจ",
+  "file": "ui/Format.kt"
+ },
+ "🏠 Visit friends or family": {
+  "th": "🏠 เยี่ยมเพื่อนหรือญาติ",
+  "file": "ui/Format.kt"
+ },
+ "🧳 Travel time": {
+  "th": "🧳 ใช้เดินทาง",
+  "file": "ui/Format.kt"
+ },
+ "✨ Something else": {
+  "th": "✨ กิจกรรมอื่น",
+  "file": "ui/Format.kt"
+ },
+ "English": {
+  "th": "ไทย",
+  "file": "ui/I18n.kt"
+ },
+ "Thai Trip Planner": {
+  "th": "เที่ยวไทย Trip",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Plan one Thailand trip at a time": {
+  "th": "วางแผนเที่ยวไทยทีละ 1 ทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Pick places, set calendar days, choose the order, check hazard warnings, choose stays and transport, then activate the plan to follow your trip.": {
+  "th": "เลือกสถานที่ กำหนดวันในปฏิทิน เรียงลำดับ ตรวจคำเตือนภัย เลือกที่พักและการเดินทาง แล้วกดเริ่มทริปเพื่อติดตามการเดินทาง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "🗂 My trips (albums & slideshows)": {
+  "th": "🗂 ทริปของฉัน (อัลบั้มและสไลด์โชว์)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "🎉 Your last trip is complete": {
+  "th": "🎉 ทริปล่าสุดเสร็จสมบูรณ์แล้ว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Plan a new trip": {
+  "th": "เริ่มวางแผนทริปใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Start planning": {
+  "th": "เริ่มวางแผนทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Your trip": {
+  "th": "ทริปของคุณ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Continue planning": {
+  "th": "วางแผนต่อ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "View trip summary": {
+  "th": "ดูสรุปทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Delete this trip and start over": {
+  "th": "ลบทริปนี้และเริ่มใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Start a new trip?": {
+  "th": "เริ่มทริปใหม่?",
+  "file": "ui/PlanScreens.kt"
+ },
+ "The current trip will be deleted.": {
+  "th": "ข้อมูลทริปปัจจุบันจะถูกลบ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Delete": {
+  "th": "ลบและเริ่มใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Bangkok": {
+  "th": "กรุงเทพฯ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Central": {
+  "th": "ภาคกลาง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "North": {
+  "th": "ภาคเหนือ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Northeast": {
+  "th": "ภาคอีสาน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "East": {
+  "th": "ภาคตะวันออก",
+  "file": "ui/PlanScreens.kt"
+ },
+ "West": {
+  "th": "ภาคตะวันตก",
+  "file": "ui/PlanScreens.kt"
+ },
+ "South (Andaman)": {
+  "th": "ใต้ฝั่งอันดามัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "South (Gulf)": {
+  "th": "ใต้ฝั่งอ่าวไทย",
+  "file": "ui/PlanScreens.kt"
+ },
+ "1. Choose places": {
+  "th": "1. เลือกสถานที่ท่องเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "{0} selected · Next: days & order": {
+  "th": "เลือกแล้ว {0} แห่ง · ต่อไป: วันและลำดับ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "All": {
+  "th": "ทั้งหมด",
+  "file": "ui/PlanScreens.kt"
+ },
+ "✓ In your trip (tap to remove)": {
+  "th": "✓ อยู่ในทริปแล้ว (แตะเพื่อเอาออก)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Add to trip": {
+  "th": "เพิ่มในทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "From Wikimedia Commons · tap for source": {
+  "th": "ภาพจาก Wikimedia Commons · แตะเพื่อดูต้นฉบับ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Best time to visit": {
+  "th": "ช่วงเวลาที่แนะนำ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Good to know": {
+  "th": "ข้อควรรู้",
+  "file": "ui/PlanScreens.kt"
+ },
+ "1. Days & visiting order": {
+  "th": "1. วันและลำดับการเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Next: check warnings": {
+  "th": "ต่อไป: ตรวจคำเตือน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Use the arrows to set the order, then pick calendar days for each place (they don't have to be consecutive).": {
+  "th": "เรียงลำดับด้วยลูกศร แล้วเลือกวันในปฏิทินให้แต่ละที่ (ไม่จำเป็นต้องติดกัน)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No days yet": {
+  "th": "ยังไม่ได้เลือกวัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "{0} day(s): ": {
+  "th": "{0} วัน: ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Days overlap with or come after the next stop. Adjust days or order.": {
+  "th": "วันที่ทับซ้อนหรือสลับกับลำดับถัดไป ปรับวันหรือลำดับ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "📅 Pick days": {
+  "th": "📅 เลือกวัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Move up": {
+  "th": "เลื่อนขึ้น",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Move down": {
+  "th": "เลื่อนลง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Order: ": {
+  "th": "ลำดับ: ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Some days have no sightseeing": {
+  "th": "มีช่วงวันที่ไม่ได้เที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Edit the days instead": {
+  "th": "แก้ไขวันที่แทน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Done ({0} days)": {
+  "th": "ตกลง ({0} วัน)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Clear": {
+  "th": "ล้าง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Days used by other places (number = order)": {
+  "th": "วันที่ใช้กับสถานที่อื่น (ตัวเลข = ลำดับ)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "PM2.5 now {0} µg/m³": {
+  "th": "PM2.5 ตอนนี้ {0} µg/m³",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Pollution Control Department (Air4Thai)": {
+  "th": "กรมควบคุมมลพิษ (Air4Thai)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "PM2.5 about {0} µg/m³": {
+  "th": "PM2.5 ประมาณ {0} µg/m³",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo (European CAMS model), used when Air4Thai can't be reached": {
+  "th": "Open-Meteo (แบบจำลอง CAMS ของยุโรป) ใช้แทนเมื่อเชื่อมต่อ Air4Thai ไม่ได้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get PM2.5 right now; try again when online": {
+  "th": "ดึงค่าฝุ่นไม่ได้ในตอนนี้ ลองใหม่เมื่อมีอินเทอร์เน็ต",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "{0} fire hotspots within 30 km": {
+  "th": "พบจุดความร้อน {0} จุดในรัศมี 30 กม.",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Seen by satellite in the last 24 hours; may be forest fires or burning.": {
+  "th": "จากดาวเทียมใน 24 ชั่วโมงที่ผ่านมา อาจเป็นไฟป่าหรือการเผา",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "VIIRS satellite via NASA FIRMS (same data GISTDA uses)": {
+  "th": "ดาวเทียม VIIRS ผ่าน NASA FIRMS (ข้อมูลชุดเดียวกับที่ GISTDA ใช้)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get fire hotspots right now": {
+  "th": "ดึงข้อมูลจุดความร้อนไม่ได้ในตอนนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo forecast (also check Thai Meteorological Department notices, tmd.go.th)": {
+  "th": "พยากรณ์ Open-Meteo (ควรเช็กประกาศกรมอุตุนิยมวิทยาประกอบ tmd.go.th)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Very hot {0}": {
+  "th": "อากาศร้อนจัด {0}",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "High {0}°C. Drink often and avoid midday sun.": {
+  "th": "สูงสุด {0}°C ดื่มน้ำบ่อยๆ หลีกเลี่ยงแดดช่วงเที่ยง",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo forecast": {
+  "th": "พยากรณ์ Open-Meteo",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Strong gusts {0}": {
+  "th": "ลมกระโชกแรง {0}",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Gusts up to {0} km/h. Small boats may not sail.": {
+  "th": "ลมกระโชกถึง {0} กม./ชม. เรือเล็กควรงดออกจากฝั่ง",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get the weather forecast right now": {
+  "th": "ดึงพยากรณ์อากาศไม่ได้ในตอนนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Nearby river may run higher than usual": {
+  "th": "ระดับน้ำในแม่น้ำใกล้เคียงอาจสูงกว่าปกติ",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Forecast flow is about {0}× the usual level this week. Follow local notices.": {
+  "th": "คาดว่าน้ำจะมากกว่าปกติราว {0} เท่าในสัปดาห์นี้ ติดตามประกาศท้องถิ่น",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "GloFAS flood model via Open-Meteo": {
+  "th": "แบบจำลองน้ำท่วม GloFAS ผ่าน Open-Meteo",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Trip days are more than 7 days away, so seasonal risks are shown; real forecasts appear closer to the date.": {
+  "th": "วันเที่ยวยังเกิน 7 วัน จึงแสดงความเสี่ยงตามฤดูกาล พยากรณ์จริงจะขึ้นเมื่อใกล้วัน",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "1. Weather & hazard warnings": {
+  "th": "1. คำเตือนสภาพอากาศและภัย",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Confirm places · Next: stays": {
+  "th": "ยืนยันสถานที่ · ต่อไป: ที่พัก",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Checking latest data…": {
+  "th": "กำลังตรวจข้อมูลล่าสุด…",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "✅ No warnings for these days": {
+  "th": "✅ ไม่พบคำเตือนในช่วงนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Change days or place": {
+  "th": "เปลี่ยนวันหรือสถานที่",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Source: ": {
+  "th": "ที่มา: ",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Tap to confirm or adjust your trip": {
+  "th": "แตะเพื่อยืนยันหรือปรับแผนการเดินทาง",
+  "file": "work/CheckIn.kt"
+ },
+ "Solo ranat": {
+  "th": "ระนาดเดี่ยว",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Ranat & gong circle": {
+  "th": "ระนาดคู่ฆ้องวง",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Ranat, khim & drum": {
+  "th": "ระนาด ขิม และกลอง",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Classic music box": {
+  "th": "กล่องดนตรีคลาสสิก",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Playful music box": {
+  "th": "กล่องดนตรีขี้เล่น",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Twinkling music box": {
+  "th": "กล่องดนตรีระยิบระยับ",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Flowing harp": {
+  "th": "ฮาร์ปพลิ้วไหว",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Harp duet": {
+  "th": "ฮาร์ปสองทำนอง",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Harp call & answer": {
+  "th": "ฮาร์ปถาม-ตอบ",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Café jazz": {
+  "th": "แจ๊สคาเฟ่",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Swing": {
+  "th": "แจ๊สสวิง",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Bossa jazz": {
+  "th": "แจ๊สบอสซา",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Beach samba": {
+  "th": "แซมบ้าริมหาด",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Carnival samba": {
+  "th": "แซมบ้าเทศกาล",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Easy samba": {
+  "th": "แซมบ้าสบายๆ",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Flute & harp": {
+  "th": "ขลุ่ยกับฮาร์ป",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Flute duo & guitar": {
+  "th": "ขลุ่ยคู่กับกีตาร์",
+  "file": "audio/MusicGen.kt (music piece name)"
+ },
+ "Flute & music box": {
+  "th": "ขลุ่ยกับกล่องดนตรี",
+  "file": "audio/MusicGen.kt (music piece name)"
+ }
+}

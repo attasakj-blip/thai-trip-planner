@@ -346,7 +346,7 @@ fun SlideshowSetupScreen(vm: TripViewModel, nav: NavHostController) {
                             }
                             Text(tr("เลือกเพลง (ยาวเพลงละ 1 นาที วนต่อเนื่องจนภาพของที่นี่หมด)", "Pick a piece (1 minute each, looped until this place's photos end)"), fontSize = 12.sp, color = Color.Gray)
                             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                (0..2).forEach { v -> FilterChip(c.variant == v, { choices[keyOf(id)] = c.copy(variant = v) }, label = { Text("${v + 1}. " + MusicGen.pieceName(c.style, v, thai)) }) }
+                                (0..2).forEach { v -> FilterChip(c.variant == v, { choices[keyOf(id)] = c.copy(variant = v) }, label = { Text("${v + 1}. " + tr(MusicGen.pieceName(c.style, v, true), MusicGen.pieceName(c.style, v, false))) }) }
                             }
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 TextButton(onClick = {

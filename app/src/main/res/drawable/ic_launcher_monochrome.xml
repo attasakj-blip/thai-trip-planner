@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One-colour pin with a chedi cut out: themed launcher icon and notification icon. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
+        android:pathData="M54,82 C49,72 35,62 35,47 A19,19 0 1,1 73,47 C73,62 59,72 54,82 Z M45.5,55 h17 v3 h-17 Z M47.5,52.3 h13 v2.7 h-13 Z M48.6,52.3 C48.6,46.6 50.8,44.2 54,42.6 C57.2,44.2 59.4,46.6 59.4,52.3 Z M51.6,40.3 h4.8 v2.3 h-4.8 Z M52.6,40.3 L54,33.6 L55.4,40.3 Z"/>
+</vector>

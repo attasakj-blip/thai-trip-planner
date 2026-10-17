@@ -77,7 +77,7 @@ fun HomeScreen(vm: TripViewModel, nav: NavHostController) {
     val thai = LocalThai.current
     val trip = vm.trip
     var confirmNew by remember { mutableStateOf(false) }
-    Page(tr("เที่ยวไทย Trip", "Thai Trip Planner"), nav, showSettings = true) { pad ->
+    Page(APP_NAME, nav, showSettings = true) { pad ->
         Column(Modifier.padding(pad).padding(16.dp).verticalScroll(rememberScrollState())) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(tr("วางแผนเที่ยวไทยทีละ 1 ทริป", "Plan one Thailand trip at a time"), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))

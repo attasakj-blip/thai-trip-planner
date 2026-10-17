@@ -47,6 +47,9 @@ import androidx.navigation.navArgument
 import th.trip.planner.TripViewModel
 import th.trip.planner.model.Txt
 
+/** The app's name, the same in every language (also in res/values/strings.xml). */
+const val APP_NAME = "Thai Trip Planner"
+
 val LocalThai = compositionLocalOf { true }
 
 /** Thai text, English text, or (for the other 28 languages) the translation of the English text. */

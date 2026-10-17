@@ -73,7 +73,7 @@ class CheckInWorker(context: Context, params: WorkerParameters) : CoroutineWorke
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
         val n = NotificationCompat.Builder(ctx, CheckInScheduler.CHANNEL)
-            .setSmallIcon(R.drawable.ic_launcher)
+            .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(th.trip.planner.ui.tr("ทริปวันนี้เป็นไปตามแผนไหม?", "Is today going to plan?"))
             .setContentText(th.trip.planner.ui.tr("แตะเพื่อยืนยันหรือปรับแผนการเดินทาง", "Tap to confirm or adjust your trip"))
             .setContentIntent(open)

@@ -36,7 +36,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         with:
           tag_name: latest-build
-          name: เที่ยวไทย Trip (รุ่นทดลองล่าสุด)
+          name: Thai Trip Planner (latest test build)
           body: APK ล่าสุดจาก commit ${{ github.sha }}
           files: ThaiTrip.apk
           make_latest: true
