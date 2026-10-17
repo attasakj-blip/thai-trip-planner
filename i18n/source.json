@@ -159,14 +159,6 @@
   "th": "3. 👮 สถานีตำรวจ",
   "file": "ui/ActiveScreens.kt"
  },
- "Start": {
-  "th": "เริ่ม",
-  "file": "ui/ActiveScreens.kt"
- },
- "End": {
-  "th": "ปลายทาง",
-  "file": "ui/ActiveScreens.kt"
- },
  "Adjust the trip": {
   "th": "ปรับแผนทริป",
   "file": "ui/ActiveScreens.kt"
@@ -507,36 +499,8 @@
   "th": "สรุปแผนการเดินทาง",
   "file": "ui/BookingScreens.kt"
  },
- "Where will you start from?": {
-  "th": "คุณจะเริ่มเดินทางจากที่ไหน?",
-  "file": "ui/BookingScreens.kt"
- },
- "City": {
-  "th": "เมือง",
-  "file": "ui/BookingScreens.kt"
- },
- "Country": {
-  "th": "ประเทศ",
-  "file": "ui/BookingScreens.kt"
- },
- "Departure point in that city": {
-  "th": "จุดขึ้นรถ/เรือ/เครื่องบินในเมืองนั้น",
-  "file": "ui/BookingScreens.kt"
- },
- "Choose station / airport / pier": {
-  "th": "เลือกสถานี / สนามบิน / ท่าเรือ",
-  "file": "ui/BookingScreens.kt"
- },
- "From abroad: fly into Suvarnabhumi, Don Mueang or an international airport near your first place.": {
-  "th": "เดินทางจากต่างประเทศ: แนะนำบินเข้าสุวรรณภูมิ ดอนเมือง หรือสนามบินนานาชาติใกล้สถานที่แรก",
-  "file": "ui/BookingScreens.kt"
- },
  "Leg {0}": {
   "th": "ช่วงที่ {0}",
-  "file": "ui/BookingScreens.kt"
- },
- "(choose the end point below)": {
-  "th": "(เลือกจุดหมายสุดท้ายด้านล่าง)",
   "file": "ui/BookingScreens.kt"
  },
  "About {0} km in a straight line": {
@@ -545,30 +509,6 @@
  },
  "Travel day: ": {
   "th": "วันเดินทาง: ",
-  "file": "ui/BookingScreens.kt"
- },
- "After the last place, where will you go?": {
-  "th": "หลังเที่ยวที่สุดท้าย คุณจะเดินทางไปที่ใด?",
-  "file": "ui/BookingScreens.kt"
- },
- "Choose airport / bus terminal / station": {
-  "th": "เลือกสนามบิน / สถานีขนส่ง / สถานีรถไฟ",
-  "file": "ui/BookingScreens.kt"
- },
- "Board at: ": {
-  "th": "ขึ้นที่: ",
-  "file": "ui/BookingScreens.kt"
- },
- "Get off at: ": {
-  "th": "ลงที่: ",
-  "file": "ui/BookingScreens.kt"
- },
- "Choose a transport point": {
-  "th": "เลือกจุดเดินทาง",
-  "file": "ui/BookingScreens.kt"
- },
- "Search province or name": {
-  "th": "ค้นหาจังหวัดหรือชื่อ",
   "file": "ui/BookingScreens.kt"
  },
  "See flights & arrival times (Google Flights)": {
@@ -635,10 +575,6 @@
   "th": "ว่าง",
   "file": "ui/BookingScreens.kt"
  },
- "Final destination": {
-  "th": "จุดหมายสุดท้าย",
-  "file": "ui/BookingScreens.kt"
- },
  "Emergency numbers": {
   "th": "เบอร์ฉุกเฉิน",
   "file": "ui/BookingScreens.kt"
@@ -697,10 +633,6 @@
  },
  "⛴️ Boat": {
   "th": "⛴️ เรือ",
-  "file": "ui/Format.kt"
- },
- "🚐 Car / van": {
-  "th": "🚐 รถยนต์/รถตู้",
   "file": "ui/Format.kt"
  },
  "✈️ Airport": {
@@ -1198,5 +1130,269 @@
  "Note": {
   "th": "หมายเหตุ",
   "file": "ui/BookingScreens.kt"
+ },
+ "This trip has one place, so there is no travel between places.": {
+  "th": "ทริปนี้มีสถานที่เดียว จึงไม่มีช่วงเดินทางระหว่างสถานที่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Pick how to travel each leg. The app shows where to board and get off, lines, airlines, times, distances to the place and your stay, and rough costs to help you decide.": {
+  "th": "เลือกวิธีเดินทางของแต่ละช่วง แอปจะบอกจุดขึ้น-ลง สายรถ สายการบิน เวลา ระยะทางถึงที่เที่ยวและที่พัก และค่าใช้จ่ายโดยประมาณ เพื่อช่วยตัดสินใจ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Find and book minivans on 12Go": {
+  "th": "ค้นหารอบรถตู้และจองผ่าน 12Go",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🚗 Car / ride-hailing": {
+  "th": "🚗 รถยนต์ / เรียกรถ",
+  "file": "ui/Format.kt"
+ },
+ "🚐 Minivan": {
+  "th": "🚐 รถตู้โดยสาร",
+  "file": "ui/Format.kt"
+ },
+ "m": {
+  "th": "ม.",
+  "file": "ui/LegDetails.kt"
+ },
+ "km": {
+  "th": "กม.",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} min": {
+  "th": "{0} นาที",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} h": {
+  "th": "{0} ชม.",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} h {1} min": {
+  "th": "{0} ชม. {1} นาที",
+  "file": "ui/LegDetails.kt"
+ },
+ "Looking up travel details…": {
+  "th": "กำลังค้นหาข้อมูลการเดินทาง…",
+  "file": "ui/LegDetails.kt"
+ },
+ "your stay": {
+  "th": "ที่พัก",
+  "file": "ui/LegDetails.kt"
+ },
+ "Save your stays in step 2 and distances are measured from them.": {
+  "th": "บันทึกที่พักในขั้นที่ 2 แล้ว ระยะทางจะคิดจากที่พักให้แม่นขึ้น",
+  "file": "ui/LegDetails.kt"
+ },
+ "No direct flight between the airports near {0} and {1}. You may need to change planes in Bangkok, or pick another way.": {
+  "th": "ไม่พบเที่ยวบินตรงจากสนามบินใกล้ {0} ไปสนามบินใกล้ {1} อาจต้องต่อเครื่องที่กรุงเทพฯ หรือเลือกวิธีเดินทางอื่น",
+  "file": "ui/LegDetails.kt"
+ },
+ "Flight time about ": {
+  "th": "เวลาบินประมาณ ",
+  "file": "ui/LegDetails.kt"
+ },
+ " · about {0} flights a day": {
+  "th": " · ประมาณ {0} เที่ยวต่อวัน",
+  "file": "ui/LegDetails.kt"
+ },
+ "Airlines on this route": {
+  "th": "สายการบินที่บินเส้นนี้",
+  "file": "ui/LegDetails.kt"
+ },
+ "Website": {
+  "th": "เว็บไซต์",
+  "file": "ui/LegDetails.kt"
+ },
+ "Carry-on {0} kg": {
+  "th": "ถือขึ้นเครื่อง {0} กก.",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚕 {0} → airport about {1}": {
+  "th": "🚕 {0} → สนามบิน ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚕 Arrival airport → {0} about {1}": {
+  "th": "🚕 สนามบินปลายทาง → {0} ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🕒 See departure/arrival times & fares": {
+  "th": "🕒 ดูเวลาออก-ถึงและราคา",
+  "file": "ui/LegDetails.kt"
+ },
+ "Flight times change daily; check the real times with the button above. Baggage is the usual allowance for the cheapest fares; check your own ticket.": {
+  "th": "เวลาเที่ยวบินเปลี่ยนทุกวัน ดูเวลาจริงจากปุ่มด้านบน · น้ำหนักสัมภาระเป็นเงื่อนไขทั่วไปของตั๋วราคาประหยัด ตรวจสอบตั๋วของคุณอีกครั้ง",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} by road · about {1} driving": {
+  "th": "ระยะทางถนน {0} · ขับประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Ride-hailing (Grab / Bolt / LINE MAN) or a metered taxi: about {0}–{1} baht": {
+  "th": "เรียกรถ (Grab / Bolt / LINE MAN) หรือแท็กซี่มิเตอร์ ประมาณ {0}–{1} บาท",
+  "file": "ui/LegDetails.kt"
+ },
+ "Long distance: renting a car or hiring a car with driver usually suits better (app rides are possible but costly).": {
+  "th": "ระยะไกล: แนะนำเช่ารถขับเอง หรือจ้างรถพร้อมคนขับ (เรียกรถผ่านแอปได้แต่ราคาสูง)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Route (Google Maps)": {
+  "th": "เส้นทาง (Google Maps)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Car rental nearby": {
+  "th": "ร้านเช่ารถใกล้คุณ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Fares are estimates; the app shows the real price before you book.": {
+  "th": "ค่าโดยสารเป็นการประมาณ ราคาจริงดูได้ในแอปก่อนกดเรียกรถ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚏 {0} → {1} (local)": {
+  "th": "🚏 {0} → {1} (ในเมือง)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Couldn't load transit lines right now.": {
+  "th": "ดึงข้อมูลสายรถไม่ได้ในตอนนี้",
+  "file": "ui/LegDetails.kt"
+ },
+ "No line in OpenStreetMap passes near both points. Try Google Maps directions or a ride.": {
+  "th": "ไม่พบสายรถที่ผ่านใกล้ทั้งสองจุดในข้อมูล OpenStreetMap ลองดูเส้นทางใน Google Maps หรือเรียกรถ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Transit route & times in Google Maps": {
+  "th": "ดูเส้นทางและเวลารถใน Google Maps",
+  "file": "ui/LegDetails.kt"
+ },
+ "Line data comes from OpenStreetMap and may be incomplete.": {
+  "th": "ข้อมูลสายรถจาก OpenStreetMap อาจไม่ครบทุกสาย",
+  "file": "ui/LegDetails.kt"
+ },
+ "🛻 Songthaew": {
+  "th": "🛻 รถสองแถว",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚇 Metro": {
+  "th": "🚇 รถไฟฟ้า",
+  "file": "ui/LegDetails.kt"
+ },
+ "Option {0} · about {1}": {
+  "th": "ทางเลือกที่ {0} · ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚶 Walk {0} from {1} to ": {
+  "th": "🚶 เดิน {0} จาก{1}ไปป้าย ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔁 Change at the same stop": {
+  "th": "🔁 ต่อรถที่ป้ายเดียวกัน",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔁 Walk {0} to change at ": {
+  "th": "🔁 เดิน {0} ไปต่อรถที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "   Board at ": {
+  "th": "   ขึ้นที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ " → get off at ": {
+  "th": " → ลงที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ " ({0} stops)": {
+  "th": " ({0} ป้าย)",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚶 Walk {0} to {1}": {
+  "th": "🚶 เดิน {0} ถึง{1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "an unnamed stop": {
+  "th": "ป้ายไม่มีชื่อ",
+  "file": "ui/LegDetails.kt"
+ },
+ "No railway station near one end. Try a bus instead.": {
+  "th": "ไม่พบสถานีรถไฟใกล้ต้นทางหรือปลายทาง ลองเลือกรถโดยสารแทน",
+  "file": "ui/LegDetails.kt"
+ },
+ "No bus terminal found near one end in the map data.": {
+  "th": "ไม่พบสถานีขนส่งใกล้ต้นทางหรือปลายทางในข้อมูลแผนที่",
+  "file": "ui/LegDetails.kt"
+ },
+ "🟢 Board at ": {
+  "th": "🟢 ขึ้นรถที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "   {0} from {1}": {
+  "th": "   ห่างจาก{0} {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Directions to boarding point": {
+  "th": "นำทางไปจุดขึ้นรถ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔴 Get off at ": {
+  "th": "🔴 ลงรถที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "   About {0} from there to {1}": {
+  "th": "   จากจุดลงถึง {0} ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "   About {0} to your stay, {1}": {
+  "th": "   ถึงที่พัก {0} ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "   Taxi, ride app or songthaew onward: about {0}–{1} baht": {
+  "th": "   ต่อแท็กซี่/เรียกรถ/สองแถว ประมาณ {0}–{1} บาท",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} · about {1} on the way": {
+  "th": "ระยะทาง {0} · ใช้เวลาเดินทางประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Intercity minivans leave from the bus terminal; buy a ticket at the minivan counter there. They leave on schedule or when full. Big suitcases may need an extra seat.": {
+  "th": "รถตู้โดยสารระหว่างจังหวัดออกจากสถานีขนส่ง ซื้อตั๋วที่ช่องขายตั๋วรถตู้ในสถานี รถออกเมื่อคนเต็มหรือตามรอบ กระเป๋าใบใหญ่อาจต้องเสียค่าที่เพิ่ม",
+  "file": "ui/LegDetails.kt"
+ },
+ "Coaches leave the terminal on a timetable; buy tickets online or at the counter.": {
+  "th": "รถทัวร์ออกจากสถานีขนส่งตามรอบเวลา ซื้อตั๋วล่วงหน้าออนไลน์หรือที่ช่องขายตั๋ว",
+  "file": "ui/LegDetails.kt"
+ },
+ "Check trains, times and seats before you go.": {
+  "th": "ตรวจสอบขบวนรถ เวลา และที่นั่งก่อนเดินทาง",
+  "file": "ui/LegDetails.kt"
+ },
+ "Train times & tickets": {
+  "th": "ดูเวลาและจองตั๋วรถไฟ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Times & tickets (12Go)": {
+  "th": "ดูรอบรถและจองตั๋ว (12Go)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Transport Co. (BKS)": {
+  "th": "บขส.",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔴 Arrive at ": {
+  "th": "🔴 ขึ้นฝั่งที่ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "   About {0} from the pier to {1}": {
+  "th": "   จากท่าเรือถึง{0} ประมาณ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "No pier in the app's data near these places.": {
+  "th": "ไม่พบท่าเรือในข้อมูลของแอปใกล้สองจุดนี้",
+  "file": "ui/LegDetails.kt"
+ },
+ "Boat timetables depend on the season and the sea; some routes stop in the monsoon.": {
+  "th": "ตารางเรือขึ้นกับฤดูกาลและคลื่นลม ช่วงมรสุมอาจงดเดินเรือ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Boat times & tickets (12Go)": {
+  "th": "ดูรอบเรือและจองตั๋ว (12Go)",
+  "file": "ui/LegDetails.kt"
  }
 }

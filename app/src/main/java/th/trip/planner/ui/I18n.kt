@@ -97,7 +97,8 @@ object I18n {
             }
             Regex(pattern, RegexOption.DOT_MATCHES_ALL) to v
         }
-        Table(map, templates)
+        // Most specific first, so "{0} h {1} min" wins over "{0} min".
+        Table(map, templates.sortedByDescending { (re, _) -> re.pattern.replace("(.+?)", "").length })
     }.getOrNull()
 
     /** The text in the current language: Thai, English, or the translation of the English text. */
