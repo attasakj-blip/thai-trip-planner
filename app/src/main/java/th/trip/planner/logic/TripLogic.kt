@@ -33,8 +33,8 @@ data class Gap(
 sealed class TripStatus {
     data object NotStarted : TripStatus()
     data class AtPlace(val stopIndex: Int) : TripStatus()
-    /** Travelling on leg [legIndex] (0 = from origin to first stop). */
-    data class Travelling(val legIndex: Int) : TripStatus()
+    /** On the way to stop [toStop] (by leg toStop - 1; toStop 0 = heading to the first place). */
+    data class Travelling(val toStop: Int) : TripStatus()
     data class InGap(val afterStop: Int) : TripStatus()
     data object Finished : TripStatus()
 }
@@ -92,17 +92,13 @@ object TripLogic {
     fun lastDay(trip: Trip): LocalDate? = trip.stops.flatMap { dates(it) }.maxOrNull()
 
     /** Number of legs: origin -> stop 1, between stops, last stop -> end point. */
-    fun legCount(trip: Trip) = if (trip.stops.isEmpty()) 0 else trip.stops.size + 1
+    /** One leg between each pair of consecutive places: leg i goes from stop i to stop i + 1. */
+    fun legCount(trip: Trip) = (trip.stops.size - 1).coerceAtLeast(0)
 
     /** Default travel date of each leg, used when the user has not picked one. */
     fun defaultLegDate(trip: Trip, legIndex: Int): LocalDate? {
         val stops = trip.stops
-        return when {
-            stops.isEmpty() -> null
-            legIndex == 0 -> dates(stops[0]).firstOrNull()
-            legIndex >= stops.size -> dates(stops.last()).lastOrNull()
-            else -> dates(stops[legIndex]).firstOrNull()
-        }
+        return stops.getOrNull(legIndex + 1)?.let { dates(it).firstOrNull() }
     }
 
     fun legDate(trip: Trip, legIndex: Int): LocalDate? =
@@ -145,7 +141,7 @@ object TripLogic {
         }
         // A day with no stop: a gap, or a travel leg on a custom date.
         val leg = (0 until legCount(trip)).firstOrNull { trip.legs.getOrNull(it)?.date?.let(LocalDate::parse) == today }
-        if (leg != null) return TripStatus.Travelling(leg)
+        if (leg != null) return TripStatus.Travelling(leg + 1)
         val before = trip.stops.indices.lastOrNull { i -> dates(trip.stops[i]).any { it < today } } ?: 0
         return TripStatus.InGap(before)
     }
@@ -179,7 +175,10 @@ object TripLogic {
         val out = mutableListOf<TravelMode>()
         if (km > 250 && has(fromHubs, HubType.AIRPORT) && has(toHubs, HubType.AIRPORT)) out += TravelMode.FLIGHT
         if (has(fromHubs, HubType.TRAIN) && has(toHubs, HubType.TRAIN)) out += TravelMode.TRAIN
-        if (has(fromHubs, HubType.BUS) || has(toHubs, HubType.BUS)) out += TravelMode.BUS
+        val mainland = !fromIsland && !toIsland
+        // Buses and minivans leave from bus terminals, which almost every town has.
+        if (mainland || has(fromHubs, HubType.BUS) || has(toHubs, HubType.BUS)) out += TravelMode.BUS
+        if (mainland && km <= 450) out += TravelMode.VAN
         if (fromIsland || toIsland || has(fromHubs, HubType.PIER) && has(toHubs, HubType.PIER)) out += TravelMode.BOAT
         out += TravelMode.CAR
         return out.distinct()

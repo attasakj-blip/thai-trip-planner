@@ -2,6 +2,7 @@ package th.trip.planner.data
 
 import android.content.Context
 import kotlinx.serialization.json.Json
+import th.trip.planner.model.FlightData
 import th.trip.planner.model.Hub
 import th.trip.planner.model.Place
 import th.trip.planner.model.Trip
@@ -17,6 +18,12 @@ class Repository(private val context: Context) {
     val places: List<Place> by lazy { load("places.json") }
     val hubs: List<Hub> by lazy { load("hubs.json") }
     val placeById: Map<String, Place> by lazy { places.associateBy { it.id } }
+    /** Domestic flight routes, airlines and baggage rules. */
+    val flights: FlightData by lazy {
+        val downloaded = File(dataDir, "flights.json")
+        if (downloaded.exists()) runCatching { return@lazy json.decodeFromString<FlightData>(downloaded.readText()) }
+        runCatching { json.decodeFromString<FlightData>(readAsset("flights.json")) }.getOrDefault(FlightData())
+    }
     val hubById: Map<String, Hub> by lazy { hubs.associateBy { it.id } }
 
     private fun readAsset(name: String) = context.assets.open(name).bufferedReader().use { it.readText() }
@@ -32,6 +39,7 @@ class Repository(private val context: Context) {
 
     /** Checks that downloaded text really is a usable places / hubs file before it replaces the old one. */
     fun validPlaces(text: String) = runCatching { json.decodeFromString<List<Place>>(text).size >= 5 }.getOrDefault(false)
+    fun validFlights(text: String) = runCatching { json.decodeFromString<FlightData>(text).routes.size >= 5 }.getOrDefault(false)
     fun validHubs(text: String) = runCatching { json.decodeFromString<List<Hub>>(text).size >= 5 }.getOrDefault(false)
 
     /** Version of the downloaded data (from meta.json), "" = only the built-in data. */

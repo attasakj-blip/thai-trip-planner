@@ -55,7 +55,30 @@ data class Hub(
     val website: String? = null,
 )
 
-enum class TravelMode { FLIGHT, TRAIN, BUS, BOAT, CAR }
+/** CAR = car, taxi or ride-hailing (Grab, Bolt, LINE MAN); VAN = shared minivan from a terminal. */
+enum class TravelMode { FLIGHT, TRAIN, BUS, BOAT, CAR, VAN }
+
+@Serializable
+data class Airline(
+    val code: String,
+    val name: String,
+    val website: String? = null,
+    val carryOnKg: Int? = null,
+    val carryOnNote: Txt? = null,
+    val checkedNote: Txt? = null,
+)
+
+/** Airlines flying between airports [a] and [b] (hub ids, either direction). */
+@Serializable
+data class FlightRoute(val a: String, val b: String, val airlines: List<String> = emptyList(), val minutes: Int? = null, val perDay: String? = null)
+
+@Serializable
+data class FlightData(
+    val updated: String = "",
+    val source: String = "",
+    val airlines: List<Airline> = emptyList(),
+    val routes: List<FlightRoute> = emptyList(),
+)
 
 enum class GapPurpose { WORK, VISIT, TRAVEL, OTHER }
 
@@ -82,6 +105,9 @@ data class Lodging(
     val bookingRef: String = "",
     /** Where it was booked: "booking.com", "agoda", "osm", or "" when typed in by the user. */
     val source: String = "",
+    /** Where the stay is, when known (picked from the map list, or found from the address). */
+    val lat: Double? = null,
+    val lon: Double? = null,
 ) {
     val isEmpty: Boolean get() = name.isBlank() && address.isBlank() && phone.isBlank() && bookingRef.isBlank() && note.isBlank()
 }

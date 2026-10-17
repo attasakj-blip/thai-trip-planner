@@ -50,7 +50,7 @@ fun TravelScene(kind: SceneKind, modifier: Modifier = Modifier) {
                 TravelMode.FLIGHT -> flight(t, bob)
                 TravelMode.TRAIN -> train(t, bob)
                 TravelMode.BUS -> road(t, bob, bus = true)
-                TravelMode.CAR -> road(t, bob, bus = false)
+                TravelMode.CAR, TravelMode.VAN -> road(t, bob, bus = false)
                 TravelMode.BOAT -> boat(t, bob)
             }
             SceneKind.AtPlace -> atPlace(t, bob)

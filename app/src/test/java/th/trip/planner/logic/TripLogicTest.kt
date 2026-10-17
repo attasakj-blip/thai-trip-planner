@@ -69,9 +69,18 @@ class TripLogicTest {
     }
 
     @Test fun customLegDateOnGapDayIsTravelling() {
-        val t = trip.copy(legs = List(4) { Leg() }.toMutableList().also { it[2] = Leg(TravelMode.BUS, "2026-11-09") },
+        // Leg 1 goes from Chiang Mai (stop 1) to Pai (stop 2).
+        val t = trip.copy(legs = List(2) { Leg() }.toMutableList().also { it[1] = Leg(TravelMode.BUS, "2026-11-09") },
             gapPurposes = mapOf("2026-11-08" to GapPurpose.VISIT))
         assertEquals(TripStatus.Travelling(2), TripLogic.status(t, places, LocalDate.parse("2026-11-09")))
+    }
+
+    @Test fun legsOnlyBetweenPlaces() {
+        assertEquals(2, TripLogic.legCount(trip))
+        assertEquals(0, TripLogic.legCount(Trip(stops = listOf(Stop("bkk")))))
+        // Leg 0 (Bangkok -> Chiang Mai) defaults to the first Chiang Mai day.
+        assertEquals(LocalDate.parse("2026-11-03"), TripLogic.legDate(trip, 0))
+        assertEquals(LocalDate.parse("2026-11-10"), TripLogic.legDate(trip, 1))
     }
 
     @Test fun distance() {

@@ -125,17 +125,14 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
     val loc = rememberLocation(granted)
     val today = LocalDate.now()
     val status = TripLogic.status(trip, vm.repo.placeById, today, loc?.latitude, loc?.longitude)
-    val endHub = trip.endHubId?.let { vm.repo.hubById[it] }
     val lastDay = TripLogic.lastDay(trip)
-    val atEnd = endHub != null && loc != null && lastDay != null && today >= lastDay &&
-        TripLogic.distanceKm(loc.latitude, loc.longitude, endHub.lat, endHub.lon) < 5.0
-    LaunchedEffect(status, atEnd) {
-        if (trip.activated && (status == TripStatus.Finished || atEnd)) nav.navigate(Routes.FINALE)
+    LaunchedEffect(status) {
+        if (trip.activated && status == TripStatus.Finished) nav.navigate(Routes.FINALE)
     }
     var menuFor by remember { mutableStateOf<Int?>(null) }
 
     val scene = when (status) {
-        is TripStatus.Travelling -> SceneKind.Moving(trip.legs.getOrNull(status.legIndex)?.mode ?: TravelMode.CAR)
+        is TripStatus.Travelling -> SceneKind.Moving(trip.legs.getOrNull(status.toStop - 1)?.mode ?: TravelMode.CAR)
         is TripStatus.AtPlace -> SceneKind.AtPlace
         is TripStatus.InGap -> SceneKind.Break
         else -> SceneKind.Waiting
@@ -144,7 +141,7 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
         TripStatus.NotStarted -> tr("ทริปยังไม่เริ่ม เริ่ม ${TripLogic.firstDay(trip)?.let { fmt(it, true) } ?: ""}", "Trip starts ${TripLogic.firstDay(trip)?.let { fmt(it, false) } ?: ""}")
         is TripStatus.AtPlace -> tr("ตอนนี้อยู่ที่ ", "You're at ") + (vm.repo.placeById[trip.stops[status.stopIndex].placeId]?.name?.get(thai) ?: "")
         is TripStatus.Travelling -> {
-            val to = trip.stops.getOrNull(status.legIndex)?.let { vm.repo.placeById[it.placeId]?.name?.get(thai) } ?: endHub?.name?.get(thai) ?: ""
+            val to = trip.stops.getOrNull(status.toStop)?.let { vm.repo.placeById[it.placeId]?.name?.get(thai) } ?: ""
             tr("กำลังเดินทางไป ", "On the way to ") + to
         }
         is TripStatus.InGap -> {
@@ -212,20 +209,20 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
     }
 }
 
-/** Start → places → end, with the traveller's position marked. */
+/** The places in order, with the traveller's position marked. */
 @Composable
 private fun ProgressPath(vm: TripViewModel, status: TripStatus, onTapStop: (Int) -> Unit) {
     val thai = LocalThai.current
     val trip = vm.trip
-    // Position on the path: nodes are 0 = start, 1..n = stops, n+1 = end. Half steps = travelling.
+    // Position on the path: node i = stop i. Half steps = travelling or a break between places.
     val pos: Float = when (status) {
-        TripStatus.NotStarted -> 0f
-        is TripStatus.AtPlace -> status.stopIndex + 1f
-        is TripStatus.Travelling -> status.legIndex + 0.5f
-        is TripStatus.InGap -> status.afterStop + 1.5f
-        TripStatus.Finished -> trip.stops.size + 1f
+        TripStatus.NotStarted -> -0.5f
+        is TripStatus.AtPlace -> status.stopIndex.toFloat()
+        is TripStatus.Travelling -> status.toStop - 0.5f
+        is TripStatus.InGap -> status.afterStop + 0.5f
+        TripStatus.Finished -> trip.stops.size.toFloat()
     }
-    val labels = listOf(tr("เริ่ม", "Start")) + trip.stops.map { vm.repo.placeById[it.placeId]?.name?.get(thai) ?: "" } + listOf(tr("ปลายทาง", "End"))
+    val labels = trip.stops.map { vm.repo.placeById[it.placeId]?.name?.get(thai) ?: "" }
     Row(Modifier.horizontalScroll(rememberScrollState()).padding(16.dp), verticalAlignment = Alignment.Top) {
         labels.forEachIndexed { i, label ->
             val done = i < pos
@@ -235,10 +232,10 @@ private fun ProgressPath(vm: TripViewModel, status: TripStatus, onTapStop: (Int)
                     Modifier.size(if (here) 46.dp else 36.dp).clip(CircleShape)
                         .background(if (here) Coral else if (done) Teal else Color(0xFFE0E0E0))
                         .border(2.dp, Color.White, CircleShape)
-                        .clickable(enabled = i in 1..trip.stops.size) { onTapStop(i - 1) },
+                        .clickable { onTapStop(i) },
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(if (here) "🧳" else if (done) "✓" else if (i in 1..trip.stops.size) "$i" else "🏁", color = Color.White, fontWeight = FontWeight.Bold)
+                    Text(if (here) "🧳" else if (done) "✓" else "${i + 1}", color = Color.White, fontWeight = FontWeight.Bold)
                 }
                 Text(label, fontSize = 11.sp, textAlign = TextAlign.Center, maxLines = 2, modifier = Modifier.padding(top = 4.dp))
             }

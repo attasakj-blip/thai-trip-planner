@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -102,7 +103,10 @@ fun AppRoot(vm: TripViewModel, onExit: () -> Unit) {
             androidx.compose.ui.platform.LocalLayoutDirection provides
                 if (I18n.current.rtl) androidx.compose.ui.unit.LayoutDirection.Rtl else androidx.compose.ui.unit.LayoutDirection.Ltr,
         ) {
-            Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+            // Android 15 draws the app behind the status bar and the back/home/recents buttons.
+            // Keep everything inside the safe area so bottom buttons never sit under them.
+            Surface(Modifier.fillMaxSize(), color = Sand) {
+              androidx.compose.foundation.layout.Box(Modifier.fillMaxSize().safeDrawingPadding()) {
                 val nav = rememberNavController()
                 val start = when {
                     vm.trip.finished -> Routes.HOME
@@ -139,6 +143,7 @@ fun AppRoot(vm: TripViewModel, onExit: () -> Unit) {
                 }
                 ImportDialog(vm)
                 StayFormDialog(vm)
+              }
             }
         }
     }

@@ -64,7 +64,8 @@ fun modeLabel(m: TravelMode, thai: Boolean) = when (m) {
     TravelMode.TRAIN -> tr("🚆 รถไฟ", "🚆 Train")
     TravelMode.BUS -> tr("🚌 รถโดยสาร", "🚌 Bus")
     TravelMode.BOAT -> tr("⛴️ เรือ", "⛴️ Boat")
-    TravelMode.CAR -> tr("🚐 รถยนต์/รถตู้", "🚐 Car / van")
+    TravelMode.CAR -> tr("🚗 รถยนต์ / เรียกรถ", "🚗 Car / ride-hailing")
+    TravelMode.VAN -> tr("🚐 รถตู้โดยสาร", "🚐 Minivan")
 }
 
 fun hubTypeLabel(t: HubType, thai: Boolean) = when (t) {
