@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Air4Thai (Pollution Control Department) publishes its JSON over plain HTTP. -->
+    <!--
+      Air4Thai (Pollution Control Department) redirects to HTTPS but its server sends the wrong
+      certificate chain, and the Let's Encrypt root it chains to is too new for many phones.
+      Trusting the issuing CA (YR1, valid to 2028) for this one host fixes it; if that ever
+      breaks, the app falls back to Open-Meteo air-quality data.
+    -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="false">air4thai.pcd.go.th</domain>
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="@raw/air4thai_ca" />
+        </trust-anchors>
     </domain-config>
 </network-security-config>

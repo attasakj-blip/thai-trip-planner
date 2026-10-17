@@ -112,7 +112,7 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
                                 open(ctx, "https://www.agoda.com/search?textToSearch=${enc(city)}" + (if (checkIn != null) "&checkIn=$checkIn&checkOut=$checkOut" else ""))
                             }) { Text("Agoda") }
                             OutlinedButton(onClick = { open(ctx, mapsSearch("hotels", p.lat, p.lon)) }) { Text("Google Maps") }
-                            if (vm.repo.placesKey.isNotBlank()) OutlinedButton(onClick = { picking = p }) { Text(tr("ดูรายการที่พักใกล้เคียง", "Browse nearby stays")) }
+                            OutlinedButton(onClick = { picking = p }) { Text(tr("ดูรายการที่พักใกล้เคียง", "Browse nearby stays")) }
                         }
                         VSpace()
                         OutlinedTextField(
@@ -134,8 +134,8 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
             confirmButton = { TextButton(onClick = { picking = null }) { Text(tr("ปิด", "Close")) } },
             title = { Text(tr("ที่พักใกล้ ${p.name.th}", "Stays near ${p.name.en}")) },
             text = {
-                PoiList(vm, p.lat, p.lon, "lodging", byDistance = false, modifier = Modifier.heightIn(max = 480.dp)) { poi ->
-                    vm.setLodging(p.id, Lodging(poi.name, poi.mapsUri ?: "", poi.phone ?: ""))
+                PoiList(vm, p.lat, p.lon, "lodging", modifier = Modifier.heightIn(max = 480.dp)) { poi ->
+                    vm.setLodging(p.id, Lodging(poi.name, poi.website ?: mapsPoint(poi), poi.phone ?: ""))
                     picking = null
                 }
             },
@@ -468,51 +468,51 @@ fun NearbyScreen(vm: TripViewModel, nav: NavHostController, stopIndex: Int, kind
                 val q = when (type) { "restaurant" -> "restaurants"; "cafe" -> "cafes"; "hospital" -> "hospital"; else -> "police station" }
                 open(ctx, mapsSearch(q, p.lat, p.lon))
             }, modifier = Modifier.fillMaxWidth()) { Text(tr("เปิดใน Google Maps", "Open in Google Maps")) }
-            if (vm.repo.placesKey.isBlank()) {
-                Text(
-                    tr("ใส่ Google Places API key ในหน้าตั้งค่า เพื่อแสดงรายการพร้อมรูป คะแนน และเบอร์โทรในแอป", "Add a Google Places API key in Settings to list places with photos, ratings and phone numbers here."),
-                    fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(top = 8.dp),
-                )
-            } else {
-                PoiList(vm, p.lat, p.lon, type, byDistance = kind != "food", modifier = Modifier.weight(1f), onPick = null)
-            }
+            PoiList(vm, p.lat, p.lon, type, modifier = Modifier.weight(1f), onPick = null)
         }
     }
 }
 
+/** Google Maps link to an exact spot, labelled with the place name. */
+fun mapsPoint(poi: Poi) = "https://www.google.com/maps/search/?api=1&query=" + enc("${poi.name} ${poi.lat},${poi.lon}")
+
 @Composable
-fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, byDistance: Boolean, modifier: Modifier = Modifier, onPick: ((Poi) -> Unit)?) {
+fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier: Modifier = Modifier, onPick: ((Poi) -> Unit)?) {
     val thai = LocalThai.current
     val ctx = LocalContext.current
-    val result = produceState<Result<List<Poi>>?>(null, lat, lon, type) {
-        value = vm.remote.nearby(lat, lon, type, vm.repo.placesKey, thai, byDistance)
+    var attempt by remember { mutableStateOf(0) }
+    val result = produceState<Result<List<Poi>>?>(null, lat, lon, type, attempt) {
+        value = null
+        value = vm.remote.nearby(lat, lon, type, thai)
     }.value
     when {
         result == null -> CircularProgressIndicator(Modifier.padding(24.dp))
-        result.isFailure -> Text(tr("โหลดรายการไม่ได้: ", "Couldn't load: ") + (result.exceptionOrNull()?.message ?: ""), color = Coral, fontSize = 13.sp)
+        result.isFailure -> Column {
+            Text(tr("โหลดรายการไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่", "Couldn't load the list. Check your internet and try again."), color = Coral, fontSize = 13.sp)
+            TextButton(onClick = { attempt++ }) { Text(tr("ลองใหม่", "Try again")) }
+        }
+        result.getOrThrow().isEmpty() -> Text(tr("ยังไม่พบข้อมูลในแผนที่ OpenStreetMap ลองเปิดใน Google Maps แทน", "Nothing found on OpenStreetMap here yet; try Google Maps instead."), fontSize = 13.sp, color = Color.Gray, modifier = Modifier.padding(vertical = 8.dp))
         else -> LazyColumn(modifier, verticalArrangement = Arrangement.spacedBy(8.dp), contentPadding = PaddingValues(vertical = 8.dp)) {
             items(result.getOrThrow()) { poi ->
-                Card(Modifier.fillMaxWidth().clickable { if (onPick != null) onPick(poi) else poi.mapsUri?.let { open(ctx, it) } }) {
-                    Row(Modifier.padding(10.dp)) {
-                        if (poi.photoUrl != null) Column(Modifier.width(96.dp)) {
-                            AsyncImage(poi.photoUrl, null, contentScale = ContentScale.Crop, modifier = Modifier.size(96.dp).clip(RoundedCornerShape(10.dp)))
-                            poi.photoCredit?.let { Text("📷 $it", fontSize = 9.sp, color = Color.Gray, maxLines = 1) }
-                        }
-                        Column(Modifier.weight(1f).padding(start = 10.dp)) {
-                            Text(poi.name, fontWeight = FontWeight.SemiBold)
-                            val meta = listOfNotNull(
-                                poi.rating?.let { "⭐ $it" + (poi.ratingCount?.let { c -> " ($c)" } ?: "") },
-                                poi.distanceKm?.let { String.format(java.util.Locale.US, "%.1f km", it) },
-                                poi.openNow?.let { if (it) tr("เปิดอยู่", "Open now") else tr("ปิดอยู่", "Closed") },
-                            ).joinToString(" · ")
-                            if (meta.isNotBlank()) Text(meta, fontSize = 12.sp, color = Color.DarkGray)
-                            Text(poi.address, fontSize = 12.sp, color = Color.Gray, maxLines = 2)
+                Card(Modifier.fillMaxWidth().clickable { if (onPick != null) onPick(poi) else open(ctx, mapsPoint(poi)) }) {
+                    Column(Modifier.padding(12.dp)) {
+                        Text(poi.name, fontWeight = FontWeight.SemiBold)
+                        val meta = listOfNotNull(
+                            String.format(java.util.Locale.US, "%.1f km", poi.distanceKm),
+                            poi.cuisine,
+                            if (poi.emergency) tr("🚑 มีห้องฉุกเฉิน", "🚑 Emergency room") else null,
+                        ).joinToString(" · ")
+                        Text(meta, fontSize = 12.sp, color = Color.DarkGray)
+                        poi.hours?.let { Text("🕒 $it", fontSize = 12.sp, color = Color.Gray, maxLines = 2) }
+                        if (poi.address.isNotBlank()) Text(poi.address, fontSize = 12.sp, color = Color.Gray, maxLines = 2)
+                        Row {
                             poi.phone?.let { ph -> TextButton(onClick = { dial(ctx, ph) }) { Text("📞 $ph") } }
+                            TextButton(onClick = { open(ctx, "https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lon}") }) { Text(tr("🧭 นำทาง", "🧭 Directions")) }
                         }
                     }
                 }
             }
-            item { Text(tr("ข้อมูลจาก Google", "Data from Google"), fontSize = 11.sp, color = Color.Gray) }
+            item { Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล", "Data © OpenStreetMap contributors, nearest first"), fontSize = 11.sp, color = Color.Gray) }
         }
     }
 }

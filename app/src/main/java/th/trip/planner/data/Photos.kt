@@ -15,8 +15,22 @@ import androidx.core.location.LocationManagerCompat
 import androidx.exifinterface.media.ExifInterface
 import java.io.File
 
-/** A photo in the phone's gallery that might go into the trip album. */
-data class Candidate(val uri: Uri, val takenAt: Long)
+/**
+ * A photo in the phone's gallery that might go into the trip album. [placeId] is the planned
+ * place within reach of where it was taken; null means it can't be added (too far, or no location).
+ */
+data class Candidate(
+    val uri: Uri,
+    val takenAt: Long,
+    val lat: Double? = null,
+    val lon: Double? = null,
+    val placeId: String? = null,
+    /** Distance to the nearest planned place, when the photo's location is known. */
+    val nearestKm: Double? = null,
+    val nearestPlaceId: String? = null,
+) {
+    val allowed: Boolean get() = placeId != null
+}
 
 object Photos {
 

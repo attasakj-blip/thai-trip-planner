@@ -175,12 +175,33 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         repo.leftAt = 0L
         val ctx = getApplication<Application>()
         viewModelScope.launch {
-            val found = withContext(Dispatchers.IO) { Photos.newPhotos(ctx, since) }
-                .filter { c -> trip.photos.none { it.takenAt == c.takenAt } }
+            val places = trip.stops.mapNotNull { repo.placeById[it.placeId] }
+            val found = withContext(Dispatchers.IO) {
+                val list = Photos.newPhotos(ctx, since).filter { c -> trip.photos.none { it.takenAt == c.takenAt } }
+                val here = if (list.isEmpty()) null else Photos.lastLocation(ctx)
+                list.map { c -> locate(ctx, c, here, places) }
+            }
             if (found.isEmpty()) return@launch
-            if (!Photos.gpsOn(ctx)) { gpsOffNotice = true; return@launch }
+            if (!Photos.gpsOn(ctx) && found.none { it.allowed }) { gpsOffNotice = true; return@launch }
             candidates = found
         }
+    }
+
+    /**
+     * Works out where a photo was taken (its own GPS tag, or the phone's position if it was taken
+     * in the last 3 hours) and which planned place it belongs to. Photos more than 40 km from
+     * every planned place are marked as not allowed.
+     */
+    private fun locate(ctx: Application, c: Candidate, here: android.location.Location?, places: List<th.trip.planner.model.Place>): Candidate {
+        val exif = Photos.exifLocation(ctx, c.uri)
+        val recent = here != null && kotlin.math.abs(c.takenAt - here.time) < 3 * 3600_000L && System.currentTimeMillis() - c.takenAt < 3 * 3600_000L
+        val (lat, lon) = exif ?: if (recent) here!!.latitude to here.longitude else return c
+        val nearest = TripLogic.nearestPlace(places, lat, lon)
+        return c.copy(
+            lat = lat, lon = lon,
+            placeId = TripLogic.albumPlace(places, lat, lon)?.id,
+            nearestKm = nearest?.second, nearestPlaceId = nearest?.first?.id,
+        )
     }
 
     fun dismissCandidates() { candidates = emptyList() }
@@ -191,32 +212,15 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         val snapshot = trip
         candidates = emptyList()
         viewModelScope.launch {
-            val here = withContext(Dispatchers.IO) { Photos.lastLocation(ctx) }
             val added = withContext(Dispatchers.IO) {
-                chosen.mapNotNull { c ->
-                    val (lat, lon) = Photos.exifLocation(ctx, c.uri) ?: (here?.let { it.latitude to it.longitude } ?: (null to null))
+                chosen.filter { it.allowed }.mapNotNull { c ->
+                    val placeId = c.placeId!!
                     val date = java.time.Instant.ofEpochMilli(c.takenAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
-                    val placeId = placeFor(snapshot, date, lat, lon)
-                    val rel = "photos/${placeId ?: "other"}/${date}_${c.takenAt}.jpg"
-                    if (Photos.copyInto(ctx, c.uri, repo.photoFile(snapshot.id, rel))) AlbumPhoto(rel, placeId, date.toString(), c.takenAt, lat, lon) else null
+                    val rel = "photos/$placeId/${date}_${c.takenAt}.jpg"
+                    if (Photos.copyInto(ctx, c.uri, repo.photoFile(snapshot.id, rel))) AlbumPhoto(rel, placeId, date.toString(), c.takenAt, c.lat, c.lon) else null
                 }
             }
             if (added.isNotEmpty()) update { it.copy(photos = (it.photos + added).sortedBy { p -> p.takenAt }) }
-        }
-    }
-
-    /** The trip place a photo belongs to: the nearest place within 40 km, else the place planned for that day. */
-    private fun placeFor(t: Trip, date: LocalDate, lat: Double?, lon: Double?): String? {
-        if (lat != null && lon != null) {
-            val near = t.stops.mapNotNull { repo.placeById[it.placeId] }
-                .minByOrNull { TripLogic.distanceKm(lat, lon, it.lat, it.lon) }
-            if (near != null && TripLogic.distanceKm(lat, lon, near.lat, near.lon) <= 40) return near.id
-        }
-        return when (val s = TripLogic.status(t, repo.placeById, date)) {
-            is TripStatus.AtPlace -> t.stops[s.stopIndex].placeId
-            is TripStatus.Travelling -> t.stops.getOrNull(s.legIndex)?.placeId
-            is TripStatus.InGap -> t.stops.getOrNull(s.afterStop)?.placeId
-            else -> null
         }
     }
 

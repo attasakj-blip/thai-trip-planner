@@ -27,6 +27,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import th.trip.planner.TripViewModel
 import th.trip.planner.logic.Level
+import th.trip.planner.data.AirSource
 import th.trip.planner.logic.RiskKind
 import th.trip.planner.logic.SeasonalRisk
 import th.trip.planner.logic.TripLogic
@@ -44,54 +45,77 @@ suspend fun liveWarnings(vm: TripViewModel, place: Place, dates: List<LocalDate>
     val active = dates.any { !it.isBefore(today.minusDays(1)) && it.isBefore(today.plusDays(14)) }
 
     val air = async { vm.remote.airQuality(place.lat, place.lon) }
-    val fire = async { if (vm.repo.firmsKey.isNotBlank() && active) vm.remote.hotspots(place.lat, place.lon, vm.repo.firmsKey) else null }
-    val tmd = async {
-        if (vm.repo.tmdToken.isNotBlank() && soon.isNotEmpty()) vm.remote.tmdDaily(place.lat, place.lon, soon.first(), 7, vm.repo.tmdToken) else null
-    }
+    val fire = async { if (active) vm.remote.hotspots(place.lat, place.lon) else null }
+    val weather = async { if (soon.isNotEmpty()) vm.remote.forecast(place.lat, place.lon, 8) else null }
+    val flood = async { if (soon.isNotEmpty()) vm.remote.floodRatio(place.lat, place.lon, 8) else null }
 
     air.await().onSuccess { a ->
         val pm = a.pm25 ?: return@onSuccess
         val level = when { pm > 75 -> Level.WARNING; pm > 37.5 -> Level.WATCH; else -> Level.INFO }
-        warnings += Warning(
+        val pmTxt = "%.0f".format(pm)
+        val over = pm > 37.5
+        warnings += if (a.source == AirSource.AIR4THAI) Warning(
             RiskKind.HAZE_FIRE, level,
-            Txt("PM2.5 ตอนนี้ ${"%.0f".format(pm)} µg/m³", "PM2.5 now ${"%.0f".format(pm)} µg/m³"),
-            Txt("สถานี ${a.station} (ห่าง ${"%.0f".format(a.distanceKm)} กม.) ${a.time}" + if (pm > 37.5) " · เกินค่ามาตรฐาน 24 ชม. ของไทย (37.5)" else "",
-                "Station ${a.station} (${"%.0f".format(a.distanceKm)} km away) ${a.time}" + if (pm > 37.5) " · above Thailand's 24-h standard (37.5)" else ""),
+            Txt("PM2.5 ตอนนี้ $pmTxt µg/m³", "PM2.5 now $pmTxt µg/m³"),
+            Txt("สถานี ${a.stationTh} (ห่าง ${"%.0f".format(a.distanceKm)} กม.) ${a.time}" + if (over) " · เกินค่ามาตรฐาน 24 ชม. ของไทย (37.5)" else "",
+                "Station ${a.stationEn} (${"%.0f".format(a.distanceKm)} km away) ${a.time}" + if (over) " · above Thailand's 24-h standard (37.5)" else ""),
             Txt("กรมควบคุมมลพิษ (Air4Thai)", "Pollution Control Department (Air4Thai)"),
+        ) else Warning(
+            RiskKind.HAZE_FIRE, level,
+            Txt("PM2.5 ประมาณ $pmTxt µg/m³", "PM2.5 about $pmTxt µg/m³"),
+            Txt("ค่าประมาณจากแบบจำลองบรรยากาศ ณ ตำแหน่งนี้ ${a.time}" + if (over) " · เกินค่ามาตรฐาน 24 ชม. ของไทย (37.5)" else "",
+                "Atmospheric model estimate for this spot, ${a.time}" + if (over) " · above Thailand's 24-h standard (37.5)" else ""),
+            Txt("Open-Meteo (แบบจำลอง CAMS ของยุโรป) ใช้แทนเมื่อเชื่อมต่อ Air4Thai ไม่ได้", "Open-Meteo (European CAMS model), used when Air4Thai can't be reached"),
         )
-    }.onFailure { notes += Txt("ดึงค่าฝุ่นจาก Air4Thai ไม่ได้ในตอนนี้", "Couldn't get PM2.5 from Air4Thai right now") }
+    }.onFailure { notes += Txt("ดึงค่าฝุ่นไม่ได้ในตอนนี้ ลองใหม่เมื่อมีอินเทอร์เน็ต", "Couldn't get PM2.5 right now; try again when online") }
 
     fire.await()?.onSuccess { n ->
         if (n > 0) warnings += Warning(
             RiskKind.HAZE_FIRE, if (n >= 10) Level.WARNING else Level.WATCH,
             Txt("พบจุดความร้อน $n จุดในรัศมี 30 กม.", "$n fire hotspots within 30 km"),
-            Txt("จากดาวเทียมใน 2 วันที่ผ่านมา อาจเป็นไฟป่าหรือการเผา", "Seen by satellite in the last 2 days; may be forest fires or burning."),
+            Txt("จากดาวเทียมใน 24 ชั่วโมงที่ผ่านมา อาจเป็นไฟป่าหรือการเผา", "Seen by satellite in the last 24 hours; may be forest fires or burning."),
             Txt("ดาวเทียม VIIRS ผ่าน NASA FIRMS (ข้อมูลชุดเดียวกับที่ GISTDA ใช้)", "VIIRS satellite via NASA FIRMS (same data GISTDA uses)"),
         )
-    }?.onFailure { notes += Txt("ดึงข้อมูลจุดความร้อนไม่ได้", "Couldn't get fire hotspots") }
+    }?.onFailure { notes += Txt("ดึงข้อมูลจุดความร้อนไม่ได้ในตอนนี้", "Couldn't get fire hotspots right now") }
 
-    tmd.await()?.onSuccess { list ->
+    weather.await()?.onSuccess { list ->
         list.filter { it.date in soon }.forEach { f ->
-            val heavy = (f.cond ?: 0) in 7..8 || (f.rainMm ?: 0.0) >= 35.0
-            val hot = (f.tMax ?: 0.0) >= 39.0
-            if (heavy) warnings += Warning(
-                RiskKind.HEAVY_RAIN, Level.WARNING,
-                Txt("พยากรณ์ฝนตกหนัก ${fmt(f.date, true)}", "Heavy rain forecast ${fmt(f.date, false)}"),
-                Txt("ปริมาณฝน ${f.rainMm ?: "-"} มม. ระวังน้ำป่าในพื้นที่ภูเขา", "Rain ${f.rainMm ?: "-"} mm. Watch for flash floods in hilly areas."),
-                Txt("กรมอุตุนิยมวิทยา", "Thai Meteorological Department"),
+            val rain = f.rainMm ?: 0.0
+            val storm = (f.code ?: 0) in 95..99
+            val heavy = rain >= 35.0 || (f.code ?: 0) in listOf(65, 82)
+            val rainTxt = "%.0f".format(rain)
+            if (heavy || storm) warnings += Warning(
+                RiskKind.HEAVY_RAIN, if (rain >= 60) Level.WARNING else Level.WATCH,
+                Txt((if (storm) "พายุฝนฟ้าคะนอง " else "ฝนตกหนัก ") + fmt(f.date, true), (if (storm) "Thunderstorms " else "Heavy rain ") + fmt(f.date, false)),
+                Txt("ฝนรวม $rainTxt มม." + (f.rainChance?.let { " โอกาสฝน $it%" } ?: "") + " ระวังน้ำป่าและดินถล่มในพื้นที่ภูเขา",
+                    "Rain $rainTxt mm" + (f.rainChance?.let { ", $it% chance" } ?: "") + ". Watch for flash floods and landslides in hilly areas."),
+                Txt("พยากรณ์ Open-Meteo (ควรเช็กประกาศกรมอุตุนิยมวิทยาประกอบ tmd.go.th)", "Open-Meteo forecast (also check Thai Meteorological Department notices, tmd.go.th)"),
             )
-            if (hot) warnings += Warning(
+            if ((f.tMax ?: 0.0) >= 39.0) warnings += Warning(
                 RiskKind.HEAT, Level.WATCH,
                 Txt("อากาศร้อนจัด ${fmt(f.date, true)}", "Very hot ${fmt(f.date, false)}"),
-                Txt("สูงสุด ${f.tMax}°C", "High ${f.tMax}°C"),
-                Txt("กรมอุตุนิยมวิทยา", "Thai Meteorological Department"),
+                Txt("สูงสุด ${"%.0f".format(f.tMax)}°C ดื่มน้ำบ่อยๆ หลีกเลี่ยงแดดช่วงเที่ยง", "High ${"%.0f".format(f.tMax)}°C. Drink often and avoid midday sun."),
+                Txt("พยากรณ์ Open-Meteo", "Open-Meteo forecast"),
+            )
+            if ((f.gustKmh ?: 0.0) >= 60.0) warnings += Warning(
+                RiskKind.HEAVY_RAIN, Level.WATCH,
+                Txt("ลมกระโชกแรง ${fmt(f.date, true)}", "Strong gusts ${fmt(f.date, false)}"),
+                Txt("ลมกระโชกถึง ${"%.0f".format(f.gustKmh)} กม./ชม. เรือเล็กควรงดออกจากฝั่ง", "Gusts up to ${"%.0f".format(f.gustKmh)} km/h. Small boats may not sail."),
+                Txt("พยากรณ์ Open-Meteo", "Open-Meteo forecast"),
             )
         }
-    }?.onFailure { notes += Txt("ดึงพยากรณ์จากกรมอุตุนิยมวิทยาไม่ได้", "Couldn't get the TMD forecast") }
+    }?.onFailure { notes += Txt("ดึงพยากรณ์อากาศไม่ได้ในตอนนี้", "Couldn't get the weather forecast right now") }
+
+    flood.await()?.onSuccess { ratio ->
+        if (ratio >= 3.0) warnings += Warning(
+            RiskKind.FLOOD, if (ratio >= 6.0) Level.WARNING else Level.WATCH,
+            Txt("ระดับน้ำในแม่น้ำใกล้เคียงอาจสูงกว่าปกติ", "Nearby river may run higher than usual"),
+            Txt("คาดว่าน้ำจะมากกว่าปกติราว ${"%.0f".format(ratio)} เท่าในสัปดาห์นี้ ติดตามประกาศท้องถิ่น", "Forecast flow is about ${"%.0f".format(ratio)}× the usual level this week. Follow local notices."),
+            Txt("แบบจำลองน้ำท่วม GloFAS ผ่าน Open-Meteo", "GloFAS flood model via Open-Meteo"),
+        )
+    }
 
     if (soon.isEmpty()) notes += Txt("วันเที่ยวยังเกิน 7 วัน จึงแสดงความเสี่ยงตามฤดูกาล พยากรณ์จริงจะขึ้นเมื่อใกล้วัน", "Trip days are more than 7 days away, so seasonal risks are shown; real forecasts appear closer to the date.")
-    else if (vm.repo.tmdToken.isBlank()) notes += Txt("ใส่ token กรมอุตุนิยมวิทยาในหน้าตั้งค่าเพื่อดูพยากรณ์รายวัน", "Add a TMD token in Settings to see daily forecasts.")
-    if (vm.repo.firmsKey.isBlank()) notes += Txt("ใส่ FIRMS key ในหน้าตั้งค่าเพื่อตรวจจุดความร้อนไฟป่า", "Add a FIRMS key in Settings to check fire hotspots.")
     warnings to notes
 }
 

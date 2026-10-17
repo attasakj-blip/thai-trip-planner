@@ -178,21 +178,38 @@ fun ImportDialog(vm: TripViewModel) {
         text = { Text(tr("ภาพที่ถ่ายตอน GPS ปิดจะเข้าอัลบั้มไม่ได้ เปิด GPS แล้วถ่ายใหม่นะครับ", "Photos taken with GPS off can't go into the album. Turn GPS on and take them again.")) },
     )
     if (list.isEmpty()) return
-    val chosen = remember(list) { mutableStateListOf(*list.toTypedArray()) }
+    val thai = LocalThai.current
+    val allowed = list.filter { it.allowed }
+    val chosen = remember(list) { mutableStateListOf(*allowed.toTypedArray()) }
     AlertDialog(
         onDismissRequest = { vm.dismissCandidates() },
         title = { Text(tr("เพิ่มภาพที่เพิ่งถ่ายเข้าอัลบั้มไหม?", "Add the photos you just took?")) },
         text = {
             Column {
                 Text(tr("แตะเพื่อเลือกหรือยกเลิกแต่ละภาพ", "Tap to select or unselect each photo"), fontSize = 13.sp)
+                if (allowed.size < list.size) Text(
+                    tr("ภาพที่ถ่ายห่างจากสถานที่ในแพลนเกิน 40 กม. หรือไม่มีข้อมูลตำแหน่ง จะเพิ่มเข้าอัลบั้มทริปนี้ไม่ได้", "Photos taken more than 40 km from every planned place, or without a location, can't go into this trip's album."),
+                    fontSize = 12.sp, color = Coral, modifier = Modifier.padding(top = 4.dp),
+                )
                 LazyVerticalGrid(GridCells.Fixed(3), Modifier.heightIn(max = 380.dp).padding(top = 8.dp)) {
                     items(list) { c ->
                         val on = c in chosen
                         Box(Modifier.padding(3.dp).aspectRatio(1f).clip(RoundedCornerShape(8.dp))
                             .border(if (on) 3.dp else 0.dp, if (on) Teal else Color.Transparent, RoundedCornerShape(8.dp))
-                            .clickable { if (on) chosen.remove(c) else chosen.add(c) }) {
-                            AsyncImage(c.uri, null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize().graphicsLayer { alpha = if (on) 1f else 0.45f })
+                            .clickable(enabled = c.allowed) { if (on) chosen.remove(c) else chosen.add(c) }) {
+                            AsyncImage(c.uri, null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize().graphicsLayer { alpha = if (on) 1f else if (c.allowed) 0.45f else 0.25f })
                             if (on) Text("✓", color = Color.White, modifier = Modifier.align(Alignment.TopEnd).background(Teal, RoundedCornerShape(50)).padding(horizontal = 6.dp))
+                            if (!c.allowed) {
+                                val why = when {
+                                    c.nearestKm == null -> tr("ไม่มีตำแหน่ง", "No location")
+                                    else -> tr("ห่าง ${c.nearestKm.toInt()} กม.", "${c.nearestKm.toInt()} km away")
+                                }
+                                Text("🚫 $why", color = Color.White, fontSize = 10.sp, textAlign = TextAlign.Center,
+                                    modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().background(Color(0xCC8B1E1E)).padding(2.dp))
+                            } else c.placeId?.let { id ->
+                                Text(vm.repo.placeById[id]?.name?.get(thai) ?: "", color = Color.White, fontSize = 10.sp, maxLines = 1,
+                                    modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth().background(Color(0x99000000)).padding(2.dp))
+                            }
                         }
                     }
                 }

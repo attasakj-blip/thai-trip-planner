@@ -7,44 +7,50 @@ import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.doubleOrNull
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.put
-import kotlinx.serialization.json.putJsonArray
-import kotlinx.serialization.json.putJsonObject
 import okhttp3.HttpUrl.Companion.toHttpUrl
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import th.trip.planner.logic.TripLogic
 import java.time.LocalDate
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
-import kotlin.math.cos
 
 const val USER_AGENT = "ThaiTripPlanner/0.1 (Android; https://github.com/attasakj-blip/thai-trip-planner)"
 
 /** A freely licensed photo with the credit that must be shown next to it. */
 data class Photo(val url: String, val author: String, val license: String, val sourcePage: String)
 
-data class AirQuality(val station: String, val distanceKm: Double, val pm25: Double?, val time: String)
+enum class AirSource { AIR4THAI, OPEN_METEO }
 
-data class DayForecast(val date: LocalDate, val tMax: Double?, val tMin: Double?, val rainMm: Double?, val cond: Int?)
+/** PM2.5 reading. Station names are empty for the Open-Meteo model estimate. */
+data class AirQuality(val stationTh: String, val stationEn: String, val distanceKm: Double, val pm25: Double?, val time: String, val source: AirSource)
 
+data class DayForecast(
+    val date: LocalDate,
+    val tMax: Double?,
+    val tMin: Double?,
+    val rainMm: Double?,
+    /** WMO weather code (95-99 = thunderstorm, 65/82 = heavy rain). */
+    val code: Int?,
+    val rainChance: Int? = null,
+    val gustKmh: Double? = null,
+)
+
+/** A place from OpenStreetMap. */
 data class Poi(
     val name: String,
     val address: String,
-    val rating: Double?,
-    val ratingCount: Int?,
     val phone: String?,
-    val mapsUri: String?,
-    val openNow: Boolean?,
-    val photoUrl: String?,
-    val photoCredit: String?,
-    val distanceKm: Double?,
+    val website: String?,
+    val hours: String?,
+    val cuisine: String?,
+    val emergency: Boolean,
+    val lat: Double,
+    val lon: Double,
+    val distanceKm: Double,
 )
 
 /** Calls to outside services. Every call returns a Result so the UI can show "not available". */
@@ -111,9 +117,15 @@ class Remote {
 
     private fun stripHtml(s: String) = s.replace(Regex("<[^>]*>"), "").replace("&amp;", "&").replace(Regex("\\s+"), " ").trim()
 
-    /** Nearest Air4Thai (Pollution Control Department) station and its latest PM2.5 reading. */
-    suspend fun airQuality(lat: Double, lon: Double): Result<AirQuality> = runCatching {
-        val root = json.parseToJsonElement(get("http://air4thai.pcd.go.th/services/getNewAQI_JSON.php")).jsonObject
+    /**
+     * PM2.5 near a place. First the nearest Air4Thai (Pollution Control Department) station;
+     * if that service can't be reached, the Open-Meteo air-quality model (CAMS) for that spot.
+     */
+    suspend fun airQuality(lat: Double, lon: Double): Result<AirQuality> =
+        air4thai(lat, lon).recoverCatching { openMeteoAir(lat, lon).getOrThrow() }
+
+    private suspend fun air4thai(lat: Double, lon: Double): Result<AirQuality> = runCatching {
+        val root = json.parseToJsonElement(get("https://air4thai.pcd.go.th/services/getNewAQI_JSON.php")).jsonObject
         val stations = root["stations"].arr() ?: error("no stations")
         val best = stations.mapNotNull { s ->
             val o = s.obj() ?: return@mapNotNull null
@@ -121,94 +133,138 @@ class Remote {
             val sLon = o["long"].num() ?: return@mapNotNull null
             val last = o["AQILast"].obj()
             val pm = last?.get("PM25").obj()?.get("value").num()?.takeIf { it >= 0 }
-            val name = (o["nameTH"].str() ?: "") + " " + (o["areaTH"].str() ?: "")
-            AirQuality(name.trim(), TripLogic.distanceKm(lat, lon, sLat, sLon), pm,
-                "${last?.get("date").str() ?: ""} ${last?.get("time").str() ?: ""}".trim())
+            val th = ((o["nameTH"].str() ?: "") + " " + (o["areaTH"].str() ?: "")).trim()
+            val en = ((o["nameEN"].str() ?: "") + ", " + (o["areaEN"].str() ?: "")).trim(' ', ',')
+            AirQuality(th, en, TripLogic.distanceKm(lat, lon, sLat, sLon), pm,
+                "${last?.get("date").str() ?: ""} ${last?.get("time").str() ?: ""}".trim(), AirSource.AIR4THAI)
         }.filter { it.pm25 != null }.minByOrNull { it.distanceKm } ?: error("no readings")
         if (best.distanceKm > 80) error("no station within 80 km")
         best
     }
 
-    /** Daily forecast from the Thai Meteorological Department NWP API. Needs a token. */
-    suspend fun tmdDaily(lat: Double, lon: Double, start: LocalDate, days: Int, token: String): Result<List<DayForecast>> = runCatching {
-        require(token.isNotBlank()) { "no TMD token" }
-        val url = "https://data.tmd.go.th/nwpapi/v1/forecast/location/daily/at".toHttpUrl().newBuilder()
-            .addQueryParameter("lat", lat.toString()).addQueryParameter("lon", lon.toString())
-            .addQueryParameter("fields", "tc_max,tc_min,rain,cond")
-            .addQueryParameter("date", start.toString()).addQueryParameter("duration", days.coerceIn(1, 7).toString())
+    private suspend fun openMeteoAir(lat: Double, lon: Double): Result<AirQuality> = runCatching {
+        val url = "https://air-quality-api.open-meteo.com/v1/air-quality".toHttpUrl().newBuilder()
+            .addQueryParameter("latitude", lat.toString()).addQueryParameter("longitude", lon.toString())
+            .addQueryParameter("current", "pm2_5,pm10").addQueryParameter("timezone", "Asia/Bangkok")
             .build().toString()
-        val root = json.parseToJsonElement(get(url, mapOf("accept" to "application/json", "authorization" to "Bearer $token"))).jsonObject
-        val forecasts = root["WeatherForecasts"].arr()?.firstOrNull().obj()?.get("forecasts").arr() ?: error("no forecasts")
-        forecasts.mapNotNull { f ->
-            val o = f.obj() ?: return@mapNotNull null
-            val time = o["time"].str() ?: return@mapNotNull null
-            val d = o["data"].obj()
-            DayForecast(LocalDate.parse(time.take(10)), d?.get("tc_max").num(), d?.get("tc_min").num(), d?.get("rain").num(), d?.get("cond").num()?.toInt())
+        val cur = json.parseToJsonElement(get(url)).jsonObject["current"].obj() ?: error("no data")
+        AirQuality("", "", 0.0, cur["pm2_5"].num() ?: error("no pm2.5"), cur["time"].str()?.replace('T', ' ') ?: "", AirSource.OPEN_METEO)
+    }
+
+    /** Daily forecast (rain, rain chance, temperature, gusts, weather code) from Open-Meteo. No key needed. */
+    suspend fun forecast(lat: Double, lon: Double, days: Int = 7): Result<List<DayForecast>> = runCatching {
+        val url = "https://api.open-meteo.com/v1/forecast".toHttpUrl().newBuilder()
+            .addQueryParameter("latitude", lat.toString()).addQueryParameter("longitude", lon.toString())
+            .addQueryParameter("daily", "precipitation_sum,precipitation_probability_max,temperature_2m_max,temperature_2m_min,weather_code,wind_gusts_10m_max")
+            .addQueryParameter("timezone", "Asia/Bangkok").addQueryParameter("forecast_days", days.coerceIn(1, 16).toString())
+            .build().toString()
+        val d = json.parseToJsonElement(get(url)).jsonObject["daily"].obj() ?: error("no daily data")
+        val times = d["time"].arr() ?: error("no days")
+        fun col(name: String, i: Int) = d[name].arr()?.getOrNull(i).num()
+        times.indices.map { i ->
+            DayForecast(
+                LocalDate.parse(times[i].str()), col("temperature_2m_max", i), col("temperature_2m_min", i),
+                col("precipitation_sum", i), col("weather_code", i)?.toInt(), col("precipitation_probability_max", i)?.toInt(), col("wind_gusts_10m_max", i),
+            )
         }
     }
 
-    /** Number of satellite fire hotspots within [radiusKm] in the last [days] days (NASA FIRMS, VIIRS). */
-    suspend fun hotspots(lat: Double, lon: Double, key: String, radiusKm: Double = 30.0, days: Int = 2): Result<Int> = runCatching {
-        require(key.isNotBlank()) { "no FIRMS key" }
-        val dLat = radiusKm / 111.0
-        val dLon = radiusKm / (111.0 * cos(Math.toRadians(lat)))
-        val box = String.format(java.util.Locale.US, "%.3f,%.3f,%.3f,%.3f", lon - dLon, lat - dLat, lon + dLon, lat + dLat)
-        val csv = get("https://firms.modaps.eosdis.nasa.gov/api/area/csv/$key/VIIRS_SNPP_NRT/$box/$days")
-        if (!csv.startsWith("latitude")) error(csv.take(80))
-        csv.lines().drop(1).count { it.isNotBlank() }
+    /** River discharge forecast vs. its usual level (GloFAS via Open-Meteo), for flood warnings. Returns ratio max/median. */
+    suspend fun floodRatio(lat: Double, lon: Double, days: Int = 7): Result<Double> = runCatching {
+        val url = "https://flood-api.open-meteo.com/v1/flood".toHttpUrl().newBuilder()
+            .addQueryParameter("latitude", lat.toString()).addQueryParameter("longitude", lon.toString())
+            .addQueryParameter("daily", "river_discharge,river_discharge_median")
+            .addQueryParameter("forecast_days", days.coerceIn(1, 30).toString())
+            .build().toString()
+        val d = json.parseToJsonElement(get(url)).jsonObject["daily"].obj() ?: error("no data")
+        val q = d["river_discharge"].arr()?.mapNotNull { it.num() }.orEmpty()
+        val med = d["river_discharge_median"].arr()?.mapNotNull { it.num() }.orEmpty()
+        if (q.isEmpty() || med.isEmpty()) error("no river here")
+        val m = med.average()
+        if (m < 1.0) error("river too small") // tiny streams give noisy ratios
+        q.max() / m
+    }
+
+    private var fireCache: Pair<Long, List<Pair<Double, Double>>>? = null
+
+    /**
+     * Satellite fire hotspots within [radiusKm] in the last 24 hours. Uses NASA FIRMS's public
+     * South-East Asia files from two VIIRS satellites (the same data GISTDA uses). No key needed.
+     */
+    suspend fun hotspots(lat: Double, lon: Double, radiusKm: Double = 30.0): Result<Int> = runCatching {
+        val now = System.currentTimeMillis()
+        val points = fireCache?.takeIf { now - it.first < 3 * 3600_000L }?.second ?: run {
+            val files = listOf(
+                "https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/csv/SUOMI_VIIRS_C2_SouthEast_Asia_24h.csv",
+                "https://firms.modaps.eosdis.nasa.gov/data/active_fire/noaa-20-viirs-c2/csv/J1_VIIRS_C2_SouthEast_Asia_24h.csv",
+            )
+            val all = files.flatMap { f ->
+                val csv = runCatching { get(f) }.getOrNull() ?: return@flatMap emptyList()
+                csv.lineSequence().drop(1).mapNotNull { line ->
+                    val c = line.split(',')
+                    val la = c.getOrNull(0)?.toDoubleOrNull() ?: return@mapNotNull null
+                    val lo = c.getOrNull(1)?.toDoubleOrNull() ?: return@mapNotNull null
+                    // Keep Thailand and its neighbours only.
+                    if (la in 4.0..22.0 && lo in 96.0..107.0) la to lo else null
+                }.toList()
+            }
+            if (all.isEmpty() && files.isNotEmpty()) runCatching { get(files[0]) }.getOrThrow()
+            all.also { fireCache = now to it }
+        }
+        points.count { (la, lo) -> TripLogic.distanceKm(lat, lon, la, lo) <= radiusKm }
     }
 
     /**
-     * Nearby places from Google Places API (New). [type] is a Places type such as
-     * "restaurant", "cafe", "hospital" or "police". Results are shown live and never stored,
-     * as the Google Maps Platform terms require.
+     * Nearby places from OpenStreetMap (Overpass API), nearest first. [type] is one of
+     * restaurant, cafe, hospital, police, lodging. Free, no key; data © OpenStreetMap contributors.
      */
-    suspend fun nearby(lat: Double, lon: Double, type: String, key: String, thai: Boolean, byDistance: Boolean): Result<List<Poi>> = runCatching {
-        require(key.isNotBlank()) { "no Places key" }
-        val body = buildJsonObject {
-            putJsonArray("includedTypes") { add(JsonPrimitive(type)) }
-            put("maxResultCount", 20)
-            put("languageCode", if (thai) "th" else "en")
-            put("rankPreference", if (byDistance) "DISTANCE" else "POPULARITY")
-            putJsonObject("locationRestriction") {
-                putJsonObject("circle") {
-                    putJsonObject("center") { put("latitude", lat); put("longitude", lon) }
-                    put("radius", if (byDistance) 20000.0 else 8000.0)
-                }
-            }
-        }.toString()
-        val fields = "places.displayName,places.formattedAddress,places.rating,places.userRatingCount," +
-            "places.nationalPhoneNumber,places.googleMapsUri,places.location,places.photos,places.currentOpeningHours.openNow"
+    suspend fun nearby(lat: Double, lon: Double, type: String, thai: Boolean, limit: Int = 25): Result<List<Poi>> = runCatching {
+        val filter = when (type) {
+            "restaurant" -> "[\"amenity\"~\"^(restaurant|food_court)$\"]"
+            "cafe" -> "[\"amenity\"=\"cafe\"]"
+            "hospital" -> "[\"amenity\"~\"^(hospital|clinic)$\"]"
+            "police" -> "[\"amenity\"=\"police\"]"
+            else -> "[\"tourism\"~\"^(hotel|guest_house|hostel|resort|motel|apartment)$\"]"
+        }
+        val radius = if (type == "hospital" || type == "police") 25000 else 6000
+        val query = "[out:json][timeout:25];(nwr$filter(around:$radius,$lat,$lon););out center tags 150;"
         val text = withContext(Dispatchers.IO) {
-            val req = Request.Builder().url("https://places.googleapis.com/v1/places:searchNearby")
-                .header("X-Goog-Api-Key", key).header("X-Goog-FieldMask", fields)
-                .post(body.toRequestBody("application/json".toMediaType())).build()
-            http.newCall(req).execute().use { r ->
-                val t = r.body?.string() ?: ""
-                if (!r.isSuccessful) error("HTTP ${r.code} ${t.take(120)}")
-                t
+            val body = okhttp3.FormBody.Builder().add("data", query).build()
+            var last: Throwable? = null
+            for (host in listOf("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter")) {
+                val r = runCatching {
+                    http.newCall(Request.Builder().url(host).post(body).build()).execute().use { r ->
+                        if (!r.isSuccessful) error("HTTP ${r.code}")
+                        r.body?.string() ?: error("empty body")
+                    }
+                }
+                if (r.isSuccess) return@withContext r.getOrThrow()
+                last = r.exceptionOrNull()
             }
+            throw last ?: IllegalStateException("no server")
         }
-        val places = json.parseToJsonElement(text).jsonObject["places"].arr() ?: return@runCatching emptyList()
-        places.mapNotNull { p ->
-            val o = p.obj() ?: return@mapNotNull null
-            val loc = o["location"].obj()
-            val pLat = loc?.get("latitude").num()
-            val pLon = loc?.get("longitude").num()
-            val photo = o["photos"].arr()?.firstOrNull().obj()
-            val photoName = photo?.get("name").str()
+        val elements = json.parseToJsonElement(text).jsonObject["elements"].arr() ?: return@runCatching emptyList()
+        elements.mapNotNull { e ->
+            val o = e.obj() ?: return@mapNotNull null
+            val t = o["tags"].obj() ?: return@mapNotNull null
+            val pLat = o["lat"].num() ?: o["center"].obj()?.get("lat").num() ?: return@mapNotNull null
+            val pLon = o["lon"].num() ?: o["center"].obj()?.get("lon").num() ?: return@mapNotNull null
+            val name = (if (thai) t["name:th"].str() else t["name:en"].str()) ?: t["name"].str() ?: return@mapNotNull null
+            val address = listOfNotNull(
+                t["addr:housenumber"].str(), (if (thai) null else t["addr:street:en"].str()) ?: t["addr:street"].str(),
+                t["addr:subdistrict"].str(), t["addr:district"].str(), t["addr:city"].str(),
+            ).joinToString(" ")
             Poi(
-                name = o["displayName"].obj()?.get("text").str() ?: return@mapNotNull null,
-                address = o["formattedAddress"].str() ?: "",
-                rating = o["rating"].num(),
-                ratingCount = o["userRatingCount"].num()?.toInt(),
-                phone = o["nationalPhoneNumber"].str(),
-                mapsUri = o["googleMapsUri"].str(),
-                openNow = (o["currentOpeningHours"].obj()?.get("openNow") as? JsonPrimitive)?.contentOrNull?.toBooleanStrictOrNull(),
-                photoUrl = photoName?.let { "https://places.googleapis.com/v1/$it/media?maxWidthPx=600&key=$key" },
-                photoCredit = photo?.get("authorAttributions").arr()?.firstOrNull().obj()?.get("displayName").str(),
-                distanceKm = if (pLat != null && pLon != null) TripLogic.distanceKm(lat, lon, pLat, pLon) else null,
+                name = name,
+                address = address,
+                phone = (t["phone"].str() ?: t["contact:phone"].str())?.split(';')?.first()?.trim(),
+                website = t["website"].str() ?: t["contact:website"].str(),
+                hours = t["opening_hours"].str(),
+                cuisine = t["cuisine"].str()?.replace(';', ' ')?.replace('_', ' '),
+                emergency = t["emergency"].str() == "yes",
+                lat = pLat, lon = pLon,
+                distanceKm = TripLogic.distanceKm(lat, lon, pLat, pLon),
             )
-        }
+        }.distinctBy { it.name to (it.lat * 1000).toInt() }.sortedBy { it.distanceKm }.take(limit)
     }
 }

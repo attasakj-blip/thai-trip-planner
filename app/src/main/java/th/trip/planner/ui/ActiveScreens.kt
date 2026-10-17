@@ -367,9 +367,6 @@ fun FinaleScreen(vm: TripViewModel, nav: NavHostController, onExit: () -> Unit) 
 
 @Composable
 fun SettingsScreen(vm: TripViewModel, nav: NavHostController) {
-    var tmd by remember { mutableStateOf(vm.repo.tmdToken) }
-    var firms by remember { mutableStateOf(vm.repo.firmsKey) }
-    var places by remember { mutableStateOf(vm.repo.placesKey) }
     var hour by remember { mutableIntStateOf(vm.repo.checkInHour) }
     Page(tr("ตั้งค่า", "Settings"), nav) { pad ->
         Column(Modifier.padding(pad).padding(16.dp).verticalScroll(rememberScrollState())) {
@@ -383,17 +380,10 @@ fun SettingsScreen(vm: TripViewModel, nav: NavHostController) {
                 Text(String.format(java.util.Locale.US, "%02d:00", hour), fontSize = 18.sp)
                 TextButton(onClick = { if (hour < 22) hour++ ; vm.repo.checkInHour = hour }) { Text("+") }
             }
-            SectionTitle(tr("คีย์สำหรับข้อมูลสด (ไม่บังคับ)", "Keys for live data (optional)"))
-            OutlinedTextField(tmd, { tmd = it; vm.repo.tmdToken = it }, label = { Text(tr("Token กรมอุตุนิยมวิทยา", "Thai Meteorological Dept. token")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
-            Text(tr("สมัครได้ที่ data.tmd.go.th", "Register at data.tmd.go.th"), fontSize = 11.sp, color = Color.Gray)
-            OutlinedTextField(firms, { firms = it; vm.repo.firmsKey = it }, label = { Text("NASA FIRMS map key") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-            Text(tr("ขอได้ฟรีที่ firms.modaps.eosdis.nasa.gov/api", "Free at firms.modaps.eosdis.nasa.gov/api"), fontSize = 11.sp, color = Color.Gray)
-            OutlinedTextField(places, { places = it; vm.repo.placesKey = it }, label = { Text("Google Places API key") }, singleLine = true, modifier = Modifier.fillMaxWidth())
-            Text(tr("ใช้แสดงรายการร้านอาหาร ที่พัก โรงพยาบาล ตำรวจ (Google Cloud คิดค่าบริการตามการใช้งาน)", "Used for restaurant, stay, hospital and police lists (billed by Google Cloud per use)"), fontSize = 11.sp, color = Color.Gray)
             SectionTitle(tr("แหล่งข้อมูล", "Data sources"))
             Text(
-                tr("• รูปสถานที่: Wikimedia Commons (สัญญาอนุญาตเสรี แสดงชื่อผู้ถ่ายทุกภาพ)\n• ค่าฝุ่น PM2.5: กรมควบคุมมลพิษ (Air4Thai)\n• พยากรณ์อากาศ: กรมอุตุนิยมวิทยา\n• จุดความร้อน: ดาวเทียม VIIRS ผ่าน NASA FIRMS\n• ร้าน ที่พัก โรงพยาบาล ตำรวจ: Google Places\n• คลังสถานที่และจุดขนส่ง: รวบรวมโดยทีมแอป",
-                    "• Place photos: Wikimedia Commons (free licences, author credited on every photo)\n• PM2.5: Pollution Control Department (Air4Thai)\n• Forecasts: Thai Meteorological Department\n• Fire hotspots: VIIRS satellite via NASA FIRMS\n• Food, stays, hospitals, police: Google Places\n• Place and transport-hub library: curated by the app team"),
+                tr("• รูปสถานที่: Wikimedia Commons (สัญญาอนุญาตเสรี แสดงชื่อผู้ถ่ายทุกภาพ)\n• ค่าฝุ่น PM2.5: กรมควบคุมมลพิษ (Air4Thai) หรือแบบจำลอง CAMS ผ่าน Open-Meteo\n• พยากรณ์อากาศและน้ำท่วม: Open-Meteo\n• จุดความร้อน: ดาวเทียม VIIRS ผ่าน NASA FIRMS\n• ร้าน ที่พัก โรงพยาบาล ตำรวจ: OpenStreetMap\n• คลังสถานที่และจุดขนส่ง: รวบรวมโดยทีมแอป อัปเดตทุกวันพุธ\nทุกแหล่งใช้ได้ฟรี ไม่ต้องใส่ key",
+                    "• Place photos: Wikimedia Commons (free licences, author credited on every photo)\n• PM2.5: Pollution Control Department (Air4Thai), or the CAMS model via Open-Meteo\n• Weather and flood forecasts: Open-Meteo\n• Fire hotspots: VIIRS satellite via NASA FIRMS\n• Food, stays, hospitals, police: OpenStreetMap\n• Place and transport-hub library: curated by the app team, updated every Wednesday\nAll sources are free; no keys needed."),
                 fontSize = 13.sp,
             )
         }

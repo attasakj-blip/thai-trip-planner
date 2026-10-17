@@ -78,21 +78,6 @@ class Repository(private val context: Context) {
         get() = prefs.getBoolean("thai", true)
         set(v) = prefs.edit().putBoolean("thai", v).apply()
 
-    /** Thai Meteorological Department NWP API token (https://data.tmd.go.th). */
-    var tmdToken: String
-        get() = prefs.getString("tmd", "") ?: ""
-        set(v) = prefs.edit().putString("tmd", v.trim()).apply()
-
-    /** NASA FIRMS map key for satellite fire hotspots (same VIIRS/MODIS satellites GISTDA uses). */
-    var firmsKey: String
-        get() = prefs.getString("firms", "") ?: ""
-        set(v) = prefs.edit().putString("firms", v.trim()).apply()
-
-    /** Google Maps Platform key with Places API (New) enabled. */
-    var placesKey: String
-        get() = prefs.getString("places", "") ?: ""
-        set(v) = prefs.edit().putString("places", v.trim()).apply()
-
     var checkInHour: Int
         get() = prefs.getInt("checkin_hour", 10)
         set(v) = prefs.edit().putInt("checkin_hour", v).apply()
