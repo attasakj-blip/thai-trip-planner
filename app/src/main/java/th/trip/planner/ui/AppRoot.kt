@@ -2,7 +2,10 @@
 
 package th.trip.planner.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -34,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -45,11 +49,10 @@ import th.trip.planner.model.Txt
 
 val LocalThai = compositionLocalOf { true }
 
-@Composable
-fun tr(th: String, en: String) = if (LocalThai.current) th else en
+/** Thai text, English text, or (for the other 28 languages) the translation of the English text. */
+fun tr(th: String, en: String) = I18n.t(th, en)
 
-@Composable
-fun Txt.text() = get(LocalThai.current)
+fun Txt.text() = I18n.t(th, en)
 
 val Teal = Color(0xFF0E7C66)
 val Sand = Color(0xFFFDF8F0)
@@ -91,7 +94,11 @@ object Routes {
 @Composable
 fun AppRoot(vm: TripViewModel, onExit: () -> Unit) {
     MaterialTheme(colorScheme = colors) {
-        CompositionLocalProvider(LocalThai provides vm.thai) {
+        CompositionLocalProvider(
+            LocalThai provides vm.thai,
+            androidx.compose.ui.platform.LocalLayoutDirection provides
+                if (I18n.current.rtl) androidx.compose.ui.unit.LayoutDirection.Rtl else androidx.compose.ui.unit.LayoutDirection.Ltr,
+        ) {
             Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                 val nav = rememberNavController()
                 val start = when {
@@ -189,7 +196,39 @@ fun SectionTitle(text: String) {
 
 @Composable
 fun LanguageToggle(vm: TripViewModel) {
-    TextButton(onClick = { vm.toggleLanguage() }) { Text(if (vm.thai) "EN" else "ไทย") }
+    var open by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    TextButton(onClick = { open = true }) { Text("🌐 " + I18n.current.native) }
+    if (open) LanguageDialog(vm) { open = false }
+}
+
+/** Picker for the 30 menu languages, each shown in its own script. */
+@Composable
+fun LanguageDialog(vm: TripViewModel, onDone: () -> Unit) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDone,
+        confirmButton = { TextButton(onClick = onDone) { Text(tr("ปิด", "Close")) } },
+        title = { Text(tr("เลือกภาษา", "Language")) },
+        text = {
+            androidx.compose.foundation.lazy.LazyColumn(Modifier.height(420.dp)) {
+                items(I18n.LANGS.size) { i ->
+                    val l = I18n.LANGS[i]
+                    val on = l.code == I18n.lang
+                    Row(
+                        Modifier.fillMaxWidth()
+                            .clickable { vm.setLanguage(l.code); onDone() }
+                            .padding(vertical = 10.dp, horizontal = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(if (on) "✓" else "", color = Teal, modifier = Modifier.padding(end = 10.dp))
+                        Column {
+                            Text(l.native, fontWeight = if (on) androidx.compose.ui.text.font.FontWeight.Bold else null)
+                            if (l.native != l.english) Text(l.english, fontSize = 12.sp, color = Color.Gray)
+                        }
+                    }
+                }
+            }
+        },
+    )
 }
 
 @Composable

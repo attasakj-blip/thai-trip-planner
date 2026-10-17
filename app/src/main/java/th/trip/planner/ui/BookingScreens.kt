@@ -300,24 +300,24 @@ data class BookingHelp(val label: String, val url: String?, val phone: String?)
 
 fun bookingHelp(mode: TravelMode, fromName: String, toName: String, date: LocalDate?, fromHub: Hub?, toHub: Hub?, fromLatLon: Pair<Double, Double>, toLatLon: Pair<Double, Double>, thai: Boolean): List<BookingHelp> = when (mode) {
     TravelMode.FLIGHT -> listOf(
-        BookingHelp(if (thai) "ดูเที่ยวบินและเวลาถึง (Google Flights)" else "See flights & arrival times (Google Flights)",
+        BookingHelp(tr("ดูเที่ยวบินและเวลาถึง (Google Flights)", "See flights & arrival times (Google Flights)"),
             "https://www.google.com/travel/flights?q=" + enc("Flights from $fromName to $toName" + (date?.let { " on $it" } ?: "")), null),
-        BookingHelp(if (thai) "ศูนย์บริการข้อมูลท่าอากาศยาน (ทอท.)" else "Airports of Thailand call centre", null, "1722"),
+        BookingHelp(tr("ศูนย์บริการข้อมูลท่าอากาศยาน (ทอท.)", "Airports of Thailand call centre"), null, "1722"),
     )
     TravelMode.TRAIN -> listOf(
-        BookingHelp(if (thai) "จองตั๋วรถไฟ D-Ticket (การรถไฟฯ)" else "Book train tickets (SRT D-Ticket)", "https://dticket.railway.co.th", null),
-        BookingHelp(if (thai) "สายด่วนการรถไฟแห่งประเทศไทย" else "State Railway of Thailand hotline", null, "1690"),
+        BookingHelp(tr("จองตั๋วรถไฟ D-Ticket (การรถไฟฯ)", "Book train tickets (SRT D-Ticket)"), "https://dticket.railway.co.th", null),
+        BookingHelp(tr("สายด่วนการรถไฟแห่งประเทศไทย", "State Railway of Thailand hotline"), null, "1690"),
     )
     TravelMode.BUS -> listOf(
-        BookingHelp(if (thai) "บริษัท ขนส่ง จำกัด (บขส.)" else "Transport Co., Ltd. (BKS)", "https://www.transport.co.th", "1490"),
-        BookingHelp(if (thai) "ค้นหาเที่ยวรถและจองผ่าน 12Go" else "Find and book buses on 12Go", "https://12go.asia", null),
+        BookingHelp(tr("บริษัท ขนส่ง จำกัด (บขส.)", "Transport Co., Ltd. (BKS)"), "https://www.transport.co.th", "1490"),
+        BookingHelp(tr("ค้นหาเที่ยวรถและจองผ่าน 12Go", "Find and book buses on 12Go"), "https://12go.asia", null),
     )
     TravelMode.BOAT -> listOfNotNull(
         (toHub ?: fromHub)?.let { h -> BookingHelp(h.name.get(thai), h.website, h.phone) },
-        BookingHelp(if (thai) "ค้นหาเรือข้ามฟากและจองผ่าน 12Go" else "Find and book ferries on 12Go", "https://12go.asia", null),
+        BookingHelp(tr("ค้นหาเรือข้ามฟากและจองผ่าน 12Go", "Find and book ferries on 12Go"), "https://12go.asia", null),
     )
     TravelMode.CAR -> listOf(
-        BookingHelp(if (thai) "เส้นทางขับรถ (Google Maps)" else "Driving route (Google Maps)", mapsDirections(fromLatLon.first, fromLatLon.second, toLatLon.first, toLatLon.second), null),
+        BookingHelp(tr("เส้นทางขับรถ (Google Maps)", "Driving route (Google Maps)"), mapsDirections(fromLatLon.first, fromLatLon.second, toLatLon.first, toLatLon.second), null),
     )
 }
 

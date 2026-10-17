@@ -1,5 +1,7 @@
 package th.trip.planner
 
+import th.trip.planner.ui.tr
+
 import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -94,10 +96,18 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         private set
     /** Set when photos were found but GPS was off, so they can't be accepted. */
     var gpsOffNotice by mutableStateOf(false)
-    var thai by mutableStateOf(repo.thai)
-        private set
+    init {
+        val saved = repo.lang
+        th.trip.planner.ui.I18n.set(app, saved.ifBlank { th.trip.planner.ui.I18n.deviceDefault() })
+    }
 
-    fun toggleLanguage() { thai = !thai; repo.thai = thai }
+    /** True when the menus are in Thai (place names and descriptions then use Thai too). */
+    val thai: Boolean get() = th.trip.planner.ui.I18n.thai
+
+    fun setLanguage(code: String) {
+        th.trip.planner.ui.I18n.set(getApplication(), code)
+        repo.lang = th.trip.planner.ui.I18n.lang
+    }
 
     fun update(f: (Trip) -> Trip) {
         trip = f(trip)
@@ -268,10 +278,10 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
                     if (photos.isNotEmpty()) n++
                     val place = sec.placeId?.let { repo.placeById[it] }
                     SectionContent(
-                        name = place?.name?.get(isThai) ?: if (isThai) "ระหว่างการเดินทาง" else "On the way",
+                        name = place?.name?.get(isThai) ?: tr("ระหว่างการเดินทาง", "On the way"),
                         subtitle = place?.let { if (!isThai) it.province.en else if (it.province.th.startsWith("กรุงเทพ")) it.province.th else "จังหวัด${it.province.th}" } ?: "",
                         dates = fmtDates(photos.map { LocalDate.parse(it.date) }.distinct(), isThai),
-                        badge = if (isThai) "จุดหมายที่ $n จาก $withPhotos" else "STOP $n OF $withPhotos",
+                        badge = tr("จุดหมายที่ $n จาก $withPhotos", "STOP $n OF $withPhotos"),
                         photos = photos.map { repo.photoFile(t.id, it.file) },
                     )
                 }

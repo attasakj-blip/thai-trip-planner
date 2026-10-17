@@ -57,13 +57,14 @@ class CheckInWorker(context: Context, params: WorkerParameters) : CoroutineWorke
         val first = TripLogic.firstDay(trip)
         val last = TripLogic.lastDay(trip)
         val during = first != null && last != null && today >= first && today <= last.plusDays(1)
-        if (during && today.toString() !in trip.checkIns) notify(repo.thai)
+        if (during && today.toString() !in trip.checkIns) notify(repo.lang)
         if (last == null || today <= last.plusDays(1)) CheckInScheduler.schedule(applicationContext, repo.checkInHour)
         return Result.success()
     }
 
-    private fun notify(thai: Boolean) {
+    private fun notify(lang: String) {
         val ctx = applicationContext
+        th.trip.planner.ui.I18n.set(ctx, lang.ifBlank { th.trip.planner.ui.I18n.deviceDefault() })
         if (Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(ctx, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
         ) return
@@ -73,8 +74,8 @@ class CheckInWorker(context: Context, params: WorkerParameters) : CoroutineWorke
         )
         val n = NotificationCompat.Builder(ctx, CheckInScheduler.CHANNEL)
             .setSmallIcon(R.drawable.ic_launcher)
-            .setContentTitle(if (thai) "ทริปวันนี้เป็นไปตามแผนไหม?" else "Is today going to plan?")
-            .setContentText(if (thai) "แตะเพื่อยืนยันหรือปรับแผนการเดินทาง" else "Tap to confirm or adjust your trip")
+            .setContentTitle(th.trip.planner.ui.tr("ทริปวันนี้เป็นไปตามแผนไหม?", "Is today going to plan?"))
+            .setContentText(th.trip.planner.ui.tr("แตะเพื่อยืนยันหรือปรับแผนการเดินทาง", "Tap to confirm or adjust your trip"))
             .setContentIntent(open)
             .setAutoCancel(true)
             .build()

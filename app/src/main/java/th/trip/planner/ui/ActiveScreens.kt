@@ -287,7 +287,7 @@ fun FinaleScreen(vm: TripViewModel, nav: NavHostController, onExit: () -> Unit) 
     val places = vm.trip.stops.mapNotNull { vm.repo.placeById[it.placeId] }
     // The traveller's own album photos when there are any, otherwise library photos of the places.
     val own = vm.trip.photos.map { p ->
-        Photo(vm.repo.photoFile(vm.trip.id, p.file).toURI().toString(), if (thai) "ภาพของคุณ" else "Your photo", "", "")
+        Photo(vm.repo.photoFile(vm.trip.id, p.file).toURI().toString(), tr("ภาพของคุณ", "Your photo"), "", "")
     }
     val photos = produceState(own, places) {
         if (own.isEmpty()) value = places.flatMap { vm.remote.photos(it.wikiTitles, max = 2).getOrDefault(emptyList()) }
@@ -371,8 +371,8 @@ fun SettingsScreen(vm: TripViewModel, nav: NavHostController) {
     Page(tr("ตั้งค่า", "Settings"), nav) { pad ->
         Column(Modifier.padding(pad).padding(16.dp).verticalScroll(rememberScrollState())) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(tr("ภาษาไทย", "Thai language"), Modifier.weight(1f))
-                Switch(checked = vm.thai, onCheckedChange = { vm.toggleLanguage() })
+                Text(tr("ภาษาของเมนู", "Menu language"), Modifier.weight(1f))
+                LanguageToggle(vm)
             }
             SectionTitle(tr("เวลาเช็กอินประจำวัน", "Daily check-in time"))
             Row(verticalAlignment = Alignment.CenterVertically) {

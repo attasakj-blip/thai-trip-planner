@@ -74,9 +74,10 @@ class Repository(private val context: Context) {
         tmp.renameTo(tripFile)
     }
 
-    var thai: Boolean
-        get() = prefs.getBoolean("thai", true)
-        set(v) = prefs.edit().putBoolean("thai", v).apply()
+    /** Menu language code ("" = not chosen yet: follow the phone). Older versions stored a Thai on/off switch. */
+    var lang: String
+        get() = prefs.getString("lang", null) ?: if (prefs.contains("thai")) (if (prefs.getBoolean("thai", true)) "th" else "en") else ""
+        set(v) = prefs.edit().putString("lang", v).apply()
 
     var checkInHour: Int
         get() = prefs.getInt("checkin_hour", 10)

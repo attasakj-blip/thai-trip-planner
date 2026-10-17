@@ -34,12 +34,20 @@ private val enMonths = listOf("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "
 private val thMonthsFull = listOf("มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม")
 private val enMonthsFull = listOf("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
-fun monthShort(m: Int, thai: Boolean) = (if (thai) thMonths else enMonths)[m - 1]
+fun monthShort(m: Int, thai: Boolean) =
+    if (thai) thMonths[m - 1]
+    else if (I18n.lang == "en" || I18n.thai) enMonths[m - 1]
+    else java.time.Month.of(m).getDisplayName(java.time.format.TextStyle.SHORT, I18n.current.locale)
 fun monthYear(d: LocalDate, thai: Boolean) =
-    if (thai) "${thMonthsFull[d.monthValue - 1]} ${d.year + 543}" else "${enMonthsFull[d.monthValue - 1]} ${d.year}"
+    if (thai) "${thMonthsFull[d.monthValue - 1]} ${d.year + 543}"
+    else if (I18n.lang == "en" || I18n.thai) "${enMonthsFull[d.monthValue - 1]} ${d.year}"
+    else java.time.format.DateTimeFormatter.ofPattern("LLLL yyyy", I18n.current.locale).format(d)
 
 /** "1 พ.ย. 2569" / "1 Nov 2026". */
-fun fmt(d: LocalDate, thai: Boolean) = if (thai) "${d.dayOfMonth} ${thMonths[d.monthValue - 1]} ${d.year + 543}" else "${d.dayOfMonth} ${enMonths[d.monthValue - 1]} ${d.year}"
+fun fmt(d: LocalDate, thai: Boolean) =
+    if (thai) "${d.dayOfMonth} ${thMonths[d.monthValue - 1]} ${d.year + 543}"
+    else if (I18n.lang == "en" || I18n.thai) "${d.dayOfMonth} ${enMonths[d.monthValue - 1]} ${d.year}"
+    else java.time.format.DateTimeFormatter.ofLocalizedDate(java.time.format.FormatStyle.MEDIUM).withLocale(I18n.current.locale).format(d)
 
 /** Compact list of dates, e.g. "1, 2, 5 พ.ย. 2569". */
 fun fmtDates(dates: List<LocalDate>, thai: Boolean): String {
@@ -52,25 +60,25 @@ fun fmtDates(dates: List<LocalDate>, thai: Boolean): String {
 }
 
 fun modeLabel(m: TravelMode, thai: Boolean) = when (m) {
-    TravelMode.FLIGHT -> if (thai) "✈️ เครื่องบิน" else "✈️ Flight"
-    TravelMode.TRAIN -> if (thai) "🚆 รถไฟ" else "🚆 Train"
-    TravelMode.BUS -> if (thai) "🚌 รถโดยสาร" else "🚌 Bus"
-    TravelMode.BOAT -> if (thai) "⛴️ เรือ" else "⛴️ Boat"
-    TravelMode.CAR -> if (thai) "🚐 รถยนต์/รถตู้" else "🚐 Car / van"
+    TravelMode.FLIGHT -> tr("✈️ เครื่องบิน", "✈️ Flight")
+    TravelMode.TRAIN -> tr("🚆 รถไฟ", "🚆 Train")
+    TravelMode.BUS -> tr("🚌 รถโดยสาร", "🚌 Bus")
+    TravelMode.BOAT -> tr("⛴️ เรือ", "⛴️ Boat")
+    TravelMode.CAR -> tr("🚐 รถยนต์/รถตู้", "🚐 Car / van")
 }
 
 fun hubTypeLabel(t: HubType, thai: Boolean) = when (t) {
-    HubType.AIRPORT -> if (thai) "✈️ สนามบิน" else "✈️ Airport"
-    HubType.BUS -> if (thai) "🚌 สถานีขนส่ง" else "🚌 Bus terminal"
-    HubType.TRAIN -> if (thai) "🚆 สถานีรถไฟ" else "🚆 Railway station"
-    HubType.PIER -> if (thai) "⛴️ ท่าเรือ" else "⛴️ Pier"
+    HubType.AIRPORT -> tr("✈️ สนามบิน", "✈️ Airport")
+    HubType.BUS -> tr("🚌 สถานีขนส่ง", "🚌 Bus terminal")
+    HubType.TRAIN -> tr("🚆 สถานีรถไฟ", "🚆 Railway station")
+    HubType.PIER -> tr("⛴️ ท่าเรือ", "⛴️ Pier")
 }
 
 fun purposeLabel(p: GapPurpose, thai: Boolean) = when (p) {
-    GapPurpose.WORK -> if (thai) "💼 ทำงาน/ภารกิจ" else "💼 Work / errands"
-    GapPurpose.VISIT -> if (thai) "🏠 เยี่ยมเพื่อนหรือญาติ" else "🏠 Visit friends or family"
-    GapPurpose.TRAVEL -> if (thai) "🧳 ใช้เดินทาง" else "🧳 Travel time"
-    GapPurpose.OTHER -> if (thai) "✨ กิจกรรมอื่น" else "✨ Something else"
+    GapPurpose.WORK -> tr("💼 ทำงาน/ภารกิจ", "💼 Work / errands")
+    GapPurpose.VISIT -> tr("🏠 เยี่ยมเพื่อนหรือญาติ", "🏠 Visit friends or family")
+    GapPurpose.TRAVEL -> tr("🧳 ใช้เดินทาง", "🧳 Travel time")
+    GapPurpose.OTHER -> tr("✨ กิจกรรมอื่น", "✨ Something else")
 }
 
 /** Loads free-licensed photos for a place (Wikimedia Commons via Wikipedia). */

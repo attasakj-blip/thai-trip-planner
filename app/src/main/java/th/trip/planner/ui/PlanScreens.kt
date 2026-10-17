@@ -138,14 +138,14 @@ fun HomeScreen(vm: TripViewModel, nav: NavHostController) {
 // ---------------------------------------------------------------- Step 1a: place library
 
 private fun regionLabel(r: Region, thai: Boolean) = when (r) {
-    Region.BANGKOK -> if (thai) "กรุงเทพฯ" else "Bangkok"
-    Region.CENTRAL -> if (thai) "ภาคกลาง" else "Central"
-    Region.NORTH -> if (thai) "ภาคเหนือ" else "North"
-    Region.NORTHEAST -> if (thai) "ภาคอีสาน" else "Northeast"
-    Region.EAST -> if (thai) "ภาคตะวันออก" else "East"
-    Region.WEST -> if (thai) "ภาคตะวันตก" else "West"
-    Region.SOUTH_ANDAMAN -> if (thai) "ใต้ฝั่งอันดามัน" else "South (Andaman)"
-    Region.SOUTH_GULF -> if (thai) "ใต้ฝั่งอ่าวไทย" else "South (Gulf)"
+    Region.BANGKOK -> tr("กรุงเทพฯ", "Bangkok")
+    Region.CENTRAL -> tr("ภาคกลาง", "Central")
+    Region.NORTH -> tr("ภาคเหนือ", "North")
+    Region.NORTHEAST -> tr("ภาคอีสาน", "Northeast")
+    Region.EAST -> tr("ภาคตะวันออก", "East")
+    Region.WEST -> tr("ภาคตะวันตก", "West")
+    Region.SOUTH_ANDAMAN -> tr("ใต้ฝั่งอันดามัน", "South (Andaman)")
+    Region.SOUTH_GULF -> tr("ใต้ฝั่งอ่าวไทย", "South (Gulf)")
 }
 
 @Composable
@@ -369,7 +369,9 @@ fun CalendarDialog(initial: Set<LocalDate>, otherStops: Map<LocalDate, Int>, onD
                     Text(monthYear(month.atDay(1), thai), Modifier.weight(1f), textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
                     TextButton(onClick = { month = month.plusMonths(1) }) { Text("›") }
                 }
-                val heads = if (thai) listOf("อา", "จ", "อ", "พ", "พฤ", "ศ", "ส") else listOf("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa")
+                val heads = if (thai) listOf("อา", "จ", "อ", "พ", "พฤ", "ศ", "ส")
+                    else if (I18n.lang == "en") listOf("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa")
+                    else (0..6).map { java.time.DayOfWeek.SUNDAY.plus(it.toLong()).getDisplayName(java.time.format.TextStyle.NARROW, I18n.current.locale) }
                 Row { heads.forEach { Text(it, Modifier.weight(1f), textAlign = TextAlign.Center, fontSize = 12.sp, color = Color.Gray) } }
                 val first = month.atDay(1)
                 val offset = first.dayOfWeek.value % 7 // Sunday = 0

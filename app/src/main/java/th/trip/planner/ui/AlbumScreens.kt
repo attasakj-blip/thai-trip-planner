@@ -95,27 +95,27 @@ import java.io.File
 import java.time.LocalDate
 
 fun styleLabel(s: MusicStyle, thai: Boolean) = when (s) {
-    MusicStyle.THAI_LOCAL -> if (thai) "🪘 ดนตรีท้องถิ่น" else "🪘 Thai local"
-    MusicStyle.MUSIC_BOX -> if (thai) "🎁 กล่องดนตรี" else "🎁 Music box"
-    MusicStyle.HARP -> if (thai) "🪉 ฮาร์ป" else "🪉 Harp"
-    MusicStyle.JAZZ -> if (thai) "🎷 แจ๊ส" else "🎷 Jazz"
-    MusicStyle.SAMBA -> if (thai) "🪇 แซมบ้า" else "🪇 Samba"
-    MusicStyle.FLUTE -> if (thai) "🪈 ขลุ่ย" else "🪈 Flute (khlui)"
+    MusicStyle.THAI_LOCAL -> tr("🪘 ดนตรีท้องถิ่น", "🪘 Thai local")
+    MusicStyle.MUSIC_BOX -> tr("🎁 กล่องดนตรี", "🎁 Music box")
+    MusicStyle.HARP -> tr("🪉 ฮาร์ป", "🪉 Harp")
+    MusicStyle.JAZZ -> tr("🎷 แจ๊ส", "🎷 Jazz")
+    MusicStyle.SAMBA -> tr("🪇 แซมบ้า", "🪇 Samba")
+    MusicStyle.FLUTE -> tr("🪈 ขลุ่ย", "🪈 Flute (khlui)")
 }
 
 fun tempoLabel(t: Tempo, thai: Boolean) = when (t) {
-    Tempo.SLOW -> if (thai) "ช้า" else "Slow"
-    Tempo.MEDIUM -> if (thai) "ปานกลาง" else "Medium"
-    Tempo.FAST -> if (thai) "เร็ว" else "Fast"
+    Tempo.SLOW -> tr("ช้า", "Slow")
+    Tempo.MEDIUM -> tr("ปานกลาง", "Medium")
+    Tempo.FAST -> tr("เร็ว", "Fast")
 }
 
 /** The transition that suits each tempo: slow photos morph, medium ones zoom-fade, fast ones slide. */
 fun transitionFor(t: Tempo) = when (t) { Tempo.SLOW -> Transition.MORPH; Tempo.MEDIUM -> Transition.CROSSFADE_ZOOM; Tempo.FAST -> Transition.SLIDE }
 
 fun transitionLabel(t: Transition, thai: Boolean) = when (t) {
-    Transition.MORPH -> if (thai) "เปลี่ยนภาพแบบ morph นุ่มนวล" else "Soft morph"
-    Transition.CROSSFADE_ZOOM -> if (thai) "ซูมและจางเข้า" else "Zoom & fade"
-    Transition.SLIDE -> if (thai) "เลื่อนภาพ" else "Slide"
+    Transition.MORPH -> tr("เปลี่ยนภาพแบบ morph นุ่มนวล", "Soft morph")
+    Transition.CROSSFADE_ZOOM -> tr("ซูมและจางเข้า", "Zoom & fade")
+    Transition.SLIDE -> tr("เลื่อนภาพ", "Slide")
 }
 
 // ---------------------------------------------------------------- Prompts on the trip screen
