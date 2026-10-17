@@ -111,6 +111,7 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
     init {
         val saved = repo.lang
         th.trip.planner.ui.I18n.set(app, saved.ifBlank { th.trip.planner.ui.I18n.deviceDefault() })
+        ensureLegs()
     }
 
     /** True when the menus are in Thai (place names and descriptions then use Thai too). */
@@ -149,7 +150,9 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
     /** Keeps the legs list the same length as the number of travel legs. */
     fun ensureLegs() = update { t ->
         val n = TripLogic.legCount(t)
-        if (t.legs.size == n) t else t.copy(legs = List(n) { t.legs.getOrNull(it) ?: Leg() })
+        // Older versions also had a leg from the start point and one to the end point.
+        val old = if (t.legs.size == n + 2) t.legs.drop(1) else t.legs
+        if (t.legs.size == n) t else t.copy(legs = List(n) { old.getOrNull(it) ?: Leg() })
     }
 
     fun setLeg(i: Int, leg: Leg) = update { t ->

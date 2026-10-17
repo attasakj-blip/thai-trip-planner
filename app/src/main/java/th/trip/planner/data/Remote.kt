@@ -228,21 +228,7 @@ class Remote {
         }
         val radius = if (type == "hospital" || type == "police") 25000 else 6000
         val query = "[out:json][timeout:25];(nwr$filter(around:$radius,$lat,$lon););out center tags 150;"
-        val text = withContext(Dispatchers.IO) {
-            val body = okhttp3.FormBody.Builder().add("data", query).build()
-            var last: Throwable? = null
-            for (host in listOf("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter")) {
-                val r = runCatching {
-                    http.newCall(Request.Builder().url(host).post(body).build()).execute().use { r ->
-                        if (!r.isSuccessful) error("HTTP ${r.code}")
-                        r.body?.string() ?: error("empty body")
-                    }
-                }
-                if (r.isSuccess) return@withContext r.getOrThrow()
-                last = r.exceptionOrNull()
-            }
-            throw last ?: IllegalStateException("no server")
-        }
+        val text = overpass(query)
         val elements = json.parseToJsonElement(text).jsonObject["elements"].arr() ?: return@runCatching emptyList()
         elements.mapNotNull { e ->
             val o = e.obj() ?: return@mapNotNull null
@@ -266,5 +252,119 @@ class Remote {
                 distanceKm = TripLogic.distanceKm(lat, lon, pLat, pLon),
             )
         }.distinctBy { it.name to (it.lat * 1000).toInt() }.sortedBy { it.distanceKm }.take(limit)
+    }
+
+    private suspend fun overpass(query: String): String = withContext(Dispatchers.IO) {
+        val body = okhttp3.FormBody.Builder().add("data", query).build()
+        var last: Throwable? = null
+        for (host in listOf("https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter")) {
+            val r = runCatching {
+                http.newCall(Request.Builder().url(host).post(body).build()).execute().use { r ->
+                    if (!r.isSuccessful) error("HTTP ${r.code}")
+                    r.body?.string() ?: error("empty body")
+                }
+            }
+            if (r.isSuccess) return@withContext r.getOrThrow()
+            last = r.exceptionOrNull()
+        }
+        throw last ?: IllegalStateException("no server")
+    }
+
+    private val cache = ConcurrentHashMap<String, Any>()
+
+    @Suppress("UNCHECKED_CAST")
+    private suspend fun <T : Any> cached(key: String, load: suspend () -> T): T =
+        (cache[key] as T?) ?: load().also { cache[key] = it }
+
+    /**
+     * Bus terminals ("bus") or long-distance railway stations ("train") near a point, nearest
+     * first, from OpenStreetMap.
+     */
+    suspend fun stations(lat: Double, lon: Double, kind: String, thai: Boolean, radiusKm: Int = 35): Result<List<Poi>> = runCatching {
+        cached("st:$kind:${"%.3f".format(lat)}:${"%.3f".format(lon)}:$thai") {
+            val filter = if (kind == "train") "[\"railway\"=\"station\"][\"station\"!~\"^(subway|light_rail|monorail)$\"]" else "[\"amenity\"=\"bus_station\"]"
+            val query = "[out:json][timeout:25];(nwr$filter(around:${radiusKm * 1000},$lat,$lon););out center tags 60;"
+            val elements = json.parseToJsonElement(overpass(query)).jsonObject["elements"].arr() ?: JsonArray(emptyList())
+            elements.mapNotNull { e ->
+                val o = e.obj() ?: return@mapNotNull null
+                val t = o["tags"].obj() ?: return@mapNotNull null
+                val pLat = o["lat"].num() ?: o["center"].obj()?.get("lat").num() ?: return@mapNotNull null
+                val pLon = o["lon"].num() ?: o["center"].obj()?.get("lon").num() ?: return@mapNotNull null
+                val name = (if (thai) t["name:th"].str() else t["name:en"].str()) ?: t["name"].str() ?: return@mapNotNull null
+                Poi(name, "", t["phone"].str(), t["website"].str(), t["opening_hours"].str(), null, false, pLat, pLon, TripLogic.distanceKm(lat, lon, pLat, pLon))
+            }.distinctBy { it.name }.sortedBy { it.distanceKm }
+        }
+    }
+
+    /** Road distance (km) and driving time (minutes) from the public OSRM server. */
+    suspend fun drive(fromLat: Double, fromLon: Double, toLat: Double, toLon: Double): Result<Pair<Double, Int>> = runCatching {
+        cached("osrm:%.4f,%.4f;%.4f,%.4f".format(fromLon, fromLat, toLon, toLat)) {
+            val text = get("https://router.project-osrm.org/route/v1/driving/$fromLon,$fromLat;$toLon,$toLat?overview=false")
+            val r = json.parseToJsonElement(text).jsonObject["routes"].arr()?.firstOrNull().obj() ?: error("no route")
+            (r["distance"].num() ?: error("no distance")) / 1000.0 to ((r["duration"].num() ?: 0.0) / 60.0).toInt()
+        }
+    }
+
+    /** Finds an address in Thailand (OpenStreetMap Nominatim). */
+    suspend fun geocode(address: String): Result<Pair<Double, Double>> = runCatching {
+        cached("geo:$address") {
+            val url = "https://nominatim.openstreetmap.org/search".toHttpUrl().newBuilder()
+                .addQueryParameter("format", "json").addQueryParameter("limit", "1")
+                .addQueryParameter("countrycodes", "th").addQueryParameter("q", address).build().toString()
+            val first = json.parseToJsonElement(get(url)).arr()?.firstOrNull().obj() ?: error("not found")
+            (first["lat"].num() ?: error("no lat")) to (first["lon"].num() ?: error("no lon"))
+        }
+    }
+
+    /**
+     * Public-transport lines (bus, songthaew, BTS/MRT/Airport Rail Link, trains, boats) that stop
+     * near both points, with all their stops, from OpenStreetMap.
+     */
+    suspend fun transitLines(fromLat: Double, fromLon: Double, toLat: Double, toLon: Double, thai: Boolean, walkM: Int = 800): Result<List<th.trip.planner.logic.TransitLine>> = runCatching {
+        cached("tr:%.4f,%.4f;%.4f,%.4f:$thai".format(fromLat, fromLon, toLat, toLon)) {
+            fun near(lat: Double, lon: Double) =
+                "node(around:$walkM,$lat,$lon)[public_transport~\"^(platform|stop_position)$\"];" +
+                    "node(around:$walkM,$lat,$lon)[highway=bus_stop];" +
+                    "node(around:$walkM,$lat,$lon)[railway~\"^(station|halt|stop)$\"];" +
+                    "node(around:$walkM,$lat,$lon)[amenity=ferry_terminal];"
+            val routes = "^(bus|trolleybus|share_taxi|minibus|subway|light_rail|monorail|train|tram|ferry)$"
+            val query = "[out:json][timeout:40];(${near(fromLat, fromLon)})->.a;(${near(toLat, toLon)})->.b;" +
+                "(rel(bn.a)[type=route][route~\"$routes\"];rel(bn.b)[type=route][route~\"$routes\"];)->.r;" +
+                ".r out body;node(r.r);out body;"
+            val elements = json.parseToJsonElement(overpass(query)).jsonObject["elements"].arr() ?: JsonArray(emptyList())
+            val nodes = HashMap<Long, th.trip.planner.logic.TransitStop>()
+            for (e in elements) {
+                val o = e.obj() ?: continue
+                if (o["type"].str() != "node") continue
+                val id = o["id"].num()?.toLong() ?: continue
+                val t = o["tags"].obj()
+                val name = t?.let { (if (thai) it["name:th"].str() else it["name:en"].str()) ?: it["name"].str() } ?: ""
+                nodes[id] = th.trip.planner.logic.TransitStop(id, name, o["lat"].num() ?: continue, o["lon"].num() ?: continue)
+            }
+            elements.mapNotNull { e ->
+                val o = e.obj() ?: return@mapNotNull null
+                if (o["type"].str() != "relation") return@mapNotNull null
+                val t = o["tags"].obj() ?: return@mapNotNull null
+                val members = o["members"].arr()?.mapNotNull { it.obj() }?.filter { it["type"].str() == "node" } ?: return@mapNotNull null
+                val stopsByRole = members.filter { it["role"].str()?.startsWith("stop") == true }
+                val use = stopsByRole.ifEmpty { members.filter { it["role"].str()?.startsWith("platform") == true } }
+                val stops = use.mapNotNull { m -> nodes[m["ref"].num()?.toLong()] }
+                if (stops.size < 2) return@mapNotNull null
+                val kind = when (t["route"].str()) {
+                    "share_taxi", "minibus" -> th.trip.planner.logic.TransitKind.SONGTHAEW
+                    "subway", "light_rail", "monorail", "tram" -> th.trip.planner.logic.TransitKind.METRO
+                    "train" -> th.trip.planner.logic.TransitKind.TRAIN
+                    "ferry" -> th.trip.planner.logic.TransitKind.BOAT
+                    else -> th.trip.planner.logic.TransitKind.BUS
+                }
+                val name = (if (thai) t["name:th"].str() else t["name:en"].str()) ?: t["name"].str() ?: ""
+                th.trip.planner.logic.TransitLine(
+                    o["id"].num()?.toLong() ?: return@mapNotNull null,
+                    t["ref"].str() ?: "", name, kind,
+                    (if (thai) t["operator:th"].str() else t["operator:en"].str()) ?: t["operator"].str() ?: "",
+                    stops,
+                )
+            }
+        }
     }
 }

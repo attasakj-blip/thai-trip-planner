@@ -9,7 +9,7 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
- * Fetches the place and hub library that GitHub Actions publishes to GitHub Pages every
+ * Fetches the place, hub and flight-route library that GitHub Actions publishes to GitHub Pages every
  * Wednesday 0:00 Thai time. Runs when the app opens; with no internet the app keeps using
  * what it already has (last download, or the copy built into the app).
  */
@@ -36,6 +36,7 @@ object DataSync {
         val hubs = get("hubs.json")?.takeIf { repo.validHubs(it) } ?: return false
         write(File(repo.dataDir, "places.json"), places)
         write(File(repo.dataDir, "hubs.json"), hubs)
+        get("flights.json")?.takeIf { repo.validFlights(it) }?.let { write(File(repo.dataDir, "flights.json"), it) }
         repo.dataVersion = version
         return true
     }

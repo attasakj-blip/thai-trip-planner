@@ -142,7 +142,7 @@ fun LodgingScreen(vm: TripViewModel, nav: NavHostController) {
             title = { Text(tr("ที่พักใกล้ ${p.name.th}", "Stays near ${p.name.en}")) },
             text = {
                 PoiList(vm, p.lat, p.lon, "lodging", modifier = Modifier.heightIn(max = 480.dp)) { poi ->
-                    vm.setLodging(p.id, Lodging(name = poi.name, url = poi.website ?: mapsPoint(poi), phone = poi.phone ?: "", address = poi.address, source = "osm"))
+                    vm.setLodging(p.id, Lodging(name = poi.name, url = poi.website ?: mapsPoint(poi), phone = poi.phone ?: "", address = poi.address, source = "osm", lat = poi.lat, lon = poi.lon))
                     picking = null
                 }
             },
@@ -243,72 +243,39 @@ fun StayFormDialog(vm: TripViewModel) {
 
 // ---------------------------------------------------------------- Step 3: transport
 
-private data class End(val label: String, val lat: Double, val lon: Double, val hubs: List<Hub>, val island: Boolean)
-
 @Composable
 fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
     val thai = LocalThai.current
     val trip = vm.trip
     val repo = vm.repo
     LaunchedEffect(Unit) { vm.ensureLegs() }
-    var hubPicker by remember { mutableStateOf<String?>(null) } // "origin" or "end"
-    val inThailand = trip.originCountry.isBlank() || trip.originCountry.trim().lowercase() in setOf("thailand", "ไทย", "ประเทศไทย", "th")
-
-    val startLabel = tr("จุดเริ่มต้น", "Start")
-    fun endFor(legIndex: Int, from: Boolean): End? {
-        val stops = trip.stops
-        val idx = if (from) legIndex - 1 else legIndex
-        if (idx < 0) {
-            val hub = trip.originHubId?.let { repo.hubById[it] }
-            return if (hub != null) End(hub.name.get(thai), hub.lat, hub.lon, listOf(hub), false)
-            else End(trip.originCity.ifBlank { startLabel }, 13.75, 100.5, if (inThailand) emptyList() else repo.hubs.filter { it.id in setOf("bkk", "dmk") }, false)
-        }
-        if (idx >= stops.size) {
-            val hub = trip.endHubId?.let { repo.hubById[it] } ?: return null
-            return End(hub.name.get(thai), hub.lat, hub.lon, listOf(hub), false)
-        }
-        val p = repo.placeById[stops[idx].placeId] ?: return null
-        return End(p.name.get(thai), p.lat, p.lon, TripLogic.hubsFor(p, repo.hubs), p.island)
-    }
-
-    val ready = trip.legs.size == TripLogic.legCount(trip) && trip.legs.all { it.mode != null } && trip.endHubId != null
+    val n = TripLogic.legCount(trip)
+    val ready = trip.legs.size == n && trip.legs.all { it.mode != null }
     Page(
         tr("3. วางแผนการเดินทาง", "3. Plan your transport"), nav, step = 3,
         bottom = { NextButton(tr("สรุปแผนการเดินทาง", "Summarise the plan"), enabled = ready) { nav.navigate(Routes.SUMMARY) } },
     ) { pad ->
         LazyColumn(Modifier.padding(pad), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             item {
-                Card(Modifier.fillMaxWidth()) {
-                    Column(Modifier.padding(14.dp)) {
-                        Text(tr("คุณจะเริ่มเดินทางจากที่ไหน?", "Where will you start from?"), fontWeight = FontWeight.Bold)
-                        OutlinedTextField(trip.originCity, { v -> vm.update { it.copy(originCity = v) } }, label = { Text(tr("เมือง", "City")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                        OutlinedTextField(trip.originCountry, { v -> vm.update { it.copy(originCountry = v) } }, label = { Text(tr("ประเทศ", "Country")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                        if (inThailand) {
-                            VSpace()
-                            Text(tr("จุดขึ้นรถ/เรือ/เครื่องบินในเมืองนั้น", "Departure point in that city"), fontSize = 13.sp)
-                            OutlinedButton(onClick = { hubPicker = "origin" }, modifier = Modifier.fillMaxWidth()) {
-                                Text(trip.originHubId?.let { repo.hubById[it]?.name?.get(thai) } ?: tr("เลือกสถานี / สนามบิน / ท่าเรือ", "Choose station / airport / pier"))
-                            }
-                        } else {
-                            Text(tr("เดินทางจากต่างประเทศ: แนะนำบินเข้าสุวรรณภูมิ ดอนเมือง หรือสนามบินนานาชาติใกล้สถานที่แรก", "From abroad: fly into Suvarnabhumi, Don Mueang or an international airport near your first place."), fontSize = 13.sp, color = Color.Gray)
-                        }
-                    }
-                }
+                Text(
+                    if (n == 0) tr("ทริปนี้มีสถานที่เดียว จึงไม่มีช่วงเดินทางระหว่างสถานที่", "This trip has one place, so there is no travel between places.")
+                    else tr("เลือกวิธีเดินทางของแต่ละช่วง แอปจะบอกจุดขึ้น-ลง สายรถ สายการบิน เวลา ระยะทางถึงที่เที่ยวและที่พัก และค่าใช้จ่ายโดยประมาณ เพื่อช่วยตัดสินใจ",
+                        "Pick how to travel each leg. The app shows where to board and get off, lines, airlines, times, distances to the place and your stay, and rough costs to help you decide."),
+                    fontSize = 14.sp, color = Color.DarkGray,
+                )
             }
-            val n = TripLogic.legCount(trip)
             items((0 until n).toList()) { i ->
-                val from = endFor(i, true)
-                val to = endFor(i, false)
+                val from = repo.placeById[trip.stops[i].placeId]
+                val to = repo.placeById[trip.stops[i + 1].placeId]
                 val leg = trip.legs.getOrNull(i) ?: Leg()
                 Card(Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(14.dp)) {
                         Text(tr("ช่วงที่ ${i + 1}", "Leg ${i + 1}"), fontSize = 12.sp, color = Teal)
-                        Text("${from?.label ?: "?"} → ${to?.label ?: tr("(เลือกจุดหมายสุดท้ายด้านล่าง)", "(choose the end point below)")}", fontWeight = FontWeight.Bold)
+                        Text("${from?.name?.get(thai) ?: "?"} → ${to?.name?.get(thai) ?: "?"}", fontWeight = FontWeight.Bold)
                         if (from != null && to != null) {
                             val km = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
-                            val options = if (i == 0 && !inThailand) listOf(TravelMode.FLIGHT, TravelMode.BUS, TravelMode.TRAIN, TravelMode.CAR)
-                            else TripLogic.modeOptions(from.lat, from.lon, from.hubs, from.island, to.lat, to.lon, to.hubs, to.island)
-                            if (i > 0 || inThailand) Text(tr("ระยะทางตรงราว ${km.toInt()} กม.", "About ${km.toInt()} km in a straight line"), fontSize = 12.sp, color = Color.Gray)
+                            val options = TripLogic.modeOptions(from.lat, from.lon, TripLogic.hubsFor(from, repo.hubs), from.island, to.lat, to.lon, TripLogic.hubsFor(to, repo.hubs), to.island)
+                            Text(tr("ระยะทางตรงราว ${km.toInt()} กม.", "About ${km.toInt()} km in a straight line"), fontSize = 12.sp, color = Color.Gray)
                             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                                 options.forEach { m -> FilterChip(selected = leg.mode == m, onClick = { vm.setLeg(i, leg.copy(mode = m)) }, label = { Text(modeLabel(m, thai)) }) }
                             }
@@ -318,77 +285,14 @@ fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
                                 TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.minusDays(1).toString())) }) { Text("−1") }
                                 TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.plusDays(1).toString())) }) { Text("+1") }
                             }
-                            leg.mode?.let { m -> HubHints(m, from, to) }
+                            leg.mode?.let { m -> LegDetails(vm, m, from, to, trip.lodgings[from.id], trip.lodgings[to.id], date) }
                         }
                     }
                 }
             }
-            item {
-                Card(Modifier.fillMaxWidth()) {
-                    Column(Modifier.padding(14.dp)) {
-                        Text(tr("หลังเที่ยวที่สุดท้าย คุณจะเดินทางไปที่ใด?", "After the last place, where will you go?"), fontWeight = FontWeight.Bold)
-                        OutlinedButton(onClick = { hubPicker = "end" }, modifier = Modifier.fillMaxWidth()) {
-                            Text(trip.endHubId?.let { repo.hubById[it]?.name?.get(thai) } ?: tr("เลือกสนามบิน / สถานีขนส่ง / สถานีรถไฟ", "Choose airport / bus terminal / station"))
-                        }
-                    }
-                }
-                Spacer(Modifier.height(24.dp))
-            }
+            item { Spacer(Modifier.height(24.dp)) }
         }
     }
-
-    hubPicker?.let { which ->
-        val near = if (which == "end") trip.stops.lastOrNull()?.let { repo.placeById[it.placeId] } else null
-        val list = if (which == "end") repo.hubs.filter { it.type != HubType.PIER } else repo.hubs
-        HubPickerDialog(list, near, onDismiss = { hubPicker = null }) { hub ->
-            vm.update { if (which == "end") it.copy(endHubId = hub.id) else it.copy(originHubId = hub.id) }
-            hubPicker = null
-        }
-    }
-}
-
-@Composable
-private fun HubHints(mode: TravelMode, from: End, to: End) {
-    val thai = LocalThai.current
-    val type = when (mode) {
-        TravelMode.FLIGHT -> HubType.AIRPORT; TravelMode.TRAIN -> HubType.TRAIN
-        TravelMode.BUS -> HubType.BUS; TravelMode.BOAT -> HubType.PIER; TravelMode.CAR -> null
-    } ?: return
-    val a = from.hubs.filter { it.type == type }.take(2)
-    val b = to.hubs.filter { it.type == type }.take(2)
-    if (a.isEmpty() && b.isEmpty()) return
-    Text(
-        tr("ขึ้นที่: ", "Board at: ") + (a.joinToString(" / ") { it.name.get(thai) }.ifBlank { "-" }) + "\n" +
-            tr("ลงที่: ", "Get off at: ") + (b.joinToString(" / ") { it.name.get(thai) }.ifBlank { "-" }),
-        fontSize = 12.sp, color = Color.DarkGray,
-    )
-}
-
-@Composable
-private fun HubPickerDialog(hubs: List<Hub>, near: Place?, onDismiss: () -> Unit, onPick: (Hub) -> Unit) {
-    val thai = LocalThai.current
-    var q by remember { mutableStateOf("") }
-    val sorted = if (near != null) hubs.sortedBy { TripLogic.distanceKm(near.lat, near.lon, it.lat, it.lon) } else hubs.sortedBy { it.province.th }
-    val shown = sorted.filter { q.isBlank() || it.name.th.contains(q, true) || it.name.en.contains(q, true) || it.province.th.contains(q, true) || it.province.en.contains(q, true) }
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = { TextButton(onClick = onDismiss) { Text(tr("ปิด", "Close")) } },
-        title = { Text(tr("เลือกจุดเดินทาง", "Choose a transport point")) },
-        text = {
-            Column {
-                OutlinedTextField(q, { q = it }, label = { Text(tr("ค้นหาจังหวัดหรือชื่อ", "Search province or name")) }, singleLine = true, modifier = Modifier.fillMaxWidth())
-                LazyColumn(Modifier.heightIn(max = 420.dp)) {
-                    items(shown, key = { it.id }) { h ->
-                        Column(Modifier.fillMaxWidth().clickable { onPick(h) }.padding(vertical = 8.dp)) {
-                            Text(h.name.get(thai), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text("${hubTypeLabel(h.type, thai)} · ${h.province.get(thai)}" + (near?.let { " · ${TripLogic.distanceKm(it.lat, it.lon, h.lat, h.lon).toInt()} km" } ?: ""), fontSize = 12.sp, color = Color.Gray)
-                        }
-                        HorizontalDivider()
-                    }
-                }
-            }
-        },
-    )
 }
 
 // ---------------------------------------------------------------- Summary (steps 3–5)
@@ -417,6 +321,10 @@ fun bookingHelp(mode: TravelMode, fromName: String, toName: String, date: LocalD
     TravelMode.CAR -> listOf(
         BookingHelp(tr("เส้นทางขับรถ (Google Maps)", "Driving route (Google Maps)"), mapsDirections(fromLatLon.first, fromLatLon.second, toLatLon.first, toLatLon.second), null),
     )
+    TravelMode.VAN -> listOf(
+        BookingHelp(tr("ค้นหารอบรถตู้และจองผ่าน 12Go", "Find and book minivans on 12Go"), "https://12go.asia", null),
+        BookingHelp(tr("บริษัท ขนส่ง จำกัด (บขส.)", "Transport Co., Ltd. (BKS)"), "https://www.transport.co.th", "1490"),
+    )
 }
 
 @Composable
@@ -425,8 +333,6 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
     val trip = vm.trip
     val repo = vm.repo
     val ctx = LocalContext.current
-    val originHub = trip.originHubId?.let { repo.hubById[it] }
-    val endHub = trip.endHubId?.let { repo.hubById[it] }
     Page(
         tr("สรุปทริป", "Trip summary"), nav, step = 5,
         bottom = {
@@ -444,25 +350,21 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
         },
     ) { pad ->
         LazyColumn(Modifier.padding(pad), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            item {
-                TimelineDot("🏁", tr("เริ่มต้น", "Start"), listOfNotNull(trip.originCity.ifBlank { null }, trip.originCountry.ifBlank { null }).joinToString(", ") + (originHub?.let { "\n" + it.name.get(thai) } ?: ""))
-            }
-            val n = TripLogic.legCount(trip)
-            for (i in 0 until n) {
-                item(key = "leg$i") {
-                    val leg = trip.legs.getOrNull(i) ?: Leg()
-                    val fromPlace = trip.stops.getOrNull(i - 1)?.let { repo.placeById[it.placeId] }
-                    val toPlace = trip.stops.getOrNull(i)?.let { repo.placeById[it.placeId] }
-                    val fromName = fromPlace?.province?.en ?: originHub?.province?.en ?: trip.originCity.ifBlank { "Bangkok" }
-                    val toName = toPlace?.province?.en ?: endHub?.province?.en ?: ""
-                    val fromLL = fromPlace?.let { it.lat to it.lon } ?: originHub?.let { it.lat to it.lon } ?: (13.75 to 100.5)
-                    val toLL = toPlace?.let { it.lat to it.lon } ?: endHub?.let { it.lat to it.lon } ?: fromLL
-                    val date = TripLogic.legDate(trip, i)
+            for (i in trip.stops.indices) {
+                if (i > 0) item(key = "leg${i - 1}") {
+                    val leg = trip.legs.getOrNull(i - 1) ?: Leg()
+                    val fromPlace = repo.placeById[trip.stops[i - 1].placeId]
+                    val toPlace = repo.placeById[trip.stops[i].placeId]
+                    val fromName = fromPlace?.province?.en ?: ""
+                    val toName = toPlace?.province?.en ?: ""
+                    val fromLL = fromPlace?.let { it.lat to it.lon } ?: (13.75 to 100.5)
+                    val toLL = toPlace?.let { it.lat to it.lon } ?: fromLL
+                    val date = TripLogic.legDate(trip, i - 1)
                     val mode = leg.mode
                     Card(Modifier.fillMaxWidth().padding(start = 24.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F7FF))) {
                         Column(Modifier.padding(12.dp)) {
                             Text((mode?.let { modeLabel(it, thai) } ?: tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")) + (date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
-                            if (mode != null) bookingHelp(mode, fromName, toName, date, if (i == 0) originHub else null, if (i == n - 1) endHub else null, fromLL, toLL, thai).forEach { h ->
+                            if (mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text("• ${h.label}", fontSize = 13.sp, modifier = Modifier.weight(1f))
                                     if (h.url != null) TextButton(onClick = { open(ctx, h.url) }) { Text(tr("เปิด", "Open")) }
@@ -472,7 +374,7 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                         }
                     }
                 }
-                if (i < trip.stops.size) item(key = "stop$i") {
+                item(key = "stop$i") {
                     val s = trip.stops[i]
                     val p = repo.placeById[s.placeId]
                     if (p != null) {
@@ -500,23 +402,10 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                 }
             }
             item {
-                TimelineDot("🏁", tr("จุดหมายสุดท้าย", "Final destination"), endHub?.name?.get(thai) ?: "-")
                 VSpace(12)
                 EmergencyCard()
                 Spacer(Modifier.height(24.dp))
             }
-        }
-    }
-}
-
-@Composable
-private fun TimelineDot(icon: String, title: String, body: String) {
-    Row(verticalAlignment = Alignment.Top) {
-        Text(icon, fontSize = 22.sp)
-        Spacer(Modifier.width(8.dp))
-        Column {
-            Text(title, fontWeight = FontWeight.Bold)
-            if (body.isNotBlank()) Text(body, fontSize = 13.sp, color = Color.DarkGray)
         }
     }
 }

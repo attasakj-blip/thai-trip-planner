@@ -15,6 +15,10 @@
         <intent>
             <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
         </intent>
+        <!-- Ride-hailing apps the transport step can open. -->
+        <package android:name="com.grabtaxi.passenger" />
+        <package android:name="ee.mtakso.client" />
+        <package android:name="com.linecorp.linemanth" />
     </queries>
 
     <application
