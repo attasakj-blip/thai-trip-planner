@@ -1,0 +1,807 @@
+{
+ "updated": "2026-10-17",
+ "source": "Wikipedia airport 'Airlines and destinations' tables; directflights.com schedule data (updated Sep–Oct 2026); AeroRoutes 2026 schedule-change reports; airline websites and baggagepolicies.com for baggage",
+ "airlines": [
+  {
+   "code": "TG",
+   "name": "Thai Airways",
+   "website": "https://www.thaiairways.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่อง 1 ใบ ไม่เกิน 7 กก. + ของใช้ส่วนตัวใบเล็ก 1 ชิ้น",
+    "en": "1 cabin bag up to 7 kg + 1 small personal item"
+   },
+   "checkedNote": {
+    "th": "รวมโหลดใต้เครื่อง 1 ใบ ไม่เกิน 23 กก. ทุกราคาชั้นประหยัด (เส้นทางในประเทศ)",
+    "en": "1 checked bag up to 23 kg included on all domestic economy fares"
+   }
+  },
+  {
+   "code": "PG",
+   "name": "Bangkok Airways",
+   "website": "https://www.bangkokair.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่อง 1 ใบ ไม่เกิน 7 กก. (เครื่อง ATR ขนาดกระเป๋าเล็กกว่า)",
+    "en": "1 cabin bag up to 7 kg (smaller size limit on ATR planes)"
+   },
+   "checkedNote": {
+    "th": "ชั้นประหยัดปกติรวมโหลด 20 กก. — ตรวจเงื่อนไขของราคาที่จองอีกครั้ง",
+    "en": "Economy usually includes 20 kg checked — confirm on your fare's conditions"
+   }
+  },
+  {
+   "code": "FD",
+   "name": "Thai AirAsia",
+   "website": "https://www.airasia.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่องได้ 2 ชิ้น (กระเป๋า 1 + ใบเล็ก 1) รวมไม่เกิน 7 กก.",
+    "en": "2 pieces (cabin bag + small bag), 7 kg combined"
+   },
+   "checkedNote": {
+    "th": "ราคาถูกสุดไม่รวมกระเป๋าโหลด — ซื้อเพิ่มล่วงหน้าออนไลน์ถูกกว่าที่สนามบิน; แพ็กเกจราคาสูงกว่ามีรวม",
+    "en": "Cheapest fare: no checked bag — pre-book online (cheaper than at the airport); higher bundles include one"
+   }
+  },
+  {
+   "code": "DD",
+   "name": "Nok Air",
+   "website": "https://www.nokair.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่อง 2 ชิ้น (กระเป๋า + ของใช้ส่วนตัว) รวมไม่เกิน 7 กก.",
+    "en": "2 pieces (cabin bag + personal item), 7 kg combined"
+   },
+   "checkedNote": {
+    "th": "Nok Lite ไม่รวมกระเป๋าโหลด; Nok X-tra รวม 15 กก.; Nok MAX รวม 25 กก. (ในประเทศ)",
+    "en": "Nok Lite: no checked bag; Nok X-tra: 15 kg; Nok MAX: 25 kg (domestic)"
+   }
+  },
+  {
+   "code": "SL",
+   "name": "Thai Lion Air",
+   "website": "https://www.lionairthai.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่อง 1 ใบ ไม่เกิน 7 กก. + ของใช้ส่วนตัว 1 ชิ้น",
+    "en": "1 cabin bag up to 7 kg + 1 personal item"
+   },
+   "checkedNote": {
+    "th": "ราคาถูกสุดไม่รวมกระเป๋าโหลด (ซื้อเพิ่มล่วงหน้า); ราคาสูงกว่ารวม 15–25 กก. แล้วแต่ประเภทตั๋ว",
+    "en": "Cheapest fare: no checked bag (pre-book); higher fares include 15–25 kg depending on fare type"
+   }
+  },
+  {
+   "code": "VZ",
+   "name": "Thai Vietjet",
+   "website": "https://www.vietjetair.com",
+   "carryOnKg": 7,
+   "carryOnNote": {
+    "th": "ถือขึ้นเครื่อง 1 ใบ ไม่เกิน 7 กก. + ของใช้ส่วนตัวใบเล็ก",
+    "en": "1 cabin bag up to 7 kg + small personal item"
+   },
+   "checkedNote": {
+    "th": "ตั๋ว Eco ไม่รวมกระเป๋าโหลด (ซื้อเพิ่มได้); Deluxe รวม 20 กก.; SkyBoss รวมมากกว่า",
+    "en": "Eco fare: no checked bag (add-on); Deluxe includes 20 kg; SkyBoss more"
+   }
+  },
+  {
+   "code": "EZT",
+   "name": "EZY Airlines",
+   "website": null,
+   "carryOnKg": null,
+   "carryOnNote": {
+    "th": "เครื่องบินเล็ก 12 ที่นั่ง จำกัดสัมภาระเข้มงวด — สอบถามสายการบิน",
+    "en": "12-seat Cessna Caravan, strict baggage limits — check with airline"
+   },
+   "checkedNote": {
+    "th": "ขึ้นอยู่กับสายการบิน — สอบถามก่อนเดินทาง",
+    "en": "Varies — confirm with the airline before flying"
+   }
+  }
+ ],
+ "routes": [
+  {
+   "a": "bkk",
+   "b": "cnx",
+   "airlines": [
+    "TG",
+    "VZ",
+    "FD",
+    "PG"
+   ],
+   "minutes": 80,
+   "perDay": "~26"
+  },
+  {
+   "a": "bkk",
+   "b": "hkt",
+   "airlines": [
+    "TG",
+    "VZ",
+    "PG",
+    "FD"
+   ],
+   "minutes": 85,
+   "perDay": "~27"
+  },
+  {
+   "a": "bkk",
+   "b": "kbv",
+   "airlines": [
+    "TG",
+    "VZ",
+    "FD",
+    "PG"
+   ],
+   "minutes": 85,
+   "perDay": "~8"
+  },
+  {
+   "a": "bkk",
+   "b": "usm",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 70,
+   "perDay": "~22"
+  },
+  {
+   "a": "bkk",
+   "b": "cei",
+   "airlines": [
+    "TG",
+    "VZ"
+   ],
+   "minutes": 85,
+   "perDay": "~6"
+  },
+  {
+   "a": "bkk",
+   "b": "hdy",
+   "airlines": [
+    "TG",
+    "VZ"
+   ],
+   "minutes": 90,
+   "perDay": "~7"
+  },
+  {
+   "a": "bkk",
+   "b": "kkc",
+   "airlines": [
+    "TG",
+    "VZ"
+   ],
+   "minutes": 60,
+   "perDay": "~7"
+  },
+  {
+   "a": "bkk",
+   "b": "uth",
+   "airlines": [
+    "TG",
+    "VZ"
+   ],
+   "minutes": 70,
+   "perDay": "~6"
+  },
+  {
+   "a": "bkk",
+   "b": "ubp",
+   "airlines": [
+    "TG",
+    "VZ"
+   ],
+   "minutes": 70,
+   "perDay": "~5"
+  },
+  {
+   "a": "bkk",
+   "b": "urt",
+   "airlines": [
+    "VZ"
+   ],
+   "minutes": 75,
+   "perDay": "~3"
+  },
+  {
+   "a": "bkk",
+   "b": "nst",
+   "airlines": [
+    "VZ"
+   ],
+   "minutes": 80,
+   "perDay": "~2"
+  },
+  {
+   "a": "bkk",
+   "b": "tht",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 75,
+   "perDay": "~2"
+  },
+  {
+   "a": "bkk",
+   "b": "tdx",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 60,
+   "perDay": "~2-3"
+  },
+  {
+   "a": "dmk",
+   "b": "cnx",
+   "airlines": [
+    "FD",
+    "SL",
+    "DD"
+   ],
+   "minutes": 75,
+   "perDay": "~29"
+  },
+  {
+   "a": "dmk",
+   "b": "hkt",
+   "airlines": [
+    "FD",
+    "SL",
+    "DD"
+   ],
+   "minutes": 85,
+   "perDay": "~27"
+  },
+  {
+   "a": "dmk",
+   "b": "hdy",
+   "airlines": [
+    "SL",
+    "FD",
+    "DD"
+   ],
+   "minutes": 90,
+   "perDay": "~19"
+  },
+  {
+   "a": "dmk",
+   "b": "cei",
+   "airlines": [
+    "FD",
+    "SL",
+    "DD"
+   ],
+   "minutes": 85,
+   "perDay": "~11"
+  },
+  {
+   "a": "dmk",
+   "b": "nst",
+   "airlines": [
+    "SL",
+    "FD",
+    "DD"
+   ],
+   "minutes": 80,
+   "perDay": "~11"
+  },
+  {
+   "a": "dmk",
+   "b": "kkc",
+   "airlines": [
+    "FD",
+    "SL"
+   ],
+   "minutes": 65,
+   "perDay": "~9"
+  },
+  {
+   "a": "dmk",
+   "b": "uth",
+   "airlines": [
+    "FD",
+    "SL",
+    "DD"
+   ],
+   "minutes": 65,
+   "perDay": "~9"
+  },
+  {
+   "a": "dmk",
+   "b": "urt",
+   "airlines": [
+    "FD",
+    "SL",
+    "DD"
+   ],
+   "minutes": 75,
+   "perDay": "~8"
+  },
+  {
+   "a": "dmk",
+   "b": "kbv",
+   "airlines": [
+    "FD",
+    "DD",
+    "SL"
+   ],
+   "minutes": 80,
+   "perDay": "~7"
+  },
+  {
+   "a": "dmk",
+   "b": "ubp",
+   "airlines": [
+    "FD",
+    "DD",
+    "SL"
+   ],
+   "minutes": 65,
+   "perDay": "~7"
+  },
+  {
+   "a": "dmk",
+   "b": "kop",
+   "airlines": [
+    "FD",
+    "SL"
+   ],
+   "minutes": 80,
+   "perDay": "~5"
+  },
+  {
+   "a": "dmk",
+   "b": "nnt",
+   "airlines": [
+    "FD",
+    "DD"
+   ],
+   "minutes": 75,
+   "perDay": "~5"
+  },
+  {
+   "a": "dmk",
+   "b": "phs",
+   "airlines": [
+    "FD",
+    "SL"
+   ],
+   "minutes": 60,
+   "perDay": "~4"
+  },
+  {
+   "a": "dmk",
+   "b": "tst",
+   "airlines": [
+    "SL",
+    "FD",
+    "DD"
+   ],
+   "minutes": 90,
+   "perDay": "~4"
+  },
+  {
+   "a": "dmk",
+   "b": "sno",
+   "airlines": [
+    "DD",
+    "FD"
+   ],
+   "minutes": 75,
+   "perDay": "~3"
+  },
+  {
+   "a": "dmk",
+   "b": "roi",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 65,
+   "perDay": "~3"
+  },
+  {
+   "a": "dmk",
+   "b": "usm",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 90,
+   "perDay": "~3"
+  },
+  {
+   "a": "dmk",
+   "b": "cjm",
+   "airlines": [
+    "FD",
+    "DD"
+   ],
+   "minutes": 65,
+   "perDay": "~2-3"
+  },
+  {
+   "a": "dmk",
+   "b": "loe",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 65,
+   "perDay": "~2"
+  },
+  {
+   "a": "dmk",
+   "b": "lpt",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 70,
+   "perDay": "~2"
+  },
+  {
+   "a": "dmk",
+   "b": "bfv",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 60,
+   "perDay": "~2"
+  },
+  {
+   "a": "dmk",
+   "b": "unn",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 75,
+   "perDay": "~1-2"
+  },
+  {
+   "a": "cnx",
+   "b": "hkt",
+   "airlines": [
+    "VZ",
+    "FD",
+    "PG"
+   ],
+   "minutes": 125,
+   "perDay": "~4"
+  },
+  {
+   "a": "cnx",
+   "b": "kbv",
+   "airlines": [
+    "FD",
+    "PG"
+   ],
+   "minutes": 125,
+   "perDay": "~2-3"
+  },
+  {
+   "a": "cnx",
+   "b": "usm",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 105,
+   "perDay": "~1"
+  },
+  {
+   "a": "cnx",
+   "b": "kkc",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 70,
+   "perDay": "~1-2"
+  },
+  {
+   "a": "cnx",
+   "b": "urt",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 110,
+   "perDay": "~1"
+  },
+  {
+   "a": "cnx",
+   "b": "uth",
+   "airlines": [
+    "FD",
+    "DD"
+   ],
+   "minutes": 65,
+   "perDay": "~1"
+  },
+  {
+   "a": "cnx",
+   "b": "hdy",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 125,
+   "perDay": "4/wk"
+  },
+  {
+   "a": "cnx",
+   "b": "hhq",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 80,
+   "perDay": "4/wk"
+  },
+  {
+   "a": "cnx",
+   "b": "utp",
+   "airlines": [
+    "SL"
+   ],
+   "minutes": 85,
+   "perDay": "3/wk"
+  },
+  {
+   "a": "hkt",
+   "b": "usm",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 55,
+   "perDay": "~7"
+  },
+  {
+   "a": "hkt",
+   "b": "utp",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 100,
+   "perDay": "~1"
+  },
+  {
+   "a": "hkt",
+   "b": "hdy",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 60,
+   "perDay": "~1"
+  },
+  {
+   "a": "hkt",
+   "b": "cei",
+   "airlines": [
+    "VZ"
+   ],
+   "minutes": 125,
+   "perDay": "3/wk"
+  },
+  {
+   "a": "hkt",
+   "b": "kkc",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 105,
+   "perDay": "3/wk"
+  },
+  {
+   "a": "hkt",
+   "b": "uth",
+   "airlines": [
+    "FD"
+   ],
+   "minutes": 110,
+   "perDay": "4/wk"
+  },
+  {
+   "a": "usm",
+   "b": "utp",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 70,
+   "perDay": "~1"
+  },
+  {
+   "a": "usm",
+   "b": "kbv",
+   "airlines": [
+    "PG"
+   ],
+   "minutes": 50,
+   "perDay": "~1-2"
+  },
+  {
+   "a": "hdy",
+   "b": "uth",
+   "airlines": [
+    "SL"
+   ],
+   "minutes": 125,
+   "perDay": "2-4/wk"
+  },
+  {
+   "a": "uth",
+   "b": "utp",
+   "airlines": [
+    "SL"
+   ],
+   "minutes": 80,
+   "perDay": "4/wk"
+  },
+  {
+   "a": "hdy",
+   "b": "btz",
+   "airlines": [
+    "EZT"
+   ],
+   "minutes": 50,
+   "perDay": "3/wk"
+  }
+ ],
+ "extraAirports": [
+  {
+   "id": "hdy",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานนานาชาติหาดใหญ่",
+    "en": "Hat Yai International Airport"
+   },
+   "province": {
+    "th": "สงขลา",
+    "en": "Songkhla"
+   },
+   "lat": 6.9331,
+   "lon": 100.3928,
+   "phone": "1722",
+   "website": "https://hatyai.airportthai.co.th"
+  },
+  {
+   "id": "nst",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานนครศรีธรรมราช",
+    "en": "Nakhon Si Thammarat Airport"
+   },
+   "province": {
+    "th": "นครศรีธรรมราช",
+    "en": "Nakhon Si Thammarat"
+   },
+   "lat": 8.54,
+   "lon": 99.9404,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "tst",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานตรัง",
+    "en": "Trang Airport"
+   },
+   "province": {
+    "th": "ตรัง",
+    "en": "Trang"
+   },
+   "lat": 7.5087,
+   "lon": 99.6166,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "nnt",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานน่านนคร",
+    "en": "Nan Nakhon Airport"
+   },
+   "province": {
+    "th": "น่าน",
+    "en": "Nan"
+   },
+   "lat": 18.8078,
+   "lon": 100.7833,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "lpt",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานลำปาง",
+    "en": "Lampang Airport"
+   },
+   "province": {
+    "th": "ลำปาง",
+    "en": "Lampang"
+   },
+   "lat": 18.2709,
+   "lon": 99.5042,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "kop",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานนครพนม",
+    "en": "Nakhon Phanom Airport"
+   },
+   "province": {
+    "th": "นครพนม",
+    "en": "Nakhon Phanom"
+   },
+   "lat": 17.3839,
+   "lon": 104.6431,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "sno",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานสกลนคร",
+    "en": "Sakon Nakhon Airport"
+   },
+   "province": {
+    "th": "สกลนคร",
+    "en": "Sakon Nakhon"
+   },
+   "lat": 17.1951,
+   "lon": 104.1186,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "roi",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานร้อยเอ็ด",
+    "en": "Roi Et Airport"
+   },
+   "province": {
+    "th": "ร้อยเอ็ด",
+    "en": "Roi Et"
+   },
+   "lat": 16.1167,
+   "lon": 103.7736,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "unn",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานระนอง",
+    "en": "Ranong Airport"
+   },
+   "province": {
+    "th": "ระนอง",
+    "en": "Ranong"
+   },
+   "lat": 9.7775,
+   "lon": 98.5853,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  },
+  {
+   "id": "btz",
+   "type": "AIRPORT",
+   "name": {
+    "th": "ท่าอากาศยานเบตง",
+    "en": "Betong Airport"
+   },
+   "province": {
+    "th": "ยะลา",
+    "en": "Yala"
+   },
+   "lat": 5.7863,
+   "lon": 101.1475,
+   "phone": null,
+   "website": "https://www.airports.go.th"
+  }
+ ]
+}
