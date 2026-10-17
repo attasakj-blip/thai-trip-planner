@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Air4Thai (Pollution Control Department) publishes its JSON over plain HTTP. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">air4thai.pcd.go.th</domain>
+    </domain-config>
+</network-security-config>

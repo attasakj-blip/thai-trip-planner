@@ -1,0 +1,6 @@
+<resources>
+    <style name="Theme.ThaiTrip" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#FF0E7C66</item>
+        <item name="android:windowBackground">#FFFDF8F0</item>
+    </style>
+</resources>
