@@ -1,0 +1,28 @@
+name: Probe endpoints
+on:
+  push:
+    branches: [probe-endpoints]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          UA="ThaiTripPlanner/0.1 (Android; https://github.com/attasakj-blip/thai-trip-planner)"
+          q() { # name, query
+            r=$(curl -s -m 60 -o out.json -w "%{http_code} %{size_download} %{time_total}" -A "$UA" --data-urlencode "data=$2" "$3")
+            echo "::warning::$1 $3 -> $r :: $(head -c 300 out.json | tr '\n' ' ')"
+          }
+          H='[out:json][timeout:25];(nwr["amenity"~"^(hospital|clinic)$"](around:25000,12.93,100.88););out center tags 150;'
+          R='[out:json][timeout:25];(nwr["amenity"~"^(restaurant|food_court)$"](around:6000,12.93,100.88););out center tags 150;'
+          for host in https://overpass-api.de/api/interpreter https://overpass.kumi.systems/api/interpreter https://overpass.private.coffee/api/interpreter https://maps.mail.ru/osm/tools/overpass/api/interpreter; do
+            q hospital "$H" $host
+            q restaurant "$R" $host
+          done
+          # without UA
+          r=$(curl -s -m 60 -o out.json -w "%{http_code} %{size_download}" --data-urlencode "data=$H" https://overpass-api.de/api/interpreter); echo "::warning::noUA overpass-api.de -> $r $(head -c 200 out.json|tr '\n' ' ')"
+          # okhttp-like: Java default UA
+          r=$(curl -s -m 60 -o out.json -w "%{http_code} %{size_download}" -A "okhttp/4.12.0" --data-urlencode "data=$H" https://overpass-api.de/api/interpreter); echo "::warning::okhttpUA -> $r $(head -c 200 out.json|tr '\n' ' ')"
+          S='SELECT ?h ?hLabel ?coord WHERE { ?h wdt:P31/wdt:P279* wd:Q16917; wdt:P17 wd:Q869; wdt:P625 ?coord. SERVICE wikibase:label { bd:serviceParam wikibase:language "th,en". } } LIMIT 5000'
+          r=$(curl -s -m 90 -o wd.json -w "%{http_code} %{size_download}" -A "$UA" -H "Accept: application/sparql-results+json" --data-urlencode "query=$S" https://query.wikidata.org/sparql); echo "::warning::wikidata hospitals -> $r count=$(python3 -c "import json;print(len(json.load(open('wd.json'))['results']['bindings']))" 2>&1)"
+          r=$(curl -s -m 30 -o o.json -w "%{http_code}" -A "$UA" "https://router.project-osrm.org/route/v1/driving/100.88,12.93;100.52,13.75?overview=false"); echo "::warning::osrm -> $r $(head -c 200 o.json)"
+          r=$(curl -s -m 30 -o n.json -w "%{http_code}" -A "$UA" "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=th&q=Pattaya"); echo "::warning::nominatim -> $r $(head -c 200 n.json)"
