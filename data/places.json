@@ -1,0 +1,5543 @@
+[
+{
+"id": "grand_palace",
+"lat": 13.7501,
+"lon": 100.492,
+"name": {
+"th": "พระบรมมหาราชวังและวัดพระศรีรัตนศาสดาราม",
+"en": "Grand Palace & Wat Phra Kaew"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Grand Palace",
+"Wat Phra Kaew"
+]
+},
+{
+"id": "wat_arun",
+"lat": 13.7436,
+"lon": 100.4889,
+"name": {
+"th": "วัดอรุณราชวราราม",
+"en": "Wat Arun"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Wat Arun"
+]
+},
+{
+"id": "wat_pho",
+"lat": 13.7464,
+"lon": 100.4936,
+"name": {
+"th": "วัดพระเชตุพนวิมลมังคลาราม (วัดโพธิ์)",
+"en": "Wat Pho"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Wat Pho"
+]
+},
+{
+"id": "wat_saket",
+"lat": 13.7539,
+"lon": 100.5083,
+"name": {
+"th": "วัดสระเกศ (ภูเขาทอง)",
+"en": "Golden Mount (Wat Saket)"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Wat Saket"
+]
+},
+{
+"id": "wat_suthat",
+"lat": 13.751,
+"lon": 100.501,
+"name": {
+"th": "วัดสุทัศนเทพวรารามและเสาชิงช้า",
+"en": "Wat Suthat & Giant Swing"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Wat Suthat",
+"Giant Swing"
+]
+},
+{
+"id": "wat_benchamabophit",
+"lat": 13.7666,
+"lon": 100.5141,
+"name": {
+"th": "วัดเบญจมบพิตรดุสิตวนาราม (วัดหินอ่อน)",
+"en": "Wat Benchamabophit (Marble Temple)"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Wat Benchamabophit"
+]
+},
+{
+"id": "yaowarat",
+"lat": 13.7411,
+"lon": 100.5083,
+"name": {
+"th": "เยาวราช (ไชน่าทาวน์)",
+"en": "Yaowarat (Chinatown)"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Yaowarat Road"
+]
+},
+{
+"id": "chatuchak_market",
+"lat": 13.7999,
+"lon": 100.5508,
+"name": {
+"th": "ตลาดนัดจตุจักร",
+"en": "Chatuchak Weekend Market"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Chatuchak Weekend Market"
+]
+},
+{
+"id": "jim_thompson_house",
+"lat": 13.7492,
+"lon": 100.5283,
+"name": {
+"th": "พิพิธภัณฑ์บ้านจิม ทอมป์สัน",
+"en": "Jim Thompson House"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Jim Thompson House"
+]
+},
+{
+"id": "bangkok_national_museum",
+"lat": 13.7575,
+"lon": 100.4923,
+"name": {
+"th": "พิพิธภัณฑสถานแห่งชาติ พระนคร",
+"en": "Bangkok National Museum"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Bangkok National Museum"
+]
+},
+{
+"id": "khao_san_road",
+"lat": 13.7589,
+"lon": 100.4972,
+"name": {
+"th": "ถนนข้าวสาร",
+"en": "Khao San Road"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Khaosan Road"
+]
+},
+{
+"id": "asiatique",
+"lat": 13.7048,
+"lon": 100.503,
+"name": {
+"th": "เอเชียทีค เดอะ ริเวอร์ฟร้อนท์",
+"en": "Asiatique The Riverfront"
+},
+"province": {
+"th": "กรุงเทพฯ",
+"en": "Bangkok"
+},
+"wikiTitles": [
+"Asiatique The Riverfront"
+]
+},
+{
+"id": "ko_kret",
+"lat": 13.9069,
+"lon": 100.4733,
+"name": {
+"th": "เกาะเกร็ด",
+"en": "Ko Kret"
+},
+"province": {
+"th": "นนทบุรี",
+"en": "Nonthaburi"
+},
+"wikiTitles": [
+"Ko Kret"
+]
+},
+{
+"id": "wat_chaloem_phra_kiat",
+"lat": 13.8479,
+"lon": 100.4843,
+"name": {
+"th": "วัดเฉลิมพระเกียรติวรวิหาร",
+"en": "Wat Chaloem Phra Kiat Worawihan"
+},
+"province": {
+"th": "นนทบุรี",
+"en": "Nonthaburi"
+},
+"wikiTitles": [
+"Wat Chaloem Phra Kiat Worawihan"
+]
+},
+{
+"id": "nonthaburi_pier_museum",
+"lat": 13.8445,
+"lon": 100.4946,
+"name": {
+"th": "ท่าน้ำนนทบุรีและพิพิธภัณฑ์นนทบุรี",
+"en": "Nonthaburi Pier & Museum"
+},
+"province": {
+"th": "นนทบุรี",
+"en": "Nonthaburi"
+},
+"wikiTitles": []
+},
+{
+"id": "national_science_museum",
+"lat": 14.0484,
+"lon": 100.7169,
+"name": {
+"th": "องค์การพิพิธภัณฑ์วิทยาศาสตร์แห่งชาติ (อพวช.)",
+"en": "National Science Museum"
+},
+"province": {
+"th": "ปทุมธานี",
+"en": "Pathum Thani"
+},
+"wikiTitles": [
+"National Science Museum (Thailand)"
+]
+},
+{
+"id": "dream_world",
+"lat": 13.9875,
+"lon": 100.675,
+"name": {
+"th": "ดรีมเวิลด์",
+"en": "Dream World"
+},
+"province": {
+"th": "ปทุมธานี",
+"en": "Pathum Thani"
+},
+"wikiTitles": [
+"Dream World (Thailand)"
+]
+},
+{
+"id": "wat_phai_lom",
+"lat": 13.9772,
+"lon": 100.5517,
+"name": {
+"th": "วัดไผ่ล้อม",
+"en": "Wat Phai Lom"
+},
+"province": {
+"th": "ปทุมธานี",
+"en": "Pathum Thani"
+},
+"wikiTitles": [
+"Wat Phai Lom"
+]
+},
+{
+"id": "ancient_city",
+"lat": 13.539,
+"lon": 100.623,
+"name": {
+"th": "เมืองโบราณ",
+"en": "Ancient City (Muang Boran)"
+},
+"province": {
+"th": "สมุทรปราการ",
+"en": "Samut Prakan"
+},
+"wikiTitles": [
+"Ancient City (Mueang Boran)"
+]
+},
+{
+"id": "erawan_museum",
+"lat": 13.6283,
+"lon": 100.5883,
+"name": {
+"th": "พิพิธภัณฑ์ช้างเอราวัณ",
+"en": "Erawan Museum"
+},
+"province": {
+"th": "สมุทรปราการ",
+"en": "Samut Prakan"
+},
+"wikiTitles": [
+"Erawan Museum"
+]
+},
+{
+"id": "phra_samut_chedi",
+"lat": 13.5975,
+"lon": 100.5856,
+"name": {
+"th": "พระสมุทรเจดีย์",
+"en": "Phra Samut Chedi"
+},
+"province": {
+"th": "สมุทรปราการ",
+"en": "Samut Prakan"
+},
+"wikiTitles": [
+"Wat Phra Samut Chedi"
+]
+},
+{
+"id": "bang_krachao",
+"lat": 13.6935,
+"lon": 100.5625,
+"name": {
+"th": "บางกะเจ้า (สวนศรีนครเขื่อนขันธ์)",
+"en": "Bang Krachao (Sri Nakhon Khuean Khan Park)"
+},
+"province": {
+"th": "สมุทรปราการ",
+"en": "Samut Prakan"
+},
+"wikiTitles": [
+"Bang Kachao"
+]
+},
+{
+"id": "bang_pu",
+"lat": 13.5155,
+"lon": 100.6545,
+"name": {
+"th": "สถานตากอากาศบางปู",
+"en": "Bang Pu Recreation Center"
+},
+"province": {
+"th": "สมุทรปราการ",
+"en": "Samut Prakan"
+},
+"wikiTitles": [
+"Bang Pu"
+]
+},
+{
+"id": "mahachai_market",
+"lat": 13.5455,
+"lon": 100.2745,
+"name": {
+"th": "ตลาดมหาชัย",
+"en": "Mahachai Market"
+},
+"province": {
+"th": "สมุทรสาคร",
+"en": "Samut Sakhon"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_chong_lom",
+"lat": 13.541,
+"lon": 100.269,
+"name": {
+"th": "วัดช่องลมและสะพานแดงท่าฉลอม",
+"en": "Wat Chong Lom & Tha Chalom"
+},
+"province": {
+"th": "สมุทรสาคร",
+"en": "Samut Sakhon"
+},
+"wikiTitles": []
+},
+{
+"id": "phanthai_norasing_shrine",
+"lat": 13.492,
+"lon": 100.327,
+"name": {
+"th": "ศาลพันท้ายนรสิงห์",
+"en": "Phan Thai Norasing Shrine"
+},
+"province": {
+"th": "สมุทรสาคร",
+"en": "Samut Sakhon"
+},
+"wikiTitles": []
+},
+{
+"id": "amphawa",
+"lat": 13.4255,
+"lon": 99.9553,
+"name": {
+"th": "ตลาดน้ำอัมพวา",
+"en": "Amphawa Floating Market"
+},
+"province": {
+"th": "สมุทรสงคราม",
+"en": "Samut Songkhram"
+},
+"wikiTitles": [
+"Amphawa Floating Market"
+]
+},
+{
+"id": "maeklong_railway_market",
+"lat": 13.4074,
+"lon": 100.0003,
+"name": {
+"th": "ตลาดร่มหุบ แม่กลอง",
+"en": "Maeklong Railway Market"
+},
+"province": {
+"th": "สมุทรสงคราม",
+"en": "Samut Songkhram"
+},
+"wikiTitles": [
+"Maeklong Railway"
+]
+},
+{
+"id": "wat_bang_kung",
+"lat": 13.4462,
+"lon": 99.9411,
+"name": {
+"th": "วัดบางกุ้ง (โบสถ์ปรกโพธิ์)",
+"en": "Wat Bang Kung"
+},
+"province": {
+"th": "สมุทรสงคราม",
+"en": "Samut Songkhram"
+},
+"wikiTitles": [
+"Wat Bang Kung"
+]
+},
+{
+"id": "don_hoi_lot",
+"lat": 13.3567,
+"lon": 100.0412,
+"name": {
+"th": "ดอนหอยหลอด",
+"en": "Don Hoi Lot"
+},
+"province": {
+"th": "สมุทรสงคราม",
+"en": "Samut Songkhram"
+},
+"wikiTitles": [
+"Don Hoi Lot"
+]
+},
+{
+"id": "king_rama_ii_park",
+"lat": 13.4197,
+"lon": 99.9581,
+"name": {
+"th": "อุทยาน ร.2",
+"en": "King Rama II Memorial Park"
+},
+"province": {
+"th": "สมุทรสงคราม",
+"en": "Samut Songkhram"
+},
+"wikiTitles": []
+},
+{
+"id": "phra_pathommachedi",
+"lat": 13.8196,
+"lon": 100.0601,
+"name": {
+"th": "พระปฐมเจดีย์",
+"en": "Phra Pathommachedi"
+},
+"province": {
+"th": "นครปฐม",
+"en": "Nakhon Pathom"
+},
+"wikiTitles": [
+"Phra Pathommachedi"
+]
+},
+{
+"id": "sanam_chandra_palace",
+"lat": 13.818,
+"lon": 100.041,
+"name": {
+"th": "พระราชวังสนามจันทร์",
+"en": "Sanam Chandra Palace"
+},
+"province": {
+"th": "นครปฐม",
+"en": "Nakhon Pathom"
+},
+"wikiTitles": [
+"Sanam Chandra Palace"
+]
+},
+{
+"id": "phutthamonthon",
+"lat": 13.7914,
+"lon": 100.3252,
+"name": {
+"th": "พุทธมณฑล",
+"en": "Phutthamonthon"
+},
+"province": {
+"th": "นครปฐม",
+"en": "Nakhon Pathom"
+},
+"wikiTitles": [
+"Phutthamonthon"
+]
+},
+{
+"id": "wat_rai_khing",
+"lat": 13.7395,
+"lon": 100.275,
+"name": {
+"th": "วัดไร่ขิง",
+"en": "Wat Rai Khing"
+},
+"province": {
+"th": "นครปฐม",
+"en": "Nakhon Pathom"
+},
+"wikiTitles": [
+"Wat Rai Khing"
+]
+},
+{
+"id": "don_wai_market",
+"lat": 13.769,
+"lon": 100.2835,
+"name": {
+"th": "ตลาดน้ำดอนหวาย",
+"en": "Don Wai Floating Market"
+},
+"province": {
+"th": "นครปฐม",
+"en": "Nakhon Pathom"
+},
+"wikiTitles": []
+},
+{
+"id": "ayutthaya",
+"lat": 14.3559,
+"lon": 100.559,
+"name": {
+"th": "อุทยานประวัติศาสตร์พระนครศรีอยุธยา",
+"en": "Ayutthaya Historical Park"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Ayutthaya Historical Park",
+"Wat Mahathat (Ayutthaya)",
+"Wat Phra Si Sanphet"
+]
+},
+{
+"id": "wat_chaiwatthanaram",
+"lat": 14.3429,
+"lon": 100.5418,
+"name": {
+"th": "วัดไชยวัฒนาราม",
+"en": "Wat Chaiwatthanaram"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Wat Chaiwatthanaram"
+]
+},
+{
+"id": "wat_yai_chai_mongkhon",
+"lat": 14.3453,
+"lon": 100.5925,
+"name": {
+"th": "วัดใหญ่ชัยมงคล",
+"en": "Wat Yai Chai Mongkhon"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Wat Yai Chai Mongkhon"
+]
+},
+{
+"id": "wat_phanan_choeng",
+"lat": 14.3449,
+"lon": 100.5791,
+"name": {
+"th": "วัดพนัญเชิงวรวิหาร",
+"en": "Wat Phanan Choeng"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Wat Phanan Choeng"
+]
+},
+{
+"id": "bang_pa_in",
+"lat": 14.2325,
+"lon": 100.5792,
+"name": {
+"th": "พระราชวังบางปะอิน",
+"en": "Bang Pa-In Royal Palace"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Bang Pa-In Royal Palace"
+]
+},
+{
+"id": "wat_na_phra_men",
+"lat": 14.3624,
+"lon": 100.5587,
+"name": {
+"th": "วัดหน้าพระเมรุราชิการาม",
+"en": "Wat Na Phra Men"
+},
+"province": {
+"th": "พระนครศรีอยุธยา",
+"en": "Phra Nakhon Si Ayutthaya"
+},
+"wikiTitles": [
+"Wat Na Phra Men"
+]
+},
+{
+"id": "wat_muang",
+"lat": 14.5937,
+"lon": 100.3803,
+"name": {
+"th": "วัดม่วง",
+"en": "Wat Muang"
+},
+"province": {
+"th": "อ่างทอง",
+"en": "Ang Thong"
+},
+"wikiTitles": [
+"Wat Muang"
+]
+},
+{
+"id": "wat_khun_inthapramun",
+"lat": 14.644,
+"lon": 100.4272,
+"name": {
+"th": "วัดขุนอินทประมูล",
+"en": "Wat Khun Inthapramun"
+},
+"province": {
+"th": "อ่างทอง",
+"en": "Ang Thong"
+},
+"wikiTitles": [
+"Wat Khun Inthapramun"
+]
+},
+{
+"id": "wat_chaiyo",
+"lat": 14.7164,
+"lon": 100.4375,
+"name": {
+"th": "วัดไชโยวรวิหาร (วัดเกษไชโย)",
+"en": "Wat Chaiyo Worawihan"
+},
+"province": {
+"th": "อ่างทอง",
+"en": "Ang Thong"
+},
+"wikiTitles": [
+"Wat Chaiyo Worawihan"
+]
+},
+{
+"id": "wat_pa_mok",
+"lat": 14.493,
+"lon": 100.447,
+"name": {
+"th": "วัดป่าโมกวรวิหาร",
+"en": "Wat Pa Mok"
+},
+"province": {
+"th": "อ่างทอง",
+"en": "Ang Thong"
+},
+"wikiTitles": [
+"Wat Pa Mok"
+]
+},
+{
+"id": "phra_prang_sam_yot",
+"lat": 14.8029,
+"lon": 100.6141,
+"name": {
+"th": "พระปรางค์สามยอด",
+"en": "Phra Prang Sam Yot"
+},
+"province": {
+"th": "ลพบุรี",
+"en": "Lopburi"
+},
+"wikiTitles": [
+"Phra Prang Sam Yot"
+]
+},
+{
+"id": "phra_narai_ratchaniwet",
+"lat": 14.7997,
+"lon": 100.6106,
+"name": {
+"th": "พระนารายณ์ราชนิเวศน์",
+"en": "Phra Narai Ratchaniwet"
+},
+"province": {
+"th": "ลพบุรี",
+"en": "Lopburi"
+},
+"wikiTitles": [
+"Phra Narai Ratchaniwet"
+]
+},
+{
+"id": "san_phra_kan",
+"lat": 14.8016,
+"lon": 100.616,
+"name": {
+"th": "ศาลพระกาฬ",
+"en": "San Phra Kan"
+},
+"province": {
+"th": "ลพบุรี",
+"en": "Lopburi"
+},
+"wikiTitles": [
+"San Phra Kan"
+]
+},
+{
+"id": "wat_mahathat_lopburi",
+"lat": 14.7987,
+"lon": 100.6135,
+"name": {
+"th": "วัดพระศรีรัตนมหาธาตุ ลพบุรี",
+"en": "Wat Phra Si Rattana Mahathat (Lopburi)"
+},
+"province": {
+"th": "ลพบุรี",
+"en": "Lopburi"
+},
+"wikiTitles": [
+"Wat Phra Si Rattana Mahathat, Lopburi"
+]
+},
+{
+"id": "pa_sak_jolasid_dam",
+"lat": 14.8614,
+"lon": 101.0661,
+"name": {
+"th": "เขื่อนป่าสักชลสิทธิ์",
+"en": "Pa Sak Jolasid Dam"
+},
+"province": {
+"th": "ลพบุรี",
+"en": "Lopburi"
+},
+"wikiTitles": [
+"Pa Sak Jolasid Dam"
+]
+},
+{
+"id": "wat_phra_phutthabat",
+"lat": 14.7183,
+"lon": 100.7886,
+"name": {
+"th": "วัดพระพุทธบาทราชวรมหาวิหาร",
+"en": "Wat Phra Phutthabat"
+},
+"province": {
+"th": "สระบุรี",
+"en": "Saraburi"
+},
+"wikiTitles": [
+"Wat Phra Phutthabat"
+]
+},
+{
+"id": "namtok_sam_lan",
+"lat": 14.4372,
+"lon": 100.9631,
+"name": {
+"th": "อุทยานแห่งชาติน้ำตกสามหลั่น",
+"en": "Namtok Sam Lan National Park"
+},
+"province": {
+"th": "สระบุรี",
+"en": "Saraburi"
+},
+"wikiTitles": [
+"Namtok Sam Lan National Park"
+]
+},
+{
+"id": "chet_sao_noi",
+"lat": 14.611,
+"lon": 101.097,
+"name": {
+"th": "น้ำตกเจ็ดสาวน้อย",
+"en": "Chet Sao Noi Waterfall"
+},
+"province": {
+"th": "สระบุรี",
+"en": "Saraburi"
+},
+"wikiTitles": [
+"Chet Sao Noi National Park"
+]
+},
+{
+"id": "wat_phra_non_chaksi",
+"lat": 14.886,
+"lon": 100.4,
+"name": {
+"th": "วัดพระนอนจักรสีห์วรวิหาร",
+"en": "Wat Phra Non Chakkrasi"
+},
+"province": {
+"th": "สิงห์บุรี",
+"en": "Sing Buri"
+},
+"wikiTitles": []
+},
+{
+"id": "khai_bang_rachan",
+"lat": 14.8033,
+"lon": 100.3083,
+"name": {
+"th": "อนุสาวรีย์วีรชนค่ายบางระจัน",
+"en": "Bang Rachan Heroes Monument"
+},
+"province": {
+"th": "สิงห์บุรี",
+"en": "Sing Buri"
+},
+"wikiTitles": [
+"Bang Rachan"
+]
+},
+{
+"id": "wat_phikun_thong",
+"lat": 14.97,
+"lon": 100.36,
+"name": {
+"th": "วัดพิกุลทอง",
+"en": "Wat Phikun Thong"
+},
+"province": {
+"th": "สิงห์บุรี",
+"en": "Sing Buri"
+},
+"wikiTitles": []
+},
+{
+"id": "chao_phraya_dam",
+"lat": 15.1581,
+"lon": 100.18,
+"name": {
+"th": "เขื่อนเจ้าพระยา",
+"en": "Chao Phraya Dam"
+},
+"province": {
+"th": "ชัยนาท",
+"en": "Chai Nat"
+},
+"wikiTitles": [
+"Chao Phraya Dam"
+]
+},
+{
+"id": "wat_thammamun",
+"lat": 15.216,
+"lon": 100.135,
+"name": {
+"th": "วัดธรรมามูลวรวิหาร",
+"en": "Wat Thammamun Worawihan"
+},
+"province": {
+"th": "ชัยนาท",
+"en": "Chai Nat"
+},
+"wikiTitles": []
+},
+{
+"id": "chai_nat_bird_park",
+"lat": 15.165,
+"lon": 100.146,
+"name": {
+"th": "สวนนกชัยนาท",
+"en": "Chai Nat Bird Park"
+},
+"province": {
+"th": "ชัยนาท",
+"en": "Chai Nat"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_borommathat_chai_nat",
+"lat": 15.15,
+"lon": 100.169,
+"name": {
+"th": "วัดพระบรมธาตุวรวิหาร ชัยนาท",
+"en": "Wat Phra Borommathat Worawihan"
+},
+"province": {
+"th": "ชัยนาท",
+"en": "Chai Nat"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_pa_lelai",
+"lat": 14.48,
+"lon": 100.11,
+"name": {
+"th": "วัดป่าเลไลยก์วรวิหาร",
+"en": "Wat Pa Lelai"
+},
+"province": {
+"th": "สุพรรณบุรี",
+"en": "Suphan Buri"
+},
+"wikiTitles": [
+"Wat Pa Lelai"
+]
+},
+{
+"id": "sam_chuk_market",
+"lat": 14.752,
+"lon": 100.095,
+"name": {
+"th": "ตลาดสามชุก ตลาดร้อยปี",
+"en": "Sam Chuk 100-Year-Old Market"
+},
+"province": {
+"th": "สุพรรณบุรี",
+"en": "Suphan Buri"
+},
+"wikiTitles": [
+"Sam Chuk Market"
+]
+},
+{
+"id": "bueng_chawak",
+"lat": 14.979,
+"lon": 100.029,
+"name": {
+"th": "บึงฉวากเฉลิมพระเกียรติ",
+"en": "Bueng Chawak"
+},
+"province": {
+"th": "สุพรรณบุรี",
+"en": "Suphan Buri"
+},
+"wikiTitles": [
+"Bueng Chawak"
+]
+},
+{
+"id": "dragon_descendants_museum",
+"lat": 14.451,
+"lon": 100.108,
+"name": {
+"th": "พิพิธภัณฑ์มังกรสวรรค์",
+"en": "Dragon Descendants Museum"
+},
+"province": {
+"th": "สุพรรณบุรี",
+"en": "Suphan Buri"
+},
+"wikiTitles": [
+"Dragon Descendants Museum"
+]
+},
+{
+"id": "don_chedi_monument",
+"lat": 14.645,
+"lon": 100.01,
+"name": {
+"th": "พระบรมราชานุสรณ์ดอนเจดีย์",
+"en": "Don Chedi Monument"
+},
+"province": {
+"th": "สุพรรณบุรี",
+"en": "Suphan Buri"
+},
+"wikiTitles": [
+"Don Chedi Monument"
+]
+},
+{
+"id": "nang_rong_waterfall",
+"lat": 14.32,
+"lon": 101.322,
+"name": {
+"th": "น้ำตกนางรอง",
+"en": "Nang Rong Waterfall"
+},
+"province": {
+"th": "นครนายก",
+"en": "Nakhon Nayok"
+},
+"wikiTitles": []
+},
+{
+"id": "sarika_waterfall",
+"lat": 14.302,
+"lon": 101.265,
+"name": {
+"th": "น้ำตกสาริกา",
+"en": "Sarika Waterfall"
+},
+"province": {
+"th": "นครนายก",
+"en": "Nakhon Nayok"
+},
+"wikiTitles": []
+},
+{
+"id": "khun_dan_prakan_chon_dam",
+"lat": 14.328,
+"lon": 101.316,
+"name": {
+"th": "เขื่อนขุนด่านปราการชล",
+"en": "Khun Dan Prakan Chon Dam"
+},
+"province": {
+"th": "นครนายก",
+"en": "Nakhon Nayok"
+},
+"wikiTitles": [
+"Khun Dan Prakan Chon Dam"
+]
+},
+{
+"id": "pattaya",
+"lat": 12.9357,
+"lon": 100.889,
+"name": {
+"th": "พัทยา",
+"en": "Pattaya"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Pattaya",
+"Jomtien Beach"
+]
+},
+{
+"id": "sanctuary_of_truth",
+"lat": 12.9727,
+"lon": 100.8892,
+"name": {
+"th": "ปราสาทสัจธรรม",
+"en": "Sanctuary of Truth"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Sanctuary of Truth"
+]
+},
+{
+"id": "ko_lan",
+"lat": 12.91583,
+"lon": 100.7775,
+"name": {
+"th": "เกาะล้าน",
+"en": "Ko Lan (Koh Larn)"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Ko Lan"
+]
+},
+{
+"id": "nong_nooch",
+"lat": 12.76472,
+"lon": 100.93583,
+"name": {
+"th": "สวนนงนุช พัทยา",
+"en": "Nong Nooch Tropical Garden"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Nong Nooch Tropical Garden"
+]
+},
+{
+"id": "khao_chi_chan",
+"lat": 12.7655,
+"lon": 100.9468,
+"name": {
+"th": "เขาชีจรรย์ (พระพุทธรูปแกะสลักหน้าผา)",
+"en": "Khao Chi Chan Buddha Mountain"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Khao Chi Chan"
+]
+},
+{
+"id": "bang_saen",
+"lat": 13.291,
+"lon": 100.909,
+"name": {
+"th": "หาดบางแสน",
+"en": "Bang Saen Beach"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Bang Saen Beach"
+]
+},
+{
+"id": "ko_si_chang",
+"lat": 13.16333,
+"lon": 100.80833,
+"name": {
+"th": "เกาะสีชัง",
+"en": "Ko Si Chang"
+},
+"province": {
+"th": "ชลบุรี",
+"en": "Chonburi"
+},
+"wikiTitles": [
+"Ko Sichang district",
+"Phra Chudadhut Palace"
+]
+},
+{
+"id": "ko_samet",
+"lat": 12.565,
+"lon": 101.452,
+"name": {
+"th": "เกาะเสม็ด",
+"en": "Ko Samet"
+},
+"province": {
+"th": "ระยอง",
+"en": "Rayong"
+},
+"wikiTitles": [
+"Ko Samet",
+"Khao Laem Ya–Mu Ko Samet National Park"
+]
+},
+{
+"id": "khao_laem_ya",
+"lat": 12.59083,
+"lon": 101.41694,
+"name": {
+"th": "เขาแหลมหญ้า และหาดแม่รำพึง",
+"en": "Khao Laem Ya & Mae Ramphueng Beach"
+},
+"province": {
+"th": "ระยอง",
+"en": "Rayong"
+},
+"wikiTitles": [
+"Khao Laem Ya–Mu Ko Samet National Park"
+]
+},
+{
+"id": "khao_chamao",
+"lat": 12.95,
+"lon": 101.74,
+"name": {
+"th": "น้ำตกเขาชะเมา",
+"en": "Khao Chamao Waterfall"
+},
+"province": {
+"th": "ระยอง",
+"en": "Rayong"
+},
+"wikiTitles": [
+"Khao Chamao–Khao Wong National Park"
+]
+},
+{
+"id": "chanthaboon",
+"lat": 12.6093,
+"lon": 102.1186,
+"name": {
+"th": "ชุมชนริมน้ำจันทบูร และอาสนวิหารพระนางมารีอา",
+"en": "Chanthaboon Waterfront & Cathedral"
+},
+"province": {
+"th": "จันทบุรี",
+"en": "Chanthaburi"
+},
+"wikiTitles": [
+"Cathedral of the Immaculate Conception, Chanthaburi",
+"Chanthaburi"
+]
+},
+{
+"id": "namtok_phlio",
+"lat": 12.52528,
+"lon": 102.17694,
+"name": {
+"th": "อุทยานแห่งชาติน้ำตกพลิ้ว",
+"en": "Namtok Phlio National Park"
+},
+"province": {
+"th": "จันทบุรี",
+"en": "Chanthaburi"
+},
+"wikiTitles": [
+"Namtok Phlio National Park"
+]
+},
+{
+"id": "khao_khitchakut",
+"lat": 12.84556,
+"lon": 102.15972,
+"name": {
+"th": "อุทยานแห่งชาติเขาคิชฌกูฏ (เขาพระบาท)",
+"en": "Khao Khitchakut National Park (Khao Phra Bat)"
+},
+"province": {
+"th": "จันทบุรี",
+"en": "Chanthaburi"
+},
+"wikiTitles": [
+"Khao Khitchakut National Park"
+]
+},
+{
+"id": "koh_chang",
+"lat": 12.10361,
+"lon": 102.35194,
+"name": {
+"th": "เกาะช้าง",
+"en": "Ko Chang"
+},
+"province": {
+"th": "ตราด",
+"en": "Trat"
+},
+"wikiTitles": [
+"Ko Chang district",
+"Mu Ko Chang National Park"
+]
+},
+{
+"id": "ko_chang_bang_bao",
+"lat": 11.97,
+"lon": 102.317,
+"name": {
+"th": "หมู่บ้านประมงบางเบ้า เกาะช้าง",
+"en": "Bang Bao Fishing Village, Ko Chang"
+},
+"province": {
+"th": "ตราด",
+"en": "Trat"
+},
+"wikiTitles": [
+"Ko Chang district"
+]
+},
+{
+"id": "ko_kut",
+"lat": 11.65,
+"lon": 102.533,
+"name": {
+"th": "เกาะกูด",
+"en": "Ko Kut (Koh Kood)"
+},
+"province": {
+"th": "ตราด",
+"en": "Trat"
+},
+"wikiTitles": [
+"Ko Kut district"
+]
+},
+{
+"id": "ko_mak",
+"lat": 11.81944,
+"lon": 102.47833,
+"name": {
+"th": "เกาะหมาก",
+"en": "Ko Mak"
+},
+"province": {
+"th": "ตราด",
+"en": "Trat"
+},
+"wikiTitles": [
+"Ko Mak"
+]
+},
+{
+"id": "trat_old_town",
+"lat": 12.2436,
+"lon": 102.5151,
+"name": {
+"th": "ย่านเก่าเมืองตราด ริมคลองบางพระ",
+"en": "Trat Old Town"
+},
+"province": {
+"th": "ตราด",
+"en": "Trat"
+},
+"wikiTitles": [
+"Trat"
+]
+},
+{
+"id": "wat_sothon",
+"lat": 13.6737,
+"lon": 101.0673,
+"name": {
+"th": "วัดโสธรวรารามวรวิหาร",
+"en": "Wat Sothon Wararam"
+},
+"province": {
+"th": "ฉะเชิงเทรา",
+"en": "Chachoengsao"
+},
+"wikiTitles": [
+"Wat Sothonwararam"
+]
+},
+{
+"id": "wat_saman",
+"lat": 13.702315,
+"lon": 101.140794,
+"name": {
+"th": "วัดสมานรัตนาราม (พระพิฆเนศองค์ใหญ่)",
+"en": "Wat Saman Rattanaram (Giant Ganesha)"
+},
+"province": {
+"th": "ฉะเชิงเทรา",
+"en": "Chachoengsao"
+},
+"wikiTitles": []
+},
+{
+"id": "ban_mai_market",
+"lat": 13.6935,
+"lon": 101.0815,
+"name": {
+"th": "ตลาดบ้านใหม่ ร้อยปี",
+"en": "Ban Mai 100-Year Market"
+},
+"province": {
+"th": "ฉะเชิงเทรา",
+"en": "Chachoengsao"
+},
+"wikiTitles": []
+},
+{
+"id": "abhaibhubejhr",
+"lat": 14.054543,
+"lon": 101.395755,
+"name": {
+"th": "ตึกเจ้าพระยาอภัยภูเบศร",
+"en": "Chao Phraya Abhaibhubejhr Building"
+},
+"province": {
+"th": "ปราจีนบุรี",
+"en": "Prachinburi"
+},
+"wikiTitles": [
+"Chaophraya Abhaibhubejhr Hospital"
+]
+},
+{
+"id": "kaeng_hin_phoeng",
+"lat": 14.17953,
+"lon": 101.736885,
+"name": {
+"th": "แก่งหินเพิง",
+"en": "Kaeng Hin Phoeng Rapids"
+},
+"province": {
+"th": "ปราจีนบุรี",
+"en": "Prachinburi"
+},
+"wikiTitles": [
+"Thap Lan National Park"
+]
+},
+{
+"id": "sa_morakot",
+"lat": 13.863211,
+"lon": 101.426125,
+"name": {
+"th": "โบราณสถานสระมรกต (ศรีมโหสถ)",
+"en": "Sa Morakot Ancient Site, Si Mahosot"
+},
+"province": {
+"th": "ปราจีนบุรี",
+"en": "Prachinburi"
+},
+"wikiTitles": []
+},
+{
+"id": "pang_sida",
+"lat": 14.08,
+"lon": 102.26,
+"name": {
+"th": "อุทยานแห่งชาติปางสีดา",
+"en": "Pang Sida National Park"
+},
+"province": {
+"th": "สระแก้ว",
+"en": "Sa Kaeo"
+},
+"wikiTitles": [
+"Pang Sida National Park"
+]
+},
+{
+"id": "sdok_kok_thom",
+"lat": 13.843692,
+"lon": 102.737456,
+"name": {
+"th": "ปราสาทสด๊กก๊อกธม",
+"en": "Prasat Sdok Kok Thom"
+},
+"province": {
+"th": "สระแก้ว",
+"en": "Sa Kaeo"
+},
+"wikiTitles": [
+"Sdok Kok Thom"
+]
+},
+{
+"id": "rong_kluea",
+"lat": 13.665232,
+"lon": 102.547996,
+"name": {
+"th": "ตลาดโรงเกลือ (ตลาดชายแดนบ้านคลองลึก)",
+"en": "Rong Kluea Border Market"
+},
+"province": {
+"th": "สระแก้ว",
+"en": "Sa Kaeo"
+},
+"wikiTitles": [
+"Rong Kluea Market"
+]
+},
+{
+"id": "kanchanaburi",
+"lat": 14.0408,
+"lon": 99.5038,
+"name": {
+"th": "สะพานข้ามแม่น้ำแคว",
+"en": "Bridge on the River Kwai"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Bridge on the River Kwai",
+"Burma Railway"
+]
+},
+{
+"id": "kanchanaburi_war_cemetery",
+"lat": 14.03167,
+"lon": 99.52556,
+"name": {
+"th": "สุสานทหารสัมพันธมิตรดอนรัก",
+"en": "Kanchanaburi War Cemetery"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Kanchanaburi War Cemetery"
+]
+},
+{
+"id": "erawan",
+"lat": 14.3683,
+"lon": 99.144,
+"name": {
+"th": "อุทยานแห่งชาติเอราวัณ",
+"en": "Erawan National Park"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Erawan National Park"
+]
+},
+{
+"id": "tham_krasae",
+"lat": 14.106089,
+"lon": 99.165762,
+"name": {
+"th": "ถ้ำกระแซ และทางรถไฟเลียบหน้าผา",
+"en": "Tham Krasae Viaduct"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Burma Railway"
+]
+},
+{
+"id": "hellfire_pass",
+"lat": 14.35528,
+"lon": 98.9525,
+"name": {
+"th": "ช่องเขาขาด (Hellfire Pass)",
+"en": "Hellfire Pass"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Hellfire Pass"
+]
+},
+{
+"id": "sai_yok",
+"lat": 14.38889,
+"lon": 98.74722,
+"name": {
+"th": "อุทยานแห่งชาติไทรโยค",
+"en": "Sai Yok National Park"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Sai Yok National Park"
+]
+},
+{
+"id": "sangkhlaburi_mon_bridge",
+"lat": 15.14532,
+"lon": 98.449868,
+"name": {
+"th": "สะพานมอญ สังขละบุรี",
+"en": "Mon Bridge, Sangkhla Buri"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Saphan Mon"
+]
+},
+{
+"id": "mueang_sing",
+"lat": 14.03935,
+"lon": 99.243974,
+"name": {
+"th": "อุทยานประวัติศาสตร์เมืองสิงห์",
+"en": "Prasat Mueang Sing Historical Park"
+},
+"province": {
+"th": "กาญจนบุรี",
+"en": "Kanchanaburi"
+},
+"wikiTitles": [
+"Prasat Mueang Sing Historical Park"
+]
+},
+{
+"id": "damnoen_saduak",
+"lat": 13.5193,
+"lon": 99.9566,
+"name": {
+"th": "ตลาดน้ำดำเนินสะดวก",
+"en": "Damnoen Saduak Floating Market"
+},
+"province": {
+"th": "ราชบุรี",
+"en": "Ratchaburi"
+},
+"wikiTitles": [
+"Damnoen Saduak floating market"
+]
+},
+{
+"id": "khao_ngu",
+"lat": 13.576,
+"lon": 99.787,
+"name": {
+"th": "อุทยานหินเขางู",
+"en": "Khao Ngu Stone Park"
+},
+"province": {
+"th": "ราชบุรี",
+"en": "Ratchaburi"
+},
+"wikiTitles": []
+},
+{
+"id": "tham_khao_bin",
+"lat": 13.593348,
+"lon": 99.666903,
+"name": {
+"th": "ถ้ำเขาบิน",
+"en": "Tham Khao Bin Cave"
+},
+"province": {
+"th": "ราชบุรี",
+"en": "Ratchaburi"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_khanon",
+"lat": 13.689,
+"lon": 99.82,
+"name": {
+"th": "วัดขนอน (พิพิธภัณฑ์หนังใหญ่)",
+"en": "Wat Khanon Nang Yai Museum"
+},
+"province": {
+"th": "ราชบุรี",
+"en": "Ratchaburi"
+},
+"wikiTitles": []
+},
+{
+"id": "phra_nakhon_khiri",
+"lat": 13.109975,
+"lon": 99.93817,
+"name": {
+"th": "อุทยานประวัติศาสตร์พระนครคีรี (เขาวัง)",
+"en": "Phra Nakhon Khiri (Khao Wang)"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": [
+"Phra Nakhon Khiri Historical Park"
+]
+},
+{
+"id": "tham_khao_luang",
+"lat": 13.137548,
+"lon": 99.93325,
+"name": {
+"th": "ถ้ำเขาหลวง",
+"en": "Tham Khao Luang Cave"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": []
+},
+{
+"id": "phra_ram_ratchaniwet",
+"lat": 13.0957,
+"lon": 99.9506,
+"name": {
+"th": "พระรามราชนิเวศน์ (วังบ้านปืน)",
+"en": "Phra Ram Ratchaniwet (Ban Puen Palace)"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": [
+"Phra Ram Ratchaniwet"
+]
+},
+{
+"id": "kaeng_krachan",
+"lat": 12.79889,
+"lon": 99.45333,
+"name": {
+"th": "อุทยานแห่งชาติแก่งกระจาน",
+"en": "Kaeng Krachan National Park"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": [
+"Kaeng Krachan National Park"
+]
+},
+{
+"id": "mrigadayavan",
+"lat": 12.697773,
+"lon": 99.962946,
+"name": {
+"th": "พระราชนิเวศน์มฤคทายวัน",
+"en": "Mrigadayavan Palace"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": [
+"Mrigadayavan Palace"
+]
+},
+{
+"id": "cha_am_beach",
+"lat": 12.798,
+"lon": 99.981,
+"name": {
+"th": "หาดชะอำ",
+"en": "Cha-am Beach"
+},
+"province": {
+"th": "เพชรบุรี",
+"en": "Phetchaburi"
+},
+"wikiTitles": [
+"Cha-am"
+]
+},
+{
+"id": "hua_hin",
+"lat": 12.5684,
+"lon": 99.9577,
+"name": {
+"th": "หัวหิน",
+"en": "Hua Hin"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": [
+"Hua Hin district",
+"Hua Hin railway station"
+]
+},
+{
+"id": "khao_takiab",
+"lat": 12.5097,
+"lon": 99.9856,
+"name": {
+"th": "เขาตะเกียบ",
+"en": "Khao Takiab"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": []
+},
+{
+"id": "phraya_nakhon_cave",
+"lat": 12.197486,
+"lon": 100.011334,
+"name": {
+"th": "ถ้ำพระยานคร เขาสามร้อยยอด",
+"en": "Phraya Nakhon Cave, Khao Sam Roi Yot"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": [
+"Phraya Nakhon Cave",
+"Khao Sam Roi Yot National Park"
+]
+},
+{
+"id": "kui_buri",
+"lat": 12.05167,
+"lon": 99.55722,
+"name": {
+"th": "อุทยานแห่งชาติกุยบุรี (ชมช้างป่า)",
+"en": "Kui Buri National Park (wild elephants)"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": [
+"Kui Buri National Park"
+]
+},
+{
+"id": "ao_manao",
+"lat": 11.770005,
+"lon": 99.795192,
+"name": {
+"th": "อ่าวมะนาว",
+"en": "Ao Manao"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": [
+"Ao Manao"
+]
+},
+{
+"id": "wat_thang_sai",
+"lat": 11.360726,
+"lon": 99.579391,
+"name": {
+"th": "วัดทางสาย (พระพุทธกิตติสิริชัย) บ้านกรูด",
+"en": "Wat Thang Sai, Ban Krut"
+},
+"province": {
+"th": "ประจวบคีรีขันธ์",
+"en": "Prachuap Khiri Khan"
+},
+"wikiTitles": []
+},
+{
+"id": "rim_moei",
+"lat": 16.691856,
+"lon": 98.517795,
+"name": {
+"th": "ตลาดริมเมย แม่สอด",
+"en": "Rim Moei Market, Mae Sot"
+},
+"province": {
+"th": "ตาก",
+"en": "Tak"
+},
+"wikiTitles": []
+},
+{
+"id": "thi_lo_su",
+"lat": 15.9244,
+"lon": 98.7517,
+"name": {
+"th": "น้ำตกทีลอซู",
+"en": "Thi Lo Su Waterfall"
+},
+"province": {
+"th": "ตาก",
+"en": "Tak"
+},
+"wikiTitles": [
+"Thi Lo Su Waterfall"
+]
+},
+{
+"id": "taksin_maharat_np",
+"lat": 16.774,
+"lon": 98.931,
+"name": {
+"th": "อุทยานแห่งชาติตากสินมหาราช",
+"en": "Taksin Maharat National Park"
+},
+"province": {
+"th": "ตาก",
+"en": "Tak"
+},
+"wikiTitles": [
+"Taksin Maharat National Park"
+]
+},
+{
+"id": "bhumibol_dam",
+"lat": 17.2428,
+"lon": 98.9722,
+"name": {
+"th": "เขื่อนภูมิพล",
+"en": "Bhumibol Dam"
+},
+"province": {
+"th": "ตาก",
+"en": "Tak"
+},
+"wikiTitles": [
+"Bhumibol Dam"
+]
+},
+{
+"id": "doi_suthep",
+"lat": 18.8048,
+"lon": 98.9216,
+"name": {
+"th": "วัดพระธาตุดอยสุเทพ และเมืองเก่าเชียงใหม่",
+"en": "Wat Phra That Doi Suthep & Chiang Mai Old City"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Wat Phra That Doi Suthep",
+"Chiang Mai"
+]
+},
+{
+"id": "doi_inthanon",
+"lat": 18.5886,
+"lon": 98.4867,
+"name": {
+"th": "อุทยานแห่งชาติดอยอินทนนท์",
+"en": "Doi Inthanon National Park"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Doi Inthanon National Park",
+"Doi Inthanon"
+]
+},
+{
+"id": "wat_chedi_luang",
+"lat": 18.78694,
+"lon": 98.98639,
+"name": {
+"th": "วัดเจดีย์หลวง",
+"en": "Wat Chedi Luang"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Wat Chedi Luang"
+]
+},
+{
+"id": "wat_phra_singh",
+"lat": 18.78875,
+"lon": 98.98121,
+"name": {
+"th": "วัดพระสิงห์วรมหาวิหาร",
+"en": "Wat Phra Singh"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Wat Phra Singh"
+]
+},
+{
+"id": "wiang_kum_kam",
+"lat": 18.75409,
+"lon": 98.99556,
+"name": {
+"th": "เวียงกุมกาม",
+"en": "Wiang Kum Kam"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Wiang Kum Kam"
+]
+},
+{
+"id": "doi_ang_khang",
+"lat": 19.90033,
+"lon": 99.03931,
+"name": {
+"th": "ดอยอ่างขาง",
+"en": "Doi Ang Khang"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Doi Ang Khang"
+]
+},
+{
+"id": "chiang_dao",
+"lat": 19.3937,
+"lon": 98.9286,
+"name": {
+"th": "ถ้ำเชียงดาว และดอยหลวงเชียงดาว",
+"en": "Chiang Dao Cave & Doi Luang Chiang Dao"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Doi Chiang Dao"
+]
+},
+{
+"id": "bo_sang",
+"lat": 18.77126,
+"lon": 99.08535,
+"name": {
+"th": "หมู่บ้านทำร่มบ่อสร้าง",
+"en": "Bo Sang Umbrella Village"
+},
+"province": {
+"th": "เชียงใหม่",
+"en": "Chiang Mai"
+},
+"wikiTitles": [
+"Bo Sang"
+]
+},
+{
+"id": "white_temple",
+"lat": 19.8243,
+"lon": 99.763,
+"name": {
+"th": "วัดร่องขุ่น",
+"en": "Wat Rong Khun (White Temple)"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Wat Rong Khun"
+]
+},
+{
+"id": "blue_temple",
+"lat": 19.92334,
+"lon": 99.84175,
+"name": {
+"th": "วัดร่องเสือเต้น",
+"en": "Wat Rong Suea Ten (Blue Temple)"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Wat Rong Suea Ten"
+]
+},
+{
+"id": "baan_dam",
+"lat": 19.9921,
+"lon": 99.8607,
+"name": {
+"th": "พิพิธภัณฑ์บ้านดำ",
+"en": "Baan Dam Museum (Black House)"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Baan Dam Museum"
+]
+},
+{
+"id": "doi_tung",
+"lat": 20.34583,
+"lon": 99.83444,
+"name": {
+"th": "ดอยตุง (พระตำหนักและสวนแม่ฟ้าหลวง)",
+"en": "Doi Tung (Royal Villa & Mae Fah Luang Garden)"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Doi Tung"
+]
+},
+{
+"id": "phu_chi_fa",
+"lat": 19.85,
+"lon": 100.45417,
+"name": {
+"th": "ภูชี้ฟ้า",
+"en": "Phu Chi Fa"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Phu Chi Fa"
+]
+},
+{
+"id": "chiang_saen",
+"lat": 20.275,
+"lon": 100.08833,
+"name": {
+"th": "เชียงแสน และสามเหลี่ยมทองคำ",
+"en": "Chiang Saen & Golden Triangle"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Chiang Saen district",
+"Golden Triangle (Southeast Asia)"
+]
+},
+{
+"id": "mae_salong",
+"lat": 20.16556,
+"lon": 99.62639,
+"name": {
+"th": "ดอยแม่สลอง",
+"en": "Doi Mae Salong (Santikhiri)"
+},
+"province": {
+"th": "เชียงราย",
+"en": "Chiang Rai"
+},
+"wikiTitles": [
+"Santikhiri"
+]
+},
+{
+"id": "wat_phra_that_lampang_luang",
+"lat": 18.21722,
+"lon": 99.38889,
+"name": {
+"th": "วัดพระธาตุลำปางหลวง",
+"en": "Wat Phra That Lampang Luang"
+},
+"province": {
+"th": "ลำปาง",
+"en": "Lampang"
+},
+"wikiTitles": [
+"Wat Phra That Lampang Luang"
+]
+},
+{
+"id": "thai_elephant_conservation_center",
+"lat": 18.35966,
+"lon": 99.24856,
+"name": {
+"th": "ศูนย์อนุรักษ์ช้างไทย",
+"en": "Thai Elephant Conservation Center"
+},
+"province": {
+"th": "ลำปาง",
+"en": "Lampang"
+},
+"wikiTitles": [
+"Thai Elephant Conservation Center"
+]
+},
+{
+"id": "chae_son_national_park",
+"lat": 18.83639,
+"lon": 99.47056,
+"name": {
+"th": "อุทยานแห่งชาติแจ้ซ้อน",
+"en": "Chae Son National Park"
+},
+"province": {
+"th": "ลำปาง",
+"en": "Lampang"
+},
+"wikiTitles": [
+"Chae Son National Park"
+]
+},
+{
+"id": "kad_kong_ta",
+"lat": 18.29052,
+"lon": 99.49702,
+"name": {
+"th": "กาดกองต้า ถนนตลาดเก่า ลำปาง",
+"en": "Kad Kong Ta Old Market Street, Lampang"
+},
+"province": {
+"th": "ลำปาง",
+"en": "Lampang"
+},
+"wikiTitles": [
+"Lampang"
+]
+},
+{
+"id": "wat_phra_that_hariphunchai",
+"lat": 18.5775,
+"lon": 99.00778,
+"name": {
+"th": "วัดพระธาตุหริภุญชัย",
+"en": "Wat Phra That Hariphunchai"
+},
+"province": {
+"th": "ลำพูน",
+"en": "Lamphun"
+},
+"wikiTitles": [
+"Wat Phra That Hariphunchai"
+]
+},
+{
+"id": "wat_chamadevi",
+"lat": 18.58155,
+"lon": 98.99378,
+"name": {
+"th": "วัดจามเทวี (วัดกู่กุด)",
+"en": "Wat Chamadevi (Wat Ku Kut)"
+},
+"province": {
+"th": "ลำพูน",
+"en": "Lamphun"
+},
+"wikiTitles": [
+"Wat Chamadevi"
+]
+},
+{
+"id": "doi_khun_tan",
+"lat": 18.47083,
+"lon": 99.28472,
+"name": {
+"th": "อุทยานแห่งชาติดอยขุนตาล",
+"en": "Doi Khun Tan National Park"
+},
+"province": {
+"th": "ลำพูน",
+"en": "Lamphun"
+},
+"wikiTitles": [
+"Doi Khun Tan National Park"
+]
+},
+{
+"id": "pai",
+"lat": 19.3583,
+"lon": 98.4405,
+"name": {
+"th": "ปาย",
+"en": "Pai"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": [
+"Pai, Thailand"
+]
+},
+{
+"id": "pang_ung",
+"lat": 19.49841,
+"lon": 97.90919,
+"name": {
+"th": "ปางอุ๋ง",
+"en": "Pang Ung"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": [
+"Pang Ung"
+]
+},
+{
+"id": "ban_rak_thai",
+"lat": 19.58667,
+"lon": 97.94223,
+"name": {
+"th": "บ้านรักไทย",
+"en": "Ban Rak Thai"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_that_doi_kong_mu",
+"lat": 19.3001,
+"lon": 97.9601,
+"name": {
+"th": "วัดพระธาตุดอยกองมู",
+"en": "Wat Phra That Doi Kong Mu"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": [
+"Wat Phrathat Doi Kong Mu"
+]
+},
+{
+"id": "wat_chong_kham_chong_klang",
+"lat": 19.29972,
+"lon": 97.96715,
+"name": {
+"th": "วัดจองคำ–จองกลาง และหนองจองคำ",
+"en": "Wat Chong Kham, Wat Chong Klang & Chong Kham Lake"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": [
+"Mae Hong Son"
+]
+},
+{
+"id": "su_tong_pae",
+"lat": 19.38898,
+"lon": 97.95413,
+"name": {
+"th": "สะพานซูตองเป้",
+"en": "Su Tong Pae Bamboo Bridge"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": []
+},
+{
+"id": "tham_lod",
+"lat": 19.56523,
+"lon": 98.27895,
+"name": {
+"th": "ถ้ำน้ำลอด",
+"en": "Tham Lod Cave"
+},
+"province": {
+"th": "แม่ฮ่องสอน",
+"en": "Mae Hong Son"
+},
+"wikiTitles": [
+"Tham Lot"
+]
+},
+{
+"id": "wat_phumin",
+"lat": 18.77458,
+"lon": 100.77159,
+"name": {
+"th": "วัดภูมินทร์",
+"en": "Wat Phumin"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": [
+"Wat Phumin"
+]
+},
+{
+"id": "wat_phra_that_chae_haeng",
+"lat": 18.75823,
+"lon": 100.7917,
+"name": {
+"th": "วัดพระธาตุแช่แห้ง",
+"en": "Wat Phra That Chae Haeng"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_that_khao_noi",
+"lat": 18.7694,
+"lon": 100.75058,
+"name": {
+"th": "วัดพระธาตุเขาน้อย",
+"en": "Wat Phra That Khao Noi"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": []
+},
+{
+"id": "doi_samer_dao",
+"lat": 18.36816,
+"lon": 100.84013,
+"name": {
+"th": "ดอยเสมอดาว อุทยานแห่งชาติศรีน่าน",
+"en": "Doi Samer Dao, Si Nan National Park"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": [
+"Si Nan National Park"
+]
+},
+{
+"id": "doi_phu_kha",
+"lat": 19.20056,
+"lon": 101.06806,
+"name": {
+"th": "อุทยานแห่งชาติดอยภูคา",
+"en": "Doi Phu Kha National Park"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": [
+"Doi Phu Kha National Park"
+]
+},
+{
+"id": "bo_kluea",
+"lat": 19.14889,
+"lon": 101.1575,
+"name": {
+"th": "บ่อเกลือสินเธาว์โบราณ บ่อเกลือ",
+"en": "Bo Kluea ancient salt wells"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": [
+"Bo Kluea district"
+]
+},
+{
+"id": "ban_sapan",
+"lat": 19.19273,
+"lon": 101.19827,
+"name": {
+"th": "บ้านสะปัน",
+"en": "Ban Sapan"
+},
+"province": {
+"th": "น่าน",
+"en": "Nan"
+},
+"wikiTitles": []
+},
+{
+"id": "kwan_phayao",
+"lat": 19.167,
+"lon": 99.867,
+"name": {
+"th": "กว๊านพะเยา",
+"en": "Kwan Phayao (Phayao Lake)"
+},
+"province": {
+"th": "พะเยา",
+"en": "Phayao"
+},
+"wikiTitles": [
+"Phayao Lake"
+]
+},
+{
+"id": "wat_si_khom_kham",
+"lat": 19.17652,
+"lon": 99.88961,
+"name": {
+"th": "วัดศรีโคมคำ (พระเจ้าตนหลวง)",
+"en": "Wat Si Khom Kham (Phra Chao Ton Luang)"
+},
+"province": {
+"th": "พะเยา",
+"en": "Phayao"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_analayo",
+"lat": 19.17853,
+"lon": 99.81368,
+"name": {
+"th": "วัดอนาลโยทิพยาราม (ดอยบุษราคัม)",
+"en": "Wat Analayo Thipphayaram"
+},
+"province": {
+"th": "พะเยา",
+"en": "Phayao"
+},
+"wikiTitles": []
+},
+{
+"id": "phu_langka",
+"lat": 19.45139,
+"lon": 100.4175,
+"name": {
+"th": "ภูลังกา",
+"en": "Phu Langka"
+},
+"province": {
+"th": "พะเยา",
+"en": "Phayao"
+},
+"wikiTitles": [
+"Phu Langka Forest Park"
+]
+},
+{
+"id": "wat_phra_that_cho_hae",
+"lat": 18.08622,
+"lon": 100.20435,
+"name": {
+"th": "วัดพระธาตุช่อแฮ",
+"en": "Wat Phra That Cho Hae"
+},
+"province": {
+"th": "แพร่",
+"en": "Phrae"
+},
+"wikiTitles": [
+"Cho Hae"
+]
+},
+{
+"id": "phae_mueang_phi",
+"lat": 18.18528,
+"lon": 100.21056,
+"name": {
+"th": "วนอุทยานแพะเมืองผี",
+"en": "Phae Mueang Phi"
+},
+"province": {
+"th": "แพร่",
+"en": "Phrae"
+},
+"wikiTitles": [
+"Phae Mueang Phi"
+]
+},
+{
+"id": "mae_yom_national_park",
+"lat": 18.74583,
+"lon": 100.19583,
+"name": {
+"th": "อุทยานแห่งชาติแม่ยม (แก่งเสือเต้น)",
+"en": "Mae Yom National Park (Kaeng Suea Ten)"
+},
+"province": {
+"th": "แพร่",
+"en": "Phrae"
+},
+"wikiTitles": [
+"Mae Yom National Park"
+]
+},
+{
+"id": "wat_phra_thaen_sila_at",
+"lat": 17.59826,
+"lon": 100.04357,
+"name": {
+"th": "วัดพระแท่นศิลาอาสน์",
+"en": "Wat Phra Thaen Sila At"
+},
+"province": {
+"th": "อุตรดิตถ์",
+"en": "Uttaradit"
+},
+"wikiTitles": []
+},
+{
+"id": "sirikit_dam",
+"lat": 17.76389,
+"lon": 100.56333,
+"name": {
+"th": "เขื่อนสิริกิติ์",
+"en": "Sirikit Dam"
+},
+"province": {
+"th": "อุตรดิตถ์",
+"en": "Uttaradit"
+},
+"wikiTitles": [
+"Sirikit Dam"
+]
+},
+{
+"id": "laplae",
+"lat": 17.67128,
+"lon": 100.02871,
+"name": {
+"th": "เมืองลับแล",
+"en": "Laplae"
+},
+"province": {
+"th": "อุตรดิตถ์",
+"en": "Uttaradit"
+},
+"wikiTitles": [
+"Laplae district"
+]
+},
+{
+"id": "sukhothai",
+"lat": 17.017,
+"lon": 99.7036,
+"name": {
+"th": "อุทยานประวัติศาสตร์สุโขทัย",
+"en": "Sukhothai Historical Park"
+},
+"province": {
+"th": "สุโขทัย",
+"en": "Sukhothai"
+},
+"wikiTitles": [
+"Sukhothai Historical Park"
+]
+},
+{
+"id": "si_satchanalai",
+"lat": 17.52394,
+"lon": 99.78653,
+"name": {
+"th": "อุทยานประวัติศาสตร์ศรีสัชนาลัย",
+"en": "Si Satchanalai Historical Park"
+},
+"province": {
+"th": "สุโขทัย",
+"en": "Sukhothai"
+},
+"wikiTitles": [
+"Si Satchanalai Historical Park"
+]
+},
+{
+"id": "wat_si_chum",
+"lat": 17.02644,
+"lon": 99.69303,
+"name": {
+"th": "วัดศรีชุม",
+"en": "Wat Si Chum"
+},
+"province": {
+"th": "สุโขทัย",
+"en": "Sukhothai"
+},
+"wikiTitles": [
+"Wat Si Chum"
+]
+},
+{
+"id": "ramkhamhaeng_national_park",
+"lat": 16.89692,
+"lon": 99.64762,
+"name": {
+"th": "อุทยานแห่งชาติรามคำแหง (เขาหลวง)",
+"en": "Ramkhamhaeng National Park (Khao Luang)"
+},
+"province": {
+"th": "สุโขทัย",
+"en": "Sukhothai"
+},
+"wikiTitles": [
+"Ramkhamhaeng National Park"
+]
+},
+{
+"id": "ban_hat_siao",
+"lat": 17.51937,
+"lon": 99.76315,
+"name": {
+"th": "บ้านหาดเสี้ยว",
+"en": "Ban Hat Siao"
+},
+"province": {
+"th": "สุโขทัย",
+"en": "Sukhothai"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_si_rattana_mahathat_phitsanulok",
+"lat": 16.82364,
+"lon": 100.26224,
+"name": {
+"th": "วัดพระศรีรัตนมหาธาตุวรมหาวิหาร (วัดใหญ่)",
+"en": "Wat Phra Si Rattana Mahathat (Wat Yai)"
+},
+"province": {
+"th": "พิษณุโลก",
+"en": "Phitsanulok"
+},
+"wikiTitles": [
+"Wat Phra Si Rattana Mahathat, Phitsanulok",
+"Phra Phuttha Chinnarat"
+]
+},
+{
+"id": "phu_hin_rong_kla",
+"lat": 16.97667,
+"lon": 101.04,
+"name": {
+"th": "อุทยานแห่งชาติภูหินร่องกล้า",
+"en": "Phu Hin Rong Kla National Park"
+},
+"province": {
+"th": "พิษณุโลก",
+"en": "Phitsanulok"
+},
+"wikiTitles": [
+"Phu Hin Rong Kla National Park"
+]
+},
+{
+"id": "thung_salaeng_luang",
+"lat": 16.82778,
+"lon": 100.87,
+"name": {
+"th": "อุทยานแห่งชาติทุ่งแสลงหลวง",
+"en": "Thung Salaeng Luang National Park"
+},
+"province": {
+"th": "พิษณุโลก",
+"en": "Phitsanulok"
+},
+"wikiTitles": [
+"Thung Salaeng Luang National Park"
+]
+},
+{
+"id": "kaeng_sopha",
+"lat": 16.87111,
+"lon": 100.83528,
+"name": {
+"th": "น้ำตกแก่งโสภา",
+"en": "Kaeng Sopha Waterfall"
+},
+"province": {
+"th": "พิษณุโลก",
+"en": "Phitsanulok"
+},
+"wikiTitles": [
+"Namtok Kaeng Sopha"
+]
+},
+{
+"id": "kamphaeng_phet_historical_park",
+"lat": 16.4932,
+"lon": 99.5207,
+"name": {
+"th": "อุทยานประวัติศาสตร์กำแพงเพชร",
+"en": "Kamphaeng Phet Historical Park"
+},
+"province": {
+"th": "กำแพงเพชร",
+"en": "Kamphaeng Phet"
+},
+"wikiTitles": [
+"Kamphaeng Phet Historical Park"
+]
+},
+{
+"id": "khlong_lan_national_park",
+"lat": 16.159,
+"lon": 99.19,
+"name": {
+"th": "อุทยานแห่งชาติคลองลาน",
+"en": "Khlong Lan National Park"
+},
+"province": {
+"th": "กำแพงเพชร",
+"en": "Kamphaeng Phet"
+},
+"wikiTitles": [
+"Khlong Lan National Park"
+]
+},
+{
+"id": "mae_wong_national_park",
+"lat": 16.03972,
+"lon": 99.23444,
+"name": {
+"th": "อุทยานแห่งชาติแม่วงก์",
+"en": "Mae Wong National Park"
+},
+"province": {
+"th": "กำแพงเพชร",
+"en": "Kamphaeng Phet"
+},
+"wikiTitles": [
+"Mae Wong National Park"
+]
+},
+{
+"id": "bueng_si_fai",
+"lat": 16.42061,
+"lon": 100.33588,
+"name": {
+"th": "บึงสีไฟ",
+"en": "Bueng Si Fai"
+},
+"province": {
+"th": "พิจิตร",
+"en": "Phichit"
+},
+"wikiTitles": []
+},
+{
+"id": "phichit_old_city",
+"lat": 16.41129,
+"lon": 100.2927,
+"name": {
+"th": "อุทยานเมืองเก่าพิจิตร",
+"en": "Phichit Old City Park"
+},
+"province": {
+"th": "พิจิตร",
+"en": "Phichit"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_tha_luang_phichit",
+"lat": 16.44088,
+"lon": 100.35146,
+"name": {
+"th": "วัดท่าหลวง (หลวงพ่อเพชร)",
+"en": "Wat Tha Luang (Luang Pho Phet)"
+},
+"province": {
+"th": "พิจิตร",
+"en": "Phichit"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_pho_prathap_chang",
+"lat": 16.30286,
+"lon": 100.31573,
+"name": {
+"th": "วัดโพธิ์ประทับช้าง",
+"en": "Wat Pho Prathap Chang"
+},
+"province": {
+"th": "พิจิตร",
+"en": "Phichit"
+},
+"wikiTitles": []
+},
+{
+"id": "khao_kho",
+"lat": 16.61497,
+"lon": 100.98571,
+"name": {
+"th": "เขาค้อ",
+"en": "Khao Kho"
+},
+"province": {
+"th": "เพชรบูรณ์",
+"en": "Phetchabun"
+},
+"wikiTitles": [
+"Khao Kho district"
+]
+},
+{
+"id": "wat_pha_son_kaew",
+"lat": 16.78942,
+"lon": 101.04919,
+"name": {
+"th": "วัดพระธาตุผาซ่อนแก้ว",
+"en": "Wat Phra That Pha Son Kaew"
+},
+"province": {
+"th": "เพชรบูรณ์",
+"en": "Phetchabun"
+},
+"wikiTitles": []
+},
+{
+"id": "phu_thap_boek",
+"lat": 16.90639,
+"lon": 101.08722,
+"name": {
+"th": "ภูทับเบิก",
+"en": "Phu Thap Boek"
+},
+"province": {
+"th": "เพชรบูรณ์",
+"en": "Phetchabun"
+},
+"wikiTitles": [
+"Phu Thap Boek"
+]
+},
+{
+"id": "si_thep_historical_park",
+"lat": 15.46581,
+"lon": 101.14486,
+"name": {
+"th": "อุทยานประวัติศาสตร์ศรีเทพ",
+"en": "Si Thep Historical Park"
+},
+"province": {
+"th": "เพชรบูรณ์",
+"en": "Phetchabun"
+},
+"wikiTitles": [
+"Si Thep Historical Park"
+]
+},
+{
+"id": "bueng_boraphet",
+"lat": 15.683,
+"lon": 100.25,
+"name": {
+"th": "บึงบอระเพ็ด",
+"en": "Bueng Boraphet"
+},
+"province": {
+"th": "นครสวรรค์",
+"en": "Nakhon Sawan"
+},
+"wikiTitles": [
+"Bueng Boraphet"
+]
+},
+{
+"id": "pak_nam_pho",
+"lat": 15.69953,
+"lon": 100.1424,
+"name": {
+"th": "ปากน้ำโพ ต้นแม่น้ำเจ้าพระยา",
+"en": "Pak Nam Pho – source of the Chao Phraya"
+},
+"province": {
+"th": "นครสวรรค์",
+"en": "Nakhon Sawan"
+},
+"wikiTitles": [
+"Chao Phraya River",
+"Nakhon Sawan"
+]
+},
+{
+"id": "wat_khiri_wong",
+"lat": 15.71562,
+"lon": 100.12712,
+"name": {
+"th": "วัดคีรีวงศ์",
+"en": "Wat Khiri Wong"
+},
+"province": {
+"th": "นครสวรรค์",
+"en": "Nakhon Sawan"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_sangkat_rattanakhiri",
+"lat": 15.37508,
+"lon": 100.01727,
+"name": {
+"th": "วัดสังกัสรัตนคีรี (เขาสะแกกรัง)",
+"en": "Wat Sangkat Rattanakhiri (Khao Sakae Krang)"
+},
+"province": {
+"th": "อุทัยธานี",
+"en": "Uthai Thani"
+},
+"wikiTitles": [
+"Uthai Thani"
+]
+},
+{
+"id": "wat_tha_sung",
+"lat": 15.34204,
+"lon": 100.03329,
+"name": {
+"th": "วัดท่าซุง",
+"en": "Wat Tha Sung"
+},
+"province": {
+"th": "อุทัยธานี",
+"en": "Uthai Thani"
+},
+"wikiTitles": []
+},
+{
+"id": "sakae_krang_river",
+"lat": 15.3828,
+"lon": 100.0303,
+"name": {
+"th": "ชุมชนเรือนแพแม่น้ำสะแกกรัง",
+"en": "Sakae Krang River raft houses"
+},
+"province": {
+"th": "อุทัยธานี",
+"en": "Uthai Thani"
+},
+"wikiTitles": [
+"Uthai Thani"
+]
+},
+{
+"id": "hup_pa_tat",
+"lat": 15.37733,
+"lon": 99.63342,
+"name": {
+"th": "หุบป่าตาด",
+"en": "Hup Pa Tat"
+},
+"province": {
+"th": "อุทัยธานี",
+"en": "Uthai Thani"
+},
+"wikiTitles": []
+},
+{
+"id": "hat_thung_wua_laen",
+"lat": 10.61,
+"lon": 99.242,
+"name": {
+"th": "หาดทุ่งวัวแล่น",
+"en": "Thung Wua Laen Beach"
+},
+"province": {
+"th": "ชุมพร",
+"en": "Chumphon"
+},
+"wikiTitles": []
+},
+{
+"id": "prince_chumphon_shrine",
+"lat": 10.3964,
+"lon": 99.2733,
+"name": {
+"th": "ศาลกรมหลวงชุมพรฯ หาดทรายรี",
+"en": "Prince Chumphon Shrine, Sai Ri Beach"
+},
+"province": {
+"th": "ชุมพร",
+"en": "Chumphon"
+},
+"wikiTitles": []
+},
+{
+"id": "mu_ko_chumphon",
+"lat": 10.25,
+"lon": 99.217,
+"name": {
+"th": "อุทยานแห่งชาติหมู่เกาะชุมพร",
+"en": "Mu Ko Chumphon National Park"
+},
+"province": {
+"th": "ชุมพร",
+"en": "Chumphon"
+},
+"wikiTitles": [
+"Mu Ko Chumphon National Park"
+]
+},
+{
+"id": "koh_samui",
+"lat": 9.512,
+"lon": 100.0136,
+"name": {
+"th": "เกาะสมุย",
+"en": "Ko Samui"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Ko Samui"
+]
+},
+{
+"id": "ko_phangan",
+"lat": 9.74,
+"lon": 100.03,
+"name": {
+"th": "เกาะพะงัน",
+"en": "Ko Pha Ngan"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Ko Pha-ngan",
+"Full Moon Party"
+]
+},
+{
+"id": "koh_tao",
+"lat": 10.0956,
+"lon": 99.8404,
+"name": {
+"th": "เกาะเต่า",
+"en": "Ko Tao"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Ko Tao",
+"Ko Nang Yuan"
+]
+},
+{
+"id": "ang_thong",
+"lat": 9.6228,
+"lon": 99.675,
+"name": {
+"th": "อุทยานแห่งชาติหมู่เกาะอ่างทอง",
+"en": "Mu Ko Ang Thong National Park"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Mu Ko Ang Thong National Park"
+]
+},
+{
+"id": "khao_sok",
+"lat": 8.9367,
+"lon": 98.5303,
+"name": {
+"th": "อุทยานแห่งชาติเขาสก",
+"en": "Khao Sok National Park"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Khao Sok National Park"
+]
+},
+{
+"id": "cheow_lan_lake",
+"lat": 8.9736,
+"lon": 98.8075,
+"name": {
+"th": "เขื่อนรัชชประภา (กุ้ยหลินเมืองไทย)",
+"en": "Cheow Lan Lake (Ratchaprapha Dam)"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Ratchaprapha Dam",
+"Khao Sok National Park"
+]
+},
+{
+"id": "wat_phra_borommathat_chaiya",
+"lat": 9.3846,
+"lon": 99.1843,
+"name": {
+"th": "วัดพระบรมธาตุไชยา",
+"en": "Wat Phra Borommathat Chaiya"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Wat Phra Borommathat Chaiya"
+]
+},
+{
+"id": "suan_mokkh",
+"lat": 9.3603,
+"lon": 99.1683,
+"name": {
+"th": "สวนโมกขพลาราม",
+"en": "Suan Mokkh"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Suan Mokkh"
+]
+},
+{
+"id": "surat_thani_tapi_riverfront",
+"lat": 9.142,
+"lon": 99.329,
+"name": {
+"th": "ริมแม่น้ำตาปี เมืองสุราษฎร์ธานี",
+"en": "Tapi Riverfront, Surat Thani Town"
+},
+"province": {
+"th": "สุราษฎร์ธานี",
+"en": "Surat Thani"
+},
+"wikiTitles": [
+"Surat Thani",
+"Chak Phra"
+]
+},
+{
+"id": "wat_phra_mahathat_nakhon",
+"lat": 8.4114,
+"lon": 99.9666,
+"name": {
+"th": "วัดพระมหาธาตุวรมหาวิหาร",
+"en": "Wat Phra Mahathat Woramahawihan"
+},
+"province": {
+"th": "นครศรีธรรมราช",
+"en": "Nakhon Si Thammarat"
+},
+"wikiTitles": [
+"Wat Phra Mahathat Woramahawihan"
+]
+},
+{
+"id": "khiriwong_village",
+"lat": 8.4333,
+"lon": 99.7833,
+"name": {
+"th": "หมู่บ้านคีรีวง",
+"en": "Khiriwong Village"
+},
+"province": {
+"th": "นครศรีธรรมราช",
+"en": "Nakhon Si Thammarat"
+},
+"wikiTitles": [
+"Khiriwong",
+"Khao Luang National Park"
+]
+},
+{
+"id": "khanom",
+"lat": 9.2047,
+"lon": 99.8611,
+"name": {
+"th": "ขนอม (โลมาสีชมพู)",
+"en": "Khanom (pink dolphins)"
+},
+"province": {
+"th": "นครศรีธรรมราช",
+"en": "Nakhon Si Thammarat"
+},
+"wikiTitles": [
+"Khanom district"
+]
+},
+{
+"id": "thale_noi",
+"lat": 7.833,
+"lon": 100.133,
+"name": {
+"th": "ทะเลน้อย",
+"en": "Thale Noi"
+},
+"province": {
+"th": "พัทลุง",
+"en": "Phatthalung"
+},
+"wikiTitles": [
+"Thale Noi"
+]
+},
+{
+"id": "khao_ok_thalu",
+"lat": 7.625,
+"lon": 100.0917,
+"name": {
+"th": "เขาอกทะลุ",
+"en": "Khao Ok Thalu"
+},
+"province": {
+"th": "พัทลุง",
+"en": "Phatthalung"
+},
+"wikiTitles": [
+"Khao Ok Thalu"
+]
+},
+{
+"id": "wat_khuha_sawan_phatthalung",
+"lat": 7.629,
+"lon": 100.071,
+"name": {
+"th": "วัดคูหาสวรรค์",
+"en": "Wat Khuha Sawan"
+},
+"province": {
+"th": "พัทลุง",
+"en": "Phatthalung"
+},
+"wikiTitles": []
+},
+{
+"id": "samila_beach",
+"lat": 7.213,
+"lon": 100.5965,
+"name": {
+"th": "แหลมสมิหลาและเขาตังกวน",
+"en": "Samila Beach & Khao Tang Kuan"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": [
+"Songkhla",
+"Laem Samila"
+]
+},
+{
+"id": "songkhla_old_town",
+"lat": 7.199,
+"lon": 100.5925,
+"name": {
+"th": "ย่านเมืองเก่าสงขลา",
+"en": "Songkhla Old Town"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": [
+"Songkhla"
+]
+},
+{
+"id": "ko_yo",
+"lat": 7.162,
+"lon": 100.542,
+"name": {
+"th": "เกาะยอ",
+"en": "Ko Yo"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": [
+"Ko Yo",
+"Tinsulanonda Bridge"
+]
+},
+{
+"id": "hat_yai",
+"lat": 7.0086,
+"lon": 100.4747,
+"name": {
+"th": "หาดใหญ่",
+"en": "Hat Yai"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": [
+"Hat Yai"
+]
+},
+{
+"id": "khlong_hae_floating_market",
+"lat": 7.044,
+"lon": 100.497,
+"name": {
+"th": "ตลาดน้ำคลองแห",
+"en": "Khlong Hae Floating Market"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": []
+},
+{
+"id": "ton_nga_chang_waterfall",
+"lat": 6.95,
+"lon": 100.235,
+"name": {
+"th": "น้ำตกโตนงาช้าง",
+"en": "Ton Nga Chang Waterfall"
+},
+"province": {
+"th": "สงขลา",
+"en": "Songkhla"
+},
+"wikiTitles": []
+},
+{
+"id": "krue_se_mosque",
+"lat": 6.8731,
+"lon": 101.3031,
+"name": {
+"th": "มัสยิดกรือเซะ",
+"en": "Krue Se Mosque"
+},
+"province": {
+"th": "ปัตตานี",
+"en": "Pattani"
+},
+"wikiTitles": [
+"Krue Se Mosque"
+]
+},
+{
+"id": "pattani_central_mosque",
+"lat": 6.865,
+"lon": 101.25,
+"name": {
+"th": "มัสยิดกลางปัตตานี",
+"en": "Pattani Central Mosque"
+},
+"province": {
+"th": "ปัตตานี",
+"en": "Pattani"
+},
+"wikiTitles": [
+"Central Mosque of Pattani"
+]
+},
+{
+"id": "lim_ko_niao_shrine",
+"lat": 6.87,
+"lon": 101.256,
+"name": {
+"th": "ศาลเจ้าเล่งจูเกียง (เจ้าแม่ลิ้มกอเหนี่ยว)",
+"en": "Leng Chu Kiang Shrine (Lim Ko Niao)"
+},
+"province": {
+"th": "ปัตตานี",
+"en": "Pattani"
+},
+"wikiTitles": [
+"Lim Ko Niao"
+]
+},
+{
+"id": "wat_chang_hai",
+"lat": 6.756,
+"lon": 101.12,
+"name": {
+"th": "วัดช้างให้",
+"en": "Wat Chang Hai"
+},
+"province": {
+"th": "ปัตตานี",
+"en": "Pattani"
+},
+"wikiTitles": []
+},
+{
+"id": "betong",
+"lat": 5.7731,
+"lon": 101.0725,
+"name": {
+"th": "เมืองเบตง",
+"en": "Betong Town"
+},
+"province": {
+"th": "ยะลา",
+"en": "Yala"
+},
+"wikiTitles": [
+"Betong, Thailand",
+"Betong Mongkhonrit Tunnel"
+]
+},
+{
+"id": "aiyoeweng_skywalk",
+"lat": 5.858,
+"lon": 101.03,
+"name": {
+"th": "สกายวอล์กทะเลหมอกอัยเยอร์เวง",
+"en": "Aiyoeweng Skywalk (Sea of Mist)"
+},
+"province": {
+"th": "ยะลา",
+"en": "Yala"
+},
+"wikiTitles": [
+"Aiyoeweng"
+]
+},
+{
+"id": "bang_lang_dam",
+"lat": 6.1564,
+"lon": 101.2736,
+"name": {
+"th": "เขื่อนบางลาง",
+"en": "Bang Lang Dam"
+},
+"province": {
+"th": "ยะลา",
+"en": "Yala"
+},
+"wikiTitles": [
+"Bang Lang Dam",
+"Bang Lang National Park"
+]
+},
+{
+"id": "wat_khuha_phimuk",
+"lat": 6.533,
+"lon": 101.224,
+"name": {
+"th": "วัดคูหาภิมุข (วัดหน้าถ้ำ)",
+"en": "Wat Khuha Phimuk"
+},
+"province": {
+"th": "ยะลา",
+"en": "Yala"
+},
+"wikiTitles": []
+},
+{
+"id": "taksin_ratchaniwet_palace",
+"lat": 6.395,
+"lon": 101.85,
+"name": {
+"th": "พระตำหนักทักษิณราชนิเวศน์",
+"en": "Thaksin Ratchaniwet Palace"
+},
+"province": {
+"th": "นราธิวาส",
+"en": "Narathiwat"
+},
+"wikiTitles": []
+},
+{
+"id": "hat_narathat",
+"lat": 6.44,
+"lon": 101.828,
+"name": {
+"th": "หาดนราทัศน์",
+"en": "Narathat Beach"
+},
+"province": {
+"th": "นราธิวาส",
+"en": "Narathiwat"
+},
+"wikiTitles": []
+},
+{
+"id": "talo_mano_mosque",
+"lat": 6.4,
+"lon": 101.665,
+"name": {
+"th": "มัสยิดวาดีอัลฮุสเซน (มัสยิดตะโละมาเนาะ)",
+"en": "Talo Mano Mosque (Wadi Al-Husein)"
+},
+"province": {
+"th": "นราธิวาส",
+"en": "Narathiwat"
+},
+"wikiTitles": [
+"Talo Mano Mosque"
+]
+},
+{
+"id": "hala_bala",
+"lat": 5.797,
+"lon": 101.832,
+"name": {
+"th": "ป่าฮาลา-บาลา (ป่าบาลา)",
+"en": "Hala-Bala Wildlife Sanctuary (Bala forest)"
+},
+"province": {
+"th": "นราธิวาส",
+"en": "Narathiwat"
+},
+"wikiTitles": [
+"Hala-Bala Wildlife Sanctuary"
+]
+},
+{
+"id": "raksawarin_hot_springs",
+"lat": 9.969,
+"lon": 98.645,
+"name": {
+"th": "บ่อน้ำร้อนรักษะวาริน",
+"en": "Raksawarin Hot Springs"
+},
+"province": {
+"th": "ระนอง",
+"en": "Ranong"
+},
+"wikiTitles": [
+"Ranong"
+]
+},
+{
+"id": "ko_phayam",
+"lat": 9.733,
+"lon": 98.4,
+"name": {
+"th": "เกาะพยาม",
+"en": "Ko Phayam"
+},
+"province": {
+"th": "ระนอง",
+"en": "Ranong"
+},
+"wikiTitles": [
+"Ko Phayam"
+]
+},
+{
+"id": "laem_son",
+"lat": 9.604,
+"lon": 98.466,
+"name": {
+"th": "อุทยานแห่งชาติแหลมสน",
+"en": "Laem Son National Park"
+},
+"province": {
+"th": "ระนอง",
+"en": "Ranong"
+},
+"wikiTitles": [
+"Laem Son National Park"
+]
+},
+{
+"id": "similan",
+"lat": 8.6525,
+"lon": 97.6408,
+"name": {
+"th": "หมู่เกาะสิมิลัน",
+"en": "Similan Islands"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Mu Ko Similan National Park"
+]
+},
+{
+"id": "surin_islands",
+"lat": 9.43,
+"lon": 97.87,
+"name": {
+"th": "หมู่เกาะสุรินทร์",
+"en": "Surin Islands"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Mu Ko Surin National Park",
+"Moken"
+]
+},
+{
+"id": "james_bond_island",
+"lat": 8.2746,
+"lon": 98.5012,
+"name": {
+"th": "เขาตะปู-เขาพิงกัน (เกาะเจมส์บอนด์)",
+"en": "Khao Phing Kan (James Bond Island)"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Khao Phing Kan",
+"Ao Phang Nga National Park"
+]
+},
+{
+"id": "ko_panyi",
+"lat": 8.3356,
+"lon": 98.5031,
+"name": {
+"th": "เกาะปันหยี",
+"en": "Ko Panyi"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Ko Panyi"
+]
+},
+{
+"id": "ko_yao_noi",
+"lat": 8.1117,
+"lon": 98.5908,
+"name": {
+"th": "เกาะยาวน้อย",
+"en": "Ko Yao Noi"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Ko Yao district"
+]
+},
+{
+"id": "khao_lak",
+"lat": 8.6889,
+"lon": 98.25,
+"name": {
+"th": "เขาหลัก",
+"en": "Khao Lak"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Khao Lak"
+]
+},
+{
+"id": "samet_nangshe",
+"lat": 8.247,
+"lon": 98.474,
+"name": {
+"th": "จุดชมวิวเสม็ดนางชี",
+"en": "Samet Nangshe Viewpoint"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Ao Phang Nga National Park"
+]
+},
+{
+"id": "takua_pa_old_town",
+"lat": 8.8694,
+"lon": 98.3431,
+"name": {
+"th": "ย่านเมืองเก่าตะกั่วป่า",
+"en": "Takua Pa Old Town"
+},
+"province": {
+"th": "พังงา",
+"en": "Phang Nga"
+},
+"wikiTitles": [
+"Takua Pa district"
+]
+},
+{
+"id": "phuket",
+"lat": 7.8847,
+"lon": 98.388,
+"name": {
+"th": "เมืองเก่าภูเก็ต",
+"en": "Phuket Old Town"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Phuket City",
+"Phuket province"
+]
+},
+{
+"id": "phuket_big_buddha",
+"lat": 7.8276,
+"lon": 98.3127,
+"name": {
+"th": "พระใหญ่ภูเก็ต",
+"en": "Phuket Big Buddha"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Big Buddha (Phuket)"
+]
+},
+{
+"id": "wat_chalong",
+"lat": 7.8467,
+"lon": 98.3367,
+"name": {
+"th": "วัดฉลอง",
+"en": "Wat Chalong"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Wat Chalong"
+]
+},
+{
+"id": "promthep_cape",
+"lat": 7.7621,
+"lon": 98.3053,
+"name": {
+"th": "แหลมพรหมเทพ",
+"en": "Promthep Cape"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Promthep Cape"
+]
+},
+{
+"id": "patong_beach",
+"lat": 7.8931,
+"lon": 98.2983,
+"name": {
+"th": "หาดป่าตอง",
+"en": "Patong Beach"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Patong"
+]
+},
+{
+"id": "kata_karon",
+"lat": 7.8206,
+"lon": 98.2985,
+"name": {
+"th": "หาดกะตะ–กะรน",
+"en": "Kata & Karon Beaches"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Kata Beach",
+"Karon Beach"
+]
+},
+{
+"id": "sirinat_national_park",
+"lat": 8.0881,
+"lon": 98.2961,
+"name": {
+"th": "อุทยานแห่งชาติสิรินาถ (หาดในยาง–ไม้ขาว)",
+"en": "Sirinat National Park (Nai Yang & Mai Khao)"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Sirinat National Park"
+]
+},
+{
+"id": "ko_racha",
+"lat": 7.605,
+"lon": 98.365,
+"name": {
+"th": "เกาะราชาใหญ่",
+"en": "Ko Racha Yai"
+},
+"province": {
+"th": "ภูเก็ต",
+"en": "Phuket"
+},
+"wikiTitles": [
+"Ko Racha Yai"
+]
+},
+{
+"id": "phi_phi",
+"lat": 7.7407,
+"lon": 98.7784,
+"name": {
+"th": "หมู่เกาะพีพี",
+"en": "Phi Phi Islands"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Phi Phi Islands",
+"Maya Bay"
+]
+},
+{
+"id": "railay",
+"lat": 8.0106,
+"lon": 98.8394,
+"name": {
+"th": "หาดไร่เลย์",
+"en": "Railay Beach"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Railay Beach"
+]
+},
+{
+"id": "ao_nang",
+"lat": 8.0314,
+"lon": 98.8225,
+"name": {
+"th": "อ่าวนาง",
+"en": "Ao Nang"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Ao Nang"
+]
+},
+{
+"id": "ko_lanta",
+"lat": 7.6556,
+"lon": 99.0419,
+"name": {
+"th": "เกาะลันตา",
+"en": "Ko Lanta"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Ko Lanta district",
+"Mu Ko Lanta National Park"
+]
+},
+{
+"id": "tiger_cave_temple",
+"lat": 8.1268,
+"lon": 98.9233,
+"name": {
+"th": "วัดถ้ำเสือ",
+"en": "Tiger Cave Temple (Wat Tham Suea)"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Wat Tham Suea (Krabi)"
+]
+},
+{
+"id": "emerald_pool_krabi",
+"lat": 7.9258,
+"lon": 99.2614,
+"name": {
+"th": "สระมรกต",
+"en": "Emerald Pool (Sa Morakot)"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": []
+},
+{
+"id": "khao_phanom_bencha",
+"lat": 8.2419,
+"lon": 98.9153,
+"name": {
+"th": "อุทยานแห่งชาติเขาพนมเบญจา (น้ำตกห้วยโต้)",
+"en": "Khao Phanom Bencha National Park (Huai To Falls)"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Khao Phanom Bencha National Park"
+]
+},
+{
+"id": "than_bok_khorani",
+"lat": 8.39,
+"lon": 98.74,
+"name": {
+"th": "อุทยานแห่งชาติธารโบกขรณี",
+"en": "Than Bok Khorani National Park"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Than Bok Khorani National Park"
+]
+},
+{
+"id": "ko_hong_krabi",
+"lat": 8.08,
+"lon": 98.675,
+"name": {
+"th": "เกาะห้อง",
+"en": "Ko Hong"
+},
+"province": {
+"th": "กระบี่",
+"en": "Krabi"
+},
+"wikiTitles": [
+"Than Bok Khorani National Park"
+]
+},
+{
+"id": "ko_kradan",
+"lat": 7.31,
+"lon": 99.2531,
+"name": {
+"th": "เกาะกระดาน",
+"en": "Ko Kradan"
+},
+"province": {
+"th": "ตรัง",
+"en": "Trang"
+},
+"wikiTitles": [
+"Ko Kradan"
+]
+},
+{
+"id": "ko_muk",
+"lat": 7.37,
+"lon": 99.3,
+"name": {
+"th": "เกาะมุก (ถ้ำมรกต)",
+"en": "Ko Muk (Emerald Cave)"
+},
+"province": {
+"th": "ตรัง",
+"en": "Trang"
+},
+"wikiTitles": [
+"Hat Chao Mai National Park"
+]
+},
+{
+"id": "ko_libong",
+"lat": 7.2472,
+"lon": 99.3922,
+"name": {
+"th": "เกาะลิบง",
+"en": "Ko Libong"
+},
+"province": {
+"th": "ตรัง",
+"en": "Trang"
+},
+"wikiTitles": [
+"Ko Libong",
+"Dugong"
+]
+},
+{
+"id": "hat_chao_mai",
+"lat": 7.397,
+"lon": 99.33,
+"name": {
+"th": "อุทยานแห่งชาติหาดเจ้าไหม",
+"en": "Hat Chao Mai National Park"
+},
+"province": {
+"th": "ตรัง",
+"en": "Trang"
+},
+"wikiTitles": [
+"Hat Chao Mai National Park"
+]
+},
+{
+"id": "trang_town",
+"lat": 7.5563,
+"lon": 99.6114,
+"name": {
+"th": "เมืองตรัง",
+"en": "Trang Town"
+},
+"province": {
+"th": "ตรัง",
+"en": "Trang"
+},
+"wikiTitles": [
+"Trang, Thailand"
+]
+},
+{
+"id": "ko_lipe",
+"lat": 6.4894,
+"lon": 99.3018,
+"name": {
+"th": "เกาะหลีเป๊ะ",
+"en": "Ko Lipe"
+},
+"province": {
+"th": "สตูล",
+"en": "Satun"
+},
+"wikiTitles": [
+"Ko Lipe"
+]
+},
+{
+"id": "ko_tarutao",
+"lat": 6.617,
+"lon": 99.65,
+"name": {
+"th": "เกาะตะรุเตา",
+"en": "Ko Tarutao"
+},
+"province": {
+"th": "สตูล",
+"en": "Satun"
+},
+"wikiTitles": [
+"Ko Tarutao",
+"Tarutao National Marine Park"
+]
+},
+{
+"id": "thale_ban",
+"lat": 6.7089,
+"lon": 100.1683,
+"name": {
+"th": "อุทยานแห่งชาติทะเลบัน",
+"en": "Thale Ban National Park"
+},
+"province": {
+"th": "สตูล",
+"en": "Satun"
+},
+"wikiTitles": [
+"Thale Ban National Park"
+]
+},
+{
+"id": "ko_bulon",
+"lat": 6.83,
+"lon": 99.54,
+"name": {
+"th": "เกาะบุโหลนเล",
+"en": "Ko Bulon Lae"
+},
+"province": {
+"th": "สตูล",
+"en": "Satun"
+},
+"wikiTitles": [
+"Mu Ko Phetra National Park"
+]
+},
+{
+"id": "khao_yai",
+"lat": 14.4392,
+"lon": 101.3722,
+"name": {
+"th": "อุทยานแห่งชาติเขาใหญ่",
+"en": "Khao Yai National Park"
+},
+"province": {
+"th": "นครราชสีมา",
+"en": "Nakhon Ratchasima"
+},
+"wikiTitles": [
+"Khao Yai National Park"
+]
+},
+{
+"id": "phimai_historical_park",
+"lat": 15.2208,
+"lon": 102.4939,
+"name": {
+"th": "อุทยานประวัติศาสตร์พิมาย",
+"en": "Phimai Historical Park"
+},
+"province": {
+"th": "นครราชสีมา",
+"en": "Nakhon Ratchasima"
+},
+"wikiTitles": [
+"Phimai Historical Park"
+]
+},
+{
+"id": "thao_suranari_monument",
+"lat": 14.9747,
+"lon": 102.0977,
+"name": {
+"th": "อนุสาวรีย์ท้าวสุรนารี (ย่าโม)",
+"en": "Thao Suranari Monument (Ya Mo)"
+},
+"province": {
+"th": "นครราชสีมา",
+"en": "Nakhon Ratchasima"
+},
+"wikiTitles": [
+"Thao Suranari Monument"
+]
+},
+{
+"id": "prasat_phanom_wan",
+"lat": 15.0253,
+"lon": 102.1936,
+"name": {
+"th": "ปราสาทหินพนมวัน",
+"en": "Prasat Phanom Wan"
+},
+"province": {
+"th": "นครราชสีมา",
+"en": "Nakhon Ratchasima"
+},
+"wikiTitles": [
+"Prasat Phanom Wan"
+]
+},
+{
+"id": "dan_kwian_pottery_village",
+"lat": 14.873,
+"lon": 102.182,
+"name": {
+"th": "หมู่บ้านเครื่องปั้นดินเผาด่านเกวียน",
+"en": "Dan Kwian Pottery Village"
+},
+"province": {
+"th": "นครราชสีมา",
+"en": "Nakhon Ratchasima"
+},
+"wikiTitles": [
+"Dan Kwian"
+]
+},
+{
+"id": "phanom_rung",
+"lat": 14.5319,
+"lon": 102.9418,
+"name": {
+"th": "อุทยานประวัติศาสตร์พนมรุ้ง",
+"en": "Phanom Rung Historical Park"
+},
+"province": {
+"th": "บุรีรัมย์",
+"en": "Buriram"
+},
+"wikiTitles": [
+"Prasat Phanom Rung"
+]
+},
+{
+"id": "prasat_muang_tam",
+"lat": 14.4967,
+"lon": 102.9836,
+"name": {
+"th": "ปราสาทเมืองต่ำ",
+"en": "Prasat Muang Tam"
+},
+"province": {
+"th": "บุรีรัมย์",
+"en": "Buriram"
+},
+"wikiTitles": [
+"Prasat Muang Tam"
+]
+},
+{
+"id": "chang_arena_circuit",
+"lat": 14.962,
+"lon": 103.087,
+"name": {
+"th": "ช้างอารีนาและสนามช้างอินเตอร์เนชั่นแนลเซอร์กิต",
+"en": "Chang Arena & Chang International Circuit"
+},
+"province": {
+"th": "บุรีรัมย์",
+"en": "Buriram"
+},
+"wikiTitles": [
+"Chang Arena",
+"Chang International Circuit"
+]
+},
+{
+"id": "khao_kradong_forest_park",
+"lat": 14.942,
+"lon": 103.087,
+"name": {
+"th": "วนอุทยานเขากระโดง",
+"en": "Khao Kradong Forest Park"
+},
+"province": {
+"th": "บุรีรัมย์",
+"en": "Buriram"
+},
+"wikiTitles": []
+},
+{
+"id": "surin_elephant_roundup",
+"lat": 14.874,
+"lon": 103.487,
+"name": {
+"th": "งานแสดงช้างสุรินทร์ (สนามศรีณรงค์)",
+"en": "Surin Elephant Round-up (Si Narong Stadium)"
+},
+"province": {
+"th": "สุรินทร์",
+"en": "Surin"
+},
+"wikiTitles": [
+"Surin Elephant Round-up"
+]
+},
+{
+"id": "ban_ta_klang_elephant_village",
+"lat": 15.2608,
+"lon": 103.5003,
+"name": {
+"th": "หมู่บ้านช้างบ้านตากลาง (ศูนย์คชศึกษา)",
+"en": "Ban Ta Klang Elephant Village (Elephant Study Centre)"
+},
+"province": {
+"th": "สุรินทร์",
+"en": "Surin"
+},
+"wikiTitles": [
+"Ban Ta Klang"
+]
+},
+{
+"id": "prasat_sikhoraphum",
+"lat": 14.9456,
+"lon": 103.7989,
+"name": {
+"th": "ปราสาทศีขรภูมิ",
+"en": "Prasat Sikhoraphum"
+},
+"province": {
+"th": "สุรินทร์",
+"en": "Surin"
+},
+"wikiTitles": [
+"Prasat Sikhoraphum"
+]
+},
+{
+"id": "ban_tha_sawang_silk",
+"lat": 14.864,
+"lon": 103.427,
+"name": {
+"th": "หมู่บ้านทอผ้าไหมบ้านท่าสว่าง",
+"en": "Ban Tha Sawang Silk Village"
+},
+"province": {
+"th": "สุรินทร์",
+"en": "Surin"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_pa_maha_chedi_kaew",
+"lat": 14.6185,
+"lon": 104.419,
+"name": {
+"th": "วัดป่ามหาเจดีย์แก้ว (วัดล้านขวด)",
+"en": "Wat Pa Maha Chedi Kaew (Million Bottle Temple)"
+},
+"province": {
+"th": "ศรีสะเกษ",
+"en": "Sisaket"
+},
+"wikiTitles": [
+"Wat Pa Maha Chedi Kaew"
+]
+},
+{
+"id": "prasat_sa_kamphaeng_yai",
+"lat": 15.101,
+"lon": 104.125,
+"name": {
+"th": "ปราสาทสระกำแพงใหญ่",
+"en": "Prasat Sa Kamphaeng Yai"
+},
+"province": {
+"th": "ศรีสะเกษ",
+"en": "Sisaket"
+},
+"wikiTitles": [
+"Prasat Sa Kamphaeng Yai"
+]
+},
+{
+"id": "srinagarindra_park_sisaket",
+"lat": 15.124,
+"lon": 104.331,
+"name": {
+"th": "สวนสมเด็จพระศรีนครินทร์ ศรีสะเกษ",
+"en": "Somdet Phra Srinagarindra Park, Sisaket"
+},
+"province": {
+"th": "ศรีสะเกษ",
+"en": "Sisaket"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_that_rueang_rong",
+"lat": 15.158,
+"lon": 104.34,
+"name": {
+"th": "วัดพระธาตุเรืองรอง",
+"en": "Wat Phra That Rueang Rong"
+},
+"province": {
+"th": "ศรีสะเกษ",
+"en": "Sisaket"
+},
+"wikiTitles": []
+},
+{
+"id": "ubon",
+"lat": 15.2287,
+"lon": 104.8564,
+"name": {
+"th": "เมืองอุบลราชธานี และทุ่งศรีเมือง",
+"en": "Ubon Ratchathani City & Thung Si Mueang"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Ubon Ratchathani",
+"Ubon Ratchathani Candle Festival"
+]
+},
+{
+"id": "pha_taem_national_park",
+"lat": 15.4,
+"lon": 105.517,
+"name": {
+"th": "อุทยานแห่งชาติผาแต้ม",
+"en": "Pha Taem National Park"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Pha Taem National Park"
+]
+},
+{
+"id": "mae_nam_song_si",
+"lat": 15.3196,
+"lon": 105.4979,
+"name": {
+"th": "แม่น้ำสองสี โขงเจียม",
+"en": "Two-Colored River, Khong Chiam"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Khong Chiam district"
+]
+},
+{
+"id": "sam_phan_bok",
+"lat": 15.7897,
+"lon": 105.3956,
+"name": {
+"th": "สามพันโบก",
+"en": "Sam Phan Bok"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Sam Phan Bok"
+]
+},
+{
+"id": "kaeng_tana_national_park",
+"lat": 15.2972,
+"lon": 105.4736,
+"name": {
+"th": "อุทยานแห่งชาติแก่งตะนะ",
+"en": "Kaeng Tana National Park"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Kaeng Tana National Park"
+]
+},
+{
+"id": "wat_nong_pah_pong",
+"lat": 15.1923,
+"lon": 104.8296,
+"name": {
+"th": "วัดหนองป่าพง",
+"en": "Wat Nong Pah Pong"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Wat Nong Pah Pong"
+]
+},
+{
+"id": "wat_sirindhorn_wararam",
+"lat": 15.0574,
+"lon": 105.429,
+"name": {
+"th": "วัดสิรินธรวรารามภูพร้าว",
+"en": "Wat Sirindhorn Wararam (Phu Prao)"
+},
+"province": {
+"th": "อุบลราชธานี",
+"en": "Ubon Ratchathani"
+},
+"wikiTitles": [
+"Wat Sirindhorn Wararam"
+]
+},
+{
+"id": "phaya_thaen_park_yasothon",
+"lat": 15.792,
+"lon": 104.145,
+"name": {
+"th": "สวนสาธารณะพญาแถน และพิพิธภัณฑ์คางคก",
+"en": "Phaya Thaen Park & Toad Museum"
+},
+"province": {
+"th": "ยโสธร",
+"en": "Yasothon"
+},
+"wikiTitles": [
+"Yasothon"
+]
+},
+{
+"id": "phra_that_kong_khao_noi",
+"lat": 15.756,
+"lon": 104.18,
+"name": {
+"th": "พระธาตุก่องข้าวน้อยฆ่าแม่",
+"en": "Phra That Kong Khao Noi"
+},
+"province": {
+"th": "ยโสธร",
+"en": "Yasothon"
+},
+"wikiTitles": []
+},
+{
+"id": "ban_si_than_pillow_village",
+"lat": 15.85,
+"lon": 104.38,
+"name": {
+"th": "หมู่บ้านหมอนขิดบ้านศรีฐาน",
+"en": "Ban Si Than Axe-Pillow Village"
+},
+"province": {
+"th": "ยโสธร",
+"en": "Yasothon"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_mahathat_yasothon",
+"lat": 15.795,
+"lon": 104.146,
+"name": {
+"th": "วัดมหาธาตุ ยโสธร (พระธาตุอานนท์)",
+"en": "Wat Mahathat Yasothon (Phra That Anon)"
+},
+"province": {
+"th": "ยโสธร",
+"en": "Yasothon"
+},
+"wikiTitles": []
+},
+{
+"id": "pa_hin_ngam_national_park",
+"lat": 15.6594,
+"lon": 101.39,
+"name": {
+"th": "อุทยานแห่งชาติป่าหินงาม",
+"en": "Pa Hin Ngam National Park"
+},
+"province": {
+"th": "ชัยภูมิ",
+"en": "Chaiyaphum"
+},
+"wikiTitles": [
+"Pa Hin Ngam National Park"
+]
+},
+{
+"id": "sai_thong_national_park",
+"lat": 15.8714,
+"lon": 101.515,
+"name": {
+"th": "อุทยานแห่งชาติไทรทอง",
+"en": "Sai Thong National Park"
+},
+"province": {
+"th": "ชัยภูมิ",
+"en": "Chaiyaphum"
+},
+"wikiTitles": [
+"Sai Thong National Park"
+]
+},
+{
+"id": "tat_ton_national_park",
+"lat": 15.9878,
+"lon": 102.0414,
+"name": {
+"th": "อุทยานแห่งชาติตาดโตน",
+"en": "Tat Ton National Park"
+},
+"province": {
+"th": "ชัยภูมิ",
+"en": "Chaiyaphum"
+},
+"wikiTitles": [
+"Tat Ton National Park"
+]
+},
+{
+"id": "mo_hin_khao",
+"lat": 16.0733,
+"lon": 101.972,
+"name": {
+"th": "มอหินขาว",
+"en": "Mo Hin Khao"
+},
+"province": {
+"th": "ชัยภูมิ",
+"en": "Chaiyaphum"
+},
+"wikiTitles": []
+},
+{
+"id": "phutthaumthayan_amnat_charoen",
+"lat": 15.8783,
+"lon": 104.6083,
+"name": {
+"th": "พุทธอุทยาน พระมงคลมิ่งเมือง",
+"en": "Phutthaumthayan (Phra Mongkhon Ming Mueang)"
+},
+"province": {
+"th": "อำนาจเจริญ",
+"en": "Amnat Charoen"
+},
+"wikiTitles": [
+"Amnat Charoen province"
+]
+},
+{
+"id": "wat_tham_saeng_phet",
+"lat": 15.984,
+"lon": 104.733,
+"name": {
+"th": "วัดถ้ำแสงเพชร",
+"en": "Wat Tham Saeng Phet"
+},
+"province": {
+"th": "อำนาจเจริญ",
+"en": "Amnat Charoen"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_lao_thep_nimit",
+"lat": 15.683,
+"lon": 104.855,
+"name": {
+"th": "วัดพระเหลาเทพนิมิต",
+"en": "Wat Phra Lao Thep Nimit"
+},
+"province": {
+"th": "อำนาจเจริญ",
+"en": "Amnat Charoen"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phu_tok",
+"lat": 18.1366,
+"lon": 103.9767,
+"name": {
+"th": "วัดเจติยาคีรีวิหาร (ภูทอก)",
+"en": "Wat Phu Tok"
+},
+"province": {
+"th": "บึงกาฬ",
+"en": "Bueng Kan"
+},
+"wikiTitles": [
+"Wat Phu Tok"
+]
+},
+{
+"id": "hin_sam_wan",
+"lat": 18.097,
+"lon": 104.017,
+"name": {
+"th": "หินสามวาฬ (ภูสิงห์)",
+"en": "Three Whale Rock (Hin Sam Wan)"
+},
+"province": {
+"th": "บึงกาฬ",
+"en": "Bueng Kan"
+},
+"wikiTitles": [
+"Bueng Kan province"
+]
+},
+{
+"id": "bueng_khong_long",
+"lat": 17.99,
+"lon": 104.06,
+"name": {
+"th": "บึงโขงหลง",
+"en": "Bueng Khong Long Lake"
+},
+"province": {
+"th": "บึงกาฬ",
+"en": "Bueng Kan"
+},
+"wikiTitles": [
+"Bueng Khong Long"
+]
+},
+{
+"id": "tham_erawan",
+"lat": 17.327,
+"lon": 102.051,
+"name": {
+"th": "ถ้ำเอราวัณ",
+"en": "Tham Erawan (Erawan Cave)"
+},
+"province": {
+"th": "หนองบัวลำภู",
+"en": "Nong Bua Lamphu"
+},
+"wikiTitles": [
+"Nong Bua Lamphu province"
+]
+},
+{
+"id": "wat_tham_klong_phen",
+"lat": 17.33,
+"lon": 102.33,
+"name": {
+"th": "วัดถ้ำกลองเพล",
+"en": "Wat Tham Klong Phen"
+},
+"province": {
+"th": "หนองบัวลำภู",
+"en": "Nong Bua Lamphu"
+},
+"wikiTitles": []
+},
+{
+"id": "naresuan_shrine_nong_bua_lamphu",
+"lat": 17.203,
+"lon": 102.44,
+"name": {
+"th": "ศาลสมเด็จพระนเรศวรมหาราช หนองบัวลำภู",
+"en": "King Naresuan Shrine, Nong Bua Lamphu"
+},
+"province": {
+"th": "หนองบัวลำภู",
+"en": "Nong Bua Lamphu"
+},
+"wikiTitles": [
+"Nong Bua Lamphu province"
+]
+},
+{
+"id": "bueng_kaen_nakhon",
+"lat": 16.4122,
+"lon": 102.8411,
+"name": {
+"th": "บึงแก่นนคร และพระมหาธาตุแก่นนคร",
+"en": "Bueng Kaen Nakhon & Phra Mahathat Kaen Nakhon"
+},
+"province": {
+"th": "ขอนแก่น",
+"en": "Khon Kaen"
+},
+"wikiTitles": [
+"Bueng Kaen Nakhon",
+"Wat Nong Waeng"
+]
+},
+{
+"id": "phu_wiang_national_park",
+"lat": 16.6783,
+"lon": 102.3536,
+"name": {
+"th": "อุทยานแห่งชาติภูเวียง และพิพิธภัณฑ์ไดโนเสาร์",
+"en": "Phu Wiang National Park & Dinosaur Museum"
+},
+"province": {
+"th": "ขอนแก่น",
+"en": "Khon Kaen"
+},
+"wikiTitles": [
+"Phu Wiang National Park"
+]
+},
+{
+"id": "ubolratana_dam",
+"lat": 16.7754,
+"lon": 102.6183,
+"name": {
+"th": "เขื่อนอุบลรัตน์",
+"en": "Ubolratana Dam"
+},
+"province": {
+"th": "ขอนแก่น",
+"en": "Khon Kaen"
+},
+"wikiTitles": [
+"Ubol Ratana Dam"
+]
+},
+{
+"id": "chonnabot_silk_village",
+"lat": 16.08,
+"lon": 102.62,
+"name": {
+"th": "หมู่บ้านผ้าไหมชนบท",
+"en": "Chonnabot Silk Village"
+},
+"province": {
+"th": "ขอนแก่น",
+"en": "Khon Kaen"
+},
+"wikiTitles": [
+"Chonnabot district"
+]
+},
+{
+"id": "ban_chiang",
+"lat": 17.4069,
+"lon": 103.2414,
+"name": {
+"th": "แหล่งมรดกโลกบ้านเชียง",
+"en": "Ban Chiang Archaeological Site"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Ban Chiang"
+]
+},
+{
+"id": "red_lotus_sea",
+"lat": 17.1953,
+"lon": 103.03,
+"name": {
+"th": "ทะเลบัวแดง หนองหาน กุมภวาปี",
+"en": "Red Lotus Sea (Nong Han Kumphawapi)"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Nong Han Kumphawapi"
+]
+},
+{
+"id": "phu_phrabat_historical_park",
+"lat": 17.7255,
+"lon": 102.3576,
+"name": {
+"th": "อุทยานประวัติศาสตร์ภูพระบาท",
+"en": "Phu Phrabat Historical Park"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Phu Phrabat Historical Park"
+]
+},
+{
+"id": "nong_prajak_park",
+"lat": 17.415,
+"lon": 102.778,
+"name": {
+"th": "สวนสาธารณะหนองประจักษ์ศิลปาคม",
+"en": "Nong Prajak Park"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Nong Prajak Park"
+]
+},
+{
+"id": "kham_chanot",
+"lat": 17.62,
+"lon": 103.134,
+"name": {
+"th": "คำชะโนด",
+"en": "Kham Chanot"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Kham Chanot"
+]
+},
+{
+"id": "wat_pa_phu_kon",
+"lat": 17.918,
+"lon": 102.229,
+"name": {
+"th": "วัดป่าภูก้อน",
+"en": "Wat Pa Phu Kon"
+},
+"province": {
+"th": "อุดรธานี",
+"en": "Udon Thani"
+},
+"wikiTitles": [
+"Wat Pa Phu Kon"
+]
+},
+{
+"id": "phu_kradueng",
+"lat": 16.88,
+"lon": 101.8,
+"name": {
+"th": "อุทยานแห่งชาติภูกระดึง",
+"en": "Phu Kradueng National Park"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": [
+"Phu Kradueng National Park"
+]
+},
+{
+"id": "phi_ta_khon_dan_sai",
+"lat": 17.2771,
+"lon": 101.1446,
+"name": {
+"th": "ด่านซ้าย และพิพิธภัณฑ์ผีตาโขน วัดโพนชัย",
+"en": "Dan Sai & Phi Ta Khon Museum (Wat Phon Chai)"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": [
+"Phi Ta Khon"
+]
+},
+{
+"id": "phra_that_si_song_rak",
+"lat": 17.27,
+"lon": 101.1407,
+"name": {
+"th": "พระธาตุศรีสองรัก",
+"en": "Phra That Si Song Rak"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": [
+"Phra That Si Song Rak"
+]
+},
+{
+"id": "chiang_khan",
+"lat": 17.8981,
+"lon": 101.6664,
+"name": {
+"th": "เชียงคาน และแก่งคุดคู้",
+"en": "Chiang Khan & Kaeng Khut Khu"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": [
+"Chiang Khan district"
+]
+},
+{
+"id": "phu_thok_chiang_khan",
+"lat": 17.853,
+"lon": 101.728,
+"name": {
+"th": "ภูทอก เชียงคาน",
+"en": "Phu Thok, Chiang Khan"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": []
+},
+{
+"id": "phu_ruea_national_park",
+"lat": 17.5147,
+"lon": 101.3447,
+"name": {
+"th": "อุทยานแห่งชาติภูเรือ",
+"en": "Phu Ruea National Park"
+},
+"province": {
+"th": "เลย",
+"en": "Loei"
+},
+"wikiTitles": [
+"Phu Ruea National Park"
+]
+},
+{
+"id": "nong_khai",
+"lat": 17.8783,
+"lon": 102.7413,
+"name": {
+"th": "หนองคาย และตลาดท่าเสด็จ",
+"en": "Nong Khai Riverside & Tha Sadet Market"
+},
+"province": {
+"th": "หนองคาย",
+"en": "Nong Khai"
+},
+"wikiTitles": [
+"Nong Khai"
+]
+},
+{
+"id": "sala_kaew_ku",
+"lat": 17.8578,
+"lon": 102.7838,
+"name": {
+"th": "ศาลาแก้วกู่",
+"en": "Sala Kaew Ku"
+},
+"province": {
+"th": "หนองคาย",
+"en": "Nong Khai"
+},
+"wikiTitles": [
+"Sala Keoku"
+]
+},
+{
+"id": "wat_pho_chai_nong_khai",
+"lat": 17.874,
+"lon": 102.755,
+"name": {
+"th": "วัดโพธิ์ชัย (หลวงพ่อพระใส)",
+"en": "Wat Pho Chai (Luang Pho Phra Sai)"
+},
+"province": {
+"th": "หนองคาย",
+"en": "Nong Khai"
+},
+"wikiTitles": []
+},
+{
+"id": "phon_phisai_naga_fireballs",
+"lat": 18.021,
+"lon": 103.076,
+"name": {
+"th": "โพนพิสัย (จุดชมบั้งไฟพญานาค)",
+"en": "Phon Phisai (Naga Fireball Viewing)"
+},
+"province": {
+"th": "หนองคาย",
+"en": "Nong Khai"
+},
+"wikiTitles": [
+"Naga fireball"
+]
+},
+{
+"id": "thai_lao_friendship_bridge",
+"lat": 17.8783,
+"lon": 102.7128,
+"name": {
+"th": "สะพานมิตรภาพไทย–ลาว (หนองคาย)",
+"en": "Thai–Lao Friendship Bridge (Nong Khai)"
+},
+"province": {
+"th": "หนองคาย",
+"en": "Nong Khai"
+},
+"wikiTitles": [
+"First Thai–Lao Friendship Bridge"
+]
+},
+{
+"id": "phra_that_na_dun",
+"lat": 15.706,
+"lon": 103.221,
+"name": {
+"th": "พระธาตุนาดูน",
+"en": "Phra That Na Dun"
+},
+"province": {
+"th": "มหาสารคาม",
+"en": "Maha Sarakham"
+},
+"wikiTitles": []
+},
+{
+"id": "ku_santarat",
+"lat": 15.722,
+"lon": 103.192,
+"name": {
+"th": "กู่สันตรัตน์",
+"en": "Ku Santarat"
+},
+"province": {
+"th": "มหาสารคาม",
+"en": "Maha Sarakham"
+},
+"wikiTitles": []
+},
+{
+"id": "kosamphi_forest_park",
+"lat": 16.251,
+"lon": 103.068,
+"name": {
+"th": "วนอุทยานโกสัมพี",
+"en": "Kosamphi Forest Park"
+},
+"province": {
+"th": "มหาสารคาม",
+"en": "Maha Sarakham"
+},
+"wikiTitles": []
+},
+{
+"id": "bueng_phlan_chai",
+"lat": 16.055,
+"lon": 103.652,
+"name": {
+"th": "บึงพลาญชัย",
+"en": "Bueng Phlan Chai"
+},
+"province": {
+"th": "ร้อยเอ็ด",
+"en": "Roi Et"
+},
+"wikiTitles": [
+"Roi Et"
+]
+},
+{
+"id": "wat_burapha_phiram",
+"lat": 16.053,
+"lon": 103.662,
+"name": {
+"th": "วัดบูรพาภิราม",
+"en": "Wat Burapha Phiram"
+},
+"province": {
+"th": "ร้อยเอ็ด",
+"en": "Roi Et"
+},
+"wikiTitles": [
+"Roi Et province"
+]
+},
+{
+"id": "phra_maha_chedi_chai_mongkhon",
+"lat": 16.308,
+"lon": 104.216,
+"name": {
+"th": "พระมหาเจดีย์ชัยมงคล",
+"en": "Phra Maha Chedi Chai Mongkhon"
+},
+"province": {
+"th": "ร้อยเอ็ด",
+"en": "Roi Et"
+},
+"wikiTitles": [
+"Phra Maha Chedi Chai Mongkhon"
+]
+},
+{
+"id": "sirindhorn_museum",
+"lat": 16.6922,
+"lon": 103.5239,
+"name": {
+"th": "พิพิธภัณฑ์สิรินธร (ภูกุ้มข้าว)",
+"en": "Sirindhorn Museum (Phu Kum Khao)"
+},
+"province": {
+"th": "กาฬสินธุ์",
+"en": "Kalasin"
+},
+"wikiTitles": [
+"Sirindhorn Museum"
+]
+},
+{
+"id": "lam_pao_dam",
+"lat": 16.605,
+"lon": 103.44,
+"name": {
+"th": "เขื่อนลำปาว และหาดดอกเกด",
+"en": "Lam Pao Dam & Hat Dok Ket"
+},
+"province": {
+"th": "กาฬสินธุ์",
+"en": "Kalasin"
+},
+"wikiTitles": [
+"Lam Pao Dam"
+]
+},
+{
+"id": "phra_that_yakhu",
+"lat": 16.276,
+"lon": 103.645,
+"name": {
+"th": "พระธาตุยาคู เมืองฟ้าแดดสงยาง",
+"en": "Phra That Yakhu (Fa Daet Song Yang)"
+},
+"province": {
+"th": "กาฬสินธุ์",
+"en": "Kalasin"
+},
+"wikiTitles": []
+},
+{
+"id": "phra_that_choeng_chum",
+"lat": 17.164,
+"lon": 104.149,
+"name": {
+"th": "วัดพระธาตุเชิงชุม",
+"en": "Wat Phra That Choeng Chum"
+},
+"province": {
+"th": "สกลนคร",
+"en": "Sakon Nakhon"
+},
+"wikiTitles": [
+"Wat Phra That Choeng Chum"
+]
+},
+{
+"id": "phra_that_narai_cheng_weng",
+"lat": 17.135,
+"lon": 104.125,
+"name": {
+"th": "พระธาตุนารายณ์เจงเวง",
+"en": "Phra That Narai Cheng Weng"
+},
+"province": {
+"th": "สกลนคร",
+"en": "Sakon Nakhon"
+},
+"wikiTitles": []
+},
+{
+"id": "phu_phan_rajaniwet",
+"lat": 17.057,
+"lon": 104.017,
+"name": {
+"th": "พระตำหนักภูพานราชนิเวศน์",
+"en": "Phu Phan Rajaniwet Palace"
+},
+"province": {
+"th": "สกลนคร",
+"en": "Sakon Nakhon"
+},
+"wikiTitles": [
+"Phu Phan Rajaniwet Palace"
+]
+},
+{
+"id": "wat_tham_pha_daen",
+"lat": 17.07,
+"lon": 104.08,
+"name": {
+"th": "วัดถ้ำผาแด่น",
+"en": "Wat Tham Pha Daen"
+},
+"province": {
+"th": "สกลนคร",
+"en": "Sakon Nakhon"
+},
+"wikiTitles": []
+},
+{
+"id": "phra_that_phanom",
+"lat": 16.9424,
+"lon": 104.7239,
+"name": {
+"th": "วัดพระธาตุพนม",
+"en": "Wat Phra That Phanom"
+},
+"province": {
+"th": "นครพนม",
+"en": "Nakhon Phanom"
+},
+"wikiTitles": [
+"Phra That Phanom"
+]
+},
+{
+"id": "nakhon_phanom_riverside",
+"lat": 17.408,
+"lon": 104.781,
+"name": {
+"th": "ริมโขงนครพนม",
+"en": "Nakhon Phanom Mekong Riverside"
+},
+"province": {
+"th": "นครพนม",
+"en": "Nakhon Phanom"
+},
+"wikiTitles": [
+"Nakhon Phanom"
+]
+},
+{
+"id": "ho_chi_minh_house_ban_na_chok",
+"lat": 17.437,
+"lon": 104.765,
+"name": {
+"th": "บ้านลุงโฮ บ้านนาจอก",
+"en": "Ho Chi Minh House, Ban Na Chok"
+},
+"province": {
+"th": "นครพนม",
+"en": "Nakhon Phanom"
+},
+"wikiTitles": []
+},
+{
+"id": "wat_phra_that_renu",
+"lat": 17.045,
+"lon": 104.638,
+"name": {
+"th": "วัดพระธาตุเรณู",
+"en": "Wat Phra That Renu"
+},
+"province": {
+"th": "นครพนม",
+"en": "Nakhon Phanom"
+},
+"wikiTitles": []
+},
+{
+"id": "indochina_market_mukdahan",
+"lat": 16.545,
+"lon": 104.727,
+"name": {
+"th": "ตลาดอินโดจีน มุกดาหาร",
+"en": "Indochina Market, Mukdahan"
+},
+"province": {
+"th": "มุกดาหาร",
+"en": "Mukdahan"
+},
+"wikiTitles": []
+},
+{
+"id": "ho_kaeo_mukdahan",
+"lat": 16.528,
+"lon": 104.74,
+"name": {
+"th": "หอแก้วมุกดาหาร",
+"en": "Mukdahan Tower (Ho Kaeo Mukdahan)"
+},
+"province": {
+"th": "มุกดาหาร",
+"en": "Mukdahan"
+},
+"wikiTitles": [
+"Ho Kaeo Mukdahan"
+]
+},
+{
+"id": "phu_pha_thoep_national_park",
+"lat": 16.4392,
+"lon": 104.7567,
+"name": {
+"th": "อุทยานแห่งชาติภูผาเทิบ (มุกดาหาร)",
+"en": "Phu Pha Thoep National Park"
+},
+"province": {
+"th": "มุกดาหาร",
+"en": "Mukdahan"
+},
+"wikiTitles": [
+"Phu Pha Thoep National Park"
+]
+},
+{
+"id": "phu_sa_dok_bua_national_park",
+"lat": 16.2028,
+"lon": 104.8,
+"name": {
+"th": "อุทยานแห่งชาติภูสระดอกบัว",
+"en": "Phu Sa Dok Bua National Park"
+},
+"province": {
+"th": "มุกดาหาร",
+"en": "Mukdahan"
+},
+"wikiTitles": [
+"Phu Sa Dok Bua National Park"
+]
+}
+]
