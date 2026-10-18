@@ -1,272 +1,478 @@
 [
  {
-  "id": "bus_hat_yai_clock_tower",
+  "id": "bus_mochit_van",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้หน้าหอนาฬิกาหาดใหญ่",
-   "en": "Hat Yai Clock Tower van stop"
+   "th": "สถานีเดินรถโดยสารขนาดเล็ก จตุจักร (ท่ารถตู้หมอชิตใหม่)",
+   "en": "Mo Chit New Van Terminal (Chatuchak minibus station)"
   },
   "province": {
-   "th": "สงขลา",
-   "en": "Songkhla"
+   "th": "กรุงเทพมหานคร",
+   "en": "Bangkok"
   },
-  "lat": 7.0076,
-  "lon": 100.4717,
+  "lat": 13.8112,
+  "lon": 100.5507,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_hat_yai_talat_kaset",
+  "id": "bus_rangsit_future_park",
   "type": "BUS",
   "name": {
-   "th": "คิวรถตู้ตลาดเกษตร หาดใหญ่ใน",
-   "en": "Talat Kaset van queue, Hat Yai Nai"
+   "th": "ท่ารถตู้รังสิต (ตรงข้ามฟิวเจอร์พาร์ค รังสิต)",
+   "en": "Rangsit van queue (opposite Future Park Rangsit)"
   },
   "province": {
-   "th": "สงขลา",
-   "en": "Songkhla"
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
   },
-  "lat": 7.013,
-  "lon": 100.462,
+  "lat": 13.9885,
+  "lon": 100.615,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_songkhla",
+  "id": "bus_pinklao",
   "type": "BUS",
   "name": {
-   "th": "สถานีขนส่งผู้โดยสารสงขลา",
-   "en": "Songkhla Bus Terminal"
+   "th": "คิวรถตู้ปิ่นเกล้า (สายใต้เก่า)",
+   "en": "Pinklao van terminal (Old Southern Terminal, Sai Tai Kao)"
   },
   "province": {
-   "th": "สงขลา",
-   "en": "Songkhla"
+   "th": "กรุงเทพมหานคร",
+   "en": "Bangkok"
   },
-  "lat": 7.1885,
-  "lon": 100.598,
+  "lat": 13.7835,
+  "lon": 100.4745,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_betong",
+  "id": "bus_saraburi",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้เบตง (ข้างเบตงพลาซ่า)",
-   "en": "Betong van stop (by Betong Plaza)"
+   "th": "จุดจอดรถตู้สระบุรี (ถ.พหลโยธิน แยก รพ.สระบุรี)",
+   "en": "Saraburi van stop (Phahonyothin Rd, hospital junction)"
   },
   "province": {
-   "th": "ยะลา",
-   "en": "Yala"
+   "th": "สระบุรี",
+   "en": "Saraburi"
   },
-  "lat": 5.7737,
-  "lon": 101.0715,
+  "lat": 14.531,
+  "lon": 100.911,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "pier_tammalang",
-  "type": "PIER",
-  "name": {
-   "th": "ท่าเรือตำมะลัง",
-   "en": "Tammalang Pier"
-  },
-  "province": {
-   "th": "สตูล",
-   "en": "Satun"
-  },
-  "lat": 6.552,
-  "lon": 100.07,
-  "phone": null,
-  "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
- },
- {
-  "id": "pier_pak_meng",
-  "type": "PIER",
-  "name": {
-   "th": "ท่าเรือปากเมง",
-   "en": "Pak Meng Pier"
-  },
-  "province": {
-   "th": "ตรัง",
-   "en": "Trang"
-  },
-  "lat": 7.499,
-  "lon": 99.312,
-  "phone": null,
-  "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
- },
- {
-  "id": "bus_chumphon_town",
+  "id": "bus_phra_phutthabat",
   "type": "BUS",
   "name": {
-   "th": "คิวรถตู้ชุมพร (ตรงข้ามสำนักงานป่าไม้)",
-   "en": "Chumphon town van queue (opp. Forest Office)"
+   "th": "พระพุทธบาท (หน้าวัดพระพุทธบาท)",
+   "en": "Phra Phutthabat (Wat Phra Phutthabat)"
   },
   "province": {
-   "th": "ชุมพร",
-   "en": "Chumphon"
+   "th": "สระบุรี",
+   "en": "Saraburi"
   },
-  "lat": 10.4955,
-  "lon": 99.1775,
+  "lat": 14.72,
+  "lon": 100.795,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_sichon",
+  "id": "bus_nakhon_ratchasima_2",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้สิชล",
-   "en": "Sichon van stop"
+   "th": "สถานีขนส่งผู้โดยสารนครราชสีมา แห่งที่ 1 (บขส. เก่า)",
+   "en": "Nakhon Ratchasima (Korat) Bus Terminal 1 (old terminal)"
   },
   "province": {
-   "th": "นครศรีธรรมราช",
-   "en": "Nakhon Si Thammarat"
+   "th": "นครราชสีมา",
+   "en": "Nakhon Ratchasima"
   },
-  "lat": 9.007,
-  "lon": 99.903,
+  "lat": 14.979,
+  "lon": 102.091,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_khanom",
+  "id": "bus_sikhio",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้ขนอม",
-   "en": "Khanom van stop"
+   "th": "สีคิ้ว (จุดจอดรถ ถ.มิตรภาพ)",
+   "en": "Sikhio (Mittraphap Rd stop)"
   },
   "province": {
-   "th": "นครศรีธรรมราช",
-   "en": "Nakhon Si Thammarat"
+   "th": "นครราชสีมา",
+   "en": "Nakhon Ratchasima"
   },
-  "lat": 9.237,
-  "lon": 99.859,
+  "lat": 14.888,
+  "lon": 101.723,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_klaeng",
+  "id": "bus_chok_chai",
   "type": "BUS",
   "name": {
-   "th": "แยกสามย่าน แกลง (จุดจอดรถตู้)",
-   "en": "Klaeng (Sam Yan junction) van stop"
+   "th": "โชคชัย (จุดจอดรถ)",
+   "en": "Chok Chai stop"
   },
   "province": {
-   "th": "ระยอง",
-   "en": "Rayong"
+   "th": "นครราชสีมา",
+   "en": "Nakhon Ratchasima"
   },
-  "lat": 12.7785,
-  "lon": 101.654,
+  "lat": 14.731,
+  "lon": 102.166,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_cha_am",
+  "id": "bus_nang_rong",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้ชะอำ",
-   "en": "Cha-am van stop"
+   "th": "นางรอง (สถานีขนส่ง/จุดจอดรถ)",
+   "en": "Nang Rong bus stop (for Phanom Rung)"
   },
   "province": {
-   "th": "เพชรบุรี",
-   "en": "Phetchaburi"
+   "th": "บุรีรัมย์",
+   "en": "Buriram"
   },
-  "lat": 12.8005,
-  "lon": 99.967,
+  "lat": 14.638,
+  "lon": 102.796,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_hua_hin_bluport",
+  "id": "bus_phimai",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้หัวหิน (บลูพอร์ต)",
-   "en": "Hua Hin van stop (Bluport)"
+   "th": "สถานีขนส่งผู้โดยสาร บขส. พิมาย",
+   "en": "Phimai Bus Station"
+  },
+  "province": {
+   "th": "นครราชสีมา",
+   "en": "Nakhon Ratchasima"
+  },
+  "lat": 15.2235,
+  "lon": 102.4945,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_ban_phai",
+  "type": "BUS",
+  "name": {
+   "th": "บ้านไผ่ (หน้านครชัยแอร์)",
+   "en": "Ban Phai (in front of Nakhonchai Air office)"
+  },
+  "province": {
+   "th": "ขอนแก่น",
+   "en": "Khon Kaen"
+  },
+  "lat": 16.059,
+  "lon": 102.732,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_phon",
+  "type": "BUS",
+  "name": {
+   "th": "สถานีขนส่งผู้โดยสาร อ.พล",
+   "en": "Phon District Bus Station"
+  },
+  "province": {
+   "th": "ขอนแก่น",
+   "en": "Khon Kaen"
+  },
+  "lat": 15.815,
+  "lon": 102.6,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_chang_phueak",
+  "type": "BUS",
+  "name": {
+   "th": "สถานีขนส่งผู้โดยสารเชียงใหม่ แห่งที่ 1 (ช้างเผือก)",
+   "en": "Chiang Mai Bus Terminal 1 (Chang Phueak)"
+  },
+  "province": {
+   "th": "เชียงใหม่",
+   "en": "Chiang Mai"
+  },
+  "lat": 18.799,
+  "lon": 98.985,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_warorot",
+  "type": "BUS",
+  "name": {
+   "th": "สะพานลอยหน้ากาดหลวง (ตลาดวโรรส)",
+   "en": "Warorot Market / Kad Luang (footbridge stop)"
+  },
+  "province": {
+   "th": "เชียงใหม่",
+   "en": "Chiang Mai"
+  },
+  "lat": 18.79,
+  "lon": 99.0,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_lamphun_museum",
+  "type": "BUS",
+  "name": {
+   "th": "หน้าพิพิธภัณฑ์ หริภุญไชย ลำพูน",
+   "en": "Lamphun – Hariphunchai National Museum stop"
+  },
+  "province": {
+   "th": "ลำพูน",
+   "en": "Lamphun"
+  },
+  "lat": 18.577,
+  "lon": 99.009,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_mae_sariang",
+  "type": "BUS",
+  "name": {
+   "th": "สถานีรถมินิบัสแม่สะเรียง",
+   "en": "Mae Sariang minibus station"
+  },
+  "province": {
+   "th": "แม่ฮ่องสอน",
+   "en": "Mae Hong Son"
+  },
+  "lat": 18.162,
+  "lon": 97.934,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_up_phayao",
+  "type": "BUS",
+  "name": {
+   "th": "หน้ามหาวิทยาลัยพะเยา",
+   "en": "University of Phayao (front gate, Hwy 1)"
+  },
+  "province": {
+   "th": "พะเยา",
+   "en": "Phayao"
+  },
+  "lat": 19.03,
+  "lon": 99.896,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_that_phanom",
+  "type": "BUS",
+  "name": {
+   "th": "ธาตุพนม (จุดจอดรถ/สถานีขนส่ง)",
+   "en": "That Phanom bus stop"
+  },
+  "province": {
+   "th": "นครพนม",
+   "en": "Nakhon Phanom"
+  },
+  "lat": 16.945,
+  "lon": 104.706,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_mae_sot_market",
+  "type": "BUS",
+  "name": {
+   "th": "คิวรถตู้แม่สอด–ตาก (ใต้ตลาดแม่สอด)",
+   "en": "Mae Sot van queue (south end of the market)"
+  },
+  "province": {
+   "th": "ตาก",
+   "en": "Tak"
+  },
+  "lat": 16.717,
+  "lon": 98.572,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_thong_pha_phum",
+  "type": "BUS",
+  "name": {
+   "th": "ตลาดทองผาภูมิ (ท่ารถตู้)",
+   "en": "Thong Pha Phum market van stop"
+  },
+  "province": {
+   "th": "กาญจนบุรี",
+   "en": "Kanchanaburi"
+  },
+  "lat": 14.744,
+  "lon": 98.634,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_sangkhlaburi",
+  "type": "BUS",
+  "name": {
+   "th": "ท่ารถตู้สังขละบุรี",
+   "en": "Sangkhlaburi van stop (near bus station/market)"
+  },
+  "province": {
+   "th": "กาญจนบุรี",
+   "en": "Kanchanaburi"
+  },
+  "lat": 15.154,
+  "lon": 98.452,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_three_pagodas",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้ด่านเจดีย์สามองค์",
+   "en": "Three Pagodas Pass van stop"
+  },
+  "province": {
+   "th": "กาญจนบุรี",
+   "en": "Kanchanaburi"
+  },
+  "lat": 15.295,
+  "lon": 98.394,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_ratchaburi",
+  "type": "BUS",
+  "name": {
+   "th": "สถานีขนส่งผู้โดยสารราชบุรี",
+   "en": "Ratchaburi Bus Terminal"
+  },
+  "province": {
+   "th": "ราชบุรี",
+   "en": "Ratchaburi"
+  },
+  "lat": 13.539,
+  "lon": 99.821,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
+ },
+ {
+  "id": "bus_hua_hin_market_village",
+  "type": "BUS",
+  "name": {
+   "th": "ห้างมาร์เก็ตวิลเลจ หัวหิน",
+   "en": "Market Village Hua Hin (van stop)"
   },
   "province": {
    "th": "ประจวบคีรีขันธ์",
    "en": "Prachuap Khiri Khan"
   },
-  "lat": 12.556,
-  "lon": 99.953,
+  "lat": 12.553,
+  "lon": 99.959,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_pranburi",
+  "id": "bus_silpakorn_nakhon_pathom",
   "type": "BUS",
   "name": {
-   "th": "จุดจอดรถตู้ปราณบุรี",
-   "en": "Pran Buri van stop"
+   "th": "คิวรถตู้หน้า ม.ศิลปากร (พระราชวังสนามจันทร์)",
+   "en": "Silpakorn University (Sanam Chandra) van queue"
   },
   "province": {
-   "th": "ประจวบคีรีขันธ์",
-   "en": "Prachuap Khiri Khan"
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
   },
-  "lat": 12.392,
-  "lon": 99.912,
+  "lat": 13.8195,
+  "lon": 100.0415,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_si_racha",
+  "id": "bus_suphanburi",
   "type": "BUS",
   "name": {
-   "th": "ศรีราชา (จุดจอดรถตู้ ถ.สุขุมวิท)",
-   "en": "Si Racha (Sukhumvit Rd van stop)"
+   "th": "สถานีขนส่งผู้โดยสารสุพรรณบุรี",
+   "en": "Suphanburi Bus Terminal"
   },
   "province": {
-   "th": "ชลบุรี",
-   "en": "Chonburi"
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
   },
-  "lat": 13.168,
-  "lon": 100.931,
+  "lat": 14.47,
+  "lon": 100.118,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
  },
  {
-  "id": "bus_sattahip",
+  "id": "bus_ayutthaya_chao_phrom",
   "type": "BUS",
   "name": {
-   "th": "สัตหีบ (จุดจอดรถตู้ ถ.สุขุมวิท)",
-   "en": "Sattahip (Sukhumvit Rd van stop)"
+   "th": "คิวรถตู้ตลาดเจ้าพรหม อยุธยา",
+   "en": "Ayutthaya – Chao Phrom Market van stop"
   },
   "province": {
-   "th": "ชลบุรี",
-   "en": "Chonburi"
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
   },
-  "lat": 12.665,
-  "lon": 100.901,
+  "lat": 14.359,
+  "lon": 100.577,
   "phone": null,
   "website": null,
-  "islandGroup": null,
-  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+  "islandGroup": null
+ },
+ {
+  "id": "bus_salaya",
+  "type": "BUS",
+  "name": {
+   "th": "มหิดล ศาลายา (จุดจอดรถตู้)",
+   "en": "Salaya – Mahidol University stop"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "lat": 13.794,
+  "lon": 100.324,
+  "phone": null,
+  "website": null,
+  "islandGroup": null
  }
 ]
