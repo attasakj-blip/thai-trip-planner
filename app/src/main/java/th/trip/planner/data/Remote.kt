@@ -58,10 +58,14 @@ data class Poi(
     val logo: String? = null,
     val beds: Int? = null,
     val wikidata: String? = null,
+    /** Wikimedia Commons page of the photo (credit). */
+    val photoPage: String? = null,
 )
 
 /** Calls to outside services. Every call returns a Result so the UI can show "not available". */
 class Remote {
+    /** Where downloaded nearby-place lists are kept for offline use (set by the app). */
+    var cacheDir: java.io.File? = null
     private val http = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
@@ -289,6 +293,51 @@ class Remote {
             "police" -> withCommonsPhotos(withLogos(top), lat, lon, Regex("(?i)police|ตำรวจ|สภ\\.|สน\\."))
             else -> top
         }
+    }
+
+    /**
+     * Restaurants, cafés, hospitals, police and fire stations around a tourist place, prepared
+     * every week from OpenStreetMap (with phones and photos added) and published on GitHub Pages.
+     * Much more reliable than asking the busy public map servers from the phone. Kept on the phone
+     * so it also works offline.
+     */
+    private suspend fun placePois(placeId: String): Map<String, kotlinx.serialization.json.JsonArray>? {
+        val file = cacheDir?.let { java.io.File(it, "$placeId.json") }
+        val fresh = file?.takeIf { it.exists() && System.currentTimeMillis() - it.lastModified() < 7 * 86400_000L }
+        val text = fresh?.readText() ?: runCatching { get(DataSync.BASE + "pois/$placeId.json") }.getOrNull()?.also { t -> runCatching { file?.writeText(t) } }
+            ?: file?.takeIf { it.exists() }?.readText() ?: return null
+        val o = runCatching { json.parseToJsonElement(text).jsonObject }.getOrNull() ?: return null
+        return o.mapNotNull { (k, v) -> (v as? kotlinx.serialization.json.JsonArray)?.let { k to it } }.toMap()
+    }
+
+    /**
+     * Places of [type] (restaurant, cafe, hospital, police, fire) near [placeId] from the weekly
+     * lists, with distances measured from [lat]/[lon]; falls back to the live map search.
+     */
+    suspend fun poisFor(placeId: String?, lat: Double, lon: Double, type: String, thai: Boolean): Result<List<Poi>> {
+        if (placeId != null) {
+            val arr = runCatching { placePois(placeId)?.get(type) }.getOrNull()
+            if (arr != null) return runCatching {
+                arr.mapNotNull { e ->
+                    val o = e.obj() ?: return@mapNotNull null
+                    val n = o["name"].obj()
+                    val name = (if (thai) n?.get("th").str() else n?.get("en").str()) ?: n?.get("th").str() ?: return@mapNotNull null
+                    val pLat = o["lat"].num() ?: return@mapNotNull null
+                    val pLon = o["lon"].num() ?: return@mapNotNull null
+                    Poi(
+                        name = name, address = o["address"].str() ?: "", phone = o["phone"].str(), website = o["website"].str(),
+                        hours = o["hours"].str(), cuisine = o["cuisine"].str(), emergency = o["emergency"]?.let { it.toString() == "true" } == true,
+                        lat = pLat, lon = pLon, distanceKm = TripLogic.distanceKm(lat, lon, pLat, pLon),
+                        health = o["health"].str()?.let { h -> th.trip.planner.logic.Health.Kind.entries.firstOrNull { it.name == h } },
+                        owner = o["owner"].str()?.let { h -> th.trip.planner.logic.Health.Owner.entries.firstOrNull { it.name == h } },
+                        logo = o["photo"].str(), beds = o["beds"].num()?.toInt(), photoPage = o["photoPage"].str(),
+                    )
+                }
+            }
+        }
+        // Not one of the app's places (e.g. GPS on the road): ask the map servers, twice if needed.
+        val first = nearby(lat, lon, type, thai)
+        return if (first.isSuccess) first else { kotlinx.coroutines.delay(1500); nearby(lat, lon, type, thai) }
     }
 
     fun isPoliceStation(name: String) = Regex("(?i)สถานีตำรวจ|สภ\\.|สน\\.|police station|tourist police|ตำรวจท่องเที่ยว").containsMatchIn(name)

@@ -9,7 +9,12 @@ on:
     paths:
       - app/src/main/assets/places.json
       - app/src/main/assets/hubs.json
+      - app/src/main/assets/routes.json
+      - app/src/main/assets/access.json
+      - app/src/main/assets/rail.json
       - scripts/publish_data.py
+      - scripts/build_pois.py
+      - scripts/phone_sources.json
   workflow_dispatch:
 
 permissions:
@@ -24,6 +29,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -34,6 +40,17 @@ jobs:
           python-version: "3.12"
       - name: Check and build data files
         run: python3 scripts/publish_data.py
+      # Restaurants, cafés, hospitals, police and fire stations near each place, from OpenStreetMap.
+      # The app reads these first because the live map servers are often too busy to answer.
+      - name: Install map tools
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq osmium-tool && pip install -q osmium
+      - name: Download Thailand map
+        run: curl -sSL --retry 3 -o th.pbf https://download.geofabrik.de/asia/thailand-latest.osm.pbf
+      - name: Build nearby places
+        run: |
+          osmium tags-filter th.pbf nwr/amenity=restaurant,food_court,cafe,hospital,clinic,doctors,police,fire_station nwr/healthcare=hospital,clinic -o pois.osm.pbf
+          python3 scripts/build_pois.py pois.osm.pbf
+          rm -f th.pbf pois.osm.pbf
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

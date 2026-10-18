@@ -54,6 +54,7 @@ class TripApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
         repo = Repository(this)
+        remote.cacheDir = java.io.File(filesDir, "pois").apply { mkdirs() }
         CheckInScheduler.createChannel(this)
         // Check GitHub Pages for this week's data; offline is fine, the app keeps what it has.
         Thread { runCatching { th.trip.planner.data.DataSync.run(repo) } }.start()

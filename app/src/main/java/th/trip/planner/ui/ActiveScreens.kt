@@ -189,8 +189,16 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
                 // Local services near where the traveller is now (GPS), else near today's place.
                 val here = (status as? TripStatus.AtPlace)?.let { vm.repo.placeById[trip.stops[it.stopIndex].placeId] }
                 when {
-                    loc != null -> EmergencyCard(vm, Math.round(loc.latitude * 50) / 50.0, Math.round(loc.longitude * 50) / 50.0) // ~2 km steps so walking around does not refetch
-                    here != null -> EmergencyCard(vm, here.lat, here.lon, here.name.get(LocalThai.current))
+                    loc != null -> {
+                        val gLat = Math.round(loc.latitude * 50) / 50.0 // ~2 km steps so walking around does not refetch
+                        val gLon = Math.round(loc.longitude * 50) / 50.0
+                        // The ready-made list of the nearest trip place, when the traveller is close to one.
+                        val near = trip.stops.mapNotNull { vm.repo.placeById[it.placeId] }
+                            .minByOrNull { th.trip.planner.logic.TripLogic.distanceKm(gLat, gLon, it.lat, it.lon) }
+                            ?.takeIf { th.trip.planner.logic.TripLogic.distanceKm(gLat, gLon, it.lat, it.lon) <= 20 }
+                        EmergencyCard(vm, gLat, gLon, placeId = near?.id)
+                    }
+                    here != null -> EmergencyCard(vm, here.lat, here.lon, here.name.get(LocalThai.current), here.id)
                     else -> EmergencyCard()
                 }
             }
@@ -207,6 +215,7 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
                     "food" to tr("1. 🍜 ร้านอาหาร / ร้านกาแฟ", "1. 🍜 Restaurants / cafés"),
                     "hospital" to tr("2. 🏥 โรงพยาบาล", "2. 🏥 Hospitals"),
                     "police" to tr("3. 👮 สถานีตำรวจ", "3. 👮 Police stations"),
+                    "fire" to tr("4. 🚒 สถานีดับเพลิง", "4. 🚒 Fire stations"),
                 ).forEach { (kind, label) ->
                     Button(onClick = { menuFor = null; nav.navigate(Routes.nearby(i, kind)) }, modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) { Text(label) }
                 }
