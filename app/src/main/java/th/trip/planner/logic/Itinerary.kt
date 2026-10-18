@@ -201,6 +201,7 @@ object Itinerary {
         val found = LinkedHashMap<String, Journey>()
 
         fun keep(j: Journey) {
+            if (!sensibleRoute(j, directKmFor(from, to))) return
             val old = found[j.signature]
             if (old == null || j.arrive < old.arrive) found[j.signature] = j
         }
@@ -212,38 +213,77 @@ object Itinerary {
 
         // Different searches give different kinds of answers: by start time and with / without flying.
         val modeSets = listOf(TravelMode.entries.toSet(), TravelMode.entries.toSet() - TravelMode.FLIGHT, TravelMode.entries.toSet() - TravelMode.BOAT)
-        for (modes in modeSets) for (start in listOf(earliest, earliest + 240, earliest + 480, earliest + 720)) {
-            search(from, to, start, hubs, tables.filter { it.route.mode in modes }).forEach { j -> keep(tighten(j, tables)) }
+        // Also search with only short taxi rides to the first station, so bus/van/train ways
+        // aren't hidden by a long taxi to the airport.
+        for (maxAccess in listOf(Double.MAX_VALUE, 25.0)) for (modes in modeSets) for (start in listOf(earliest, earliest + 240, earliest + 480, earliest + 720)) {
+            search(from, to, start, hubs, tables.filter { it.route.mode in modes }, maxAccess).forEach { j -> keep(tighten(j, tables)) }
         }
         if (found.isEmpty()) return emptyList()
 
         // Same connections at other times of the day.
-        val opts = found.values.map { j ->
-            val alts = alternatives(j, from, to, tables, earliest, timesPerOption)
-            // For each arrival time keep the latest start (no needless waiting).
-            val all = (alts + j).groupBy { it.arrive }.values.map { g -> g.maxBy { it.depart } }
-            Option(all.distinctBy { it.depart }.sortedBy { it.depart }.take(timesPerOption))
+        val opts = found.values.mapNotNull { j ->
+            val alts = alternatives(j, from, to, tables, earliest, timesPerOption).filter { sensibleRoute(it, directKm) }
+            // For each arrival time keep the latest start (no needless waiting), and skip runs
+            // that would mean a long wait (e.g. missing the last ferry and waiting overnight).
+            // Only departures on the travel day itself.
+            val all = (alts + j).filter { it.depart in 0 until 1440 }.groupBy { it.arrive }.values.map { g -> g.maxBy { it.depart } }
+            if (all.isEmpty()) return@mapNotNull null
+            val quickest = all.minOf { it.minutes }
+            Option(all.filter { it.minutes <= quickest * 1.6 + 60 }.distinctBy { it.depart }.sortedBy { it.depart }.take(timesPerOption))
         }
+        if (opts.isEmpty()) return emptyList()
 
-        val bestMinutes = opts.minOf { score(it.first) }
-        val sensible = opts.filter { score(it.first) <= bestMinutes * 4 + 720 }
+        fun best(o: Option) = o.journeys.minOf { score(it) }
+        fun modes(o: Option) = o.first.rides.map { it.route.mode }
+        val bestScore = opts.minOf { best(it) }
+        // Drop an option when a simpler one (its modes are a subset, e.g. "flight" vs "bus + flight")
+        // is at least as good, unless the extra part is a ferry (bus/flight + ferry combos are common and cheaper).
+        val sensible = opts.filter { x ->
+            best(x) <= bestScore * 4 + 720 && opts.none { y ->
+                y !== x && modes(y).size < modes(x).size && modes(y).isNotEmpty() && isSubsequence(modes(y), modes(x)) &&
+                    best(y) <= best(x) && (modes(x) - modes(y).toSet()).none { it == TravelMode.BOAT }
+            }
+        }
         // Best first, but show different main modes before more of the same.
-        val sorted = sensible.sortedBy { score(it.first) }
+        val sorted = sensible.sortedBy { best(it) }
         val picked = ArrayList<Option>()
-        sorted.distinctBy { it.mainMode to it.first.rides.size.coerceAtMost(2) }.forEach { if (picked.size < maxOptions) picked += it }
-        sorted.forEach { if (it !in picked && picked.size < maxOptions) picked += it }
-        return picked.sortedBy { score(it.first) }
+        sorted.distinctBy { modes(it) }.forEach { if (picked.size < maxOptions) picked += it }
+        // Then more of the same kind, at most two of each.
+        sorted.forEach { o -> if (o !in picked && picked.size < maxOptions && picked.count { modes(it) == modes(o) } < 2) picked += o }
+        return picked.sortedBy { best(it) }
+    }
+
+    private fun <T> isSubsequence(small: List<T>, big: List<T>): Boolean {
+        var i = 0
+        for (x in big) if (i < small.size && small[i] == x) i++
+        return i == small.size
+    }
+
+    private fun directKmFor(a: Point, b: Point) = TripLogic.distanceKm(a.lat, a.lon, b.lat, b.lon)
+
+    /** No going back through a station already passed, and no huge detours. */
+    private fun sensibleRoute(j: Journey, directKm: Double): Boolean {
+        val seq = ArrayList<String>()
+        fun add(id: String?) { if (id != null && seq.lastOrNull() != id) seq += id }
+        var pathKm = 0.0
+        for (s in j.steps) when (s) {
+            is Step.Ground -> { add(s.from?.id); add(s.to?.id); pathKm += s.km }
+            is Step.Ride -> { add(s.board.id); add(s.alight.id); pathKm += TripLogic.distanceKm(s.board.lat, s.board.lon, s.alight.lat, s.alight.lon) }
+        }
+        if (seq.size != seq.toSet().size) return false
+        return pathKm <= directKm * 2.2 + 40
     }
 
     /** Lower is better: travel time plus a penalty for each change. */
     fun score(j: Journey): Int = j.minutes + 25 * max(0, j.steps.size - 1) +
-        (if (j.rides.isEmpty()) (j.minutes / 3) else 0) // long taxi rides are tiring and costly
+        (if (j.rides.isEmpty()) (j.minutes / 3) else 0) + // long taxi rides are tiring and costly
+        j.steps.filterIsInstance<Step.Ground>().sumOf { max(0.0, it.km - 15) * 0.6 }.toInt()
 
-    private fun search(from: Point, to: Point, start: Int, hubs: List<Hub>, tables: List<Timetable>): List<Journey> {
+    private fun search(from: Point, to: Point, start: Int, hubs: List<Hub>, tables: List<Timetable>, maxAccessKm: Double): List<Journey> {
         val access = HashMap<String, Label>()
         for (h in hubs) {
             val km = TripLogic.distanceKm(from.lat, from.lon, h.lat, h.lon)
-            if (km > accessLimitKm(h.type) || !sameLand(from, h, km)) continue
+            if (km > minOf(accessLimitKm(h.type), maxAccessKm) || !sameLand(from, h, km)) continue
             val t = start + groundMinutes(km)
             access[h.id] = Label.Access(t, Step.Ground(null, h, km, start, t))
         }
