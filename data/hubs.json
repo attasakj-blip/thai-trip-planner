@@ -1,223 +1,272 @@
 [
  {
-  "id": "rail_taphan_hin",
-  "type": "TRAIN",
+  "id": "bus_hat_yai_clock_tower",
+  "type": "BUS",
   "name": {
-   "th": "สถานีรถไฟตะพานหิน",
-   "en": "Taphan Hin Railway Station"
-  },
-  "province": {
-   "th": "พิจิตร",
-   "en": "Phichit"
-  },
-  "lat": 16.2106,
-  "lon": 100.4209,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_uttaradit",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟอุตรดิตถ์",
-   "en": "Uttaradit Railway Station"
-  },
-  "province": {
-   "th": "อุตรดิตถ์",
-   "en": "Uttaradit"
-  },
-  "lat": 17.6247,
-  "lon": 100.0973,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_saraburi",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟสระบุรี",
-   "en": "Saraburi Railway Station"
-  },
-  "province": {
-   "th": "สระบุรี",
-   "en": "Saraburi"
-  },
-  "lat": 14.5281,
-  "lon": 100.9117,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_nakhon_ratchasima",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟนครราชสีมา",
-   "en": "Nakhon Ratchasima (Korat) Railway Station"
-  },
-  "province": {
-   "th": "นครราชสีมา",
-   "en": "Nakhon Ratchasima"
-  },
-  "lat": 14.9733,
-  "lon": 102.0794,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_udon_thani",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟอุดรธานี",
-   "en": "Udon Thani Railway Station"
-  },
-  "province": {
-   "th": "อุดรธานี",
-   "en": "Udon Thani"
-  },
-  "lat": 17.4103,
-  "lon": 102.7998,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_sisaket",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟศรีสะเกษ",
-   "en": "Sisaket Railway Station"
-  },
-  "province": {
-   "th": "ศรีสะเกษ",
-   "en": "Sisaket"
-  },
-  "lat": 15.1167,
-  "lon": 104.3217,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_chachoengsao",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟชุมทางฉะเชิงเทรา",
-   "en": "Chachoengsao Junction Railway Station"
-  },
-  "province": {
-   "th": "ฉะเชิงเทรา",
-   "en": "Chachoengsao"
-  },
-  "lat": 13.6886,
-  "lon": 101.0672,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_nong_nooch",
-  "type": "TRAIN",
-  "name": {
-   "th": "ที่หยุดรถสวนนงนุช",
-   "en": "Suan Nong Nooch Railway Halt"
-  },
-  "province": {
-   "th": "ชลบุรี",
-   "en": "Chonburi"
-  },
-  "lat": 12.771,
-  "lon": 100.937,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_river_kwai_bridge",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟสะพานแควใหญ่",
-   "en": "River Kwai Bridge Railway Station"
-  },
-  "province": {
-   "th": "กาญจนบุรี",
-   "en": "Kanchanaburi"
-  },
-  "lat": 14.0408,
-  "lon": 99.5036,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_tham_krasae",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟสะพานถ้ำกระแซ",
-   "en": "Tham Krasae Bridge Railway Station"
-  },
-  "province": {
-   "th": "กาญจนบุรี",
-   "en": "Kanchanaburi"
-  },
-  "lat": 14.1268,
-  "lon": 99.3127,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_phatthalung",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟพัทลุง",
-   "en": "Phatthalung Railway Station"
-  },
-  "province": {
-   "th": "พัทลุง",
-   "en": "Phatthalung"
-  },
-  "lat": 7.6175,
-  "lon": 100.0781,
-  "phone": null,
-  "website": null,
-  "islandGroup": null
- },
- {
-  "id": "rail_hat_yai",
-  "type": "TRAIN",
-  "name": {
-   "th": "สถานีรถไฟชุมทางหาดใหญ่",
-   "en": "Hat Yai Junction Railway Station"
+   "th": "จุดจอดรถตู้หน้าหอนาฬิกาหาดใหญ่",
+   "en": "Hat Yai Clock Tower van stop"
   },
   "province": {
    "th": "สงขลา",
    "en": "Songkhla"
   },
-  "lat": 7.0033,
-  "lon": 100.467,
+  "lat": 7.0076,
+  "lon": 100.4717,
   "phone": null,
   "website": null,
-  "islandGroup": null
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
  },
  {
-  "id": "rail_padang_besar",
-  "type": "TRAIN",
+  "id": "bus_hat_yai_talat_kaset",
+  "type": "BUS",
   "name": {
-   "th": "สถานีรถไฟปาดังเบซาร์ (มาเลเซีย)",
-   "en": "Padang Besar Station (Malaysia, border)"
+   "th": "คิวรถตู้ตลาดเกษตร หาดใหญ่ใน",
+   "en": "Talat Kaset van queue, Hat Yai Nai"
   },
   "province": {
-   "th": "เปอร์ลิส (มาเลเซีย)",
-   "en": "Perlis (Malaysia)"
+   "th": "สงขลา",
+   "en": "Songkhla"
   },
-  "lat": 6.6622,
-  "lon": 100.3214,
+  "lat": 7.013,
+  "lon": 100.462,
   "phone": null,
   "website": null,
-  "islandGroup": null
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_songkhla",
+  "type": "BUS",
+  "name": {
+   "th": "สถานีขนส่งผู้โดยสารสงขลา",
+   "en": "Songkhla Bus Terminal"
+  },
+  "province": {
+   "th": "สงขลา",
+   "en": "Songkhla"
+  },
+  "lat": 7.1885,
+  "lon": 100.598,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_betong",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้เบตง (ข้างเบตงพลาซ่า)",
+   "en": "Betong van stop (by Betong Plaza)"
+  },
+  "province": {
+   "th": "ยะลา",
+   "en": "Yala"
+  },
+  "lat": 5.7737,
+  "lon": 101.0715,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "pier_tammalang",
+  "type": "PIER",
+  "name": {
+   "th": "ท่าเรือตำมะลัง",
+   "en": "Tammalang Pier"
+  },
+  "province": {
+   "th": "สตูล",
+   "en": "Satun"
+  },
+  "lat": 6.552,
+  "lon": 100.07,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "pier_pak_meng",
+  "type": "PIER",
+  "name": {
+   "th": "ท่าเรือปากเมง",
+   "en": "Pak Meng Pier"
+  },
+  "province": {
+   "th": "ตรัง",
+   "en": "Trang"
+  },
+  "lat": 7.499,
+  "lon": 99.312,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_chumphon_town",
+  "type": "BUS",
+  "name": {
+   "th": "คิวรถตู้ชุมพร (ตรงข้ามสำนักงานป่าไม้)",
+   "en": "Chumphon town van queue (opp. Forest Office)"
+  },
+  "province": {
+   "th": "ชุมพร",
+   "en": "Chumphon"
+  },
+  "lat": 10.4955,
+  "lon": 99.1775,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_sichon",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้สิชล",
+   "en": "Sichon van stop"
+  },
+  "province": {
+   "th": "นครศรีธรรมราช",
+   "en": "Nakhon Si Thammarat"
+  },
+  "lat": 9.007,
+  "lon": 99.903,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_khanom",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้ขนอม",
+   "en": "Khanom van stop"
+  },
+  "province": {
+   "th": "นครศรีธรรมราช",
+   "en": "Nakhon Si Thammarat"
+  },
+  "lat": 9.237,
+  "lon": 99.859,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_klaeng",
+  "type": "BUS",
+  "name": {
+   "th": "แยกสามย่าน แกลง (จุดจอดรถตู้)",
+   "en": "Klaeng (Sam Yan junction) van stop"
+  },
+  "province": {
+   "th": "ระยอง",
+   "en": "Rayong"
+  },
+  "lat": 12.7785,
+  "lon": 101.654,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_cha_am",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้ชะอำ",
+   "en": "Cha-am van stop"
+  },
+  "province": {
+   "th": "เพชรบุรี",
+   "en": "Phetchaburi"
+  },
+  "lat": 12.8005,
+  "lon": 99.967,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_hua_hin_bluport",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้หัวหิน (บลูพอร์ต)",
+   "en": "Hua Hin van stop (Bluport)"
+  },
+  "province": {
+   "th": "ประจวบคีรีขันธ์",
+   "en": "Prachuap Khiri Khan"
+  },
+  "lat": 12.556,
+  "lon": 99.953,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_pranburi",
+  "type": "BUS",
+  "name": {
+   "th": "จุดจอดรถตู้ปราณบุรี",
+   "en": "Pran Buri van stop"
+  },
+  "province": {
+   "th": "ประจวบคีรีขันธ์",
+   "en": "Prachuap Khiri Khan"
+  },
+  "lat": 12.392,
+  "lon": 99.912,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_si_racha",
+  "type": "BUS",
+  "name": {
+   "th": "ศรีราชา (จุดจอดรถตู้ ถ.สุขุมวิท)",
+   "en": "Si Racha (Sukhumvit Rd van stop)"
+  },
+  "province": {
+   "th": "ชลบุรี",
+   "en": "Chonburi"
+  },
+  "lat": 13.168,
+  "lon": 100.931,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
+ },
+ {
+  "id": "bus_sattahip",
+  "type": "BUS",
+  "name": {
+   "th": "สัตหีบ (จุดจอดรถตู้ ถ.สุขุมวิท)",
+   "en": "Sattahip (Sukhumvit Rd van stop)"
+  },
+  "province": {
+   "th": "ชลบุรี",
+   "en": "Chonburi"
+  },
+  "lat": 12.665,
+  "lon": 100.901,
+  "phone": null,
+  "website": null,
+  "islandGroup": null,
+  "note": "approximate location (OSM/Wikipedia unreachable from this session); verify before release"
  }
 ]
