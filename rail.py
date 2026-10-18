@@ -4,12 +4,14 @@ rel["type"="route"]["route"~"^(subway|light_rail|monorail|train)$"](13.40,100.20
 out body;
 >;
 out body qt;"""
-for url in ["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"]:
+for url in 2*["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"]:
     try:
         req = urllib.request.Request(url, data=urllib.parse.urlencode({"data": Q}).encode(), headers={"User-Agent": "ThaiTripPlanner/0.1"})
         d = json.load(urllib.request.urlopen(req, timeout=240)); break
     except Exception as e:
-        print(url, e); time.sleep(5)
+        print(f"::warning::{url} {e}"); time.sleep(5)
+else:
+    print("::error::all mirrors failed"); raise SystemExit(1)
 nodes = {e["id"]: e for e in d["elements"] if e["type"] == "node"}
 rels = [e for e in d["elements"] if e["type"] == "relation"]
 out = []
