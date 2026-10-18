@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalLayoutApi::class)
+@file:OptIn(ExperimentalLayoutApi::class, androidx.compose.material3.ExperimentalMaterial3Api::class)
 
 package th.trip.planner.ui
 
@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import th.trip.planner.TripViewModel
 import th.trip.planner.data.Poi
 import th.trip.planner.logic.Fares
+import th.trip.planner.logic.Itinerary
 import th.trip.planner.logic.TransitKind
 import th.trip.planner.logic.TransitPlan
 import th.trip.planner.logic.TransitPlanner
@@ -96,15 +98,10 @@ private fun Loading() = Row(verticalAlignment = Alignment.CenterVertically) {
     Text("  " + tr("กำลังค้นหาข้อมูลการเดินทาง…", "Looking up travel details…"), fontSize = 12.sp, color = Color.Gray)
 }
 
-/**
- * Everything the traveller needs to decide on and use one way of travelling between two
- * places: where to board and get off, lines and changes, airlines and baggage, times,
- * distances to the place and the stay, rough costs and where to book.
- */
+/** Where the leg really starts and ends: the stays, when we know (or can find) where they are. */
 @Composable
-fun LegDetails(vm: TripViewModel, mode: TravelMode, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?) {
+private fun rememberEnds(vm: TripViewModel, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?): Pair<End, End>? {
     val thai = LocalThai.current
-    // Where the leg really starts and ends: the stays, when we know (or can find) where they are.
     val ends by produceState<Pair<End, End>?>(null, from.id, to.id, fromStay, toStay) {
         suspend fun end(p: Place, stay: Lodging?): End {
             if (stay != null && !stay.isEmpty) {
@@ -119,6 +116,17 @@ fun LegDetails(vm: TripViewModel, mode: TravelMode, from: Place, to: Place, from
         }
         value = end(from, fromStay) to end(to, toStay)
     }
+    return ends
+}
+
+/**
+ * Everything the traveller needs to decide on and use one way of travelling between two
+ * places: where to board and get off, lines and changes, airlines and baggage, times,
+ * distances to the place and the stay, rough costs and where to book.
+ */
+@Composable
+fun LegDetails(vm: TripViewModel, mode: TravelMode, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?) {
+    val ends = rememberEnds(vm, from, to, fromStay, toStay)
     val e = ends
     Column(
         Modifier.fillMaxWidth().padding(top = 8.dp).clip(RoundedCornerShape(10.dp)).background(Color(0xFFF1F7FF)).padding(10.dp),
@@ -369,4 +377,184 @@ private fun BoatDetails(vm: TripViewModel, a: End, b: End, from: Place, to: Plac
             Text(tr("ดูรอบเรือและจองตั๋ว (12Go)", "Boat times & tickets (12Go)"), fontSize = 12.sp)
         }
     }
+}
+
+// ---------------------------------------------------------------- Travel options (scheduled, multi-leg)
+
+fun modeIcon(m: TravelMode) = when (m) {
+    TravelMode.FLIGHT -> "✈️"; TravelMode.TRAIN -> "🚆"; TravelMode.BUS -> "🚌"
+    TravelMode.BOAT -> "⛴️"; TravelMode.CAR -> "🚕"; TravelMode.VAN -> "🚐"
+}
+
+private fun modeWord(m: TravelMode) = when (m) {
+    TravelMode.FLIGHT -> tr("เครื่องบิน", "flight"); TravelMode.TRAIN -> tr("รถไฟ", "train"); TravelMode.BUS -> tr("รถทัวร์", "bus")
+    TravelMode.BOAT -> tr("เรือ", "boat"); TravelMode.CAR -> tr("เรียกรถ / ขับรถ", "ride / drive"); TravelMode.VAN -> tr("รถตู้", "minivan")
+}
+
+/** "06:20" or "06:20 (+1 day)". */
+private fun timeText(min: Int): String {
+    val d = Itinerary.dayOffset(min)
+    return Itinerary.formatTime(min) + when { d > 0 -> tr(" (+$d วัน)", " (+$d day)"); d < 0 -> tr(" (วันก่อน)", " (day before)"); else -> "" }
+}
+
+/** Title of an option: the chain of rides, e.g. "🚐 รถตู้ → 🚌 รถทัวร์ → ⛴️ เรือ". */
+private fun optionTitle(o: Itinerary.Option): String =
+    if (o.first.rides.isEmpty()) "🚕 " + tr("เรียกรถ / แท็กซี่ / ขับรถไปเอง", "Ride-hailing, taxi or drive")
+    else o.first.rides.joinToString(" → ") { "${modeIcon(it.route.mode)} ${modeWord(it.route.mode)}" }
+
+/**
+ * The list of practical ways to travel a leg, built from real timetables, each with several
+ * departure times; the chosen one shows every step with its times, operator and how to get
+ * to and from the stations.
+ */
+@Composable
+fun TravelOptions(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (th.trip.planner.model.Leg) -> Unit, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?) {
+    val thai = LocalThai.current
+    val ends = rememberEnds(vm, from, to, fromStay, toStay)
+    val day = date ?: LocalDate.now()
+    val options by produceState<List<Itinerary.Option>?>(null, ends, day) {
+        val e = ends ?: return@produceState
+        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
+            Itinerary.options(
+                Itinerary.Point(e.first.lat, e.first.lon, from.island, from.islandGroup),
+                Itinerary.Point(e.second.lat, e.second.lon, to.island, to.islandGroup),
+                day, vm.repo.hubs, vm.repo.routes,
+            )
+        }
+    }
+    Column(Modifier.fillMaxWidth().padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(tr("ทางเลือกในการเดินทาง", "Ways to travel"), fontWeight = FontWeight.Bold, fontSize = 15.sp)
+        val e = ends
+        val list = options
+        if (e == null || list == null) { Loading(); return@Column }
+        val (a, b) = e
+        if (list.isEmpty()) Line(tr("ยังไม่มีตารางเวลารถ เรือ รถไฟ หรือเครื่องบินที่ต่อกันได้สำหรับช่วงนี้ในแอป ดูทางเลือกอื่นด้านล่าง", "No connecting timetables for this leg in the app yet; see other ways below."), Coral)
+        list.forEach { o ->
+            val selected = leg.plan == o.signature || (leg.plan == null && o.first.rides.isEmpty() && leg.mode == TravelMode.CAR)
+            androidx.compose.material3.Card(
+                Modifier.fillMaxWidth().clickable { if (!selected) onChange(leg.copy(mode = o.mainMode, plan = o.signature, depart = o.first.depart)) },
+                colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = if (selected) Color(0xFFE3F4EF) else Color(0xFFF6F8FB)),
+            ) {
+                Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        androidx.compose.material3.RadioButton(selected = selected, onClick = { onChange(leg.copy(mode = o.mainMode, plan = o.signature, depart = o.first.depart)) })
+                        Text(optionTitle(o), fontWeight = FontWeight.SemiBold, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                    }
+                    val j0 = o.first
+                    if (j0.rides.isEmpty()) Line(tr("ประมาณ ", "About ") + durationText(j0.minutes) + " · " + kmText(roadKm(a.lat, a.lon, b.lat, b.lon)))
+                    else {
+                        Line(tr("ใช้เวลาประมาณ ", "Takes about ") + durationText(o.journeys.minOf { it.minutes }) + tr(" รวมรอต่อรถ", " incl. connections"))
+                        Line(tr("รอบที่ออกได้: ", "Departures: ") + o.journeys.joinToString(", ") { Itinerary.formatTime(it.depart) + "→" + Itinerary.formatTime(it.arrive) + (if (Itinerary.dayOffset(it.arrive) > 0) "⁺¹" else "") }, size = 12)
+                    }
+                    if (selected) {
+                        HorizontalDivider(Modifier.padding(vertical = 4.dp))
+                        if (j0.rides.isEmpty()) CarDetails(vm, a, b)
+                        else {
+                            val chosen = o.journeys.firstOrNull { it.depart == leg.depart } ?: j0
+                            if (o.journeys.size > 1) {
+                                Line(tr("เลือกรอบเดินทาง", "Pick a departure"), bold = true)
+                                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                    o.journeys.forEach { j ->
+                                        androidx.compose.material3.FilterChip(
+                                            selected = j === chosen,
+                                            onClick = { onChange(leg.copy(mode = o.mainMode, plan = o.signature, depart = j.depart)) },
+                                            label = { Text(Itinerary.formatTime(j.depart) + " → " + timeText(j.arrive), fontSize = 12.sp) },
+                                        )
+                                    }
+                                }
+                            }
+                            JourneySteps(chosen, a, b)
+                        }
+                    }
+                }
+            }
+        }
+        if (list.any { it.first.rides.isNotEmpty() }) Text(
+            tr("ตารางเวลารวบรวมจากเว็บไซต์ผู้ให้บริการและอาจเปลี่ยนได้ ควรตรวจสอบหรือจองกับผู้ให้บริการก่อนเดินทาง · เวลาไปสถานีเป็นการประมาณ",
+                "Timetables are collected from operators' sites and can change; check or book with the operator before you go. Times to stations are estimates."),
+            fontSize = 11.sp, color = Color.Gray,
+        )
+        OtherWays(vm, leg, onChange, from, to, fromStay, toStay, date, list)
+    }
+}
+
+@Composable
+private fun JourneySteps(j: Itinerary.Journey, a: End, b: End) {
+    val thai = LocalThai.current
+    val ctx = LocalContext.current
+    j.steps.forEach { s ->
+        Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color.White).padding(8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            when (s) {
+                is Itinerary.Step.Ground -> {
+                    val fromName = s.from?.name?.get(thai) ?: a.label
+                    val toName = s.to?.name?.get(thai) ?: b.label
+                    val road = s.km * 1.3
+                    Line("${timeText(s.start)} – ${timeText(s.end)}", Teal, bold = true, size = 12)
+                    if (s.walk) Line(tr("🚶 เดินจาก $fromName ไป $toName (${kmText(road)})", "🚶 Walk from $fromName to $toName (${kmText(road)})"), Color.Black)
+                    else {
+                        Line(tr("🚕 $fromName → $toName", "🚕 $fromName → $toName"), Color.Black, bold = true)
+                        val (lo, hi) = Fares.rideRange(road)
+                        Line(tr("ระยะทางราว ${kmText(road)} · ประมาณ ${durationText(s.end - s.start)} · แท็กซี่/เรียกรถ ราว $lo–$hi บาท", "About ${kmText(road)} · ${durationText(s.end - s.start)} · taxi or ride about $lo–$hi baht"))
+                        FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            RIDE_APPS.forEach { (name, pkg) -> TextButton(onClick = { openApp(ctx, pkg) }, contentPadding = PaddingValues(horizontal = 6.dp)) { Text(name, fontSize = 12.sp) } }
+                            val fa = s.from?.let { End(it.name.get(thai), it.lat, it.lon, false) } ?: a
+                            val tb = s.to?.let { End(it.name.get(thai), it.lat, it.lon, false) } ?: b
+                            TextButton(onClick = { open(ctx, transitUrl(fa, tb)) }, contentPadding = PaddingValues(horizontal = 6.dp)) { Text(tr("🚌 รถสาธารณะ (Google Maps)", "🚌 Public transport (Google Maps)"), fontSize = 12.sp) }
+                        }
+                    }
+                }
+                is Itinerary.Step.Ride -> {
+                    val r = s.route
+                    Line("${timeText(s.start)} – ${timeText(s.end)}", Teal, bold = true, size = 12)
+                    Line("${modeIcon(r.mode)} ${r.operator.get(thai)} · ${r.name.get(thai)}" + (s.code?.let { " ($it)" } ?: ""), Color.Black, bold = true)
+                    Line(tr("ขึ้นที่ ${s.board.name.get(thai)} → ลงที่ ${s.alight.name.get(thai)}", "Board at ${s.board.name.get(thai)} → get off at ${s.alight.name.get(thai)}"))
+                    Line(tr("ไปถึงก่อนออกอย่างน้อย ${Itinerary.buffer(r.mode)} นาที", "Be there at least ${Itinerary.buffer(r.mode)} min before"), Color.Gray, size = 12)
+                    r.fare?.let { Line("💵 " + it.get(thai)) }
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        r.bookUrl?.let { u -> TextButton(onClick = { open(ctx, u) }, contentPadding = PaddingValues(horizontal = 6.dp)) { Text(tr("🎫 จอง / ดูรายละเอียด", "🎫 Book / details"), fontSize = 12.sp) } }
+                        s.board.phone?.let { ph -> TextButton(onClick = { dial(ctx, ph) }, contentPadding = PaddingValues(horizontal = 6.dp)) { Text("📞 $ph", fontSize = 12.sp) } }
+                    }
+                    r.source?.let { src ->
+                        val host = runCatching { Uri.parse(src).host?.removePrefix("www.") }.getOrNull() ?: src
+                        Text(tr("ข้อมูลเวลา: $host", "Times from: $host") + (r.checked?.let { tr(" (ตรวจ $it)", " (checked $it)") } ?: ""), fontSize = 11.sp, color = Color.Gray)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Ways that are possible but have no timetable in the app yet (only modes that can really work
+ * here: no train without stations nearby, no boat between two places on the same land).
+ */
+@Composable
+private fun OtherWays(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (th.trip.planner.model.Leg) -> Unit, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?, scheduled: List<Itinerary.Option>) {
+    val thai = LocalThai.current
+    val hubs = vm.repo.hubs
+    fun land(h: Hub) = h.islandGroup
+    fun near(p: Place, t: HubType, km: Double) = hubs.any { it.type == t && land(it) == p.islandGroup && TripLogic.distanceKm(p.lat, p.lon, it.lat, it.lon) <= km }
+    val sameLand = from.islandGroup == to.islandGroup && !(from.island && from.islandGroup == null) && !(to.island && to.islandGroup == null)
+    val dist = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
+    val have = scheduled.map { it.mainMode }.toSet()
+    val modes = buildList {
+        if (dist > 150 && near(from, HubType.AIRPORT, 160.0) && near(to, HubType.AIRPORT, 160.0)) add(TravelMode.FLIGHT)
+        if (sameLand && dist > 60 && near(from, HubType.TRAIN, 40.0) && near(to, HubType.TRAIN, 40.0)) add(TravelMode.TRAIN)
+        if (sameLand && from.islandGroup == null && near(from, HubType.BUS, 60.0) && near(to, HubType.BUS, 60.0)) add(TravelMode.BUS)
+        if (sameLand && from.islandGroup == null && dist in 30.0..450.0) add(TravelMode.VAN)
+        if (!sameLand && (near(from, HubType.PIER, 60.0) || near(to, HubType.PIER, 60.0))) add(TravelMode.BOAT)
+        if (sameLand && scheduled.none { it.first.rides.isEmpty() }) add(TravelMode.CAR)
+    }.filter { it !in have }
+    if (modes.isEmpty()) return
+    var open by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(leg.plan == null && leg.mode != null && leg.mode in modes) }
+    TextButton(onClick = { open = !open }) {
+        Text((if (open) "▾ " else "▸ ") + tr("ทางเลือกอื่น (ยังไม่มีตารางเวลาในแอป)", "Other ways (no timetable in the app yet)"), fontSize = 13.sp)
+    }
+    if (!open) return
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        modes.forEach { m ->
+            androidx.compose.material3.FilterChip(selected = leg.plan == null && leg.mode == m, onClick = { onChange(leg.copy(mode = m, plan = null, depart = null)) }, label = { Text(modeLabel(m, thai)) })
+        }
+    }
+    if (leg.plan == null && leg.mode != null && leg.mode in modes) LegDetails(vm, leg.mode, from, to, fromStay, toStay, date)
 }

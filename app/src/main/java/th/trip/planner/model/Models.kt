@@ -128,6 +128,9 @@ data class Leg(
     val mode: TravelMode? = null,
     val date: String? = null,
     val note: String = "",
+    /** The chosen travel option (its connections, see Itinerary.Journey.signature) and departure (minutes after midnight). */
+    val plan: String? = null,
+    val depart: Int? = null,
 )
 
 @Serializable

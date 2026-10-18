@@ -25,6 +25,12 @@ class Repository(private val context: Context) {
         runCatching { json.decodeFromString<FlightData>(readAsset("flights.json")) }.getOrDefault(FlightData())
     }
     val hubById: Map<String, Hub> by lazy { hubs.associateBy { it.id } }
+    /** Scheduled flights, trains, buses, vans and boats (timetables). */
+    val routes: List<th.trip.planner.model.Route> by lazy {
+        val downloaded = File(dataDir, "routes.json")
+        if (downloaded.exists()) runCatching { return@lazy json.decodeFromString<th.trip.planner.model.RouteData>(downloaded.readText()).routes }
+        runCatching { json.decodeFromString<th.trip.planner.model.RouteData>(readAsset("routes.json")).routes }.getOrDefault(emptyList())
+    }
 
     private fun readAsset(name: String) = context.assets.open(name).bufferedReader().use { it.readText() }
 
@@ -40,6 +46,7 @@ class Repository(private val context: Context) {
     /** Checks that downloaded text really is a usable places / hubs file before it replaces the old one. */
     fun validPlaces(text: String) = runCatching { json.decodeFromString<List<Place>>(text).size >= 5 }.getOrDefault(false)
     fun validFlights(text: String) = runCatching { json.decodeFromString<FlightData>(text).routes.size >= 5 }.getOrDefault(false)
+    fun validRoutes(text: String) = runCatching { json.decodeFromString<th.trip.planner.model.RouteData>(text).routes.size >= 5 }.getOrDefault(false)
     fun validHubs(text: String) = runCatching { json.decodeFromString<List<Hub>>(text).size >= 5 }.getOrDefault(false)
 
     /** Version of the downloaded data (from meta.json), "" = only the built-in data. */

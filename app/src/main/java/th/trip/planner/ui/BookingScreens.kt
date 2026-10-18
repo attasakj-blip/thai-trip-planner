@@ -262,8 +262,8 @@ fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
             item {
                 Text(
                     if (n == 0) tr("ทริปนี้มีสถานที่เดียว จึงไม่มีช่วงเดินทางระหว่างสถานที่", "This trip has one place, so there is no travel between places.")
-                    else tr("เลือกวิธีเดินทางของแต่ละช่วง แอปจะบอกจุดขึ้น-ลง สายรถ สายการบิน เวลา ระยะทางถึงที่เที่ยวและที่พัก และค่าใช้จ่ายโดยประมาณ เพื่อช่วยตัดสินใจ",
-                        "Pick how to travel each leg. The app shows where to board and get off, lines, airlines, times, distances to the place and your stay, and rough costs to help you decide."),
+                    else tr("เลือกทางเลือกในการเดินทางของแต่ละช่วง แอปรวมเส้นทางที่ต่อกันได้จริงจากตารางเวลารถ รถไฟ เรือ และเครื่องบิน พร้อมรอบเวลา จุดขึ้น-ลง และวิธีไปสถานี",
+                        "Pick a way to travel each leg. The app joins real timetables of buses, trains, boats and flights, with departure times, where to board and how to reach the stations."),
                     fontSize = 14.sp, color = Color.DarkGray,
                 )
             }
@@ -277,18 +277,14 @@ fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
                         Text("${from?.name?.get(thai) ?: "?"} → ${to?.name?.get(thai) ?: "?"}", fontWeight = FontWeight.Bold)
                         if (from != null && to != null) {
                             val km = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
-                            val options = TripLogic.modeOptions(from.lat, from.lon, TripLogic.hubsFor(from, repo.hubs), from.island, to.lat, to.lon, TripLogic.hubsFor(to, repo.hubs), to.island)
                             Text(tr("ระยะทางตรงราว ${km.toInt()} กม.", "About ${km.toInt()} km in a straight line"), fontSize = 12.sp, color = Color.Gray)
-                            FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                options.forEach { m -> FilterChip(selected = leg.mode == m, onClick = { vm.setLeg(i, leg.copy(mode = m)) }, label = { Text(modeLabel(m, thai)) }) }
-                            }
                             val date = TripLogic.legDate(trip, i)
                             if (date != null) Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(tr("วันเดินทาง: ", "Travel day: ") + fmt(date, thai), fontSize = 13.sp, modifier = Modifier.weight(1f))
                                 TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.minusDays(1).toString())) }) { Text("−1") }
                                 TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.plusDays(1).toString())) }) { Text("+1") }
                             }
-                            leg.mode?.let { m -> LegDetails(vm, m, from, to, trip.lodgings[from.id], trip.lodgings[to.id], date) }
+                            TravelOptions(vm, leg, { vm.setLeg(i, it) }, from, to, trip.lodgings[from.id], trip.lodgings[to.id], date)
                         }
                     }
                 }

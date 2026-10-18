@@ -37,6 +37,7 @@ object DataSync {
         write(File(repo.dataDir, "places.json"), places)
         write(File(repo.dataDir, "hubs.json"), hubs)
         get("flights.json")?.takeIf { repo.validFlights(it) }?.let { write(File(repo.dataDir, "flights.json"), it) }
+        get("routes.json")?.takeIf { repo.validRoutes(it) }?.let { write(File(repo.dataDir, "routes.json"), it) }
         repo.dataVersion = version
         return true
     }

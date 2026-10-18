@@ -48,6 +48,8 @@ def main():
     places_text = (ASSETS / "places.json").read_text(encoding="utf-8")
     hubs_text = (ASSETS / "hubs.json").read_text(encoding="utf-8")
     flights_text = (ASSETS / "flights.json").read_text(encoding="utf-8")
+    routes_text = (ASSETS / "routes.json").read_text(encoding="utf-8")
+    routes = json.loads(routes_text).get("routes", [])
     places, hubs, flights = json.loads(places_text), json.loads(hubs_text), json.loads(flights_text)
     errors = check_places(places) + check_hubs(hubs)
     airlines = {a["code"] for a in flights.get("airlines", [])}
@@ -60,6 +62,15 @@ def main():
             if code not in airlines:
                 errors.append(f"flight route {r.get('a')}-{r.get('b')}: unknown airline {code}")
     hub_ids = {h["id"] for h in hubs}
+    for r in routes:
+        for hid in r.get("stops", []):
+            if hid not in hub_ids:
+                errors.append(f"route {r.get('id')}: unknown hub {hid}")
+        if r.get("mode") not in ("FLIGHT", "TRAIN", "BUS", "VAN", "BOAT"):
+            errors.append(f"route {r.get('id')}: unknown mode {r.get('mode')}")
+        for t in r.get("trips", []):
+            if len(t.get("times", [])) != len(r.get("stops", [])):
+                errors.append(f"route {r.get('id')}: a trip has {len(t.get('times', []))} times for {len(r.get('stops', []))} stops")
     for p in places:
         for hid in p.get("hubIds", []):
             if hid not in hub_ids:
@@ -72,13 +83,15 @@ def main():
     (OUT / "places.json").write_text(places_text, encoding="utf-8")
     (OUT / "hubs.json").write_text(hubs_text, encoding="utf-8")
     (OUT / "flights.json").write_text(flights_text, encoding="utf-8")
-    version = hashlib.sha256((places_text + hubs_text + flights_text).encode("utf-8")).hexdigest()[:16]
+    (OUT / "routes.json").write_text(routes_text, encoding="utf-8")
+    version = hashlib.sha256((places_text + hubs_text + flights_text + routes_text).encode("utf-8")).hexdigest()[:16]
     meta = {
         "version": version,
         "updatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
         "places": len(places),
         "hubs": len(hubs),
         "flightRoutes": len(flights.get("routes", [])),
+        "routes": len(routes),
     }
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     (ROOT / "site" / "index.html").write_text(
