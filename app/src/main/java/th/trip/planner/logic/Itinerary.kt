@@ -183,6 +183,8 @@ object Itinerary {
     fun options(
         from: Point, to: Point, date: LocalDate, hubs: List<Hub>, routes: List<Route>,
         earliest: Int = 5 * 60, maxOptions: Int = 6, timesPerOption: Int = 6,
+        /** Only ways that use this mode for the main part (short connecting rides of any kind allowed). */
+        require: TravelMode? = null,
     ): List<Option> {
         val hubById = hubs.associateBy { it.id }
         // Runs of the travel date and the next day (for overnight trips that connect in the morning).
@@ -197,11 +199,20 @@ object Itinerary {
             val codes = (if (today) base.codes else emptyList()) + (if (tomorrow) base.codes else emptyList())
             val order = runs.indices.sortedBy { i -> runs[i].first { it >= 0 } }
             Timetable(r, order.map { runs[it] }, order.map { codes[it] })
+        }.let { all ->
+            if (require == null || require == TravelMode.CAR) all
+            else all.filter { t ->
+                t.route.mode == require || run {
+                    val a = hubById[t.route.stops.first()]; val b = hubById[t.route.stops.last()]
+                    a != null && b != null && TripLogic.distanceKm(a.lat, a.lon, b.lat, b.lon) <= 150
+                }
+            }
         }
         val found = LinkedHashMap<String, Journey>()
 
         fun keep(j: Journey) {
             if (!sensibleRoute(j, directKmFor(from, to))) return
+            if (require != null && require != TravelMode.CAR && j.rides.none { it.route.mode == require }) return
             val old = found[j.signature]
             if (old == null || j.arrive < old.arrive) found[j.signature] = j
         }
@@ -209,10 +220,15 @@ object Itinerary {
         // Door to door by car / ride-hailing when there's a road.
         val directKm = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
         val sameGround = from.islandGroup == to.islandGroup && (from.islandGroup != null || (!from.island && !to.island) || directKm <= 10)
-        if (sameGround && directKm <= 1000) keep(Journey(listOf(Step.Ground(null, null, directKm, earliest + 180, earliest + 180 + groundMinutes(directKm)))))
+        if (sameGround && directKm <= 1000 && (require == null || require == TravelMode.CAR)) keep(Journey(listOf(Step.Ground(null, null, directKm, earliest + 180, earliest + 180 + groundMinutes(directKm)))))
 
         // Different searches give different kinds of answers: by start time and with / without flying.
-        val modeSets = listOf(TravelMode.entries.toSet(), TravelMode.entries.toSet() - TravelMode.FLIGHT, TravelMode.entries.toSet() - TravelMode.BOAT)
+        val modeSets = when (require) {
+            null -> listOf(TravelMode.entries.toSet(), TravelMode.entries.toSet() - TravelMode.FLIGHT, TravelMode.entries.toSet() - TravelMode.BOAT)
+            TravelMode.CAR -> emptyList()
+            TravelMode.FLIGHT -> listOf(TravelMode.entries.toSet())
+            else -> listOf(TravelMode.entries.toSet() - TravelMode.FLIGHT, TravelMode.entries.toSet())
+        }
         // Also search with only short taxi rides to the first station, so bus/van/train ways
         // aren't hidden by a long taxi to the airport.
         for (maxAccess in listOf(Double.MAX_VALUE, 25.0)) for (modes in modeSets) for (start in listOf(earliest, earliest + 240, earliest + 480, earliest + 720)) {

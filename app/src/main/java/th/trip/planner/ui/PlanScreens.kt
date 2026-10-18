@@ -164,6 +164,10 @@ fun CatalogScreen(vm: TripViewModel, nav: NavHostController) {
         vm.repo.places.filter { p -> listOf(p.name.th, p.name.en, p.province.th, p.province.en).any { it.contains(q, ignoreCase = true) } }
     } else vm.repo.places.filter { it.region == region && it.province.en == shownProvince }
     val count = vm.trip.stops.size
+    // Coming back to step 1 with places already picked: ask first whether to change the list,
+    // then which to remove, then whether to add more, before going on to the days.
+    var stage by remember { mutableStateOf(if (count > 0) ReviewStage.ASK else ReviewStage.BROWSE) }
+    if (stage != ReviewStage.BROWSE) { ReviewPlaces(vm, nav, stage) { stage = it }; return }
     Page(
         tr("1. เลือกสถานที่ท่องเที่ยว", "1. Choose places"), nav, step = 1,
         bottom = { NextButton(tr("เลือกแล้ว $count แห่ง · ต่อไป: วันและลำดับ", "$count selected · Next: days & order"), enabled = count > 0) { nav.navigate(Routes.SCHEDULE) } },
@@ -188,6 +192,48 @@ fun CatalogScreen(vm: TripViewModel, nav: NavHostController) {
             if (q.isNotEmpty() && list.isEmpty()) item { Text(tr("ไม่พบสถานที่ที่ค้นหา", "No places match your search"), color = Color.Gray) }
             items(list, key = { it.id }) { p -> PlaceCard(vm, p, nav) }
             item { Spacer(Modifier.height(24.dp)) }
+        }
+    }
+}
+
+private enum class ReviewStage { ASK, REMOVE, ADD, BROWSE }
+
+@Composable
+private fun ReviewPlaces(vm: TripViewModel, nav: NavHostController, stage: ReviewStage, onStage: (ReviewStage) -> Unit) {
+    val thai = LocalThai.current
+    val stops = vm.trip.stops
+    Page(tr("1. สถานที่ท่องเที่ยวที่เลือกไว้", "1. Your chosen places"), nav, step = 1) { pad ->
+        Column(Modifier.padding(pad).padding(16.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Card {
+                Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(tr("เลือกไว้ ${stops.size} แห่ง", "${stops.size} places chosen"), fontWeight = FontWeight.Bold)
+                    stops.forEachIndexed { i, st ->
+                        val p = vm.repo.placeById[st.placeId] ?: return@forEachIndexed
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("${i + 1}. ${p.name.get(thai)} · ${p.province.get(thai)}", fontSize = 14.sp, modifier = Modifier.weight(1f))
+                            if (stage == ReviewStage.REMOVE) TextButton(onClick = { vm.toggle(p.id) }) { Text(tr("✕ เอาออก", "✕ Remove"), color = Coral) }
+                        }
+                    }
+                    if (stops.isEmpty()) Text(tr("ยังไม่มีสถานที่ในรายการ", "No places in the list"), color = Color.Gray)
+                }
+            }
+            when (stage) {
+                ReviewStage.ASK -> {
+                    Text(tr("ต้องการแก้ไขรายการสถานที่ไหม?", "Do you want to change this list?"), fontWeight = FontWeight.SemiBold)
+                    NextButton(tr("แก้ไขรายการ", "Change the list")) { onStage(ReviewStage.REMOVE) }
+                    OutlinedButton(onClick = { nav.navigate(Routes.SCHEDULE) }, modifier = Modifier.fillMaxWidth()) { Text(tr("ไม่แก้ไข ไปกำหนดวันเที่ยว", "No changes, go to the days")) }
+                }
+                ReviewStage.REMOVE -> {
+                    Text(tr("กด \"เอาออก\" ที่สถานที่ที่ไม่ต้องการ แล้วกดเสร็จ", "Tap \"Remove\" on places you don't want, then tap Done."), color = Color.DarkGray, fontSize = 14.sp)
+                    NextButton(tr("เสร็จ", "Done")) { onStage(if (stops.isEmpty()) ReviewStage.BROWSE else ReviewStage.ADD) }
+                }
+                ReviewStage.ADD -> {
+                    Text(tr("จะเพิ่มสถานที่ท่องเที่ยวอีกไหม?", "Add more places?"), fontWeight = FontWeight.SemiBold)
+                    NextButton(tr("เพิ่มสถานที่", "Add places")) { onStage(ReviewStage.BROWSE) }
+                    OutlinedButton(onClick = { nav.navigate(Routes.SCHEDULE) }, modifier = Modifier.fillMaxWidth()) { Text(tr("ไม่เพิ่ม ไปกำหนดวันเที่ยว", "No, go to the days")) }
+                }
+                ReviewStage.BROWSE -> {}
+            }
         }
     }
 }

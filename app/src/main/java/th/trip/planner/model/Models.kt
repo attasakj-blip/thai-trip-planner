@@ -131,7 +131,51 @@ data class Leg(
     /** The chosen travel option (its connections, see Itinerary.Journey.signature) and departure (minutes after midnight). */
     val plan: String? = null,
     val depart: Int? = null,
+    /** The kind of travel the user prefers for this leg (a TravelMode name), "ALL" to see every way, null = not asked yet. */
+    val prefer: String? = null,
 )
+
+/** One way to get to or from a terminal, station, pier or airport by local transport. */
+@Serializable
+data class HubAccess(
+    /** BTS, MRT, ARL, SRT_RED, BRT, GOLD, BUS, AC_BUS, AIRPORT_BUS, VAN, SONGTHAEW, SHUTTLE, BOAT, TAXI, WALK */
+    val kind: String,
+    val ref: String? = null,
+    val line: Txt? = null,
+    val color: String? = null,
+    val from: Txt? = null,
+    val board: Txt? = null,
+    val hours: String? = null,
+    val everyMin: Int? = null,
+    val minutes: Int? = null,
+    val fare: Txt? = null,
+    val note: Txt? = null,
+    val source: String? = null,
+    val checked: String? = null,
+)
+
+@Serializable
+data class AccessData(val updated: String? = null, val access: Map<String, List<HubAccess>> = emptyMap())
+
+/** A Bangkok rail line (BTS, MRT, Airport Rail Link, SRT Red lines) with its stations in order. */
+@Serializable
+data class RailStation(val id: String, val name: Txt, val lat: Double, val lon: Double)
+
+@Serializable
+data class RailLine(
+    val id: String,
+    /** BTS, MRT, ARL, SRT_RED, GOLD, MONORAIL */
+    val kind: String,
+    val name: Txt,
+    val color: String,
+    val stations: List<RailStation>,
+    val loop: Boolean = false,
+    /** Typical minutes between stations. */
+    val minutesPerStop: Double = 2.5,
+)
+
+@Serializable
+data class RailData(val updated: String? = null, val lines: List<RailLine> = emptyList())
 
 @Serializable
 data class Lodging(

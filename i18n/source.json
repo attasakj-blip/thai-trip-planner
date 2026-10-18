@@ -475,6 +475,10 @@
   "th": "ต่อไป: การเดินทาง",
   "file": "ui/BookingScreens.kt"
  },
+ "Tap Booking.com or Agoda to see prices and book. When you come back, the app asks for the stay details and saves them under that place. Booked another way? Enter the details yourself.": {
+  "th": "กด Booking.com หรือ Agoda เพื่อดูราคาและจอง เมื่อกลับมาที่แอป แอปจะถามและบันทึกข้อมูลที่พักไว้กับสถานที่นั้นให้ ถ้าจองไว้ทางอื่นแล้วก็กรอกข้อมูลเองได้",
+  "file": "ui/BookingScreens.kt"
+ },
  "Check-in {0} · Check-out {1}": {
   "th": "เช็กอิน {0} · เช็กเอาต์ {1}",
   "file": "ui/BookingScreens.kt"
@@ -485,474 +489,6 @@
  },
  "Browse nearby stays": {
   "th": "ดูรายการที่พักใกล้เคียง",
-  "file": "ui/BookingScreens.kt"
- },
- "Stays near {0}": {
-  "th": "ที่พักใกล้ {0}",
-  "file": "ui/BookingScreens.kt"
- },
- "3. Plan your transport": {
-  "th": "3. วางแผนการเดินทาง",
-  "file": "ui/BookingScreens.kt"
- },
- "Summarise the plan": {
-  "th": "สรุปแผนการเดินทาง",
-  "file": "ui/BookingScreens.kt"
- },
- "Leg {0}": {
-  "th": "ช่วงที่ {0}",
-  "file": "ui/BookingScreens.kt"
- },
- "About {0} km in a straight line": {
-  "th": "ระยะทางตรงราว {0} กม.",
-  "file": "ui/BookingScreens.kt"
- },
- "Travel day: ": {
-  "th": "วันเดินทาง: ",
-  "file": "ui/BookingScreens.kt"
- },
- "See flights & arrival times (Google Flights)": {
-  "th": "ดูเที่ยวบินและเวลาถึง (Google Flights)",
-  "file": "ui/BookingScreens.kt"
- },
- "Airports of Thailand call centre": {
-  "th": "ศูนย์บริการข้อมูลท่าอากาศยาน (ทอท.)",
-  "file": "ui/BookingScreens.kt"
- },
- "Book train tickets (SRT D-Ticket)": {
-  "th": "จองตั๋วรถไฟ D-Ticket (การรถไฟฯ)",
-  "file": "ui/BookingScreens.kt"
- },
- "State Railway of Thailand hotline": {
-  "th": "สายด่วนการรถไฟแห่งประเทศไทย",
-  "file": "ui/BookingScreens.kt"
- },
- "Transport Co., Ltd. (BKS)": {
-  "th": "บริษัท ขนส่ง จำกัด (บขส.)",
-  "file": "ui/BookingScreens.kt"
- },
- "Find and book buses on 12Go": {
-  "th": "ค้นหาเที่ยวรถและจองผ่าน 12Go",
-  "file": "ui/BookingScreens.kt"
- },
- "Find and book ferries on 12Go": {
-  "th": "ค้นหาเรือข้ามฟากและจองผ่าน 12Go",
-  "file": "ui/BookingScreens.kt"
- },
- "Driving route (Google Maps)": {
-  "th": "เส้นทางขับรถ (Google Maps)",
-  "file": "ui/BookingScreens.kt"
- },
- "Open trip progress": {
-  "th": "ดูความคืบหน้าทริป",
-  "file": "ui/BookingScreens.kt"
- },
- "✅ Confirm trip update & activate": {
-  "th": "✅ ยืนยันการอัปเดตทริป และ Activate",
-  "file": "ui/BookingScreens.kt"
- },
- "No transport chosen": {
-  "th": "ยังไม่เลือกวิธีเดินทาง",
-  "file": "ui/BookingScreens.kt"
- },
- "Open": {
-  "th": "เปิด",
-  "file": "ui/BookingScreens.kt"
- },
- "🍜 Food & cafés": {
-  "th": "🍜 ร้านอาหาร/กาแฟ",
-  "file": "ui/BookingScreens.kt"
- },
- "🏥 Hospitals": {
-  "th": "🏥 โรงพยาบาล",
-  "file": "ui/BookingScreens.kt"
- },
- "👮 Police": {
-  "th": "👮 สถานีตำรวจ",
-  "file": "ui/BookingScreens.kt"
- },
- "Free": {
-  "th": "ว่าง",
-  "file": "ui/BookingScreens.kt"
- },
- "Emergency numbers": {
-  "th": "เบอร์ฉุกเฉิน",
-  "file": "ui/BookingScreens.kt"
- },
- "🍜 Restaurants": {
-  "th": "🍜 ร้านอาหาร",
-  "file": "ui/BookingScreens.kt"
- },
- "☕ Cafés": {
-  "th": "☕ ร้านกาแฟ",
-  "file": "ui/BookingScreens.kt"
- },
- "👮 Police stations": {
-  "th": "👮 สถานีตำรวจ",
-  "file": "ui/BookingScreens.kt"
- },
- "Open in Google Maps": {
-  "th": "เปิดใน Google Maps",
-  "file": "ui/BookingScreens.kt"
- },
- "Couldn't load the list. Check your internet and try again.": {
-  "th": "โหลดรายการไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่",
-  "file": "ui/BookingScreens.kt"
- },
- "Try again": {
-  "th": "ลองใหม่",
-  "file": "ui/BookingScreens.kt"
- },
- "Nothing found on OpenStreetMap here yet; try Google Maps instead.": {
-  "th": "ยังไม่พบข้อมูลในแผนที่ OpenStreetMap ลองเปิดใน Google Maps แทน",
-  "file": "ui/BookingScreens.kt"
- },
- "🚑 Emergency room": {
-  "th": "🚑 มีห้องฉุกเฉิน",
-  "file": "ui/BookingScreens.kt"
- },
- "🧭 Directions": {
-  "th": "🧭 นำทาง",
-  "file": "ui/BookingScreens.kt"
- },
- "Data © OpenStreetMap contributors, nearest first": {
-  "th": "ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล",
-  "file": "ui/BookingScreens.kt"
- },
- "✈️ Flight": {
-  "th": "✈️ เครื่องบิน",
-  "file": "ui/Format.kt"
- },
- "🚆 Train": {
-  "th": "🚆 รถไฟ",
-  "file": "ui/Format.kt"
- },
- "🚌 Bus": {
-  "th": "🚌 รถโดยสาร",
-  "file": "ui/Format.kt"
- },
- "⛴️ Boat": {
-  "th": "⛴️ เรือ",
-  "file": "ui/Format.kt"
- },
- "✈️ Airport": {
-  "th": "✈️ สนามบิน",
-  "file": "ui/Format.kt"
- },
- "🚌 Bus terminal": {
-  "th": "🚌 สถานีขนส่ง",
-  "file": "ui/Format.kt"
- },
- "🚆 Railway station": {
-  "th": "🚆 สถานีรถไฟ",
-  "file": "ui/Format.kt"
- },
- "⛴️ Pier": {
-  "th": "⛴️ ท่าเรือ",
-  "file": "ui/Format.kt"
- },
- "💼 Work / errands": {
-  "th": "💼 ทำงาน/ภารกิจ",
-  "file": "ui/Format.kt"
- },
- "🏠 Visit friends or family": {
-  "th": "🏠 เยี่ยมเพื่อนหรือญาติ",
-  "file": "ui/Format.kt"
- },
- "🧳 Travel time": {
-  "th": "🧳 ใช้เดินทาง",
-  "file": "ui/Format.kt"
- },
- "✨ Something else": {
-  "th": "✨ กิจกรรมอื่น",
-  "file": "ui/Format.kt"
- },
- "English": {
-  "th": "ไทย",
-  "file": "ui/I18n.kt"
- },
- "Plan one Thailand trip at a time": {
-  "th": "วางแผนเที่ยวไทยทีละ 1 ทริป",
-  "file": "ui/PlanScreens.kt"
- },
- "Pick places, set calendar days, choose the order, check hazard warnings, choose stays and transport, then activate the plan to follow your trip.": {
-  "th": "เลือกสถานที่ กำหนดวันในปฏิทิน เรียงลำดับ ตรวจคำเตือนภัย เลือกที่พักและการเดินทาง แล้วกดเริ่มทริปเพื่อติดตามการเดินทาง",
-  "file": "ui/PlanScreens.kt"
- },
- "🗂 My trips (albums & slideshows)": {
-  "th": "🗂 ทริปของฉัน (อัลบั้มและสไลด์โชว์)",
-  "file": "ui/PlanScreens.kt"
- },
- "🎉 Your last trip is complete": {
-  "th": "🎉 ทริปล่าสุดเสร็จสมบูรณ์แล้ว",
-  "file": "ui/PlanScreens.kt"
- },
- "Plan a new trip": {
-  "th": "เริ่มวางแผนทริปใหม่",
-  "file": "ui/PlanScreens.kt"
- },
- "Start planning": {
-  "th": "เริ่มวางแผนทริป",
-  "file": "ui/PlanScreens.kt"
- },
- "Your trip": {
-  "th": "ทริปของคุณ",
-  "file": "ui/PlanScreens.kt"
- },
- "Continue planning": {
-  "th": "วางแผนต่อ",
-  "file": "ui/PlanScreens.kt"
- },
- "View trip summary": {
-  "th": "ดูสรุปทริป",
-  "file": "ui/PlanScreens.kt"
- },
- "Delete this trip and start over": {
-  "th": "ลบทริปนี้และเริ่มใหม่",
-  "file": "ui/PlanScreens.kt"
- },
- "Start a new trip?": {
-  "th": "เริ่มทริปใหม่?",
-  "file": "ui/PlanScreens.kt"
- },
- "The current trip will be deleted.": {
-  "th": "ข้อมูลทริปปัจจุบันจะถูกลบ",
-  "file": "ui/PlanScreens.kt"
- },
- "Delete": {
-  "th": "ลบและเริ่มใหม่",
-  "file": "ui/PlanScreens.kt"
- },
- "Bangkok": {
-  "th": "กรุงเทพฯ",
-  "file": "ui/PlanScreens.kt"
- },
- "Central": {
-  "th": "ภาคกลาง",
-  "file": "ui/PlanScreens.kt"
- },
- "North": {
-  "th": "ภาคเหนือ",
-  "file": "ui/PlanScreens.kt"
- },
- "Northeast": {
-  "th": "ภาคอีสาน",
-  "file": "ui/PlanScreens.kt"
- },
- "East": {
-  "th": "ภาคตะวันออก",
-  "file": "ui/PlanScreens.kt"
- },
- "West": {
-  "th": "ภาคตะวันตก",
-  "file": "ui/PlanScreens.kt"
- },
- "South (Andaman)": {
-  "th": "ใต้ฝั่งอันดามัน",
-  "file": "ui/PlanScreens.kt"
- },
- "South (Gulf)": {
-  "th": "ใต้ฝั่งอ่าวไทย",
-  "file": "ui/PlanScreens.kt"
- },
- "1. Choose places": {
-  "th": "1. เลือกสถานที่ท่องเที่ยว",
-  "file": "ui/PlanScreens.kt"
- },
- "{0} selected · Next: days & order": {
-  "th": "เลือกแล้ว {0} แห่ง · ต่อไป: วันและลำดับ",
-  "file": "ui/PlanScreens.kt"
- },
- "✓ In your trip (tap to remove)": {
-  "th": "✓ อยู่ในทริปแล้ว (แตะเพื่อเอาออก)",
-  "file": "ui/PlanScreens.kt"
- },
- "Add to trip": {
-  "th": "เพิ่มในทริป",
-  "file": "ui/PlanScreens.kt"
- },
- "From Wikimedia Commons · tap for source": {
-  "th": "ภาพจาก Wikimedia Commons · แตะเพื่อดูต้นฉบับ",
-  "file": "ui/PlanScreens.kt"
- },
- "Best time to visit": {
-  "th": "ช่วงเวลาที่แนะนำ",
-  "file": "ui/PlanScreens.kt"
- },
- "Good to know": {
-  "th": "ข้อควรรู้",
-  "file": "ui/PlanScreens.kt"
- },
- "1. Days & visiting order": {
-  "th": "1. วันและลำดับการเที่ยว",
-  "file": "ui/PlanScreens.kt"
- },
- "Next: check warnings": {
-  "th": "ต่อไป: ตรวจคำเตือน",
-  "file": "ui/PlanScreens.kt"
- },
- "Use the arrows to set the order, then pick calendar days for each place (they don't have to be consecutive).": {
-  "th": "เรียงลำดับด้วยลูกศร แล้วเลือกวันในปฏิทินให้แต่ละที่ (ไม่จำเป็นต้องติดกัน)",
-  "file": "ui/PlanScreens.kt"
- },
- "No days yet": {
-  "th": "ยังไม่ได้เลือกวัน",
-  "file": "ui/PlanScreens.kt"
- },
- "{0} day(s): ": {
-  "th": "{0} วัน: ",
-  "file": "ui/PlanScreens.kt"
- },
- "Days overlap with or come after the next stop. Adjust days or order.": {
-  "th": "วันที่ทับซ้อนหรือสลับกับลำดับถัดไป ปรับวันหรือลำดับ",
-  "file": "ui/PlanScreens.kt"
- },
- "📅 Pick days": {
-  "th": "📅 เลือกวัน",
-  "file": "ui/PlanScreens.kt"
- },
- "Move up": {
-  "th": "เลื่อนขึ้น",
-  "file": "ui/PlanScreens.kt"
- },
- "Move down": {
-  "th": "เลื่อนลง",
-  "file": "ui/PlanScreens.kt"
- },
- "Order: ": {
-  "th": "ลำดับ: ",
-  "file": "ui/PlanScreens.kt"
- },
- "Some days have no sightseeing": {
-  "th": "มีช่วงวันที่ไม่ได้เที่ยว",
-  "file": "ui/PlanScreens.kt"
- },
- "Edit the days instead": {
-  "th": "แก้ไขวันที่แทน",
-  "file": "ui/PlanScreens.kt"
- },
- "Done ({0} days)": {
-  "th": "ตกลง ({0} วัน)",
-  "file": "ui/PlanScreens.kt"
- },
- "Clear": {
-  "th": "ล้าง",
-  "file": "ui/PlanScreens.kt"
- },
- "Days used by other places (number = order)": {
-  "th": "วันที่ใช้กับสถานที่อื่น (ตัวเลข = ลำดับ)",
-  "file": "ui/PlanScreens.kt"
- },
- "PM2.5 now {0} µg/m³": {
-  "th": "PM2.5 ตอนนี้ {0} µg/m³",
-  "file": "ui/WarningsScreen.kt"
- },
- "Pollution Control Department (Air4Thai)": {
-  "th": "กรมควบคุมมลพิษ (Air4Thai)",
-  "file": "ui/WarningsScreen.kt"
- },
- "PM2.5 about {0} µg/m³": {
-  "th": "PM2.5 ประมาณ {0} µg/m³",
-  "file": "ui/WarningsScreen.kt"
- },
- "Open-Meteo (European CAMS model), used when Air4Thai can't be reached": {
-  "th": "Open-Meteo (แบบจำลอง CAMS ของยุโรป) ใช้แทนเมื่อเชื่อมต่อ Air4Thai ไม่ได้",
-  "file": "ui/WarningsScreen.kt"
- },
- "Couldn't get PM2.5 right now; try again when online": {
-  "th": "ดึงค่าฝุ่นไม่ได้ในตอนนี้ ลองใหม่เมื่อมีอินเทอร์เน็ต",
-  "file": "ui/WarningsScreen.kt"
- },
- "{0} fire hotspots within 30 km": {
-  "th": "พบจุดความร้อน {0} จุดในรัศมี 30 กม.",
-  "file": "ui/WarningsScreen.kt"
- },
- "Seen by satellite in the last 24 hours; may be forest fires or burning.": {
-  "th": "จากดาวเทียมใน 24 ชั่วโมงที่ผ่านมา อาจเป็นไฟป่าหรือการเผา",
-  "file": "ui/WarningsScreen.kt"
- },
- "VIIRS satellite via NASA FIRMS (same data GISTDA uses)": {
-  "th": "ดาวเทียม VIIRS ผ่าน NASA FIRMS (ข้อมูลชุดเดียวกับที่ GISTDA ใช้)",
-  "file": "ui/WarningsScreen.kt"
- },
- "Couldn't get fire hotspots right now": {
-  "th": "ดึงข้อมูลจุดความร้อนไม่ได้ในตอนนี้",
-  "file": "ui/WarningsScreen.kt"
- },
- "Open-Meteo forecast (also check Thai Meteorological Department notices, tmd.go.th)": {
-  "th": "พยากรณ์ Open-Meteo (ควรเช็กประกาศกรมอุตุนิยมวิทยาประกอบ tmd.go.th)",
-  "file": "ui/WarningsScreen.kt"
- },
- "Very hot {0}": {
-  "th": "อากาศร้อนจัด {0}",
-  "file": "ui/WarningsScreen.kt"
- },
- "High {0}°C. Drink often and avoid midday sun.": {
-  "th": "สูงสุด {0}°C ดื่มน้ำบ่อยๆ หลีกเลี่ยงแดดช่วงเที่ยง",
-  "file": "ui/WarningsScreen.kt"
- },
- "Open-Meteo forecast": {
-  "th": "พยากรณ์ Open-Meteo",
-  "file": "ui/WarningsScreen.kt"
- },
- "Strong gusts {0}": {
-  "th": "ลมกระโชกแรง {0}",
-  "file": "ui/WarningsScreen.kt"
- },
- "Gusts up to {0} km/h. Small boats may not sail.": {
-  "th": "ลมกระโชกถึง {0} กม./ชม. เรือเล็กควรงดออกจากฝั่ง",
-  "file": "ui/WarningsScreen.kt"
- },
- "Couldn't get the weather forecast right now": {
-  "th": "ดึงพยากรณ์อากาศไม่ได้ในตอนนี้",
-  "file": "ui/WarningsScreen.kt"
- },
- "Nearby river may run higher than usual": {
-  "th": "ระดับน้ำในแม่น้ำใกล้เคียงอาจสูงกว่าปกติ",
-  "file": "ui/WarningsScreen.kt"
- },
- "Forecast flow is about {0}× the usual level this week. Follow local notices.": {
-  "th": "คาดว่าน้ำจะมากกว่าปกติราว {0} เท่าในสัปดาห์นี้ ติดตามประกาศท้องถิ่น",
-  "file": "ui/WarningsScreen.kt"
- },
- "GloFAS flood model via Open-Meteo": {
-  "th": "แบบจำลองน้ำท่วม GloFAS ผ่าน Open-Meteo",
-  "file": "ui/WarningsScreen.kt"
- },
- "Trip days are more than 7 days away, so seasonal risks are shown; real forecasts appear closer to the date.": {
-  "th": "วันเที่ยวยังเกิน 7 วัน จึงแสดงความเสี่ยงตามฤดูกาล พยากรณ์จริงจะขึ้นเมื่อใกล้วัน",
-  "file": "ui/WarningsScreen.kt"
- },
- "1. Weather & hazard warnings": {
-  "th": "1. คำเตือนสภาพอากาศและภัย",
-  "file": "ui/WarningsScreen.kt"
- },
- "Confirm places · Next: stays": {
-  "th": "ยืนยันสถานที่ · ต่อไป: ที่พัก",
-  "file": "ui/WarningsScreen.kt"
- },
- "Checking latest data…": {
-  "th": "กำลังตรวจข้อมูลล่าสุด…",
-  "file": "ui/WarningsScreen.kt"
- },
- "✅ No warnings for these days": {
-  "th": "✅ ไม่พบคำเตือนในช่วงนี้",
-  "file": "ui/WarningsScreen.kt"
- },
- "Change days or place": {
-  "th": "เปลี่ยนวันหรือสถานที่",
-  "file": "ui/WarningsScreen.kt"
- },
- "Source: ": {
-  "th": "ที่มา: ",
-  "file": "ui/WarningsScreen.kt"
- },
- "Tap to confirm or adjust your trip": {
-  "th": "แตะเพื่อยืนยันหรือปรับแผนการเดินทาง",
-  "file": "work/CheckIn.kt"
- },
- "Tap Booking.com or Agoda to see prices and book. When you come back, the app asks for the stay details and saves them under that place. Booked another way? Enter the details yourself.": {
-  "th": "กด Booking.com หรือ Agoda เพื่อดูราคาและจอง เมื่อกลับมาที่แอป แอปจะถามและบันทึกข้อมูลที่พักไว้กับสถานที่นั้นให้ ถ้าจองไว้ทางอื่นแล้วก็กรอกข้อมูลเองได้",
   "file": "ui/BookingScreens.kt"
  },
  "No stay saved yet": {
@@ -969,6 +505,10 @@
  },
  "Remove": {
   "th": "ลบ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Stays near {0}": {
+  "th": "ที่พักใกล้ {0}",
   "file": "ui/BookingScreens.kt"
  },
  "🔖 Booking number: {0}": {
@@ -1051,13 +591,245 @@
   "th": "หมายเหตุ",
   "file": "ui/BookingScreens.kt"
  },
+ "3. Plan your transport": {
+  "th": "3. วางแผนการเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Summarise the plan": {
+  "th": "สรุปแผนการเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
  "This trip has one place, so there is no travel between places.": {
   "th": "ทริปนี้มีสถานที่เดียว จึงไม่มีช่วงเดินทางระหว่างสถานที่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Pick a way to travel each leg. The app joins real timetables of buses, trains, boats and flights, with departure times, where to board and how to reach the stations.": {
+  "th": "เลือกทางเลือกในการเดินทางของแต่ละช่วง แอปรวมเส้นทางที่ต่อกันได้จริงจากตารางเวลารถ รถไฟ เรือ และเครื่องบิน พร้อมรอบเวลา จุดขึ้น-ลง และวิธีไปสถานี",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Leg {0}": {
+  "th": "ช่วงที่ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "About {0} km in a straight line": {
+  "th": "ระยะทางตรงราว {0} กม.",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Travel day: ": {
+  "th": "วันเดินทาง: ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "See flights & arrival times (Google Flights)": {
+  "th": "ดูเที่ยวบินและเวลาถึง (Google Flights)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Airports of Thailand call centre": {
+  "th": "ศูนย์บริการข้อมูลท่าอากาศยาน (ทอท.)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Book train tickets (SRT D-Ticket)": {
+  "th": "จองตั๋วรถไฟ D-Ticket (การรถไฟฯ)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "State Railway of Thailand hotline": {
+  "th": "สายด่วนการรถไฟแห่งประเทศไทย",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Transport Co., Ltd. (BKS)": {
+  "th": "บริษัท ขนส่ง จำกัด (บขส.)",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Find and book buses on 12Go": {
+  "th": "ค้นหาเที่ยวรถและจองผ่าน 12Go",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Find and book ferries on 12Go": {
+  "th": "ค้นหาเรือข้ามฟากและจองผ่าน 12Go",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Driving route (Google Maps)": {
+  "th": "เส้นทางขับรถ (Google Maps)",
   "file": "ui/BookingScreens.kt"
  },
  "Find and book minivans on 12Go": {
   "th": "ค้นหารอบรถตู้และจองผ่าน 12Go",
   "file": "ui/BookingScreens.kt"
+ },
+ "Open trip progress": {
+  "th": "ดูความคืบหน้าทริป",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✅ Confirm trip update & activate": {
+  "th": "✅ ยืนยันการอัปเดตทริป และ Activate",
+  "file": "ui/BookingScreens.kt"
+ },
+ "No transport chosen": {
+  "th": "ยังไม่เลือกวิธีเดินทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open": {
+  "th": "เปิด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🍜 Food & cafés": {
+  "th": "🍜 ร้านอาหาร/กาแฟ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Hospitals": {
+  "th": "🏥 โรงพยาบาล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Police": {
+  "th": "👮 สถานีตำรวจ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Free": {
+  "th": "ว่าง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "National hotlines": {
+  "th": "สายด่วนทั่วประเทศ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Emergency numbers": {
+  "th": "เบอร์ฉุกเฉิน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🍜 Restaurants": {
+  "th": "🍜 ร้านอาหาร",
+  "file": "ui/BookingScreens.kt"
+ },
+ "☕ Cafés": {
+  "th": "☕ ร้านกาแฟ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Police stations": {
+  "th": "👮 สถานีตำรวจ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Open in Google Maps": {
+  "th": "เปิดใน Google Maps",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Searching the map, this can take a moment": {
+  "th": "กำลังค้นหาจากแผนที่ อาจใช้เวลาสักครู่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Couldn't load the list. Check your internet and try again.": {
+  "th": "โหลดรายการไม่ได้ ตรวจสอบอินเทอร์เน็ตแล้วลองใหม่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Try again": {
+  "th": "ลองใหม่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Nothing found on OpenStreetMap here yet; try Google Maps instead.": {
+  "th": "ยังไม่พบข้อมูลในแผนที่ OpenStreetMap ลองเปิดใน Google Maps แทน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Public hospital": {
+  "th": "🏥 โรงพยาบาลรัฐ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Private hospital": {
+  "th": "🏥 โรงพยาบาลเอกชน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Hospital": {
+  "th": "🏥 โรงพยาบาล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "⛑️ Health centre": {
+  "th": "⛑️ สถานีอนามัย / รพ.สต.",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🩺 Clinic": {
+  "th": "🩺 คลินิก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "{0} beds": {
+  "th": "{0} เตียง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🚑 Emergency room": {
+  "th": "🚑 มีห้องฉุกเฉิน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🔎 Find phone": {
+  "th": "🔎 หาเบอร์โทร",
+  "file": "ui/BookingScreens.kt"
+ },
+ "📷 Street view": {
+  "th": "📷 ภาพหน้าสถานี",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🧭 Directions": {
+  "th": "🧭 นำทาง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "⭐ See review scores:": {
+  "th": "⭐ ดูคะแนนรีวิว:",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Data © OpenStreetMap contributors, nearest first": {
+  "th": "ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons.": {
+  "th": "แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Review scores open from each place's Google / Wongnai / Tripadvisor button": {
+  "th": "คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Local services near {0}": {
+  "th": "เบอร์หน่วยงานใกล้ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Local services near you": {
+  "th": "เบอร์หน่วยงานใกล้คุณ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Calling the local office directly is often faster": {
+  "th": "โทรหาหน่วยงานในพื้นที่โดยตรงมักได้รับความช่วยเหลือเร็วกว่า",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Nearest police station": {
+  "th": "👮 สถานีตำรวจใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Nearest hospital": {
+  "th": "🏥 โรงพยาบาลใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🚒 Nearest fire station": {
+  "th": "🚒 สถานีดับเพลิงใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Searching…": {
+  "th": "กำลังค้นหา…",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Not found on the map; use the hotlines below": {
+  "th": "ไม่พบในแผนที่ ใช้สายด่วนด้านล่าง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "✈️ Flight": {
+  "th": "✈️ เครื่องบิน",
+  "file": "ui/Format.kt"
+ },
+ "🚆 Train": {
+  "th": "🚆 รถไฟ",
+  "file": "ui/Format.kt"
+ },
+ "🚌 Bus": {
+  "th": "🚌 รถโดยสาร",
+  "file": "ui/Format.kt"
+ },
+ "⛴️ Boat": {
+  "th": "⛴️ เรือ",
+  "file": "ui/Format.kt"
  },
  "🚗 Car / ride-hailing": {
   "th": "🚗 รถยนต์ / เรียกรถ",
@@ -1066,6 +838,42 @@
  "🚐 Minivan": {
   "th": "🚐 รถตู้โดยสาร",
   "file": "ui/Format.kt"
+ },
+ "✈️ Airport": {
+  "th": "✈️ สนามบิน",
+  "file": "ui/Format.kt"
+ },
+ "🚌 Bus terminal": {
+  "th": "🚌 สถานีขนส่ง",
+  "file": "ui/Format.kt"
+ },
+ "🚆 Railway station": {
+  "th": "🚆 สถานีรถไฟ",
+  "file": "ui/Format.kt"
+ },
+ "⛴️ Pier": {
+  "th": "⛴️ ท่าเรือ",
+  "file": "ui/Format.kt"
+ },
+ "💼 Work / errands": {
+  "th": "💼 ทำงาน/ภารกิจ",
+  "file": "ui/Format.kt"
+ },
+ "🏠 Visit friends or family": {
+  "th": "🏠 เยี่ยมเพื่อนหรือญาติ",
+  "file": "ui/Format.kt"
+ },
+ "🧳 Travel time": {
+  "th": "🧳 ใช้เดินทาง",
+  "file": "ui/Format.kt"
+ },
+ "✨ Something else": {
+  "th": "✨ กิจกรรมอื่น",
+  "file": "ui/Format.kt"
+ },
+ "English": {
+  "th": "ไทย",
+  "file": "ui/I18n.kt"
  },
  "m": {
   "th": "ม.",
@@ -1311,94 +1119,6 @@
   "th": "ดูรอบเรือและจองตั๋ว (12Go)",
   "file": "ui/LegDetails.kt"
  },
- "Pick a way to travel each leg. The app joins real timetables of buses, trains, boats and flights, with departure times, where to board and how to reach the stations.": {
-  "th": "เลือกทางเลือกในการเดินทางของแต่ละช่วง แอปรวมเส้นทางที่ต่อกันได้จริงจากตารางเวลารถ รถไฟ เรือ และเครื่องบิน พร้อมรอบเวลา จุดขึ้น-ลง และวิธีไปสถานี",
-  "file": "ui/BookingScreens.kt"
- },
- "National hotlines": {
-  "th": "สายด่วนทั่วประเทศ",
-  "file": "ui/BookingScreens.kt"
- },
- "Searching the map, this can take a moment": {
-  "th": "กำลังค้นหาจากแผนที่ อาจใช้เวลาสักครู่",
-  "file": "ui/BookingScreens.kt"
- },
- "🏥 Public hospital": {
-  "th": "🏥 โรงพยาบาลรัฐ",
-  "file": "ui/BookingScreens.kt"
- },
- "🏥 Private hospital": {
-  "th": "🏥 โรงพยาบาลเอกชน",
-  "file": "ui/BookingScreens.kt"
- },
- "🏥 Hospital": {
-  "th": "🏥 โรงพยาบาล",
-  "file": "ui/BookingScreens.kt"
- },
- "⛑️ Health centre": {
-  "th": "⛑️ สถานีอนามัย / รพ.สต.",
-  "file": "ui/BookingScreens.kt"
- },
- "🩺 Clinic": {
-  "th": "🩺 คลินิก",
-  "file": "ui/BookingScreens.kt"
- },
- "{0} beds": {
-  "th": "{0} เตียง",
-  "file": "ui/BookingScreens.kt"
- },
- "🔎 Find phone": {
-  "th": "🔎 หาเบอร์โทร",
-  "file": "ui/BookingScreens.kt"
- },
- "📷 Street view": {
-  "th": "📷 ภาพหน้าสถานี",
-  "file": "ui/BookingScreens.kt"
- },
- "⭐ See review scores:": {
-  "th": "⭐ ดูคะแนนรีวิว:",
-  "file": "ui/BookingScreens.kt"
- },
- "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons.": {
-  "th": "แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons",
-  "file": "ui/BookingScreens.kt"
- },
- "Review scores open from each place's Google / Wongnai / Tripadvisor button": {
-  "th": "คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน",
-  "file": "ui/BookingScreens.kt"
- },
- "Local services near {0}": {
-  "th": "เบอร์หน่วยงานใกล้ {0}",
-  "file": "ui/BookingScreens.kt"
- },
- "Local services near you": {
-  "th": "เบอร์หน่วยงานใกล้คุณ",
-  "file": "ui/BookingScreens.kt"
- },
- "Calling the local office directly is often faster": {
-  "th": "โทรหาหน่วยงานในพื้นที่โดยตรงมักได้รับความช่วยเหลือเร็วกว่า",
-  "file": "ui/BookingScreens.kt"
- },
- "👮 Nearest police station": {
-  "th": "👮 สถานีตำรวจใกล้สุด",
-  "file": "ui/BookingScreens.kt"
- },
- "🏥 Nearest hospital": {
-  "th": "🏥 โรงพยาบาลใกล้สุด",
-  "file": "ui/BookingScreens.kt"
- },
- "🚒 Nearest fire station": {
-  "th": "🚒 สถานีดับเพลิงใกล้สุด",
-  "file": "ui/BookingScreens.kt"
- },
- "Searching…": {
-  "th": "กำลังค้นหา…",
-  "file": "ui/BookingScreens.kt"
- },
- "Not found on the map; use the hotlines below": {
-  "th": "ไม่พบในแผนที่ ใช้สายด่วนด้านล่าง",
-  "file": "ui/BookingScreens.kt"
- },
  "flight": {
   "th": "เครื่องบิน",
   "file": "ui/LegDetails.kt"
@@ -1439,6 +1159,26 @@
   "th": "ทางเลือกในการเดินทาง",
   "file": "ui/LegDetails.kt"
  },
+ "There are many ways. How would you mainly like to travel?": {
+  "th": "มีหลายทางเลือก อยากเดินทางแบบไหนเป็นหลัก?",
+  "file": "ui/LegDetails.kt"
+ },
+ "Main way to travel": {
+  "th": "เดินทางหลักโดย",
+  "file": "ui/LegDetails.kt"
+ },
+ "Show all": {
+  "th": "ดูทุกแบบ",
+  "file": "ui/LegDetails.kt"
+ },
+ "The app will build ways around it and connect every step to your destination.": {
+  "th": "แอปจะหาเส้นทางที่ใช้วิธีนี้เป็นหลัก แล้วต่อรถ เรือ หรือรถไฟฟ้าให้ครบจนถึงที่หมาย",
+  "file": "ui/LegDetails.kt"
+ },
+ "No complete connection using {0}; try another kind or show all.": {
+  "th": "ไม่พบเส้นทางที่ใช้{0}แล้วต่อได้ครบ ลองเลือกแบบอื่น หรือดูทุกแบบ",
+  "file": "ui/LegDetails.kt"
+ },
  "No connecting timetables for this leg in the app yet; see other ways below.": {
   "th": "ยังไม่มีตารางเวลารถ เรือ รถไฟ หรือเครื่องบินที่ต่อกันได้สำหรับช่วงนี้ในแอป ดูทางเลือกอื่นด้านล่าง",
   "file": "ui/LegDetails.kt"
@@ -1471,16 +1211,124 @@
   "th": "🚶 เดินจาก {0} ไป {1} ({2})",
   "file": "ui/LegDetails.kt"
  },
- "🚕 {0} → {1}": {
-  "th": "🚕 {0} → {1}",
+ "🚕 Taxi or ride: about {0} · {1} · about {2}–{3} baht": {
+  "th": "🚕 แท็กซี่/เรียกรถ ระยะทางราว {0} · ประมาณ {1} · ราว {2}–{3} บาท",
   "file": "ui/LegDetails.kt"
  },
- "About {0} · {1} · taxi or ride about {2}–{3} baht": {
-  "th": "ระยะทางราว {0} · ประมาณ {1} · แท็กซี่/เรียกรถ ราว {2}–{3} บาท",
+ "Getting to {0}": {
+  "th": "วิธีไป {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Leaving {0}": {
+  "th": "ออกจาก {0} ไปต่อ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Find bus / songthaew / boat lines passing both points": {
+  "th": "ค้นหาสายรถเมล์ / รถสองแถว / เรือที่ผ่านทั้งสองจุด",
   "file": "ui/LegDetails.kt"
  },
  "🚌 Public transport (Google Maps)": {
   "th": "🚌 รถสาธารณะ (Google Maps)",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚝 BTS Skytrain": {
+  "th": "🚝 รถไฟฟ้า BTS",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚇 MRT": {
+  "th": "🚇 รถไฟฟ้า MRT",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚆 Airport Rail Link": {
+  "th": "🚆 แอร์พอร์ต เรล ลิงก์",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚆 SRT Red Line": {
+  "th": "🚆 รถไฟฟ้าสายสีแดง",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚝 Gold Line": {
+  "th": "🚝 รถไฟฟ้าสายสีทอง",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚝 Monorail": {
+  "th": "🚝 รถไฟฟ้าโมโนเรล",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚌 BRT bus": {
+  "th": "🚌 รถโดยสารด่วนพิเศษ BRT",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚌 City bus": {
+  "th": "🚌 รถเมล์",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚌 Air-con bus": {
+  "th": "🚌 รถเมล์ปรับอากาศ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚌 Airport bus": {
+  "th": "🚌 รถบัสสนามบิน",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚐 Shuttle": {
+  "th": "🚐 รถรับส่ง",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚕 Taxi": {
+  "th": "🚕 แท็กซี่",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚶 Walk": {
+  "th": "🚶 เดิน",
+  "file": "ui/LegDetails.kt"
+ },
+ "Show less": {
+  "th": "ย่อ",
+  "file": "ui/LegDetails.kt"
+ },
+ "{0} more ways": {
+  "th": "ดูอีก {0} วิธี",
+  "file": "ui/LegDetails.kt"
+ },
+ " no. {0}": {
+  "th": " สาย {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "To/from: ": {
+  "th": "ไป/มาจาก: ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Where to board: ": {
+  "th": "จุดขึ้น: ",
+  "file": "ui/LegDetails.kt"
+ },
+ "about ": {
+  "th": "ใช้เวลาราว ",
+  "file": "ui/LegDetails.kt"
+ },
+ "every {0} min": {
+  "th": "ทุก {0} นาที",
+  "file": "ui/LegDetails.kt"
+ },
+ "runs {0}": {
+  "th": "เวลา {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚆 By rail, about {0}": {
+  "th": "🚆 ไปด้วยรถไฟฟ้า ประมาณ {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚶 Walk {0} from {1} to {2} station": {
+  "th": "🚶 เดิน {0} จาก {1} ไปสถานี {2}",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔁 Change at {0}": {
+  "th": "🔁 เปลี่ยนสายที่สถานี {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "   {0} → {1} ({2} stops)": {
+  "th": "   ขึ้นที่ {0} → ลงที่ {1} ({2} สถานี)",
   "file": "ui/LegDetails.kt"
  },
  "Board at {0} → get off at {1}": {
@@ -1489,6 +1337,30 @@
  },
  "Be there at least {0} min before": {
   "th": "ไปถึงก่อนออกอย่างน้อย {0} นาที",
+  "file": "ui/LegDetails.kt"
+ },
+ "Airline: {0}": {
+  "th": "สายการบิน: {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Baggage is the usual allowance on the cheapest fares; check your ticket.": {
+  "th": "น้ำหนักกระเป๋าเป็นเงื่อนไขทั่วไปของตั๋วราคาประหยัด ตรวจตั๋วของคุณอีกครั้ง",
+  "file": "ui/LegDetails.kt"
+ },
+ "Stops on this run ({0})": {
+  "th": "จุดจอดรับ-ส่งของเที่ยวนี้ ({0} จุด)",
+  "file": "ui/LegDetails.kt"
+ },
+ " ← board here": {
+  "th": " ← ขึ้นที่นี่",
+  "file": "ui/LegDetails.kt"
+ },
+ " ← get off here": {
+  "th": " ← ลงที่นี่",
+  "file": "ui/LegDetails.kt"
+ },
+ "You can board or get off at another stop on the list if it suits you better.": {
+  "th": "ขึ้นหรือลงที่จุดอื่นในรายการได้ ถ้าสะดวกกว่า",
   "file": "ui/LegDetails.kt"
  },
  "🎫 Book / details": {
@@ -1515,6 +1387,98 @@
   "th": "เรียกรถ / ขับรถ ประมาณ ",
   "file": "ui/LegDetails.kt"
  },
+ "Plan one Thailand trip at a time": {
+  "th": "วางแผนเที่ยวไทยทีละ 1 ทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Pick places, set calendar days, choose the order, check hazard warnings, choose stays and transport, then activate the plan to follow your trip.": {
+  "th": "เลือกสถานที่ กำหนดวันในปฏิทิน เรียงลำดับ ตรวจคำเตือนภัย เลือกที่พักและการเดินทาง แล้วกดเริ่มทริปเพื่อติดตามการเดินทาง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "🗂 My trips (albums & slideshows)": {
+  "th": "🗂 ทริปของฉัน (อัลบั้มและสไลด์โชว์)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "🎉 Your last trip is complete": {
+  "th": "🎉 ทริปล่าสุดเสร็จสมบูรณ์แล้ว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Plan a new trip": {
+  "th": "เริ่มวางแผนทริปใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Start planning": {
+  "th": "เริ่มวางแผนทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Your trip": {
+  "th": "ทริปของคุณ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Continue planning": {
+  "th": "วางแผนต่อ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "View trip summary": {
+  "th": "ดูสรุปทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Delete this trip and start over": {
+  "th": "ลบทริปนี้และเริ่มใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Start a new trip?": {
+  "th": "เริ่มทริปใหม่?",
+  "file": "ui/PlanScreens.kt"
+ },
+ "The current trip will be deleted.": {
+  "th": "ข้อมูลทริปปัจจุบันจะถูกลบ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Delete": {
+  "th": "ลบและเริ่มใหม่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Bangkok": {
+  "th": "กรุงเทพฯ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Central": {
+  "th": "ภาคกลาง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "North": {
+  "th": "ภาคเหนือ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Northeast": {
+  "th": "ภาคอีสาน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "East": {
+  "th": "ภาคตะวันออก",
+  "file": "ui/PlanScreens.kt"
+ },
+ "West": {
+  "th": "ภาคตะวันตก",
+  "file": "ui/PlanScreens.kt"
+ },
+ "South (Andaman)": {
+  "th": "ใต้ฝั่งอันดามัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "South (Gulf)": {
+  "th": "ใต้ฝั่งอ่าวไทย",
+  "file": "ui/PlanScreens.kt"
+ },
+ "1. Choose places": {
+  "th": "1. เลือกสถานที่ท่องเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "{0} selected · Next: days & order": {
+  "th": "เลือกแล้ว {0} แห่ง · ต่อไป: วันและลำดับ",
+  "file": "ui/PlanScreens.kt"
+ },
  "🔎 Search a place or province": {
   "th": "🔎 ค้นหาชื่อสถานที่หรือจังหวัด",
   "file": "ui/PlanScreens.kt"
@@ -1522,5 +1486,241 @@
  "No places match your search": {
   "th": "ไม่พบสถานที่ที่ค้นหา",
   "file": "ui/PlanScreens.kt"
+ },
+ "1. Your chosen places": {
+  "th": "1. สถานที่ท่องเที่ยวที่เลือกไว้",
+  "file": "ui/PlanScreens.kt"
+ },
+ "{0} places chosen": {
+  "th": "เลือกไว้ {0} แห่ง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "✕ Remove": {
+  "th": "✕ เอาออก",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No places in the list": {
+  "th": "ยังไม่มีสถานที่ในรายการ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Do you want to change this list?": {
+  "th": "ต้องการแก้ไขรายการสถานที่ไหม?",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Change the list": {
+  "th": "แก้ไขรายการ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No changes, go to the days": {
+  "th": "ไม่แก้ไข ไปกำหนดวันเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Tap \"Remove\" on places you don't want, then tap Done.": {
+  "th": "กด \"เอาออก\" ที่สถานที่ที่ไม่ต้องการ แล้วกดเสร็จ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Done": {
+  "th": "เสร็จ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Add more places?": {
+  "th": "จะเพิ่มสถานที่ท่องเที่ยวอีกไหม?",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Add places": {
+  "th": "เพิ่มสถานที่",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No, go to the days": {
+  "th": "ไม่เพิ่ม ไปกำหนดวันเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "✓ In your trip (tap to remove)": {
+  "th": "✓ อยู่ในทริปแล้ว (แตะเพื่อเอาออก)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Add to trip": {
+  "th": "เพิ่มในทริป",
+  "file": "ui/PlanScreens.kt"
+ },
+ "From Wikimedia Commons · tap for source": {
+  "th": "ภาพจาก Wikimedia Commons · แตะเพื่อดูต้นฉบับ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Best time to visit": {
+  "th": "ช่วงเวลาที่แนะนำ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Good to know": {
+  "th": "ข้อควรรู้",
+  "file": "ui/PlanScreens.kt"
+ },
+ "1. Days & visiting order": {
+  "th": "1. วันและลำดับการเที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Next: check warnings": {
+  "th": "ต่อไป: ตรวจคำเตือน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Use the arrows to set the order, then pick calendar days for each place (they don't have to be consecutive).": {
+  "th": "เรียงลำดับด้วยลูกศร แล้วเลือกวันในปฏิทินให้แต่ละที่ (ไม่จำเป็นต้องติดกัน)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No days yet": {
+  "th": "ยังไม่ได้เลือกวัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "{0} day(s): ": {
+  "th": "{0} วัน: ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Days overlap with or come after the next stop. Adjust days or order.": {
+  "th": "วันที่ทับซ้อนหรือสลับกับลำดับถัดไป ปรับวันหรือลำดับ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "📅 Pick days": {
+  "th": "📅 เลือกวัน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Move up": {
+  "th": "เลื่อนขึ้น",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Move down": {
+  "th": "เลื่อนลง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Order: ": {
+  "th": "ลำดับ: ",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Some days have no sightseeing": {
+  "th": "มีช่วงวันที่ไม่ได้เที่ยว",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Edit the days instead": {
+  "th": "แก้ไขวันที่แทน",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Done ({0} days)": {
+  "th": "ตกลง ({0} วัน)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Clear": {
+  "th": "ล้าง",
+  "file": "ui/PlanScreens.kt"
+ },
+ "Days used by other places (number = order)": {
+  "th": "วันที่ใช้กับสถานที่อื่น (ตัวเลข = ลำดับ)",
+  "file": "ui/PlanScreens.kt"
+ },
+ "PM2.5 now {0} µg/m³": {
+  "th": "PM2.5 ตอนนี้ {0} µg/m³",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Pollution Control Department (Air4Thai)": {
+  "th": "กรมควบคุมมลพิษ (Air4Thai)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "PM2.5 about {0} µg/m³": {
+  "th": "PM2.5 ประมาณ {0} µg/m³",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo (European CAMS model), used when Air4Thai can't be reached": {
+  "th": "Open-Meteo (แบบจำลอง CAMS ของยุโรป) ใช้แทนเมื่อเชื่อมต่อ Air4Thai ไม่ได้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get PM2.5 right now; try again when online": {
+  "th": "ดึงค่าฝุ่นไม่ได้ในตอนนี้ ลองใหม่เมื่อมีอินเทอร์เน็ต",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "{0} fire hotspots within 30 km": {
+  "th": "พบจุดความร้อน {0} จุดในรัศมี 30 กม.",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Seen by satellite in the last 24 hours; may be forest fires or burning.": {
+  "th": "จากดาวเทียมใน 24 ชั่วโมงที่ผ่านมา อาจเป็นไฟป่าหรือการเผา",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "VIIRS satellite via NASA FIRMS (same data GISTDA uses)": {
+  "th": "ดาวเทียม VIIRS ผ่าน NASA FIRMS (ข้อมูลชุดเดียวกับที่ GISTDA ใช้)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get fire hotspots right now": {
+  "th": "ดึงข้อมูลจุดความร้อนไม่ได้ในตอนนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo forecast (also check Thai Meteorological Department notices, tmd.go.th)": {
+  "th": "พยากรณ์ Open-Meteo (ควรเช็กประกาศกรมอุตุนิยมวิทยาประกอบ tmd.go.th)",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Very hot {0}": {
+  "th": "อากาศร้อนจัด {0}",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "High {0}°C. Drink often and avoid midday sun.": {
+  "th": "สูงสุด {0}°C ดื่มน้ำบ่อยๆ หลีกเลี่ยงแดดช่วงเที่ยง",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Open-Meteo forecast": {
+  "th": "พยากรณ์ Open-Meteo",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Strong gusts {0}": {
+  "th": "ลมกระโชกแรง {0}",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Gusts up to {0} km/h. Small boats may not sail.": {
+  "th": "ลมกระโชกถึง {0} กม./ชม. เรือเล็กควรงดออกจากฝั่ง",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Couldn't get the weather forecast right now": {
+  "th": "ดึงพยากรณ์อากาศไม่ได้ในตอนนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Nearby river may run higher than usual": {
+  "th": "ระดับน้ำในแม่น้ำใกล้เคียงอาจสูงกว่าปกติ",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Forecast flow is about {0}× the usual level this week. Follow local notices.": {
+  "th": "คาดว่าน้ำจะมากกว่าปกติราว {0} เท่าในสัปดาห์นี้ ติดตามประกาศท้องถิ่น",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "GloFAS flood model via Open-Meteo": {
+  "th": "แบบจำลองน้ำท่วม GloFAS ผ่าน Open-Meteo",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Trip days are more than 7 days away, so seasonal risks are shown; real forecasts appear closer to the date.": {
+  "th": "วันเที่ยวยังเกิน 7 วัน จึงแสดงความเสี่ยงตามฤดูกาล พยากรณ์จริงจะขึ้นเมื่อใกล้วัน",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "1. Weather & hazard warnings": {
+  "th": "1. คำเตือนสภาพอากาศและภัย",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Confirm places · Next: stays": {
+  "th": "ยืนยันสถานที่ · ต่อไป: ที่พัก",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Checking latest data…": {
+  "th": "กำลังตรวจข้อมูลล่าสุด…",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "✅ No warnings for these days": {
+  "th": "✅ ไม่พบคำเตือนในช่วงนี้",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Change days or place": {
+  "th": "เปลี่ยนวันหรือสถานที่",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Source: ": {
+  "th": "ที่มา: ",
+  "file": "ui/WarningsScreen.kt"
+ },
+ "Tap to confirm or adjust your trip": {
+  "th": "แตะเพื่อยืนยันหรือปรับแผนการเดินทาง",
+  "file": "work/CheckIn.kt"
  }
 }

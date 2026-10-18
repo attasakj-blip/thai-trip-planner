@@ -50,6 +50,9 @@ def main():
     flights_text = (ASSETS / "flights.json").read_text(encoding="utf-8")
     routes_text = (ASSETS / "routes.json").read_text(encoding="utf-8")
     routes = json.loads(routes_text).get("routes", [])
+    access_text = (ASSETS / "access.json").read_text(encoding="utf-8")
+    rail_text = (ASSETS / "rail.json").read_text(encoding="utf-8")
+    access, rail = json.loads(access_text).get("access", {}), json.loads(rail_text).get("lines", [])
     places, hubs, flights = json.loads(places_text), json.loads(hubs_text), json.loads(flights_text)
     errors = check_places(places) + check_hubs(hubs)
     airlines = {a["code"] for a in flights.get("airlines", [])}
@@ -71,6 +74,12 @@ def main():
         for t in r.get("trips", []):
             if len(t.get("times", [])) != len(r.get("stops", [])):
                 errors.append(f"route {r.get('id')}: a trip has {len(t.get('times', []))} times for {len(r.get('stops', []))} stops")
+    for hid in access:
+        if hid not in hub_ids:
+            errors.append(f"access: unknown hub {hid}")
+    for line in rail:
+        if len(line.get("stations", [])) < 2:
+            errors.append(f"rail line {line.get('id')}: too few stations")
     for p in places:
         for hid in p.get("hubIds", []):
             if hid not in hub_ids:
@@ -84,7 +93,9 @@ def main():
     (OUT / "hubs.json").write_text(hubs_text, encoding="utf-8")
     (OUT / "flights.json").write_text(flights_text, encoding="utf-8")
     (OUT / "routes.json").write_text(routes_text, encoding="utf-8")
-    version = hashlib.sha256((places_text + hubs_text + flights_text + routes_text).encode("utf-8")).hexdigest()[:16]
+    (OUT / "access.json").write_text(access_text, encoding="utf-8")
+    (OUT / "rail.json").write_text(rail_text, encoding="utf-8")
+    version = hashlib.sha256((places_text + hubs_text + flights_text + routes_text + access_text + rail_text).encode("utf-8")).hexdigest()[:16]
     meta = {
         "version": version,
         "updatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -92,6 +103,8 @@ def main():
         "hubs": len(hubs),
         "flightRoutes": len(flights.get("routes", [])),
         "routes": len(routes),
+        "accessHubs": len(access),
+        "railLines": len(rail),
     }
     (OUT / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     (ROOT / "site" / "index.html").write_text(
