@@ -671,10 +671,6 @@
   "th": "ไทย",
   "file": "ui/I18n.kt"
  },
- "Thai Trip Planner": {
-  "th": "เที่ยวไทย Trip",
-  "file": "ui/PlanScreens.kt"
- },
  "Plan one Thailand trip at a time": {
   "th": "วางแผนเที่ยวไทยทีละ 1 ทริป",
   "file": "ui/PlanScreens.kt"
@@ -765,10 +761,6 @@
  },
  "{0} selected · Next: days & order": {
   "th": "เลือกแล้ว {0} แห่ง · ต่อไป: วันและลำดับ",
-  "file": "ui/PlanScreens.kt"
- },
- "All": {
-  "th": "ทั้งหมด",
   "file": "ui/PlanScreens.kt"
  },
  "✓ In your trip (tap to remove)": {
@@ -959,78 +951,6 @@
   "th": "แตะเพื่อยืนยันหรือปรับแผนการเดินทาง",
   "file": "work/CheckIn.kt"
  },
- "Solo ranat": {
-  "th": "ระนาดเดี่ยว",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Ranat & gong circle": {
-  "th": "ระนาดคู่ฆ้องวง",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Ranat, khim & drum": {
-  "th": "ระนาด ขิม และกลอง",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Classic music box": {
-  "th": "กล่องดนตรีคลาสสิก",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Playful music box": {
-  "th": "กล่องดนตรีขี้เล่น",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Twinkling music box": {
-  "th": "กล่องดนตรีระยิบระยับ",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Flowing harp": {
-  "th": "ฮาร์ปพลิ้วไหว",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Harp duet": {
-  "th": "ฮาร์ปสองทำนอง",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Harp call & answer": {
-  "th": "ฮาร์ปถาม-ตอบ",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Café jazz": {
-  "th": "แจ๊สคาเฟ่",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Swing": {
-  "th": "แจ๊สสวิง",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Bossa jazz": {
-  "th": "แจ๊สบอสซา",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Beach samba": {
-  "th": "แซมบ้าริมหาด",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Carnival samba": {
-  "th": "แซมบ้าเทศกาล",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Easy samba": {
-  "th": "แซมบ้าสบายๆ",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Flute & harp": {
-  "th": "ขลุ่ยกับฮาร์ป",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Flute duo & guitar": {
-  "th": "ขลุ่ยคู่กับกีตาร์",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
- "Flute & music box": {
-  "th": "ขลุ่ยกับกล่องดนตรี",
-  "file": "audio/MusicGen.kt (music piece name)"
- },
  "Tap Booking.com or Agoda to see prices and book. When you come back, the app asks for the stay details and saves them under that place. Booked another way? Enter the details yourself.": {
   "th": "กด Booking.com หรือ Agoda เพื่อดูราคาและจอง เมื่อกลับมาที่แอป แอปจะถามและบันทึกข้อมูลที่พักไว้กับสถานที่นั้นให้ ถ้าจองไว้ทางอื่นแล้วก็กรอกข้อมูลเองได้",
   "file": "ui/BookingScreens.kt"
@@ -1133,10 +1053,6 @@
  },
  "This trip has one place, so there is no travel between places.": {
   "th": "ทริปนี้มีสถานที่เดียว จึงไม่มีช่วงเดินทางระหว่างสถานที่",
-  "file": "ui/BookingScreens.kt"
- },
- "Pick how to travel each leg. The app shows where to board and get off, lines, airlines, times, distances to the place and your stay, and rough costs to help you decide.": {
-  "th": "เลือกวิธีเดินทางของแต่ละช่วง แอปจะบอกจุดขึ้น-ลง สายรถ สายการบิน เวลา ระยะทางถึงที่เที่ยวและที่พัก และค่าใช้จ่ายโดยประมาณ เพื่อช่วยตัดสินใจ",
   "file": "ui/BookingScreens.kt"
  },
  "Find and book minivans on 12Go": {
@@ -1394,5 +1310,217 @@
  "Boat times & tickets (12Go)": {
   "th": "ดูรอบเรือและจองตั๋ว (12Go)",
   "file": "ui/LegDetails.kt"
+ },
+ "Pick a way to travel each leg. The app joins real timetables of buses, trains, boats and flights, with departure times, where to board and how to reach the stations.": {
+  "th": "เลือกทางเลือกในการเดินทางของแต่ละช่วง แอปรวมเส้นทางที่ต่อกันได้จริงจากตารางเวลารถ รถไฟ เรือ และเครื่องบิน พร้อมรอบเวลา จุดขึ้น-ลง และวิธีไปสถานี",
+  "file": "ui/BookingScreens.kt"
+ },
+ "National hotlines": {
+  "th": "สายด่วนทั่วประเทศ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Searching the map, this can take a moment": {
+  "th": "กำลังค้นหาจากแผนที่ อาจใช้เวลาสักครู่",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Public hospital": {
+  "th": "🏥 โรงพยาบาลรัฐ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Private hospital": {
+  "th": "🏥 โรงพยาบาลเอกชน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Hospital": {
+  "th": "🏥 โรงพยาบาล",
+  "file": "ui/BookingScreens.kt"
+ },
+ "⛑️ Health centre": {
+  "th": "⛑️ สถานีอนามัย / รพ.สต.",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🩺 Clinic": {
+  "th": "🩺 คลินิก",
+  "file": "ui/BookingScreens.kt"
+ },
+ "{0} beds": {
+  "th": "{0} เตียง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🔎 Find phone": {
+  "th": "🔎 หาเบอร์โทร",
+  "file": "ui/BookingScreens.kt"
+ },
+ "📷 Street view": {
+  "th": "📷 ภาพหน้าสถานี",
+  "file": "ui/BookingScreens.kt"
+ },
+ "⭐ See review scores:": {
+  "th": "⭐ ดูคะแนนรีวิว:",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons.": {
+  "th": "แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Review scores open from each place's Google / Wongnai / Tripadvisor button": {
+  "th": "คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Local services near {0}": {
+  "th": "เบอร์หน่วยงานใกล้ {0}",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Local services near you": {
+  "th": "เบอร์หน่วยงานใกล้คุณ",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Calling the local office directly is often faster": {
+  "th": "โทรหาหน่วยงานในพื้นที่โดยตรงมักได้รับความช่วยเหลือเร็วกว่า",
+  "file": "ui/BookingScreens.kt"
+ },
+ "👮 Nearest police station": {
+  "th": "👮 สถานีตำรวจใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🏥 Nearest hospital": {
+  "th": "🏥 โรงพยาบาลใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "🚒 Nearest fire station": {
+  "th": "🚒 สถานีดับเพลิงใกล้สุด",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Searching…": {
+  "th": "กำลังค้นหา…",
+  "file": "ui/BookingScreens.kt"
+ },
+ "Not found on the map; use the hotlines below": {
+  "th": "ไม่พบในแผนที่ ใช้สายด่วนด้านล่าง",
+  "file": "ui/BookingScreens.kt"
+ },
+ "flight": {
+  "th": "เครื่องบิน",
+  "file": "ui/LegDetails.kt"
+ },
+ "train": {
+  "th": "รถไฟ",
+  "file": "ui/LegDetails.kt"
+ },
+ "bus": {
+  "th": "รถทัวร์",
+  "file": "ui/LegDetails.kt"
+ },
+ "boat": {
+  "th": "เรือ",
+  "file": "ui/LegDetails.kt"
+ },
+ "ride / drive": {
+  "th": "เรียกรถ / ขับรถ",
+  "file": "ui/LegDetails.kt"
+ },
+ "minivan": {
+  "th": "รถตู้",
+  "file": "ui/LegDetails.kt"
+ },
+ " (+{0} day)": {
+  "th": " (+{0} วัน)",
+  "file": "ui/LegDetails.kt"
+ },
+ " (day before)": {
+  "th": " (วันก่อน)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Ride-hailing, taxi or drive": {
+  "th": "เรียกรถ / แท็กซี่ / ขับรถไปเอง",
+  "file": "ui/LegDetails.kt"
+ },
+ "Ways to travel": {
+  "th": "ทางเลือกในการเดินทาง",
+  "file": "ui/LegDetails.kt"
+ },
+ "No connecting timetables for this leg in the app yet; see other ways below.": {
+  "th": "ยังไม่มีตารางเวลารถ เรือ รถไฟ หรือเครื่องบินที่ต่อกันได้สำหรับช่วงนี้ในแอป ดูทางเลือกอื่นด้านล่าง",
+  "file": "ui/LegDetails.kt"
+ },
+ "About ": {
+  "th": "ประมาณ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Takes about ": {
+  "th": "ใช้เวลาประมาณ ",
+  "file": "ui/LegDetails.kt"
+ },
+ " incl. connections": {
+  "th": " รวมรอต่อรถ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Departures: ": {
+  "th": "รอบที่ออกได้: ",
+  "file": "ui/LegDetails.kt"
+ },
+ "Pick a departure": {
+  "th": "เลือกรอบเดินทาง",
+  "file": "ui/LegDetails.kt"
+ },
+ "Timetables are collected from operators' sites and can change; check or book with the operator before you go. Times to stations are estimates.": {
+  "th": "ตารางเวลารวบรวมจากเว็บไซต์ผู้ให้บริการและอาจเปลี่ยนได้ ควรตรวจสอบหรือจองกับผู้ให้บริการก่อนเดินทาง · เวลาไปสถานีเป็นการประมาณ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚶 Walk from {0} to {1} ({2})": {
+  "th": "🚶 เดินจาก {0} ไป {1} ({2})",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚕 {0} → {1}": {
+  "th": "🚕 {0} → {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "About {0} · {1} · taxi or ride about {2}–{3} baht": {
+  "th": "ระยะทางราว {0} · ประมาณ {1} · แท็กซี่/เรียกรถ ราว {2}–{3} บาท",
+  "file": "ui/LegDetails.kt"
+ },
+ "🚌 Public transport (Google Maps)": {
+  "th": "🚌 รถสาธารณะ (Google Maps)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Board at {0} → get off at {1}": {
+  "th": "ขึ้นที่ {0} → ลงที่ {1}",
+  "file": "ui/LegDetails.kt"
+ },
+ "Be there at least {0} min before": {
+  "th": "ไปถึงก่อนออกอย่างน้อย {0} นาที",
+  "file": "ui/LegDetails.kt"
+ },
+ "🎫 Book / details": {
+  "th": "🎫 จอง / ดูรายละเอียด",
+  "file": "ui/LegDetails.kt"
+ },
+ "Times from: {0}": {
+  "th": "ข้อมูลเวลา: {0}",
+  "file": "ui/LegDetails.kt"
+ },
+ " (checked {0})": {
+  "th": " (ตรวจ {0})",
+  "file": "ui/LegDetails.kt"
+ },
+ "Other ways (no timetable in the app yet)": {
+  "th": "ทางเลือกอื่น (ยังไม่มีตารางเวลาในแอป)",
+  "file": "ui/LegDetails.kt"
+ },
+ "Book": {
+  "th": "จอง",
+  "file": "ui/LegDetails.kt"
+ },
+ "Ride or drive, about ": {
+  "th": "เรียกรถ / ขับรถ ประมาณ ",
+  "file": "ui/LegDetails.kt"
+ },
+ "🔎 Search a place or province": {
+  "th": "🔎 ค้นหาชื่อสถานที่หรือจังหวัด",
+  "file": "ui/PlanScreens.kt"
+ },
+ "No places match your search": {
+  "th": "ไม่พบสถานที่ที่ค้นหา",
+  "file": "ui/PlanScreens.kt"
  }
 }
