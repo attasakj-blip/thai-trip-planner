@@ -237,9 +237,10 @@ class Remote {
             "cafe" -> listOf("[\"amenity\"=\"cafe\"]")
             "hospital" -> listOf("[\"amenity\"~\"^(hospital|clinic|doctors)$\"]", "[\"healthcare\"~\"^(hospital|clinic)$\"]")
             "police" -> listOf("[\"amenity\"=\"police\"]")
+            "fire" -> listOf("[\"amenity\"=\"fire_station\"]")
             else -> listOf("[\"tourism\"~\"^(hotel|guest_house|hostel|resort|motel|apartment)$\"]")
         }
-        val radius = when (type) { "hospital" -> 30000; "police" -> 25000; "restaurant", "cafe" -> 4000; else -> 6000 }
+        val radius = when (type) { "hospital" -> 30000; "police", "fire" -> 25000; "restaurant", "cafe" -> 4000; else -> 6000 }
         val parts = filters.joinToString("") { "nwr$it(around:$radius,$lat,$lon);" }
         val query = "[out:json][timeout:50];($parts);out center tags 400;"
         val elements = json.parseToJsonElement(overpass(query)).jsonObject["elements"].arr() ?: return emptyList()
@@ -275,12 +276,48 @@ class Remote {
                 wikidata = tags["wikidata"]?.takeIf { it.matches(Regex("Q\\d+")) },
             )
         }.distinctBy { it.name to (it.lat * 200).toInt() }
-        val sorted = if (medical) {
+        val sorted = when (type) {
             // Hospitals first (nearest first), then health centres and clinics.
-            list.sortedWith(compareBy<Poi>({ it.health?.ordinal ?: 9 }, { it.distanceKm }))
-        } else list.sortedBy { it.distanceKm }
+            "hospital" -> list.sortedWith(compareBy<Poi>({ it.health?.ordinal ?: 9 }, { it.distanceKm }))
+            // Police stations before small police boxes.
+            "police" -> list.sortedWith(compareBy<Poi>({ if (isPoliceStation(it.name)) 0 else 1 }, { it.distanceKm }))
+            else -> list.sortedBy { it.distanceKm }
+        }
         val top = sorted.take(limit)
-        return if (medical) withLogos(top) else top
+        return when (type) {
+            "hospital" -> withLogos(top)
+            "police" -> withCommonsPhotos(withLogos(top), lat, lon, Regex("(?i)police|ตำรวจ|สภ\\.|สน\\."))
+            else -> top
+        }
+    }
+
+    fun isPoliceStation(name: String) = Regex("(?i)สถานีตำรวจ|สภ\\.|สน\\.|police station|tourist police|ตำรวจท่องเที่ยว").containsMatchIn(name)
+
+    /**
+     * Photos from Wikimedia Commons taken right at each place (within 150 m) whose file name
+     * matches [titleMatch], e.g. a police station's sign. Best effort, one request.
+     */
+    private suspend fun withCommonsPhotos(list: List<Poi>, lat: Double, lon: Double, titleMatch: Regex): List<Poi> {
+        if (list.all { it.logo != null }) return list
+        val files = runCatching {
+            val url = "https://commons.wikimedia.org/w/api.php".toHttpUrl().newBuilder()
+                .addQueryParameter("action", "query").addQueryParameter("format", "json").addQueryParameter("formatversion", "2")
+                .addQueryParameter("list", "geosearch").addQueryParameter("gsnamespace", "6")
+                .addQueryParameter("gscoord", "$lat|$lon").addQueryParameter("gsradius", "10000").addQueryParameter("gslimit", "500")
+                .build().toString()
+            json.parseToJsonElement(get(url)).jsonObject["query"].obj()?.get("geosearch").arr().orEmpty().mapNotNull { e ->
+                val o = e.obj() ?: return@mapNotNull null
+                val title = o["title"].str() ?: return@mapNotNull null
+                if (!titleMatch.containsMatchIn(title) || !Regex("(?i)\\.(jpe?g|png)$").containsMatchIn(title)) return@mapNotNull null
+                Triple(title, o["lat"].num() ?: return@mapNotNull null, o["lon"].num() ?: return@mapNotNull null)
+            }
+        }.getOrDefault(emptyList())
+        if (files.isEmpty()) return list
+        return list.map { p ->
+            if (p.logo != null) return@map p
+            val near = files.minByOrNull { TripLogic.distanceKm(p.lat, p.lon, it.second, it.third) }
+            if (near != null && TripLogic.distanceKm(p.lat, p.lon, near.second, near.third) <= 0.15) p.copy(logo = th.trip.planner.logic.CommonsThumb.url(near.first, 320)) else p
+        }
     }
 
     /** Fills in hospital logos (or a photo) from Wikidata for places linked to it. Best effort. */

@@ -413,11 +413,23 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
     }
 }
 
+fun findPhoneUrl(name: String) = "https://www.google.com/search?q=" + enc("$name เบอร์โทร")
+fun streetView(lat: Double, lon: Double) = "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=$lat,$lon"
+
+/**
+ * Emergency numbers. With a location it also lists the nearest police station, hospital with
+ * an emergency room and fire station, whose own phones usually get help faster than the hotlines.
+ */
 @Composable
-fun EmergencyCard() {
+fun EmergencyCard(vm: TripViewModel? = null, lat: Double? = null, lon: Double? = null, placeName: String? = null) {
     val ctx = LocalContext.current
     Card(colors = CardDefaults.cardColors(containerColor = Color(0xFFFFEDEA)), modifier = Modifier.fillMaxWidth()) {
         Column(Modifier.padding(12.dp)) {
+            if (vm != null && lat != null && lon != null) {
+                LocalEmergency(vm, lat, lon, placeName)
+                HorizontalDivider(Modifier.padding(vertical = 8.dp))
+                Text(tr("สายด่วนทั่วประเทศ", "National hotlines"), fontWeight = FontWeight.Bold)
+            } else 
             Text(tr("เบอร์ฉุกเฉิน", "Emergency numbers"), fontWeight = FontWeight.Bold)
             listOf(
                 Triple("1669", "เจ็บป่วยฉุกเฉิน", "Medical emergency"),
@@ -452,7 +464,7 @@ fun NearbyScreen(vm: TripViewModel, nav: NavHostController, stopIndex: Int, kind
     Page(p.name.get(thai), nav) { pad ->
         Column(Modifier.padding(pad).padding(horizontal = 16.dp)) {
             if (tabs.size > 1) TabRow(selectedTabIndex = tab) { tabs.forEachIndexed { i, (_, label) -> Tab(selected = tab == i, onClick = { tab = i }, text = { Text(label) }) } }
-            if (kind != "food") { VSpace(); EmergencyCard() }
+            if (kind != "food") { VSpace(); EmergencyCard(vm, p.lat, p.lon, p.name.get(thai)) }
             VSpace()
             OutlinedButton(onClick = {
                 val q = when (type) { "restaurant" -> "restaurants"; "cafe" -> "cafes"; "hospital" -> "hospital"; else -> "police station" }
@@ -492,7 +504,9 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                     Column(Modifier.padding(12.dp)) {
                         Text(poi.name, fontWeight = FontWeight.SemiBold)
                         poi.logo?.let { logo ->
-                            AsyncImage(logo, null, contentScale = ContentScale.Fit, alignment = Alignment.CenterStart,
+                            if (type == "police") AsyncImage(logo, null, contentScale = ContentScale.Crop,
+                                modifier = Modifier.padding(vertical = 4.dp).fillMaxWidth().height(140.dp).clip(RoundedCornerShape(8.dp)))
+                            else AsyncImage(logo, null, contentScale = ContentScale.Fit, alignment = Alignment.CenterStart,
                                 modifier = Modifier.padding(vertical = 4.dp).height(44.dp).widthIn(max = 160.dp))
                         }
                         val kindLabel = when (poi.health) {
@@ -515,8 +529,10 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                         Text(meta, fontSize = 12.sp, color = Color.DarkGray)
                         poi.hours?.let { Text("🕒 $it", fontSize = 12.sp, color = Color.Gray, maxLines = 2) }
                         if (poi.address.isNotBlank()) Text(poi.address, fontSize = 12.sp, color = Color.Gray, maxLines = 2)
-                        Row {
+                        FlowRow {
                             poi.phone?.let { ph -> TextButton(onClick = { dial(ctx, ph) }) { Text("📞 $ph") } }
+                            if (poi.phone == null && (type == "police" || type == "hospital")) TextButton(onClick = { open(ctx, findPhoneUrl(poi.name)) }) { Text(tr("🔎 หาเบอร์โทร", "🔎 Find phone")) }
+                            if (type == "police") TextButton(onClick = { open(ctx, streetView(poi.lat, poi.lon)) }) { Text(tr("📷 ภาพหน้าสถานี", "📷 Street view")) }
                             TextButton(onClick = { open(ctx, "https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lon}") }) { Text(tr("🧭 นำทาง", "🧭 Directions")) }
                         }
                         if (type == "restaurant" || type == "cafe") {
@@ -534,6 +550,46 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                 Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล", "Data © OpenStreetMap contributors, nearest first"), fontSize = 11.sp, color = Color.Gray)
                 if (type == "hospital") Text(tr("แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons", "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons."), fontSize = 11.sp, color = Color.Gray)
                 if (type == "restaurant" || type == "cafe") Text(tr("คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน", "Review scores open from each place's Google / Wongnai / Tripadvisor button"), fontSize = 11.sp, color = Color.Gray)
+            }
+        }
+    }
+}
+
+@Composable
+private fun LocalEmergency(vm: TripViewModel, lat: Double, lon: Double, placeName: String?) {
+    val thai = LocalThai.current
+    val ctx = LocalContext.current
+    Text(
+        if (placeName != null) tr("เบอร์หน่วยงานใกล้ $placeName", "Local services near $placeName") else tr("เบอร์หน่วยงานใกล้คุณ", "Local services near you"),
+        fontWeight = FontWeight.Bold,
+    )
+    Text(tr("โทรหาหน่วยงานในพื้นที่โดยตรงมักได้รับความช่วยเหลือเร็วกว่า", "Calling the local office directly is often faster"), fontSize = 12.sp, color = Color.DarkGray)
+    listOf(
+        "police" to tr("👮 สถานีตำรวจใกล้สุด", "👮 Nearest police station"),
+        "hospital" to tr("🏥 โรงพยาบาลใกล้สุด", "🏥 Nearest hospital"),
+        "fire" to tr("🚒 สถานีดับเพลิงใกล้สุด", "🚒 Nearest fire station"),
+    ).forEach { (type, label) ->
+        val result = produceState<Result<List<Poi>>?>(null, lat, lon, type) { value = vm.remote.nearby(lat, lon, type, thai) }.value
+        val best = result?.getOrNull()?.let { list ->
+            when (type) {
+                "police" -> list.firstOrNull { vm.remote.isPoliceStation(it.name) } ?: list.firstOrNull()
+                "hospital" -> list.filter { it.health == Health.Kind.HOSPITAL }.minByOrNull { it.distanceKm } ?: list.firstOrNull()
+                else -> list.firstOrNull()
+            }
+        }
+        Column(Modifier.padding(top = 6.dp)) {
+            Text(label, fontSize = 12.sp, color = Color.DarkGray)
+            when {
+                result == null -> Text(tr("กำลังค้นหา…", "Searching…"), fontSize = 13.sp, color = Color.Gray)
+                best == null -> Text(tr("ไม่พบในแผนที่ ใช้สายด่วนด้านล่าง", "Not found on the map; use the hotlines below"), fontSize = 13.sp, color = Color.Gray)
+                else -> {
+                    Text("${best.name} · " + String.format(java.util.Locale.US, "%.1f km", best.distanceKm), fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                    FlowRow {
+                        if (best.phone != null) TextButton(onClick = { dial(ctx, best.phone) }) { Text("📞 ${best.phone}") }
+                        else TextButton(onClick = { open(ctx, findPhoneUrl(best.name)) }) { Text(tr("🔎 หาเบอร์โทร", "🔎 Find phone")) }
+                        TextButton(onClick = { open(ctx, "https://www.google.com/maps/dir/?api=1&destination=${best.lat},${best.lon}") }) { Text(tr("🧭 นำทาง", "🧭 Directions")) }
+                    }
+                }
             }
         }
     }

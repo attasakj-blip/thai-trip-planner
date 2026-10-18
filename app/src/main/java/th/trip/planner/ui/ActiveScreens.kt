@@ -186,7 +186,13 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
                 OutlinedButton(onClick = { nav.navigate(Routes.REPLAN) }, modifier = Modifier.fillMaxWidth()) { Text(tr("ปรับแผนการเดินทาง", "Adjust the plan")) }
                 TextButton(onClick = { nav.navigate(Routes.FINALE) }) { Text(tr("ฉันถึงจุดหมายสุดท้ายแล้ว", "I've reached my final destination")) }
                 VSpace()
-                EmergencyCard()
+                // Local services near where the traveller is now (GPS), else near today's place.
+                val here = (status as? TripStatus.AtPlace)?.let { vm.repo.placeById[trip.stops[it.stopIndex].placeId] }
+                when {
+                    loc != null -> EmergencyCard(vm, Math.round(loc.latitude * 50) / 50.0, Math.round(loc.longitude * 50) / 50.0) // ~2 km steps so walking around does not refetch
+                    here != null -> EmergencyCard(vm, here.lat, here.lon, here.name.get(LocalThai.current))
+                    else -> EmergencyCard()
+                }
             }
         }
     }

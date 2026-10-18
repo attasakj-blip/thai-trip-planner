@@ -37,6 +37,8 @@ data class Place(
     val highlights: List<Highlight> = emptyList(),
     val closures: List<Closure> = emptyList(),
     val island: Boolean = false,
+    /** Places on the same island share this id (null = mainland, or an island joined by road such as Phuket). */
+    val islandGroup: String? = null,
     /** Ids of transport hubs that serve this place. */
     val hubIds: List<String> = emptyList(),
 )
@@ -53,10 +55,44 @@ data class Hub(
     val lon: Double,
     val phone: String? = null,
     val website: String? = null,
+    val islandGroup: String? = null,
 )
 
 /** CAR = car, taxi or ride-hailing (Grab, Bolt, LINE MAN); VAN = shared minivan from a terminal. */
 enum class TravelMode { FLIGHT, TRAIN, BUS, BOAT, CAR, VAN }
+
+/** One scheduled run: a time per stop (null = doesn't stop), "HH:MM", hours may pass 24 for after midnight. */
+@Serializable
+data class RouteTrip(val times: List<String?>, val code: String? = null)
+
+/** Frequent services: one every [everyMin] minutes between [first] and [last]; [minutes] = ride time to each stop. */
+@Serializable
+data class Headway(val first: String, val last: String, val everyMin: Int, val minutes: List<Int>? = null)
+
+@Serializable
+data class Seasonal(val months: List<Int>, val note: Txt? = null)
+
+/** A scheduled public service (flight, train, bus, van or boat) between hubs. */
+@Serializable
+data class Route(
+    val id: String,
+    val mode: TravelMode,
+    val operator: Txt,
+    val name: Txt,
+    val stops: List<String>,
+    val trips: List<RouteTrip> = emptyList(),
+    val headway: Headway? = null,
+    /** ISO weekdays it runs (1 = Monday); empty = every day. */
+    val days: List<Int> = emptyList(),
+    val seasonal: Seasonal? = null,
+    val fare: Txt? = null,
+    val bookUrl: String? = null,
+    val source: String? = null,
+    val checked: String? = null,
+)
+
+@Serializable
+data class RouteData(val updated: String = "", val routes: List<Route> = emptyList())
 
 @Serializable
 data class Airline(
