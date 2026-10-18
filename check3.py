@@ -20,7 +20,7 @@ for h in hubs:
     if h["type"] == "AIRPORT": qs = [h["id"].upper() + " airport", strip(h["name"]["en"])]
     cands = []
     for q in qs:
-        d = get("https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode({"format": "json", "limit": 5, "countrycodes": "th", "q": q, "accept-language": "th"}))
+        d = get("https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode({"format": "json", "limit": 5, "countrycodes": "th,my", "q": q, "accept-language": "th"}))
         time.sleep(1.1)
         for x in d or []:
             cands.append({"q": q, "lat": float(x["lat"]), "lon": float(x["lon"]), "cls": x.get("class"), "type": x.get("type"), "name": x.get("display_name", "")[:120], "km": round(km(h["lat"], h["lon"], float(x["lat"]), float(x["lon"])), 2)})
