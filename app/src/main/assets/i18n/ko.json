@@ -452,5 +452,14 @@
   "Done": "완료",
   "Add more places?": "장소를 더 추가할까요?",
   "Add places": "장소 추가",
-  "No, go to the days": "아니요, 일정 정하기"
+  "No, go to the days": "아니요, 일정 정하기",
+  "4. 🚒 Fire stations": "4. 🚒 소방서",
+  "🚒 Fire stations": "🚒 소방서",
+  "Hotline": "핫라인",
+  "Photo: Wikimedia Commons": "사진: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 공개 데이터에 직통 번호가 없습니다. 탭하여 핫라인 {0}에 전화",
+  "🔎 Search number": "🔎 번호 검색",
+  "🌐 Website": "🌐 웹사이트",
+  "More: health centres and clinics ({0})": "더보기: 보건소 및 클리닉 ({0})",
+  "📞 Hotline {0}": "📞 핫라인 {0}"
 }

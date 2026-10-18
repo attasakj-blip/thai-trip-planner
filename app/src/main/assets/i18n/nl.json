@@ -452,5 +452,14 @@
   "Done": "Klaar",
   "Add more places?": "Meer plaatsen toevoegen?",
   "Add places": "Plaatsen toevoegen",
-  "No, go to the days": "Nee, naar de dagen"
+  "No, go to the days": "Nee, naar de dagen",
+  "4. 🚒 Fire stations": "4. 🚒 Brandweerkazernes",
+  "🚒 Fire stations": "🚒 Brandweerkazernes",
+  "Hotline": "Hotline",
+  "Photo: Wikimedia Commons": "Foto: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Geen direct nummer in open data; tik om hotline {0} te bellen",
+  "🔎 Search number": "🔎 Nummer zoeken",
+  "🌐 Website": "🌐 Website",
+  "More: health centres and clinics ({0})": "Meer: gezondheidscentra en klinieken ({0})",
+  "📞 Hotline {0}": "📞 Hotline {0}"
 }

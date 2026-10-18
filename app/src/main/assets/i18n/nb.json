@@ -452,5 +452,14 @@
   "Done": "Ferdig",
   "Add more places?": "Legge til flere steder?",
   "Add places": "Legg til steder",
-  "No, go to the days": "Nei, gå til dagene"
+  "No, go to the days": "Nei, gå til dagene",
+  "4. 🚒 Fire stations": "4. 🚒 Brannstasjoner",
+  "🚒 Fire stations": "🚒 Brannstasjoner",
+  "Hotline": "Hotline",
+  "Photo: Wikimedia Commons": "Foto: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Ingen direkte nummer i åpne data; trykk for å ringe hotline {0}",
+  "🔎 Search number": "🔎 Søk etter nummer",
+  "🌐 Website": "🌐 Nettsted",
+  "More: health centres and clinics ({0})": "Mer: helsesentre og klinikker ({0})",
+  "📞 Hotline {0}": "📞 Hotline {0}"
 }

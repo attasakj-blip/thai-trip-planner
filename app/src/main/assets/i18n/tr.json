@@ -452,5 +452,14 @@
   "Done": "Bitti",
   "Add more places?": "Daha fazla yer eklensin mi?",
   "Add places": "Yer ekle",
-  "No, go to the days": "Hayır, günlere geç"
+  "No, go to the days": "Hayır, günlere geç",
+  "4. 🚒 Fire stations": "4. 🚒 İtfaiye istasyonları",
+  "🚒 Fire stations": "🚒 İtfaiye istasyonları",
+  "Hotline": "Acil hat",
+  "Photo: Wikimedia Commons": "Fotoğraf: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Açık verilerde doğrudan numara yok; {0} acil hattını aramak için dokunun",
+  "🔎 Search number": "🔎 Numara ara",
+  "🌐 Website": "🌐 Web sitesi",
+  "More: health centres and clinics ({0})": "Daha fazla: sağlık merkezleri ve klinikler ({0})",
+  "📞 Hotline {0}": "📞 Acil hat {0}"
 }

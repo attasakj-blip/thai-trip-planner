@@ -452,5 +452,14 @@
   "Done": "完了",
   "Add more places?": "場所をさらに追加しますか？",
   "Add places": "場所を追加",
-  "No, go to the days": "いいえ、日程へ"
+  "No, go to the days": "いいえ、日程へ",
+  "4. 🚒 Fire stations": "4. 🚒 消防署",
+  "🚒 Fire stations": "🚒 消防署",
+  "Hotline": "ホットライン",
+  "Photo: Wikimedia Commons": "写真: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 オープンデータに直通番号がありません。タップしてホットライン {0} に電話",
+  "🔎 Search number": "🔎 番号を検索",
+  "🌐 Website": "🌐 ウェブサイト",
+  "More: health centres and clinics ({0})": "その他: 保健センターとクリニック ({0})",
+  "📞 Hotline {0}": "📞 ホットライン {0}"
 }

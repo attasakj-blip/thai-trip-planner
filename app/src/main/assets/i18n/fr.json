@@ -452,5 +452,14 @@
   "Done": "Terminé",
   "Add more places?": "Ajouter d'autres lieux ?",
   "Add places": "Ajouter des lieux",
-  "No, go to the days": "Non, passer aux jours"
+  "No, go to the days": "Non, passer aux jours",
+  "4. 🚒 Fire stations": "4. 🚒 Casernes de pompiers",
+  "🚒 Fire stations": "🚒 Casernes de pompiers",
+  "Hotline": "Ligne d'urgence",
+  "Photo: Wikimedia Commons": "Photo : Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Pas de numéro direct dans les données ouvertes ; touchez pour appeler la ligne d'urgence {0}",
+  "🔎 Search number": "🔎 Chercher le numéro",
+  "🌐 Website": "🌐 Site web",
+  "More: health centres and clinics ({0})": "Plus : centres de santé et cliniques ({0})",
+  "📞 Hotline {0}": "📞 Ligne d'urgence {0}"
 }

@@ -452,5 +452,14 @@
   "Done": "Готово",
   "Add more places?": "Добавить ещё места?",
   "Add places": "Добавить места",
-  "No, go to the days": "Нет, к дням"
+  "No, go to the days": "Нет, к дням",
+  "4. 🚒 Fire stations": "4. 🚒 Пожарные части",
+  "🚒 Fire stations": "🚒 Пожарные части",
+  "Hotline": "Горячая линия",
+  "Photo: Wikimedia Commons": "Фото: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 В открытых данных нет прямого номера; нажмите, чтобы позвонить на горячую линию {0}",
+  "🔎 Search number": "🔎 Найти номер",
+  "🌐 Website": "🌐 Сайт",
+  "More: health centres and clinics ({0})": "Ещё: медцентры и клиники ({0})",
+  "📞 Hotline {0}": "📞 Горячая линия {0}"
 }

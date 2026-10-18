@@ -452,5 +452,14 @@
   "Done": "ပြီးပြီ",
   "Add more places?": "နေရာ ထပ်ထည့်မလား။",
   "Add places": "နေရာထည့်ရန်",
-  "No, go to the days": "မထည့်ပါ၊ ရက်များသို့ သွားရန်"
+  "No, go to the days": "မထည့်ပါ၊ ရက်များသို့ သွားရန်",
+  "4. 🚒 Fire stations": "4. 🚒 မီးသတ်ဌာနများ",
+  "🚒 Fire stations": "🚒 မီးသတ်ဌာနများ",
+  "Hotline": "ဟော့လိုင်း",
+  "Photo: Wikimedia Commons": "ဓာတ်ပုံ- Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 ဖွင့်လှစ်ဒေတာတွင် တိုက်ရိုက်နံပါတ် မရှိပါ၊ ဟော့လိုင်း {0} ကို ခေါ်ရန် နှိပ်ပါ",
+  "🔎 Search number": "🔎 နံပါတ်ရှာရန်",
+  "🌐 Website": "🌐 ဝက်ဘ်ဆိုက်",
+  "More: health centres and clinics ({0})": "ထပ်ကြည့်ရန်- ကျန်းမာရေးစင်တာများနှင့် ဆေးခန်းများ ({0})",
+  "📞 Hotline {0}": "📞 ဟော့လိုင်း {0}"
 }

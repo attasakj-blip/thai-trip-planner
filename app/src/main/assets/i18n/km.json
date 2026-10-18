@@ -452,5 +452,14 @@
   "Done": "រួចរាល់",
   "Add more places?": "បន្ថែមទីកន្លែងទៀតទេ?",
   "Add places": "បន្ថែមទីកន្លែង",
-  "No, go to the days": "ទេ ទៅកំណត់ថ្ងៃ"
+  "No, go to the days": "ទេ ទៅកំណត់ថ្ងៃ",
+  "4. 🚒 Fire stations": "4. 🚒 ស្ថានីយ៍ពន្លត់អគ្គិភ័យ",
+  "🚒 Fire stations": "🚒 ស្ថានីយ៍ពន្លត់អគ្គិភ័យ",
+  "Hotline": "ទូរស័ព្ទបន្ទាន់",
+  "Photo: Wikimedia Commons": "រូបថត៖ Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 គ្មានលេខផ្ទាល់ក្នុងទិន្នន័យបើកចំហ; ចុចដើម្បីហៅទូរស័ព្ទបន្ទាន់ {0}",
+  "🔎 Search number": "🔎 ស្វែងរកលេខ",
+  "🌐 Website": "🌐 គេហទំព័រ",
+  "More: health centres and clinics ({0})": "ផ្សេងទៀត៖ មជ្ឈមណ្ឌលសុខភាព និងគ្លីនិក ({0})",
+  "📞 Hotline {0}": "📞 ទូរស័ព្ទបន្ទាន់ {0}"
 }

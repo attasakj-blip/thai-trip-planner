@@ -452,5 +452,14 @@
   "Done": "ແລ້ວໆ",
   "Add more places?": "ຈະເພີ່ມສະຖານທີ່ອີກບໍ?",
   "Add places": "ເພີ່ມສະຖານທີ່",
-  "No, go to the days": "ບໍ່ເພີ່ມ, ໄປກຳນົດວັນ"
+  "No, go to the days": "ບໍ່ເພີ່ມ, ໄປກຳນົດວັນ",
+  "4. 🚒 Fire stations": "4. 🚒 ສະຖານີດັບເພີງ",
+  "🚒 Fire stations": "🚒 ສະຖານີດັບເພີງ",
+  "Hotline": "ສາຍດ່ວນ",
+  "Photo: Wikimedia Commons": "ຮູບ: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 ບໍ່ມີເບີໂທກົງໃນຂໍ້ມູນເປີດ; ແຕະເພື່ອໂທສາຍດ່ວນ {0}",
+  "🔎 Search number": "🔎 ຄົ້ນຫາເບີ",
+  "🌐 Website": "🌐 ເວັບໄຊ",
+  "More: health centres and clinics ({0})": "ເພີ່ມເຕີມ: ສຸກສາລາ ແລະ ຄລີນິກ ({0})",
+  "📞 Hotline {0}": "📞 ສາຍດ່ວນ {0}"
 }

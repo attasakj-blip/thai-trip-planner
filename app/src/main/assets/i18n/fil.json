@@ -452,5 +452,14 @@
   "Done": "Tapos",
   "Add more places?": "Magdagdag pa ng lugar?",
   "Add places": "Magdagdag ng lugar",
-  "No, go to the days": "Hindi, pumunta sa mga araw"
+  "No, go to the days": "Hindi, pumunta sa mga araw",
+  "4. 🚒 Fire stations": "4. 🚒 Mga istasyon ng bumbero",
+  "🚒 Fire stations": "🚒 Mga istasyon ng bumbero",
+  "Hotline": "Hotline",
+  "Photo: Wikimedia Commons": "Larawan: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Walang direktang numero sa open data; i-tap para tawagan ang hotline {0}",
+  "🔎 Search number": "🔎 Maghanap ng numero",
+  "🌐 Website": "🌐 Website",
+  "More: health centres and clinics ({0})": "Higit pa: mga health center at klinika ({0})",
+  "📞 Hotline {0}": "📞 Hotline {0}"
 }

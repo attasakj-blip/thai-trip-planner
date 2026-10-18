@@ -452,5 +452,14 @@
   "Done": "हो गया",
   "Add more places?": "और जगहें जोड़ें?",
   "Add places": "जगहें जोड़ें",
-  "No, go to the days": "नहीं, दिनों पर जाएँ"
+  "No, go to the days": "नहीं, दिनों पर जाएँ",
+  "4. 🚒 Fire stations": "4. 🚒 फायर स्टेशन",
+  "🚒 Fire stations": "🚒 फायर स्टेशन",
+  "Hotline": "हॉटलाइन",
+  "Photo: Wikimedia Commons": "फ़ोटो: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 ओपन डेटा में सीधा नंबर नहीं है; हॉटलाइन {0} पर कॉल करने के लिए टैप करें",
+  "🔎 Search number": "🔎 नंबर खोजें",
+  "🌐 Website": "🌐 वेबसाइट",
+  "More: health centres and clinics ({0})": "और देखें: स्वास्थ्य केंद्र और क्लिनिक ({0})",
+  "📞 Hotline {0}": "📞 हॉटलाइन {0}"
 }

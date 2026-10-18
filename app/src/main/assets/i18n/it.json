@@ -452,5 +452,14 @@
   "Done": "Fatto",
   "Add more places?": "Aggiungere altri luoghi?",
   "Add places": "Aggiungi luoghi",
-  "No, go to the days": "No, vai ai giorni"
+  "No, go to the days": "No, vai ai giorni",
+  "4. 🚒 Fire stations": "4. 🚒 Caserme dei vigili del fuoco",
+  "🚒 Fire stations": "🚒 Caserme dei vigili del fuoco",
+  "Hotline": "Numero di emergenza",
+  "Photo: Wikimedia Commons": "Foto: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Nessun numero diretto nei dati aperti; tocca per chiamare il numero di emergenza {0}",
+  "🔎 Search number": "🔎 Cerca numero",
+  "🌐 Website": "🌐 Sito web",
+  "More: health centres and clinics ({0})": "Altro: centri di salute e cliniche ({0})",
+  "📞 Hotline {0}": "📞 Numero di emergenza {0}"
 }

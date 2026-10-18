@@ -452,5 +452,14 @@
   "Done": "Valmis",
   "Add more places?": "Lisätäänkö paikkoja?",
   "Add places": "Lisää paikkoja",
-  "No, go to the days": "Ei, siirry päiviin"
+  "No, go to the days": "Ei, siirry päiviin",
+  "4. 🚒 Fire stations": "4. 🚒 Paloasemat",
+  "🚒 Fire stations": "🚒 Paloasemat",
+  "Hotline": "Hätäpuhelin",
+  "Photo: Wikimedia Commons": "Kuva: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Avoimessa datassa ei ole suoraa numeroa; soita palvelunumeroon {0} napauttamalla",
+  "🔎 Search number": "🔎 Hae numeroa",
+  "🌐 Website": "🌐 Verkkosivusto",
+  "More: health centres and clinics ({0})": "Lisää: terveysasemat ja klinikat ({0})",
+  "📞 Hotline {0}": "📞 Hätäpuhelin {0}"
 }

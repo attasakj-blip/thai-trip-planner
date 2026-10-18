@@ -452,5 +452,14 @@
   "Done": "סיום",
   "Add more places?": "להוסיף עוד מקומות?",
   "Add places": "הוספת מקומות",
-  "No, go to the days": "לא, לימים"
+  "No, go to the days": "לא, לימים",
+  "4. 🚒 Fire stations": "4. 🚒 תחנות כיבוי אש",
+  "🚒 Fire stations": "🚒 תחנות כיבוי אש",
+  "Hotline": "קו חם",
+  "Photo: Wikimedia Commons": "תמונה: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 אין מספר ישיר בנתונים הפתוחים; הקש כדי להתקשר לקו החם {0}",
+  "🔎 Search number": "🔎 חפש מספר",
+  "🌐 Website": "🌐 אתר אינטרנט",
+  "More: health centres and clinics ({0})": "עוד: מרכזי בריאות ומרפאות ({0})",
+  "📞 Hotline {0}": "📞 קו חם {0}"
 }

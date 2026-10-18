@@ -452,5 +452,14 @@
   "Done": "Xong",
   "Add more places?": "Thêm địa điểm nữa?",
   "Add places": "Thêm địa điểm",
-  "No, go to the days": "Không, đến phần ngày"
+  "No, go to the days": "Không, đến phần ngày",
+  "4. 🚒 Fire stations": "4. 🚒 Trạm cứu hỏa",
+  "🚒 Fire stations": "🚒 Trạm cứu hỏa",
+  "Hotline": "Đường dây nóng",
+  "Photo: Wikimedia Commons": "Ảnh: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 Dữ liệu mở không có số trực tiếp; chạm để gọi đường dây nóng {0}",
+  "🔎 Search number": "🔎 Tìm số",
+  "🌐 Website": "🌐 Trang web",
+  "More: health centres and clinics ({0})": "Xem thêm: trạm y tế và phòng khám ({0})",
+  "📞 Hotline {0}": "📞 Đường dây nóng {0}"
 }

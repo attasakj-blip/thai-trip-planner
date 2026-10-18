@@ -452,5 +452,14 @@
   "Done": "完成",
   "Add more places?": "还要添加地点吗？",
   "Add places": "添加地点",
-  "No, go to the days": "不用，去安排日期"
+  "No, go to the days": "不用，去安排日期",
+  "4. 🚒 Fire stations": "4. 🚒 消防站",
+  "🚒 Fire stations": "🚒 消防站",
+  "Hotline": "热线",
+  "Photo: Wikimedia Commons": "图片：Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 开放数据中没有直拨号码；点击拨打热线 {0}",
+  "🔎 Search number": "🔎 搜索号码",
+  "🌐 Website": "🌐 网站",
+  "More: health centres and clinics ({0})": "更多：卫生中心和诊所（{0}）",
+  "📞 Hotline {0}": "📞 热线 {0}"
 }

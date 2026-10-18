@@ -452,5 +452,14 @@
   "Done": "تم",
   "Add more places?": "إضافة المزيد من الأماكن؟",
   "Add places": "إضافة أماكن",
-  "No, go to the days": "لا، انتقل إلى الأيام"
+  "No, go to the days": "لا، انتقل إلى الأيام",
+  "4. 🚒 Fire stations": "4. 🚒 محطات الإطفاء",
+  "🚒 Fire stations": "🚒 محطات الإطفاء",
+  "Hotline": "الخط الساخن",
+  "Photo: Wikimedia Commons": "صورة: Wikimedia Commons",
+  "📞 No direct number in open data; tap to call hotline {0}": "📞 لا يوجد رقم مباشر في البيانات المفتوحة؛ اضغط للاتصال بالخط الساخن {0}",
+  "🔎 Search number": "🔎 ابحث عن الرقم",
+  "🌐 Website": "🌐 الموقع الإلكتروني",
+  "More: health centres and clinics ({0})": "المزيد: المراكز الصحية والعيادات ({0})",
+  "📞 Hotline {0}": "📞 الخط الساخن {0}"
 }
