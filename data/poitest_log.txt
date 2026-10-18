@@ -1,0 +1,3 @@
+OSM: 35437 named places in 1s Counter({'restaurant': 19130, 'cafe': 11150, 'hospital': 3799, 'police': 1226, 'fire': 132})
+places done in 3s; wikidata ids 72
+{'restaurant': 4008, 'restaurant_phone': 968, 'restaurant_photo': 4, 'cafe': 2323, 'cafe_phone': 420, 'cafe_photo': 0, 'hospital': 2453, 'hospital_phone': 203, 'hospital_photo': 126, 'police': 1389, 'police_phone': 80, 'police_photo': 60, 'fire': 362, 'fire_phone': 41, 'fire_photo': 10}
