@@ -1,0 +1,17 @@
+name: Coordinate check central
+on:
+  push:
+    branches: [coordcheck]
+    paths: [data/places_central_new.json]
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 check4.py data/places_central_new.json data/result4c.json
+      - run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git add data/result4c.json; git commit -m "coordinate check result"; git pull --rebase; git push

@@ -1,0 +1,3494 @@
+[
+ {
+  "id": "wat_ratchanatdaram",
+  "region": "BANGKOK",
+  "lat": 13.7546,
+  "lon": 100.5035,
+  "name": {
+   "th": "วัดราชนัดดารามวรวิหาร (โลหะปราสาท)",
+   "en": "Wat Ratchanatdaram (Loha Prasat)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดที่มีโลหะปราสาทแห่งเดียวในโลก ยอดแหลม 37 ยอด ขึ้นไปชมวิวภูเขาทองได้ ไปช่วงเช้าหรือเย็นอากาศสบาย",
+   "en": "Home of Loha Prasat, the 37-spired 'Metal Castle'; climb up for views towards the Golden Mount. Best in the morning or late afternoon."
+  },
+  "wikiTitles": [
+   "Wat Ratchanatdaram"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_traimit",
+  "region": "BANGKOK",
+  "lat": 13.7377,
+  "lon": 100.5136,
+  "name": {
+   "th": "วัดไตรมิตรวิทยาราม (พระพุทธรูปทองคำ)",
+   "en": "Wat Traimit (Golden Buddha)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ประดิษฐานพระพุทธรูปทองคำหนักราว 5.5 ตัน ที่หัวถนนเยาวราช มีนิทรรศการประวัติเยาวราชในอาคาร เดินต่อไปเยาวราชได้",
+   "en": "Houses the 5.5-tonne solid-gold Buddha at the head of Yaowarat; the building also has a Chinatown heritage exhibition."
+  },
+  "wikiTitles": [
+   "Wat Traimit"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "ตรุษจีน",
+     "en": "Chinese New Year"
+    },
+    "months": [
+     1,
+     2
+    ],
+    "reason": {
+     "th": "ช่วงตรุษจีนมีผู้คนมาไหว้ขอพรและบรรยากาศคึกคักทั่วเยาวราช",
+     "en": "Crowds come to pray at Chinese New Year, with festivities across Chinatown."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_kalayanamit",
+  "region": "BANGKOK",
+  "lat": 13.74,
+  "lon": 100.4925,
+  "name": {
+   "th": "วัดกัลยาณมิตรวรมหาวิหาร",
+   "en": "Wat Kalayanamit"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดริมเจ้าพระยาฝั่งธนฯ ประดิษฐานหลวงพ่อโต (ซำปอกง) พระพุทธรูปองค์ใหญ่ ใกล้ชุมชนกุฎีจีน นั่งเรือข้ามฟากจากท่าปากคลองตลาด",
+   "en": "Riverside Thonburi temple with a huge seated Buddha (Sam Po Kong), next to the Kudi Chin community; reach it by cross-river ferry."
+  },
+  "wikiTitles": [
+   "Wat Kalayanamit"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_ratchabophit",
+  "region": "BANGKOK",
+  "lat": 13.7493,
+  "lon": 100.4972,
+  "name": {
+   "th": "วัดราชบพิธสถิตมหาสีมาราม",
+   "en": "Wat Ratchabophit"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดหลวงสมัย ร.5 ประดับกระเบื้องเบญจรงค์ทั้งหลัง ภายในพระอุโบสถเป็นสถาปัตยกรรมแบบยุโรป เงียบสงบ นักท่องเที่ยวไม่มาก",
+   "en": "Rama V-era royal temple clad in glazed Chinese tiles, with a Gothic-style interior; calm and uncrowded."
+  },
+  "wikiTitles": [
+   "Wat Ratchabophit"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_bowonniwet",
+  "region": "BANGKOK",
+  "lat": 13.7605,
+  "lon": 100.5004,
+  "name": {
+   "th": "วัดบวรนิเวศวิหาร",
+   "en": "Wat Bowonniwet Vihara"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "พระอารามหลวงสำคัญของธรรมยุติกนิกาย ใกล้ถนนข้าวสาร มีจิตรกรรมฝาผนังแบบผสมตะวันตกของขรัวอินโข่ง",
+   "en": "Major royal temple of the Thammayut order near Khao San Road, known for Khrua In Khong's Western-influenced murals."
+  },
+  "wikiTitles": [
+   "Wat Bowonniwet Vihara"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_paknam_bhasicharoen",
+  "region": "BANGKOK",
+  "lat": 13.7213,
+  "lon": 100.4697,
+  "name": {
+   "th": "วัดปากน้ำภาษีเจริญ",
+   "en": "Wat Paknam Bhasicharoen"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดริมคลองบางกอกใหญ่ มีพระพุทธธรรมกายเทพมงคลองค์ใหญ่สูง 69 ม. และมหาเจดีย์แก้วกลางหอสีเขียวด้านบน ไปช่วงเช้า",
+   "en": "Canal-side temple with a 69 m giant seated Buddha and a pagoda topped by a famous green glass stupa room; go in the morning."
+  },
+  "wikiTitles": [
+   "Wat Paknam Bhasicharoen"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_intharawihan",
+  "region": "BANGKOK",
+  "lat": 13.7667,
+  "lon": 100.503,
+  "name": {
+   "th": "วัดอินทรวิหาร (หลวงพ่อโต)",
+   "en": "Wat Intharawihan"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดย่านบางขุนพรหม มีพระพุทธรูปยืนหลวงพ่อโตสูง 32 ม. ประดับกระเบื้องโมเสกทองคำ",
+   "en": "Bang Khun Phrom temple with a 32 m standing Buddha covered in gold mosaic."
+  },
+  "wikiTitles": [
+   "Wat Intharawihan"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_mangkon_kamalawat",
+  "region": "BANGKOK",
+  "lat": 13.7433,
+  "lon": 100.5102,
+  "name": {
+   "th": "วัดมังกรกมลาวาส (วัดเล่งเน่ยยี่)",
+   "en": "Wat Mangkon Kamalawat (Leng Noei Yi)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดจีนนิกายมหายานที่ใหญ่และสำคัญที่สุดในเยาวราช นิยมมาไหว้ขอพรและสะเดาะเคราะห์ ช่วงตรุษจีนคนแน่นมาก",
+   "en": "The largest Mahayana Chinese temple in Chinatown, popular for prayers and blessings; very crowded at Chinese New Year."
+  },
+  "wikiTitles": [
+   "Wat Mangkon Kamalawat"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "ตรุษจีน",
+     "en": "Chinese New Year"
+    },
+    "months": [
+     1,
+     2
+    ],
+    "reason": {
+     "th": "ช่วงตรุษจีนมีผู้คนมาไหว้ขอพรและบรรยากาศคึกคักทั่วเยาวราช",
+     "en": "Crowds come to pray at Chinese New Year, with festivities across Chinatown."
+    }
+   },
+   {
+    "name": {
+     "th": "เทศกาลกินเจ",
+     "en": "Vegetarian Festival"
+    },
+    "months": [
+     10
+    ],
+    "reason": {
+     "th": "เทศกาลกินเจ (ช่วงต.ค.) ย่านเยาวราชประดับธงเหลือง อาหารเจเต็มถนน",
+     "en": "During the Vegetarian Festival (around October) Chinatown fills with yellow flags and vegetarian food stalls."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "museum_siam",
+  "region": "BANGKOK",
+  "lat": 13.744,
+  "lon": 100.494,
+  "name": {
+   "th": "มิวเซียมสยาม",
+   "en": "Museum Siam"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์การเรียนรู้แบบอินเทอร์แอคทีฟเรื่องความเป็นไทย ใกล้วัดโพธิ์ ปิดวันจันทร์ เหมาะกับครอบครัว",
+   "en": "Interactive museum about Thai identity near Wat Pho; closed Mondays, great for families."
+  },
+  "wikiTitles": [
+   "Museum Siam"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "lumphini_park",
+  "region": "BANGKOK",
+  "lat": 13.731,
+  "lon": 100.5415,
+  "name": {
+   "th": "สวนลุมพินี",
+   "en": "Lumphini Park"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "สวนสาธารณะใจกลางเมืองมีทะเลสาบ ปั่นเรือเป็ดได้ และมักพบตัวเงินตัวทอง มาช่วงเช้าหรือเย็นเพื่อเดินหรือวิ่ง",
+   "en": "Central Bangkok's green lung with a lake, pedal boats and roaming monitor lizards; best early morning or late afternoon."
+  },
+  "wikiTitles": [
+   "Lumphini Park"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "iconsiam",
+  "region": "BANGKOK",
+  "lat": 13.7266,
+  "lon": 100.51,
+  "name": {
+   "th": "ไอคอนสยาม",
+   "en": "ICONSIAM"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ห้างริมเจ้าพระยามีตลาดน้ำในร่ม 'สุขสยาม' รวมอาหารและหัตถกรรมจากทุกภาค มีน้ำพุดนตรีริมแม่น้ำตอนค่ำ นั่งเรือฟรีจากท่าสาทร",
+   "en": "Riverside mall with SookSiam, an indoor floating-market hall of regional food and crafts, plus an evening fountain show; free shuttle boat from Sathorn Pier."
+  },
+  "wikiTitles": [
+   "Iconsiam"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "ลอยกระทง",
+     "en": "Loy Krathong"
+    },
+    "months": [
+     11
+    ],
+    "reason": {
+     "th": "งานลอยกระทงริมเจ้าพระยาและพลุ",
+     "en": "Riverside Loy Krathong celebrations and fireworks."
+    }
+   },
+   {
+    "name": {
+     "th": "เคานต์ดาวน์ปีใหม่",
+     "en": "New Year countdown"
+    },
+    "months": [
+     12
+    ],
+    "reason": {
+     "th": "พลุเคานต์ดาวน์ริมเจ้าพระยาที่ใหญ่ที่สุดแห่งหนึ่ง",
+     "en": "One of Bangkok's biggest riverside countdown fireworks shows."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "siam_square",
+  "region": "BANGKOK",
+  "lat": 13.7451,
+  "lon": 100.534,
+  "name": {
+   "th": "สยามสแควร์",
+   "en": "Siam Square"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ย่านช้อปปิ้งวัยรุ่นใจกลางเมือง เชื่อมสยามพารากอนและ MBK ด้วยรถไฟฟ้า BTS สถานีสยาม เดินเล่นช่วงเย็น",
+   "en": "Bangkok's youth shopping district by BTS Siam, linked to Siam Paragon and MBK; liveliest in the evening."
+  },
+  "wikiTitles": [
+   "Siam Square"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "pak_khlong_talat",
+  "region": "BANGKOK",
+  "lat": 13.7426,
+  "lon": 100.4966,
+  "name": {
+   "th": "ปากคลองตลาด (ตลาดดอกไม้)",
+   "en": "Pak Khlong Talat (Flower Market)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ตลาดดอกไม้และพวงมาลัยที่ใหญ่ที่สุดของกรุงเทพฯ เปิด 24 ชม. บรรยากาศดีที่สุดช่วงกลางคืนถึงเช้ามืด",
+   "en": "Bangkok's biggest flower and garland market, open 24 hours; most atmospheric from late night to dawn."
+  },
+  "wikiTitles": [
+   "Pak Khlong Talat"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "talat_noi",
+  "region": "BANGKOK",
+  "lat": 13.7323,
+  "lon": 100.513,
+  "name": {
+   "th": "ย่านตลาดน้อย",
+   "en": "Talat Noi"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ชุมชนเก่าริมเจ้าพระยา ตรอกแคบ สตรีทอาร์ต ร้านอะไหล่เก่า บ้านโซวเฮงไถ่ และคาเฟ่ริมน้ำ เดินช่วงเช้าหรือเย็น",
+   "en": "Old riverside quarter of alleys, street art, scrap-metal shops, the So Heng Tai mansion and river cafés; walk it in the morning or late afternoon."
+  },
+  "wikiTitles": [
+   "Talat Noi"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "sampheng",
+  "region": "BANGKOK",
+  "lat": 13.742,
+  "lon": 100.505,
+  "name": {
+   "th": "สำเพ็ง",
+   "en": "Sampheng Lane"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ตรอกค้าส่งสินค้าเก่าแก่ของย่านจีน ขายทุกอย่างตั้งแต่ผ้าจนถึงของเล่น ไปช่วงเช้าวันธรรมดา คนแน่นและทางแคบ",
+   "en": "Chinatown's historic wholesale lane selling everything from fabrics to toys; go on weekday mornings, it is narrow and crowded."
+  },
+  "wikiTitles": [
+   "Sampheng"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "khlong_ong_ang",
+  "region": "BANGKOK",
+  "lat": 13.7458,
+  "lon": 100.5016,
+  "name": {
+   "th": "คลองโอ่งอ่าง (ถนนคนเดิน)",
+   "en": "Khlong Ong Ang Walking Street"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "คลองที่ได้รับการฟื้นฟู มีสตรีทอาร์ตสองฝั่ง ถนนคนเดินริมคลองตอนเย็นวันศุกร์–อาทิตย์ พายเรือคายักได้",
+   "en": "Restored canal lined with street art; evening walking street Friday–Sunday and kayaking on the canal."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "king_power_mahanakhon",
+  "region": "BANGKOK",
+  "lat": 13.7233,
+  "lon": 100.5283,
+  "name": {
+   "th": "มหานคร สกายวอล์ก",
+   "en": "King Power Mahanakhon SkyWalk"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "จุดชมวิวชั้น 78 ตึกมหานคร มีพื้นกระจกใสมองทะลุลงไป ไปช่วงพระอาทิตย์ตก ใกล้ BTS ช่องนนทรี",
+   "en": "Observation deck on the 78th floor with a glass-floor tray; go at sunset. Near BTS Chong Nonsi."
+  },
+  "wikiTitles": [
+   "King Power Mahanakhon"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "queen_sirikit_textile_museum",
+  "region": "BANGKOK",
+  "lat": 13.7497,
+  "lon": 100.4908,
+  "name": {
+   "th": "พิพิธภัณฑ์ผ้าในสมเด็จพระนางเจ้าสิริกิติ์ฯ",
+   "en": "Queen Sirikit Museum of Textiles"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์ผ้าและฉลองพระองค์ในพระบรมมหาราชวัง ใช้บัตรเข้าวังร่วมได้ ห้องแอร์ เหมาะพักหลบร้อน",
+   "en": "Textile and royal-costume museum inside the Grand Palace grounds; the palace ticket covers it and it is air-conditioned."
+  },
+  "wikiTitles": [
+   "Queen Sirikit Museum of Textiles"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "siriraj_medical_museum",
+  "region": "BANGKOK",
+  "lat": 13.759,
+  "lon": 100.4855,
+  "name": {
+   "th": "พิพิธภัณฑ์ศิริราช",
+   "en": "Siriraj Medical Museum"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "กลุ่มพิพิธภัณฑ์การแพทย์ในโรงพยาบาลศิริราช มีทั้งนิติเวชและพยาธิวิทยา ไม่เหมาะกับเด็ก นั่งเรือมาท่าวังหลัง ปิดวันอังคาร",
+   "en": "Medical museums inside Siriraj Hospital (forensic, pathology); not for children. Take the boat to Wang Lang Pier; closed Tuesdays."
+  },
+  "wikiTitles": [
+   "Siriraj Medical Museum"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "royal_barges_museum",
+  "region": "BANGKOK",
+  "lat": 13.7616,
+  "lon": 100.4855,
+  "name": {
+   "th": "พิพิธภัณฑสถานแห่งชาติ เรือพระราชพิธี",
+   "en": "Royal Barges National Museum"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "จัดแสดงเรือพระที่นั่งสุพรรณหงส์และเรือพระราชพิธีลำงาม ริมคลองบางกอกน้อย",
+   "en": "Displays the gilded royal barges such as Suphannahong, on Khlong Bangkok Noi."
+  },
+  "wikiTitles": [
+   "Royal Barges National Museum"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bacc",
+  "region": "BANGKOK",
+  "lat": 13.7467,
+  "lon": 100.5302,
+  "name": {
+   "th": "หอศิลปวัฒนธรรมแห่งกรุงเทพมหานคร (BACC)",
+   "en": "Bangkok Art and Culture Centre"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "หอศิลป์ร่วมสมัยข้าง BTS สนามกีฬาแห่งชาติ เข้าฟรี มีนิทรรศการหมุนเวียน ร้านหนังสือและคาเฟ่ ปิดวันจันทร์",
+   "en": "Free contemporary art centre next to BTS National Stadium with rotating exhibitions, shops and cafés; closed Mondays."
+  },
+  "wikiTitles": [
+   "Bangkok Art and Culture Centre"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "benchakitti_park",
+  "region": "BANGKOK",
+  "lat": 13.73,
+  "lon": 100.558,
+  "name": {
+   "th": "สวนเบญจกิติ (สวนป่า)",
+   "en": "Benchakitti Forest Park"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "สวนป่าในเมืองมีทางเดินลอยฟ้าเหนือบึงน้ำ ชมวิวตึกสูง เหมาะเดินและปั่นจักรยานช่วงเย็น",
+   "en": "Urban forest park with elevated skywalks over wetlands and skyline views; great for an evening walk or bike ride."
+  },
+  "wikiTitles": [
+   "Benchakitti Park"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "taling_chan_floating_market",
+  "region": "BANGKOK",
+  "lat": 13.7765,
+  "lon": 100.4558,
+  "name": {
+   "th": "ตลาดน้ำตลิ่งชัน",
+   "en": "Taling Chan Floating Market"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ตลาดน้ำใกล้เมือง ขายอาหารบนเรือและแพ เปิดเฉพาะเสาร์–อาทิตย์และวันหยุด มีเรือนำเที่ยวคลอง",
+   "en": "Floating market close to the city with food served from boats; open weekends and holidays, with canal boat tours."
+  },
+  "wikiTitles": [
+   "Taling Chan Floating Market"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khwan_riam_floating_market",
+  "region": "BANGKOK",
+  "lat": 13.8,
+  "lon": 100.73,
+  "name": {
+   "th": "ตลาดน้ำขวัญเรียม",
+   "en": "Khwan-Riam Floating Market"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ตลาดน้ำริมคลองแสนแสบ เขตมีนบุรี อาหารพื้นบ้านและของฝาก เปิดเสาร์–อาทิตย์",
+   "en": "Floating market on Khlong Saen Saep in Min Buri with local food and souvenirs; weekends only."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "safari_world",
+  "region": "BANGKOK",
+  "lat": 13.8597,
+  "lon": 100.7058,
+  "name": {
+   "th": "ซาฟารีเวิลด์",
+   "en": "Safari World"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "สวนสัตว์เปิดแบบขับรถชมและมารีนพาร์คพร้อมโชว์สัตว์ เหมาะกับครอบครัว ใช้เวลาเกือบทั้งวัน",
+   "en": "Drive-through safari park plus a marine park with animal shows; plan most of a day."
+  },
+  "wikiTitles": [
+   "Safari World"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "erawan_shrine",
+  "region": "BANGKOK",
+  "lat": 13.7443,
+  "lon": 100.5404,
+  "name": {
+   "th": "ศาลท้าวมหาพรหม (เอราวัณ)",
+   "en": "Erawan Shrine"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ศาลพระพรหมแยกราชประสงค์ ผู้คนมาไหว้ขอพรและแก้บนด้วยการรำ ใกล้ BTS ชิดลม",
+   "en": "Brahma shrine at Ratchaprasong where worshippers pray and commission traditional dancers; near BTS Chit Lom."
+  },
+  "wikiTitles": [
+   "Erawan Shrine"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "phra_sumen_fort",
+  "region": "BANGKOK",
+  "lat": 13.764,
+  "lon": 100.4956,
+  "name": {
+   "th": "ป้อมพระสุเมรุและสวนสันติชัยปราการ",
+   "en": "Phra Sumen Fort & Santichaiprakan Park"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ป้อมเก่าสมัย ร.1 ริมเจ้าพระยา ข้างสวนสาธารณะริมน้ำ นั่งชมพระอาทิตย์ตกและสะพานพระราม 8 ใกล้ถนนพระอาทิตย์",
+   "en": "Rama I-era fort by the river with a waterfront park; watch the sunset over Rama VIII Bridge near Phra Athit Road."
+  },
+  "wikiTitles": [
+   "Phra Sumen Fort"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "moca_bangkok",
+  "region": "BANGKOK",
+  "lat": 13.8564,
+  "lon": 100.563,
+  "name": {
+   "th": "พิพิธภัณฑ์ศิลปะไทยร่วมสมัย (MOCA)",
+   "en": "MOCA Bangkok (Museum of Contemporary Art)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์ศิลปะร่วมสมัยไทยของเอกชน ย่านวิภาวดี รวบรวมงานศิลปินแห่งชาติ ปิดวันจันทร์",
+   "en": "Private museum of modern Thai art on Vibhavadi Road, with works by national artists; closed Mondays."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "sri_maha_mariamman",
+  "region": "BANGKOK",
+  "lat": 13.724,
+  "lon": 100.5225,
+  "name": {
+   "th": "วัดพระศรีมหาอุมาเทวี (วัดแขก สีลม)",
+   "en": "Sri Maha Mariamman Temple (Wat Khaek)"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "วัดฮินดูสีสันสดใสย่านสีลม ผู้คนมาไหว้พระแม่อุมาเทวีและพระพิฆเนศ ถอดรองเท้าและงดถ่ายรูปด้านใน",
+   "en": "Colourful Hindu temple on Silom Road devoted to Mariamman and Ganesha; remove shoes, no photos inside."
+  },
+  "wikiTitles": [
+   "Sri Maha Mariamman Temple, Bangkok"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "นวราตรี",
+     "en": "Navaratri"
+    },
+    "months": [
+     10
+    ],
+    "reason": {
+     "th": "เทศกาลนวราตรีและขบวนแห่ใหญ่บนถนนสีลม (ราวต.ค.)",
+     "en": "Navaratri festival with a big procession along Silom Road (around October)."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "suan_pakkad_palace",
+  "region": "BANGKOK",
+  "lat": 13.7563,
+  "lon": 100.5378,
+  "name": {
+   "th": "วังสวนผักกาด",
+   "en": "Suan Pakkad Palace"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "เรือนไทยโบราณ 8 หลังในสวนร่มรื่นกลางเมือง มีตำหนักลายรดน้ำและโบราณวัตถุบ้านเชียง ใกล้ BTS พญาไท",
+   "en": "Eight traditional Thai houses in a garden, with a lacquer pavilion and Ban Chiang artefacts; near BTS Phaya Thai."
+  },
+  "wikiTitles": [
+   "Suan Pakkad Palace"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "rtaf_museum",
+  "region": "BANGKOK",
+  "lat": 13.918,
+  "lon": 100.606,
+  "name": {
+   "th": "พิพิธภัณฑ์กองทัพอากาศ",
+   "en": "Royal Thai Air Force Museum"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "จัดแสดงเครื่องบินรบและเครื่องบินประวัติศาสตร์ ใกล้ดอนเมือง เข้าชมฟรี",
+   "en": "Free museum of historic military aircraft near Don Mueang."
+  },
+  "wikiTitles": [
+   "Royal Thai Air Force Museum"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "suan_luang_rama_ix",
+  "region": "BANGKOK",
+  "lat": 13.687,
+  "lon": 100.664,
+  "name": {
+   "th": "สวนหลวง ร.9",
+   "en": "Suan Luang Rama IX"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "สวนสาธารณะใหญ่ที่สุดของกรุงเทพฯ มีสวนนานาชาติ ทะเลสาบ และหอรัชมงคล เหมาะเดินเล่นช่วงเย็น",
+   "en": "Bangkok's largest public park with themed international gardens, a lake and memorial tower; nice in late afternoon."
+  },
+  "wikiTitles": [
+   "Suan Luang Rama IX"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "สวนหลวง ร.9 แฟร์",
+     "en": "Suan Luang Rama IX flower fair"
+    },
+    "months": [
+     12
+    ],
+    "reason": {
+     "th": "งานดอกไม้และสวนประดับช่วงปลายปี",
+     "en": "Year-end flower and garden fair."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khlong_bang_luang",
+  "region": "BANGKOK",
+  "lat": 13.7378,
+  "lon": 100.4664,
+  "name": {
+   "th": "คลองบางหลวงและบ้านศิลปิน",
+   "en": "Khlong Bang Luang & Artist's House"
+  },
+  "province": {
+   "th": "กรุงเทพฯ",
+   "en": "Bangkok"
+  },
+  "description": {
+   "th": "ชุมชนริมคลองฝั่งธนฯ บ้านศิลปินในบ้านไม้เก่าอายุกว่าร้อยปี มีหุ่นละครเล็กแสดงช่วงบ่าย (ยกเว้นวันพุธ) และคาเฟ่ริมคลอง",
+   "en": "Thonburi canal community with the Artist's House in a century-old wooden home, afternoon puppet shows (except Wednesdays) and canal-side cafés."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_tha_sutthawat",
+  "region": "CENTRAL",
+  "lat": 14.465,
+  "lon": 100.442,
+  "name": {
+   "th": "วัดท่าสุทธาวาส",
+   "en": "Wat Tha Sutthawat"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "วัดริมเจ้าพระยาอำเภอป่าโมก มีอาคารศิลปะร่วมสมัยฝีมือช่างศิลป์ จิตรกรรมฝาผนังสวยงาม แวะต่อวัดป่าโมกได้",
+   "en": "Riverside temple in Pa Mok with fine contemporary Thai art halls and murals; combine with nearby Wat Pa Mok."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ek_rach_drum_village",
+  "region": "CENTRAL",
+  "lat": 14.492,
+  "lon": 100.439,
+  "name": {
+   "th": "หมู่บ้านทำกลองเอกราช",
+   "en": "Ek Rach Drum-Making Village"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "หมู่บ้านทำกลองไทยแบบดั้งเดิมอายุกว่า 100 ปี ในอำเภอป่าโมก ชมการขึ้นหนังกลองและซื้อเป็นของที่ระลึกได้",
+   "en": "Century-old drum-making village in Pa Mok; watch drums being stretched with hide and buy small ones as souvenirs."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bang_sadet_dolls",
+  "region": "CENTRAL",
+  "lat": 14.496,
+  "lon": 100.41,
+  "name": {
+   "th": "ศูนย์ตุ๊กตาชาววัง บ้านบางเสด็จ",
+   "en": "Ban Bang Sadet Court Doll Centre"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "แหล่งปั้นตุ๊กตาชาววังดินเผาจิ๋ว หัตถกรรมพระราชทานของอ่างทอง ชมการปั้นและซื้อของฝาก",
+   "en": "Village making tiny clay 'court dolls', Ang Thong's signature royal-sponsored craft; watch artisans and buy souvenirs."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bang_chao_cha_basketry",
+  "region": "CENTRAL",
+  "lat": 14.68,
+  "lon": 100.38,
+  "name": {
+   "th": "หมู่บ้านจักสานบางเจ้าฉ่า",
+   "en": "Ban Bang Chao Cha Basketry Village"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "หมู่บ้านจักสานไม้ไผ่ขึ้นชื่อ อำเภอโพธิ์ทอง มีศูนย์จำหน่ายงานจักสานลวดลายประณีต",
+   "en": "Famous bamboo basketry village in Pho Thong with a centre selling finely woven items."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "talat_sala_chao_rong_thong",
+  "region": "CENTRAL",
+  "lat": 14.594,
+  "lon": 100.348,
+  "name": {
+   "th": "ตลาดศาลเจ้าโรงทอง",
+   "en": "Talat Sala Chao Rong Thong"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "ตลาดเก่าร้อยปีอำเภอวิเศษชัยชาญ ห้องแถวไม้ริมทาง ขนมโบราณและอาหารพื้นบ้าน คึกคักช่วงสุดสัปดาห์",
+   "en": "Century-old wooden shophouse market in Wiset Chai Chan with traditional snacks; liveliest at weekends."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "tamnak_kham_yat",
+  "region": "CENTRAL",
+  "lat": 14.656,
+  "lon": 100.324,
+  "name": {
+   "th": "พระตำหนักคำหยาด",
+   "en": "Phra Tamnak Kham Yat"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "ซากตำหนักอิฐสมัยอยุธยาตอนปลายในอำเภอโพธิ์ทอง ตามตำนานเป็นที่ประทับของเจ้าฟ้าอุทุมพร มีต้นไม้ปกคลุมสวยงาม",
+   "en": "Late-Ayutthaya brick pavilion ruin in Pho Thong, said to be where Prince Uthumphon stayed as a monk; atmospheric and photogenic."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_ton_son",
+  "region": "CENTRAL",
+  "lat": 14.583,
+  "lon": 100.456,
+  "name": {
+   "th": "วัดต้นสน",
+   "en": "Wat Ton Son"
+  },
+  "province": {
+   "th": "อ่างทอง",
+   "en": "Ang Thong"
+  },
+  "description": {
+   "th": "วัดริมแม่น้ำเจ้าพระยาในตัวเมืองอ่างทอง มีพระพุทธรูปองค์ใหญ่ริมน้ำ เป็นที่ไหว้พระของคนเมือง",
+   "en": "Riverside temple in Ang Thong town with a large Buddha image; an easy stop in the town centre."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_pak_khlong_makham_thao",
+  "region": "CENTRAL",
+  "lat": 15.105,
+  "lon": 100.051,
+  "name": {
+   "th": "วัดปากคลองมะขามเฒ่า",
+   "en": "Wat Pak Khlong Makham Thao"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "วัดของหลวงปู่ศุข เกจิชื่อดัง อำเภอวัดสิงห์ ริมแม่น้ำท่าจีน มีพิพิธภัณฑ์และรูปเหมือนหลวงปู่ศุข",
+   "en": "Temple of the revered monk Luang Pu Suk in Wat Sing district by the Tha Chin river, with his museum and statue."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khao_sapphaya",
+  "region": "CENTRAL",
+  "lat": 15.145,
+  "lon": 100.255,
+  "name": {
+   "th": "เขาสรรพยา",
+   "en": "Khao Sapphaya"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "ภูเขาเล็กริมแม่น้ำเจ้าพระยา มีวัดบนเขาและจุดชมวิวทุ่งนาและแม่น้ำ ขึ้นช่วงเย็นชมพระอาทิตย์ตก",
+   "en": "Small hill by the Chao Phraya with a hilltop temple and views over rice fields and the river; go up at sunset."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "sapphaya_old_market",
+  "region": "CENTRAL",
+  "lat": 15.142,
+  "lon": 100.26,
+  "name": {
+   "th": "ตลาดเก่าสรรพยา",
+   "en": "Sapphaya Old Market"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "ตลาดห้องแถวไม้ริมแม่น้ำเจ้าพระยาอายุกว่าร้อยปี ขนมพื้นบ้าน บรรยากาศย้อนยุค",
+   "en": "Century-old wooden riverside market with local snacks and a retro feel."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "chai_nat_muni_museum",
+  "region": "CENTRAL",
+  "lat": 15.18,
+  "lon": 100.135,
+  "name": {
+   "th": "พิพิธภัณฑสถานแห่งชาติ ชัยนาทมุนี",
+   "en": "Chainatmuni National Museum"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์ประวัติศาสตร์และโบราณคดีของชัยนาท จัดแสดงพระพุทธรูปและโบราณวัตถุหลายยุค ปิดวันจันทร์–อังคาร",
+   "en": "Chai Nat's national museum of history and archaeology with Buddha images and artefacts; closed Monday–Tuesday."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bueng_krachap",
+  "region": "CENTRAL",
+  "lat": 15.005,
+  "lon": 99.99,
+  "name": {
+   "th": "บึงกระจับ",
+   "en": "Bueng Krachap"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "บึงน้ำธรรมชาติขนาดใหญ่อำเภอหันคา มีนกน้ำและบัว เหมาะพักผ่อนช่วงเย็น",
+   "en": "Large natural lake in Hankha district with waterbirds and lotus; relaxing in the late afternoon."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_khao_tha_phra",
+  "region": "CENTRAL",
+  "lat": 15.23,
+  "lon": 100.14,
+  "name": {
+   "th": "วัดเขาท่าพระ",
+   "en": "Wat Khao Tha Phra"
+  },
+  "province": {
+   "th": "ชัยนาท",
+   "en": "Chai Nat"
+  },
+  "description": {
+   "th": "วัดบนเขาริมแม่น้ำเจ้าพระยา ประดิษฐานเจ้าพ่อเขาท่าพระ ชมวิวแม่น้ำได้ มีงานประจำปีเจ้าพ่อเขาท่าพระ",
+   "en": "Hill temple above the Chao Phraya, home of the Chao Pho Khao Tha Phra image and an annual festival; river views from the top."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ban_wichayen",
+  "region": "CENTRAL",
+  "lat": 14.802,
+  "lon": 100.6143,
+  "name": {
+   "th": "บ้านวิชาเยนทร์",
+   "en": "Ban Wichayen (Constantine Phaulkon's Residence)"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "ซากอาคารแบบยุโรปผสมไทยสมัยสมเด็จพระนารายณ์ ที่พำนักของคณะทูตฝรั่งเศสและเจ้าพระยาวิชาเยนทร์ ใกล้วังนารายณ์",
+   "en": "European-style ruins from King Narai's era, residence of French envoys and Constantine Phaulkon, near Narai's palace."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "prang_khaek",
+  "region": "CENTRAL",
+  "lat": 14.8015,
+  "lon": 100.615,
+  "name": {
+   "th": "ปรางค์แขก",
+   "en": "Prang Khaek"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "ปรางค์อิฐสามองค์ศิลปะขอมกลางวงเวียนในเมืองลพบุรี เก่าแก่ที่สุดในเมือง มีลิงอาศัยอยู่",
+   "en": "Three Khmer-style brick towers on a roundabout in old Lopburi, the oldest monument in town; monkeys about."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_nakhon_kosa",
+  "region": "CENTRAL",
+  "lat": 14.803,
+  "lon": 100.6145,
+  "name": {
+   "th": "วัดนครโกษา",
+   "en": "Wat Nakhon Kosa"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "วัดร้างศิลปะขอม–อยุธยาข้างสถานีรถไฟลพบุรี มีต้นไม้ขึ้นบนเจดีย์ ถ่ายรูปสวย",
+   "en": "Ruined Khmer/Ayutthaya-era temple beside Lopburi station with trees growing on its stupa."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khao_wong_phra_chan",
+  "region": "CENTRAL",
+  "lat": 14.933,
+  "lon": 100.723,
+  "name": {
+   "th": "วัดพระพุทธบาทเขาวงพระจันทร์",
+   "en": "Khao Wong Phra Chan"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "ภูเขาที่มีบันไดกว่า 3,790 ขั้นขึ้นไปสักการะรอยพระพุทธบาทบนยอด ชมวิวทุ่งกว้าง เริ่มเดินแต่เช้าตรู่ เตรียมน้ำ",
+   "en": "Mountain with 3,790+ steps to a Buddha footprint shrine and sweeping views; start early and bring water."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khao_chin_lae_sunflowers",
+  "region": "CENTRAL",
+  "lat": 14.97,
+  "lon": 100.86,
+  "name": {
+   "th": "ทุ่งทานตะวันเขาจีนแล",
+   "en": "Khao Chin Lae Sunflower Fields"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "ทุ่งทานตะวันกว้างใหญ่ตัดกับเขาจีนแล อำเภอเมืองและพัฒนานิคม ไปช่วงเช้าที่ดอกหันหน้าตามแดด",
+   "en": "Huge sunflower fields set against Khao Chin Lae; go in the morning when the flowers face the sun."
+  },
+  "wikiTitles": [],
+  "highlights": [
+   {
+    "name": {
+     "th": "ทุ่งทานตะวัน",
+     "en": "Sunflower fields"
+    },
+    "months": [
+     11,
+     12,
+     1
+    ],
+    "reason": {
+     "th": "ทุ่งทานตะวันบานเต็มที่ช่วงพ.ย.–ม.ค.",
+     "en": "Sunflower fields are in full bloom from November to January."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "phra_thinang_yen",
+  "region": "CENTRAL",
+  "lat": 14.815,
+  "lon": 100.645,
+  "name": {
+   "th": "พระที่นั่งไกรสรสีหราช (พระที่นั่งเย็น)",
+   "en": "Phra Thinang Yen (Kraisorn Siharat Hall)"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "พระที่นั่งสมัยสมเด็จพระนารายณ์ริมทะเลชุบศร ใช้ทอดพระเนตรจันทรุปราคาร่วมกับคณะเยสุอิตฝรั่งเศส",
+   "en": "King Narai's lakeside pavilion at Thale Chup Son, where he watched an eclipse with French Jesuit astronomers."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_khao_phra_ngam",
+  "region": "CENTRAL",
+  "lat": 14.885,
+  "lon": 100.618,
+  "name": {
+   "th": "วัดเขาพระงาม",
+   "en": "Wat Khao Phra Ngam"
+  },
+  "province": {
+   "th": "ลพบุรี",
+   "en": "Lopburi"
+  },
+  "description": {
+   "th": "วัดบนเขาที่มีพระพุทธรูปปางมารวิชัยองค์ใหญ่สีขาวเด่นมองเห็นแต่ไกล อำเภอเมืองลพบุรี ชมวิวช่วงเย็น",
+   "en": "Hill temple with a large white seated Buddha visible from afar, north of Lopburi town; nice in the evening."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wang_takrai",
+  "region": "CENTRAL",
+  "lat": 14.3234,
+  "lon": 101.3044,
+  "name": {
+   "th": "อุทยานวังตะไคร้",
+   "en": "Wang Takrai Park"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "สวนร่มรื่นริมลำธารใกล้น้ำตกนางรอง มีจุดเล่นน้ำ ล่องห่วงยาง และสวนดอกไม้ เหมาะไปเช้าวันธรรมดา",
+   "en": "Shady riverside park near Nang Rong Falls with swimming spots, tubing and gardens; best on weekday mornings."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "khao_cha_ngok",
+  "region": "CENTRAL",
+  "lat": 14.297,
+  "lon": 101.24,
+  "name": {
+   "th": "เขาชะโงกและวัดเขาชะโงก",
+   "en": "Khao Cha-ngok & Wat Khao Cha-ngok"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "เขาในพื้นที่โรงเรียนนายร้อย จปร. มีบันไดขึ้นวัดบนเขาชมวิวทุ่งนาและเขาใหญ่ มีกิจกรรมผจญภัยของทหาร",
+   "en": "Hill in the military-academy area with steps up to a temple and views to Khao Yai; army-run adventure activities nearby."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "chulachomklao_academy",
+  "region": "CENTRAL",
+  "lat": 14.3,
+  "lon": 101.26,
+  "name": {
+   "th": "โรงเรียนนายร้อยพระจุลจอมเกล้า",
+   "en": "Chulachomklao Royal Military Academy"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "โรงเรียนนายร้อยที่เปิดให้ชมพิพิธภัณฑ์และพระบรมรูป ร.5 พื้นที่กว้างร่มรื่น ใกล้เขาชะโงก",
+   "en": "Military academy whose museum and King Rama V monument are open to visitors; spacious green grounds near Khao Cha-ngok."
+  },
+  "wikiTitles": [
+   "Chulachomklao Royal Military Academy"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ganesha_park_ongkharak",
+  "region": "CENTRAL",
+  "lat": 14.11,
+  "lon": 100.997,
+  "name": {
+   "th": "อุทยานพระพิฆเนศ องครักษ์",
+   "en": "Ganesha Park, Ongkharak"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "อุทยานริมคลองที่รวมเทวรูปพระพิฆเนศหลายปาง มีองค์ใหญ่ให้สักการะ ผู้คนนิยมมาขอพร",
+   "en": "Park full of Ganesha statues in many forms, including a large central image; popular for wishes."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "kaeng_sam_chan",
+  "region": "CENTRAL",
+  "lat": 14.335,
+  "lon": 101.27,
+  "name": {
+   "th": "แก่งสามชั้น",
+   "en": "Kaeng Sam Chan"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "แก่งหินในลำธารตำบลสาริกา จุดเล่นน้ำและเริ่มล่องแก่ง (แพยาง/ห่วงยาง) ของนครนายก น้ำดีช่วงฤดูฝน",
+   "en": "Rocky rapids in Sarika subdistrict, the area's swimming and rafting/tubing spot; best water in the rainy season."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phrammani",
+  "region": "CENTRAL",
+  "lat": 14.22,
+  "lon": 101.155,
+  "name": {
+   "th": "วัดพราหมณี (หลวงพ่อปากแดง)",
+   "en": "Wat Phrammani (Luang Pho Pak Daeng)"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "วัดที่ประดิษฐานหลวงพ่อปากแดง พระพุทธรูปที่ทหารญี่ปุ่นบูรณะสมัยสงครามโลกครั้งที่ 2 เป็นที่เคารพของชาวนครนายก",
+   "en": "Temple of Luang Pho Pak Daeng, a Buddha image restored by Japanese soldiers in WWII and revered locally."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "lan_rak_waterfall",
+  "region": "CENTRAL",
+  "lat": 14.2896,
+  "lon": 101.2487,
+  "name": {
+   "th": "น้ำตกลานรัก (น้ำตกตาดหินกอง)",
+   "en": "Lan Rak Waterfall (Tat Hin Kong)"
+  },
+  "province": {
+   "th": "นครนายก",
+   "en": "Nakhon Nayok"
+  },
+  "description": {
+   "th": "น้ำตกเล็กไหลบนลานหินกว้าง ตำบลสาริกา เล่นน้ำและนั่งพักริมน้ำได้ น้ำดีช่วงฤดูฝน ก.ค.–ต.ค. หน้าแล้งน้ำน้อย",
+   "en": "Small waterfall spreading over a wide rock shelf in Sarika, good for wading; best flow July–October, may run dry in the dry season."
+  },
+  "wikiTitles": [],
+  "highlights": [
+   {
+    "name": {
+     "th": "ฤดูน้ำตก",
+     "en": "Waterfall season"
+    },
+    "months": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "reason": {
+     "th": "น้ำไหลแรงสวยที่สุดช่วงฤดูฝน",
+     "en": "Strongest flow in the rainy season."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "thai_human_imagery_museum",
+  "region": "CENTRAL",
+  "lat": 13.822,
+  "lon": 100.219,
+  "name": {
+   "th": "พิพิธภัณฑ์หุ่นขี้ผึ้งไทย",
+   "en": "Thai Human Imagery Museum"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์หุ่นไฟเบอร์กลาสเหมือนจริงของบุคคลสำคัญและวิถีชีวิตไทย ริมถนนปิ่นเกล้า–นครชัยศรี",
+   "en": "Lifelike fibreglass figures of famous Thais and traditional life, on the Pinklao–Nakhon Chai Si road."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "sampran_riverside",
+  "region": "CENTRAL",
+  "lat": 13.74,
+  "lon": 100.228,
+  "name": {
+   "th": "สามพรานริเวอร์ไซด์ (ตลาดสุขใจ)",
+   "en": "Sampran Riverside & Sookjai Market"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "สวนริมแม่น้ำท่าจีนแนววิถีไทยและเกษตรอินทรีย์ มีตลาดสุขใจขายผลผลิตอินทรีย์วันเสาร์–อาทิตย์ และกิจกรรมงานฝีมือ",
+   "en": "Riverside garden resort on the Tha Chin focused on Thai culture and organic farming, with the weekend Sookjai organic market."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_sam_phran",
+  "region": "CENTRAL",
+  "lat": 13.724,
+  "lon": 100.221,
+  "name": {
+   "th": "วัดสามพราน (วัดมังกร)",
+   "en": "Wat Sam Phran (Dragon Temple)"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "อาคารทรงกระบอกสีชมพูสูง 17 ชั้น มีมังกรยักษ์พันรอบอาคาร ถ่ายรูปจากด้านนอกได้ แต่งกายสุภาพ",
+   "en": "Pink 17-storey cylindrical tower with a giant dragon coiled around it; photograph from outside and dress modestly."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "lam_phaya_floating_market",
+  "region": "CENTRAL",
+  "lat": 13.96,
+  "lon": 100.151,
+  "name": {
+   "th": "ตลาดน้ำลำพญา",
+   "en": "Lam Phaya Floating Market"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "ตลาดน้ำริมแม่น้ำท่าจีนหน้าวัดลำพญา อาหารและผลไม้จากเรือ เปิดเสาร์–อาทิตย์ มีเรือล่องชมแม่น้ำ",
+   "en": "Floating market on the Tha Chin in front of Wat Lam Phaya with food and fruit; weekends only, river boat rides available."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khlong_mahasawat",
+  "region": "CENTRAL",
+  "lat": 13.795,
+  "lon": 100.295,
+  "name": {
+   "th": "ตลาดน้ำคลองมหาสวัสดิ์",
+   "en": "Khlong Mahasawat Floating Market"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "ชุมชนเกษตรริมคลองมหาสวัสดิ์ นั่งเรือชมสวนบัว นาข้าว และสวนกล้วยไม้ อาหารพื้นบ้าน เปิดสุดสัปดาห์",
+   "en": "Farming community on Khlong Mahasawat with boat tours past lotus ponds, rice fields and orchid farms; weekends."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "thai_film_archive",
+  "region": "CENTRAL",
+  "lat": 13.796,
+  "lon": 100.324,
+  "name": {
+   "th": "หอภาพยนตร์ (องค์การมหาชน) ศาลายา",
+   "en": "Thai Film Archive (Salaya)"
+  },
+  "province": {
+   "th": "นครปฐม",
+   "en": "Nakhon Pathom"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์ภาพยนตร์ไทยและเมืองมายา จำลองฉากโรงหนังและสตูดิโอเก่า เข้าชมฟรี มีรอบนำชม",
+   "en": "Museum of Thai cinema with a 'movie town' of recreated cinemas and studios; free, with guided tours."
+  },
+  "wikiTitles": [
+   "Thai Film Archive"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_takhian_floating_market",
+  "region": "CENTRAL",
+  "lat": 13.815,
+  "lon": 100.42,
+  "name": {
+   "th": "ตลาดน้ำวัดตะเคียน",
+   "en": "Wat Takhian Floating Market"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "ตลาดน้ำริมคลองบางกรวย–ไทรน้อย หน้าวัดตะเคียน อาหารบนเรือราคาไม่แพง เปิดเสาร์–อาทิตย์",
+   "en": "Canal-side floating market in front of Wat Takhian with cheap boat food; weekends only."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_chomphuwek",
+  "region": "CENTRAL",
+  "lat": 13.838,
+  "lon": 100.496,
+  "name": {
+   "th": "วัดชมภูเวก",
+   "en": "Wat Chomphuwek"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "วัดมอญเก่าแก่ริมเจ้าพระยา มีเจดีย์ทรงมอญสีขาวและจิตรกรรมฝาผนังแม่พระธรณีบีบมวยผมที่งดงาม",
+   "en": "Old Mon temple by the Chao Phraya with a white Mon-style stupa and a celebrated mural of the earth goddess."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_ku_pak_kret",
+  "region": "CENTRAL",
+  "lat": 13.92,
+  "lon": 100.5,
+  "name": {
+   "th": "วัดกู้",
+   "en": "Wat Ku"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "วัดริมเจ้าพระยาอำเภอปากเกร็ด ที่ระลึกถึงสมเด็จพระนางเรือล่มซึ่งเรือพระที่นั่งล่มบริเวณนี้ มีพิพิธภัณฑ์เล็ก ไปต่อเกาะเกร็ดได้",
+   "en": "Riverside temple in Pak Kret commemorating Queen Sunanda, who drowned nearby; small museum, close to Ko Kret."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "suan_somdet_nonthaburi",
+  "region": "CENTRAL",
+  "lat": 13.864,
+  "lon": 100.5,
+  "name": {
+   "th": "สวนสมเด็จพระศรีนครินทร์ นนทบุรี",
+   "en": "Suan Somdet Phra Srinagarindra Park"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "สวนสาธารณะใหญ่ใกล้ศาลากลางนนทบุรี มีบึงน้ำ ทางวิ่ง และต้นไม้ร่มรื่น เหมาะเดินเล่นช่วงเย็น",
+   "en": "Large park near Nonthaburi city hall with a lake, running track and shady trees; pleasant in the evening."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_khema_phirataram",
+  "region": "CENTRAL",
+  "lat": 13.834,
+  "lon": 100.495,
+  "name": {
+   "th": "วัดเขมาภิรตารามราชวรวิหาร",
+   "en": "Wat Khema Phirataram"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "พระอารามหลวงเก่าแก่สมัยอยุธยาริมเจ้าพระยา มีพระมหาเจดีย์และพระอุโบสถงาม เงียบสงบ",
+   "en": "Ayutthaya-era royal temple on the Chao Phraya with a large chedi and elegant ordination hall; very peaceful."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_chalo",
+  "region": "CENTRAL",
+  "lat": 13.808,
+  "lon": 100.48,
+  "name": {
+   "th": "วัดชลอ",
+   "en": "Wat Chalo"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "วัดริมคลองบางกอกน้อย อำเภอบางกรวย มีพระอุโบสถหลังใหม่รูปเรือสุพรรณหงส์ขนาดใหญ่ ถ่ายรูปสวย",
+   "en": "Temple on Khlong Bangkok Noi in Bang Kruai with a huge new ordination hall shaped like a royal barge."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_prasat_nonthaburi",
+  "region": "CENTRAL",
+  "lat": 13.887,
+  "lon": 100.43,
+  "name": {
+   "th": "วัดปราสาท",
+   "en": "Wat Prasat"
+  },
+  "province": {
+   "th": "นนทบุรี",
+   "en": "Nonthaburi"
+  },
+  "description": {
+   "th": "วัดเก่าสมัยอยุธยา อุโบสถทรงตกท้องช้างพร้อมจิตรกรรมฝาผนังฝีมือช่างอยุธยาที่หาชมยาก",
+   "en": "Ayutthaya-era temple with a curved-base ordination hall and rare Ayutthaya-style murals."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_chedi_hoi",
+  "region": "CENTRAL",
+  "lat": 14.03,
+  "lon": 100.46,
+  "name": {
+   "th": "วัดเจดีย์หอย",
+   "en": "Wat Chedi Hoi"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "วัดที่มีเจดีย์สร้างจากเปลือกหอยนางรมโบราณนับล้านชิ้น อำเภอลาดหลุมแก้ว ผู้คนนิยมมาขอพร",
+   "en": "Temple with stupas built from millions of fossil oyster shells in Lat Lum Kaeo; popular for making wishes."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_hong_pathummawat",
+  "region": "CENTRAL",
+  "lat": 14.0237,
+  "lon": 100.5345,
+  "name": {
+   "th": "วัดหงษ์ปทุมาวาส (วัดมอญ)",
+   "en": "Wat Hong Pathummawat (Mon Temple)"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "วัดมอญริมเจ้าพระยาในตัวเมืองปทุมธานี มีเจดีย์ทรงมอญและเสาหงส์ สะท้อนวัฒนธรรมมอญของปทุมธานี",
+   "en": "Mon temple on the Chao Phraya in Pathum Thani town with a Mon-style stupa and hamsa pole."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_bot_pathum",
+  "region": "CENTRAL",
+  "lat": 14.009,
+  "lon": 100.537,
+  "name": {
+   "th": "วัดโบสถ์",
+   "en": "Wat Bot"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "วัดเก่าริมเจ้าพระยาในเมืองปทุมธานี มีหลวงพ่อโตองค์ใหญ่และตลาดริมน้ำ ใกล้วัดหงษ์ฯ",
+   "en": "Old riverside temple in Pathum Thani town with a large Buddha image and riverside market, close to Wat Hong."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_bang_luang_pathum",
+  "region": "CENTRAL",
+  "lat": 14.0,
+  "lon": 100.53,
+  "name": {
+   "th": "วัดบางหลวง",
+   "en": "Wat Bang Luang"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "วัดเก่าริมแม่น้ำเจ้าพระยาที่สร้างโดยชาวมอญ อุโบสถมีจิตรกรรมฝาผนังโบราณ",
+   "en": "Old riverside temple founded by the Mon community, with antique murals in its ordination hall."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "sam_khok_market",
+  "region": "CENTRAL",
+  "lat": 14.067,
+  "lon": 100.525,
+  "name": {
+   "th": "ตลาดสามโคก",
+   "en": "Sam Khok Market"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "ชุมชนตลาดเก่าริมเจ้าพระยาอำเภอสามโคก ถิ่นมอญดั้งเดิม อาหารมอญและขนมพื้นบ้าน",
+   "en": "Old riverside market community in Sam Khok, the original Mon settlement; Mon food and local snacks."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phra_dhammakaya",
+  "region": "CENTRAL",
+  "lat": 14.07,
+  "lon": 100.644,
+  "name": {
+   "th": "วัดพระธรรมกาย",
+   "en": "Wat Phra Dhammakaya"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "วัดขนาดใหญ่อำเภอคลองหลวง มีมหาธรรมกายเจดีย์รูปโดมทองคำ จัดงานใหญ่ในวันสำคัญทางพุทธศาสนา",
+   "en": "Huge temple in Khlong Luang with a vast golden dome-shaped stupa; mass ceremonies on Buddhist holy days."
+  },
+  "wikiTitles": [
+   "Wat Phra Dhammakaya"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "thai_rice_museum",
+  "region": "CENTRAL",
+  "lat": 14.056,
+  "lon": 100.77,
+  "name": {
+   "th": "พิพิธภัณฑ์ข้าวไทย",
+   "en": "Thai Rice Museum"
+  },
+  "province": {
+   "th": "ปทุมธานี",
+   "en": "Pathum Thani"
+  },
+  "description": {
+   "th": "พิพิธภัณฑ์เรื่องข้าวและวิถีชาวนาไทย ของกรมการข้าว คลองห้า อำเภอธัญบุรี",
+   "en": "Museum on rice and Thai farming life run by the Rice Department at Khlong 5, Thanyaburi."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_mahathat_ayutthaya",
+  "region": "CENTRAL",
+  "lat": 14.3571,
+  "lon": 100.5675,
+  "name": {
+   "th": "วัดมหาธาตุ อยุธยา",
+   "en": "Wat Mahathat (Ayutthaya)"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "วัดสำคัญกลางเกาะเมือง มีเศียรพระพุทธรูปในรากต้นโพธิ์อันโด่งดัง ไปเช้าก่อนแดดแรง ห้ามยืนสูงกว่าเศียรพระ",
+   "en": "Central temple ruin famous for the Buddha head entwined in tree roots; go early and keep below the head when photographing."
+  },
+  "wikiTitles": [
+   "Wat Mahathat (Ayutthaya)"
+  ],
+  "highlights": [
+   {
+    "name": {
+     "th": "งานยอยศยิ่งฟ้าอยุธยามรดกโลก",
+     "en": "Ayutthaya World Heritage Fair"
+    },
+    "months": [
+     12
+    ],
+    "reason": {
+     "th": "งานประจำปีช่วงธันวาคม แสง สี เสียง ในเขตอุทยานประวัติศาสตร์",
+     "en": "Annual December fair with light-and-sound shows among the ruins."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_ratchaburana",
+  "region": "CENTRAL",
+  "lat": 14.359,
+  "lon": 100.5672,
+  "name": {
+   "th": "วัดราชบูรณะ",
+   "en": "Wat Ratchaburana"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "วัดที่มีพระปรางค์ใหญ่ทรงขอมที่ยังคงสภาพดี เข้าไปชมกรุจิตรกรรมภายในได้ ติดกับวัดมหาธาตุ",
+   "en": "Temple with a well-preserved Khmer-style prang whose crypt murals can be visited; next to Wat Mahathat."
+  },
+  "wikiTitles": [
+   "Wat Ratchaburana (Ayutthaya)"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_lokayasutharam",
+  "region": "CENTRAL",
+  "lat": 14.356,
+  "lon": 100.5534,
+  "name": {
+   "th": "วัดโลกยสุธาราม",
+   "en": "Wat Lokayasutharam"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "พระพุทธไสยาสน์กลางแจ้งยาวราว 42 ม. ในเขตเกาะเมือง เข้าชมฟรี ถ่ายรูปสวยช่วงเย็น",
+   "en": "Open-air reclining Buddha about 42 m long; free and photogenic in the late afternoon."
+  },
+  "wikiTitles": [
+   "Wat Lokayasutharam"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_phutthaisawan",
+  "region": "CENTRAL",
+  "lat": 14.3448,
+  "lon": 100.556,
+  "name": {
+   "th": "วัดพุทไธศวรรย์",
+   "en": "Wat Phutthaisawan"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "วัดริมแม่น้ำเจ้าพระยาฝั่งใต้เกาะเมือง มีพระปรางค์ขาวและระเบียงพระพุทธรูปเรียงราย ใกล้หมู่บ้านโปรตุเกส",
+   "en": "Riverside temple south of the island with a white prang and Buddha-lined cloisters, near the Portuguese village."
+  },
+  "wikiTitles": [
+   "Wat Phutthaisawan"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "chao_sam_phraya_museum",
+  "region": "CENTRAL",
+  "lat": 14.3567,
+  "lon": 100.566,
+  "name": {
+   "th": "พิพิธภัณฑสถานแห่งชาติ เจ้าสามพระยา",
+   "en": "Chao Sam Phraya National Museum"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "จัดแสดงเครื่องทองและโบราณวัตถุจากกรุวัดราชบูรณะและวัดมหาธาตุ ห้องแอร์ เหมาะหลบร้อนช่วงบ่าย ปิดจันทร์–อังคาร",
+   "en": "Displays the gold treasures found in Wat Ratchaburana and Wat Mahathat; air-conditioned, closed Monday–Tuesday."
+  },
+  "wikiTitles": [
+   "Chao Sam Phraya National Museum"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "bang_sai_arts_crafts",
+  "region": "CENTRAL",
+  "lat": 14.192,
+  "lon": 100.507,
+  "name": {
+   "th": "ศูนย์ศิลปาชีพบางไทร",
+   "en": "Bang Sai Arts and Crafts Centre"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "ศูนย์ศิลปาชีพพิเศษริมเจ้าพระยา ชมการทำหัตถกรรมไทย หมู่บ้านไทย 4 ภาค และสวนนก",
+   "en": "Royal crafts centre by the Chao Phraya with artisans at work, a village of the four regions and an aviary."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_niwet_thammaprawat",
+  "region": "CENTRAL",
+  "lat": 14.234,
+  "lon": 100.585,
+  "name": {
+   "th": "วัดนิเวศธรรมประวัติ",
+   "en": "Wat Niwet Thammaprawat"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "วัดสไตล์โกธิกเหมือนโบสถ์คริสต์บนเกาะกลางเจ้าพระยา ใกล้พระราชวังบางปะอิน ข้ามด้วยกระเช้าเคเบิลฟรี",
+   "en": "Gothic-style temple that looks like a church, on an island opposite Bang Pa-In Palace; reached by a free cable car."
+  },
+  "wikiTitles": [
+   "Wat Niwet Thammaprawat"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "japanese_village_ayutthaya",
+  "region": "CENTRAL",
+  "lat": 14.331,
+  "lon": 100.586,
+  "name": {
+   "th": "หมู่บ้านญี่ปุ่น",
+   "en": "Japanese Village (Ayutthaya)"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "แหล่งชุมชนญี่ปุ่นสมัยอยุธยา มีอาคารนิทรรศการเรื่องการค้ากับต่างชาติและสวนญี่ปุ่นริมแม่น้ำ",
+   "en": "Site of the Ayutthaya-era Japanese settlement with an exhibition on foreign trade and a riverside Japanese garden."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "st_joseph_church_ayutthaya",
+  "region": "CENTRAL",
+  "lat": 14.342,
+  "lon": 100.566,
+  "name": {
+   "th": "โบสถ์นักบุญยอแซฟ",
+   "en": "St. Joseph's Church (Ayutthaya)"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "โบสถ์คาทอลิกริมเจ้าพระยา สืบประวัติตั้งแต่สมัยสมเด็จพระนารายณ์ อาคารสีเหลืองสวยงาม",
+   "en": "Riverside Catholic church dating back to King Narai's time, with a handsome yellow facade."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phu_khao_thong_ayutthaya",
+  "region": "CENTRAL",
+  "lat": 14.377,
+  "lon": 100.551,
+  "name": {
+   "th": "วัดภูเขาทอง",
+   "en": "Wat Phu Khao Thong"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "เจดีย์ใหญ่สูงราว 80 ม. ทางเหนือของเกาะเมือง กลางทุ่งนา ขึ้นไปชมวิวได้ สวยช่วงเย็น",
+   "en": "Massive 80 m chedi in rice fields north of the island; climb partway for views, lovely in the evening."
+  },
+  "wikiTitles": [
+   "Wat Phu Khao Thong"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ayutthaya_elephant_kraal",
+  "region": "CENTRAL",
+  "lat": 14.378,
+  "lon": 100.577,
+  "name": {
+   "th": "เพนียดคล้องช้างและวังช้างอยุธยา",
+   "en": "Elephant Kraal & Ayutthaya Elephant Palace"
+  },
+  "province": {
+   "th": "พระนครศรีอยุธยา",
+   "en": "Phra Nakhon Si Ayutthaya"
+  },
+  "description": {
+   "th": "เพนียดคล้องช้างโบราณและศูนย์ดูแลช้าง ชมช้างและเรียนรู้ประวัติช้างไทย",
+   "en": "Historic royal elephant kraal and an elephant care centre where you can see elephants and learn their history."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bang_nam_phueng_market",
+  "region": "CENTRAL",
+  "lat": 13.683,
+  "lon": 100.561,
+  "name": {
+   "th": "ตลาดน้ำบางน้ำผึ้ง",
+   "en": "Bang Nam Phueng Floating Market"
+  },
+  "province": {
+   "th": "สมุทรปราการ",
+   "en": "Samut Prakan"
+  },
+  "description": {
+   "th": "ตลาดชุมชนในบางกะเจ้า ขายอาหารพื้นบ้านและผลไม้ เปิดเสาร์–อาทิตย์ เช่าจักรยานปั่นต่อในสวนได้",
+   "en": "Community market in Bang Krachao with local food and fruit; weekends only, rent a bike to explore the green lanes."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "phra_chulachomklao_fort",
+  "region": "CENTRAL",
+  "lat": 13.547,
+  "lon": 100.581,
+  "name": {
+   "th": "ป้อมพระจุลจอมเกล้า",
+   "en": "Phra Chulachomklao Fort"
+  },
+  "province": {
+   "th": "สมุทรปราการ",
+   "en": "Samut Prakan"
+  },
+  "description": {
+   "th": "ป้อมปืนสมัย ร.5 ที่ปากแม่น้ำเจ้าพระยา มีเรือหลวงแม่กลองให้ชมและพิพิธภัณฑ์ทหารเรือ",
+   "en": "Rama V-era fort at the mouth of the Chao Phraya with the preserved warship HTMS Maeklong and a naval museum."
+  },
+  "wikiTitles": [
+   "Phra Chulachomklao Fort"
+  ],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_asokaram",
+  "region": "CENTRAL",
+  "lat": 13.548,
+  "lon": 100.648,
+  "name": {
+   "th": "วัดอโศการาม",
+   "en": "Wat Asokaram"
+  },
+  "province": {
+   "th": "สมุทรปราการ",
+   "en": "Samut Prakan"
+  },
+  "description": {
+   "th": "วัดริมทะเลอำเภอเมืองสมุทรปราการ มีเจดีย์ขาวองค์ใหญ่และป่าชายเลน เงียบสงบ ใกล้บางปู",
+   "en": "Seaside forest temple with a large white chedi and mangroves, quiet and close to Bang Pu."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bang_phli_old_market",
+  "region": "CENTRAL",
+  "lat": 13.607,
+  "lon": 100.707,
+  "name": {
+   "th": "ตลาดโบราณบางพลี",
+   "en": "Bang Phli Old Market"
+  },
+  "province": {
+   "th": "สมุทรปราการ",
+   "en": "Samut Prakan"
+  },
+  "description": {
+   "th": "ตลาดไม้เก่ากว่า 100 ปีริมคลองสำโรง ใกล้วัดบางพลีใหญ่ใน ขนมโบราณและอาหาร เป็นที่จัดประเพณีรับบัว",
+   "en": "100-year-old wooden canal-side market near Wat Bang Phli Yai Nai with old-style snacks; home of the Rap Bua festival."
+  },
+  "wikiTitles": [],
+  "highlights": [
+   {
+    "name": {
+     "th": "ประเพณีรับบัว",
+     "en": "Rap Bua (Lotus-Throwing) Festival"
+    },
+    "months": [
+     10
+    ],
+    "reason": {
+     "th": "ประเพณีโยนบัวให้หลวงพ่อโตทางเรือก่อนวันออกพรรษา",
+     "en": "Lotus flowers are thrown onto a boat carrying the revered Buddha image just before the end of Buddhist Lent."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khlong_suan_market",
+  "region": "CENTRAL",
+  "lat": 13.718,
+  "lon": 100.939,
+  "name": {
+   "th": "ตลาดคลองสวน 100 ปี",
+   "en": "Khlong Suan 100-Year Market"
+  },
+  "province": {
+   "th": "สมุทรปราการ",
+   "en": "Samut Prakan"
+  },
+  "description": {
+   "th": "ตลาดเรือนไม้ริมคลองประเวศ คร่อมเขตสมุทรปราการ–ฉะเชิงเทรา อาหารและขนมโบราณ คึกคักวันหยุด",
+   "en": "Wooden market on Khlong Prawet straddling Samut Prakan and Chachoengsao with traditional food; busiest at weekends."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_yai_chom_prasat",
+  "region": "CENTRAL",
+  "lat": 13.62,
+  "lon": 100.29,
+  "name": {
+   "th": "วัดใหญ่จอมปราสาท",
+   "en": "Wat Yai Chom Prasat"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "วัดเก่าสมัยอยุธยา มีบานประตูไม้แกะสลักงดงาม และตลาดน้ำหน้าวัด",
+   "en": "Ayutthaya-era temple known for beautifully carved wooden doors, with a small market in front."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wichian_chodok_fort",
+  "region": "CENTRAL",
+  "lat": 13.539,
+  "lon": 100.274,
+  "name": {
+   "th": "ป้อมวิเชียรโชฎก",
+   "en": "Wichian Chodok Fort"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "ป้อมเก่าสมัย ร.2 ที่ปากแม่น้ำท่าจีน ยังมีปืนใหญ่และกำแพงหลงเหลือ ใกล้ตลาดมหาชัย",
+   "en": "Rama II-era fort at the Tha Chin river mouth with remaining cannons and walls, near Mahachai."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khok_kham_salt_fields",
+  "region": "CENTRAL",
+  "lat": 13.525,
+  "lon": 100.35,
+  "name": {
+   "th": "นาเกลือและป่าชายเลนโคกขาม",
+   "en": "Khok Kham Salt Fields & Mangroves"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "นาเกลือริมถนนพระราม 2 และศูนย์เรียนรู้ป่าชายเลน ชมการทำเกลือช่วงหน้าแล้ง (ธ.ค.–พ.ค.) และนกชายเลน",
+   "en": "Salt pans along Rama II Road and a mangrove learning centre; salt harvesting in the dry season and shorebirds."
+  },
+  "wikiTitles": [],
+  "highlights": [
+   {
+    "name": {
+     "th": "ฤดูทำนาเกลือ",
+     "en": "Salt harvest"
+    },
+    "months": [
+     12,
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "reason": {
+     "th": "ชมการขูดเกลือและกองเกลือขาวช่วงหน้าแล้ง",
+     "en": "See salt being raked into white heaps during the dry season."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "lak_ha_floating_market",
+  "region": "CENTRAL",
+  "lat": 13.6,
+  "lon": 100.107,
+  "name": {
+   "th": "ตลาดน้ำหลักห้า",
+   "en": "Lak Ha Floating Market"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "ตลาดน้ำริมคลองดำเนินสะดวก อำเภอบ้านแพ้ว บรรยากาศชาวบ้านมากกว่าดำเนินสะดวก ไปช่วงเช้า",
+   "en": "Floating market on the Damnoen Saduak canal in Ban Phaeo, more local than Damnoen; go early morning."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "don_kai_di_benjarong",
+  "region": "CENTRAL",
+  "lat": 13.663,
+  "lon": 100.246,
+  "name": {
+   "th": "หมู่บ้านเบญจรงค์ดอนไก่ดี",
+   "en": "Don Kai Di Benjarong Village"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "หมู่บ้านทำเครื่องเบญจรงค์ อำเภอกระทุ่มแบน ชมการเขียนลายและลองลงสีด้วยตัวเอง",
+   "en": "Village making Benjarong porcelain in Krathum Baen; watch painters and try painting your own piece."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "talat_thale_thai",
+  "region": "CENTRAL",
+  "lat": 13.53,
+  "lon": 100.29,
+  "name": {
+   "th": "ตลาดทะเลไทย",
+   "en": "Talat Thale Thai Seafood Market"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "ตลาดค้าส่งอาหารทะเลขนาดใหญ่ของมหาชัย อาหารทะเลสดราคาส่ง มาช่วงเช้า",
+   "en": "Mahachai's huge wholesale seafood market with fresh catch at wholesale prices; come in the morning."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ban_bang_ya_phraek",
+  "region": "CENTRAL",
+  "lat": 13.55,
+  "lon": 100.295,
+  "name": {
+   "th": "ชุมชนท่องเที่ยวบ้านบางหญ้าแพรก",
+   "en": "Ban Bang Ya Phraek Community"
+  },
+  "province": {
+   "th": "สมุทรสาคร",
+   "en": "Samut Sakhon"
+  },
+  "description": {
+   "th": "ชุมชนริมแม่น้ำท่าจีน กิจกรรมวิถีประมง ป่าชายเลน และอาหารทะเลพื้นบ้าน",
+   "en": "Tha Chin riverside community offering fishing-life activities, mangroves and local seafood."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "tha_kha_floating_market",
+  "region": "CENTRAL",
+  "lat": 13.476,
+  "lon": 99.978,
+  "name": {
+   "th": "ตลาดน้ำท่าคา",
+   "en": "Tha Kha Floating Market"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "ตลาดน้ำชาวสวนดั้งเดิม พายเรือขายผลผลิตตอนเช้า เปิดวันขึ้น/แรม 2, 7, 12 ค่ำ และเสาร์–อาทิตย์ ไปก่อน 9 โมง",
+   "en": "Authentic farmers' floating market in the morning on lunar days 2, 7, 12 and weekends; arrive before 9 am."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "bang_noi_floating_market",
+  "region": "CENTRAL",
+  "lat": 13.45,
+  "lon": 99.953,
+  "name": {
+   "th": "ตลาดน้ำบางน้อย",
+   "en": "Bang Noi Floating Market"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "ชุมชนตลาดเก่าริมคลองบางน้อย บรรยากาศเงียบสงบกว่าอัมพวา ห้องแถวไม้และขนมโบราณ",
+   "en": "Quiet old canal-side market community, calmer than Amphawa, with wooden shophouses and traditional sweets."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phet_samut",
+  "region": "CENTRAL",
+  "lat": 13.4075,
+  "lon": 100.0,
+  "name": {
+   "th": "วัดเพชรสมุทรวรวิหาร (หลวงพ่อบ้านแหลม)",
+   "en": "Wat Phet Samut Worawihan (Luang Pho Ban Laem)"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "วัดสำคัญริมแม่น้ำแม่กลอง ประดิษฐานหลวงพ่อบ้านแหลม พระคู่บ้านคู่เมือง เดินจากตลาดร่มหุบได้",
+   "en": "Key riverside temple housing the revered Luang Pho Ban Laem image, walking distance from Maeklong Railway Market."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_chula_mani",
+  "region": "CENTRAL",
+  "lat": 13.444,
+  "lon": 99.96,
+  "name": {
+   "th": "วัดจุฬามณี",
+   "en": "Wat Chula Mani"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "วัดอำเภออัมพวาที่ตกแต่งงานประดับมุกและลวดลายวิจิตร เกี่ยวข้องกับหลวงพ่อพุ่ม ใกล้ตลาดน้ำอัมพวา",
+   "en": "Amphawa temple decorated with exquisite mother-of-pearl and carvings, near Amphawa Floating Market."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khlong_khon_mangrove",
+  "region": "CENTRAL",
+  "lat": 13.38,
+  "lon": 100.006,
+  "name": {
+   "th": "ศูนย์อนุรักษ์ป่าชายเลนคลองโคน",
+   "en": "Khlong Khon Mangrove Conservation"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "ชุมชนประมงและป่าชายเลน นั่งเรือชมฟาร์มหอยแมลงภู่และปลูกป่าชายเลนได้",
+   "en": "Fishing community and mangroves where you can boat out to mussel farms and plant mangrove saplings."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "amphawa_chaipattana",
+  "region": "CENTRAL",
+  "lat": 13.427,
+  "lon": 99.956,
+  "name": {
+   "th": "โครงการอัมพวา ชัยพัฒนานุรักษ์",
+   "en": "Amphawa Chaipattananurak Project"
+  },
+  "province": {
+   "th": "สมุทรสงคราม",
+   "en": "Samut Songkhram"
+  },
+  "description": {
+   "th": "โครงการอนุรักษ์วิถีชาวสวนริมคลองอัมพวา มีสวนเกษตร ร้านกาแฟ และตลาดสินค้าชุมชน ใกล้ตลาดน้ำอัมพวา",
+   "en": "Royal conservation project for Amphawa's orchard life with gardens, a café and community shops, beside the floating market."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phra_phutthachai",
+  "region": "CENTRAL",
+  "lat": 14.485,
+  "lon": 100.942,
+  "name": {
+   "th": "วัดพระพุทธฉาย",
+   "en": "Wat Phra Phutthachai"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "วัดบนเขาที่มีรอยพระพุทธฉายบนหน้าผา ภาพเขียนสีโบราณ และจุดชมวิว ใกล้ตัวเมืองสระบุรี",
+   "en": "Cliffside temple with the 'Buddha's shadow' rock image, ancient paintings and a viewpoint, near Saraburi town."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "jet_kot_pong_kon_sao",
+  "region": "CENTRAL",
+  "lat": 14.625,
+  "lon": 101.045,
+  "name": {
+   "th": "ศูนย์ศึกษาธรรมชาติเจ็ดคตโป่งก้อนเส้า",
+   "en": "Jet Kot–Pong Kon Sao Nature Study Centre"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "ป่าเขตเขาใหญ่ฝั่งแก่งคอย มีลานกางเต็นท์ ลำธาร และเส้นทางเดินป่า เหมาะพักแรมช่วงหนาว",
+   "en": "Forest area on the Khao Yai fringe near Kaeng Khoi with campsites, streams and trails; great for cool-season camping."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "tham_phra_phothisat",
+  "region": "CENTRAL",
+  "lat": 14.63,
+  "lon": 101.015,
+  "name": {
+   "th": "ถ้ำพระโพธิสัตว์",
+   "en": "Tham Phra Phothisat"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "ถ้ำในอำเภอแก่งคอยที่มีภาพสลักนูนต่ำสมัยทวารวดีบนผนังถ้ำ พระพุทธรูปและเทพ",
+   "en": "Cave in Kaeng Khoi with Dvaravati-era relief carvings of the Buddha and deities."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "muak_lek_arboretum",
+  "region": "CENTRAL",
+  "lat": 14.667,
+  "lon": 101.189,
+  "name": {
+   "th": "สวนรุกขชาติและน้ำตกมวกเหล็ก",
+   "en": "Muak Lek Arboretum & Waterfall"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "สวนป่าร่มรื่นริมลำธารมวกเหล็ก มีน้ำตกเล็กเล่นน้ำได้ แวะพักระหว่างทางถนนมิตรภาพ",
+   "en": "Shady forest park along the Muak Lek stream with a small swimmable waterfall; handy stop on the Mittraphap Highway."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "thai_danish_dairy_farm",
+  "region": "CENTRAL",
+  "lat": 14.723,
+  "lon": 101.17,
+  "name": {
+   "th": "ฟาร์มโคนมไทย-เดนมาร์ค มวกเหล็ก",
+   "en": "Thai-Danish Dairy Farm, Muak Lek"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "ฟาร์มโคนมของ อ.ส.ค. ชมวัว รีดนม และการแสดง ชิมนมสดและไอศกรีม เหมาะกับครอบครัว",
+   "en": "Dairy Promotion Organization farm with cows, milking demos and shows; taste fresh milk and ice cream."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "phu_khae_botanical",
+  "region": "CENTRAL",
+  "lat": 14.62,
+  "lon": 100.87,
+  "name": {
+   "th": "สวนพฤกษศาสตร์พุแค",
+   "en": "Phu Khae Botanical Garden"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "สวนพฤกษศาสตร์แห่งแรกของไทยริมถนนพหลโยธิน ร่มรื่น มีพันธุ์ไม้และทางเดินศึกษาธรรมชาติ",
+   "en": "Thailand's first botanical garden, on Phahonyothin Road, with shady paths and plant collections."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "tai_yuan_sao_hai",
+  "region": "CENTRAL",
+  "lat": 14.56,
+  "lon": 100.86,
+  "name": {
+   "th": "ศูนย์วัฒนธรรมไทยวน เสาไห้",
+   "en": "Tai Yuan Cultural Centre, Sao Hai"
+  },
+  "province": {
+   "th": "สระบุรี",
+   "en": "Saraburi"
+  },
+  "description": {
+   "th": "ชุมชนไทยวน (ยวน) อำเภอเสาไห้ ชมผ้าทอลายจกและวัฒนธรรมล้านนาที่อพยพมาเมื่อ 200 ปีก่อน",
+   "en": "Tai Yuan community in Sao Hai showing 'jok' brocade weaving and Lanna culture brought here two centuries ago."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phra_prang_chan_sut",
+  "region": "CENTRAL",
+  "lat": 14.9244,
+  "lon": 100.2702,
+  "name": {
+   "th": "วัดพระปรางค์และแหล่งเตาเผาแม่น้ำน้อย",
+   "en": "Wat Phra Prang & Mae Nam Noi Kilns"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "วัดเก่ามีพระปรางค์อิฐสมัยอยุธยาตอนต้นสูง 15 ม. ข้างแหล่งเตาเผาเครื่องปั้นดินเผาแม่น้ำน้อย ชมเตาโบราณได้ ฟรี",
+   "en": "Early-Ayutthaya brick prang (15 m) beside the excavated Mae Nam Noi pottery kilns; free to visit."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": []
+ },
+ {
+  "id": "wat_pho_kao_ton",
+  "region": "CENTRAL",
+  "lat": 14.892,
+  "lon": 100.318,
+  "name": {
+   "th": "วัดโพธิ์เก้าต้น",
+   "en": "Wat Pho Kao Ton"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "วัดสมัยค่ายบางระจัน ศูนย์กลางการต่อสู้ของชาวบ้านบางระจัน มีวิหารพระอาจารย์ธรรมโชติ ติดอุทยานค่ายบางระจัน",
+   "en": "Temple linked to the Bang Rachan villagers' resistance, with Phra Ajarn Thammachot's shrine, beside Bang Rachan Park."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "ban_rachan_retro_market",
+  "region": "CENTRAL",
+  "lat": 14.89,
+  "lon": 100.32,
+  "name": {
+   "th": "ตลาดไทยย้อนยุคบ้านระจัน",
+   "en": "Ban Rachan Retro Thai Market"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "ตลาดย้อนยุคใกล้ค่ายบางระจัน ขายอาหารพื้นบ้านและขนมไทย บรรยากาศโบราณ คึกคักวันหยุด",
+   "en": "Retro-style market near Bang Rachan with local food and Thai sweets; liveliest at weekends."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "mae_la_fish_market",
+  "region": "CENTRAL",
+  "lat": 14.88,
+  "lon": 100.4,
+  "name": {
+   "th": "ตลาดปลาแม่ลา",
+   "en": "Mae La Fish Market"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "ตลาดริมลำน้ำแม่ลา ขึ้นชื่อปลาช่อนแม่ลาเผาเกลือ แวะซื้อเป็นของฝาก",
+   "en": "Market on the Mae La stream, famous for salt-grilled Mae La snakehead fish."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_amphawan",
+  "region": "CENTRAL",
+  "lat": 14.82,
+  "lon": 100.45,
+  "name": {
+   "th": "วัดอัมพวัน",
+   "en": "Wat Amphawan"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "วัดปฏิบัติธรรมชื่อดังของพระราชพรหมยาน (หลวงพ่อจรัญ) อำเภอพรหมบุรี บรรยากาศร่มรื่น มีผู้มาปฏิบัติธรรมมาก",
+   "en": "Well-known meditation temple of the late Luang Pho Charan in Phrom Buri; shady grounds and many retreatants."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "sing_buri_riverside_park",
+  "region": "CENTRAL",
+  "lat": 14.887,
+  "lon": 100.406,
+  "name": {
+   "th": "สวนสาธารณะเฉลิมพระเกียรติ ริมเจ้าพระยา สิงห์บุรี",
+   "en": "Sing Buri Chao Phraya Riverside Park"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "สวนริมแม่น้ำเจ้าพระยาในตัวเมืองสิงห์บุรี เดินเล่นชมพระอาทิตย์ตกและมีตลาดอาหารยามเย็น",
+   "en": "Riverside park in Sing Buri town for sunset walks, with evening food stalls."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_kudi_thong_sing_buri",
+  "region": "CENTRAL",
+  "lat": 14.917,
+  "lon": 100.4,
+  "name": {
+   "th": "วัดกุฎีทอง",
+   "en": "Wat Kudi Thong"
+  },
+  "province": {
+   "th": "สิงห์บุรี",
+   "en": "Sing Buri"
+  },
+  "description": {
+   "th": "วัดเก่าในจังหวัดสิงห์บุรี มีอุโบสถเก่าและพระพุทธรูปโบราณ เงียบสงบ",
+   "en": "Old temple in Sing Buri with an antique ordination hall and Buddha images; quiet."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "banharn_jamsai_tower",
+  "region": "CENTRAL",
+  "lat": 14.4777,
+  "lon": 100.1196,
+  "name": {
+   "th": "หอคอยบรรหาร-แจ่มใส",
+   "en": "Banharn-Jamsai Tower"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "หอคอยชมวิวสูง 123 ม. ในตัวเมืองสุพรรณบุรี ชั้นบนชมวิวเมืองและทุ่งนาโดยรอบ",
+   "en": "123 m observation tower in Suphan Buri town with views over the city and rice fields."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_phra_rup",
+  "region": "CENTRAL",
+  "lat": 14.471,
+  "lon": 100.115,
+  "name": {
+   "th": "วัดพระรูป",
+   "en": "Wat Phra Rup"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "วัดเก่าริมแม่น้ำสุพรรณ มีพระพุทธไสยาสน์โบราณและหม้อดินเผาตามเรื่องขุนช้างขุนแผน มีตลาดเก่าใกล้ๆ",
+   "en": "Old riverside temple with an ancient reclining Buddha, linked to the Khun Chang Khun Phaen epic."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "khum_khun_phaen",
+  "region": "CENTRAL",
+  "lat": 14.472,
+  "lon": 100.126,
+  "name": {
+   "th": "คุ้มขุนแผนและวัดแค",
+   "en": "Khum Khun Phaen & Wat Khae"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "เรือนไทยจำลองตามวรรณคดีขุนช้างขุนแผน ข้างวัดแคที่มีต้นมะขามยักษ์ตามตำนานขุนแผน",
+   "en": "Thai-style houses recreating the Khun Chang Khun Phaen epic, beside Wat Khae with its legendary giant tamarind tree."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "u_thong_national_museum",
+  "region": "CENTRAL",
+  "lat": 14.373,
+  "lon": 99.889,
+  "name": {
+   "th": "พิพิธภัณฑสถานแห่งชาติ อู่ทอง",
+   "en": "U Thong National Museum"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "จัดแสดงโบราณวัตถุสมัยทวารวดีจากเมืองโบราณอู่ทอง หนึ่งในเมืองโบราณที่เก่าแก่ที่สุดของไทย ปิดจันทร์–อังคาร",
+   "en": "Displays Dvaravati artefacts from the ancient city of U Thong, one of Thailand's oldest; closed Monday–Tuesday."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "kao_hong_market",
+  "region": "CENTRAL",
+  "lat": 14.356,
+  "lon": 100.161,
+  "name": {
+   "th": "ตลาดเก้าห้อง 100 ปี",
+   "en": "Kao Hong 100-Year Market"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "ตลาดห้องแถวไม้ริมแม่น้ำสุพรรณ อำเภอบางปลาม้า บ้านเก้าห้องอายุกว่าร้อยปี อาหารพื้นบ้าน เงียบกว่าสามชุก",
+   "en": "Century-old wooden riverside market in Bang Pla Ma with the 'nine-room' house; quieter than Sam Chuk."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "phu_toei_national_park",
+  "region": "CENTRAL",
+  "lat": 14.92,
+  "lon": 99.45,
+  "name": {
+   "th": "อุทยานแห่งชาติพุเตย",
+   "en": "Phu Toei National Park"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "อุทยานป่าเขาด้านตะวันตกของสุพรรณบุรี มีจุดกางเต็นท์บนยอดเขาชมทะเลหมอกช่วงหนาว และเส้นทางเดินป่า",
+   "en": "Mountain forest park in western Suphan Buri with hilltop campsites, sea-of-mist views in the cool season and trails."
+  },
+  "wikiTitles": [],
+  "highlights": [
+   {
+    "name": {
+     "th": "ทะเลหมอก",
+     "en": "Sea of mist"
+    },
+    "months": [
+     11,
+     12,
+     1,
+     2
+    ],
+    "reason": {
+     "th": "ช่วงหนาวมีทะเลหมอกยามเช้าบนจุดชมวิว",
+     "en": "Morning mist seas from the viewpoints in the cool season."
+    }
+   }
+  ],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ },
+ {
+  "id": "wat_mahathat_suphan",
+  "region": "CENTRAL",
+  "lat": 14.471,
+  "lon": 100.099,
+  "name": {
+   "th": "วัดพระศรีรัตนมหาธาตุ สุพรรณบุรี",
+   "en": "Wat Phra Si Rattana Mahathat (Suphan Buri)"
+  },
+  "province": {
+   "th": "สุพรรณบุรี",
+   "en": "Suphan Buri"
+  },
+  "description": {
+   "th": "วัดโบราณที่มีพระปรางค์ศิลปะอยุธยาตอนต้นสูงเด่น ทางตะวันตกของตัวเมือง",
+   "en": "Ancient temple with a tall early-Ayutthaya prang on the west side of town."
+  },
+  "wikiTitles": [],
+  "highlights": [],
+  "closures": [],
+  "island": false,
+  "islandGroup": null,
+  "hubIds": [],
+  "approx": true
+ }
+]
