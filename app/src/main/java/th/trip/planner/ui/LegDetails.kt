@@ -558,3 +558,34 @@ private fun OtherWays(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChang
     }
     if (leg.plan == null && leg.mode != null && leg.mode in modes) LegDetails(vm, leg.mode, from, to, fromStay, toStay, date)
 }
+
+/** One-line-per-ride summary of the chosen option (for the trip summary). */
+@Composable
+fun ChosenPlanSummary(vm: TripViewModel, leg: th.trip.planner.model.Leg, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?) {
+    val thai = LocalThai.current
+    val ctx = LocalContext.current
+    val ends = rememberEnds(vm, from, to, fromStay, toStay)
+    val day = date ?: LocalDate.now()
+    val journey by produceState<Itinerary.Journey?>(null, ends, day, leg.plan, leg.depart) {
+        val e = ends ?: return@produceState
+        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
+            Itinerary.options(
+                Itinerary.Point(e.first.lat, e.first.lon, from.island, from.islandGroup),
+                Itinerary.Point(e.second.lat, e.second.lon, to.island, to.islandGroup),
+                day, vm.repo.hubs, vm.repo.routes,
+            ).firstOrNull { it.signature == leg.plan }?.let { o -> o.journeys.firstOrNull { it.depart == leg.depart } ?: o.first }
+        }
+    }
+    val j = journey ?: return
+    j.rides.forEach { r ->
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                "${Itinerary.formatTime(r.start)} ${modeIcon(r.route.mode)} ${r.board.name.get(thai)} → ${r.alight.name.get(thai)} ${timeText(r.end)}\n" +
+                    r.route.operator.get(thai) + (r.code?.let { " · $it" } ?: ""),
+                fontSize = 13.sp, modifier = Modifier.weight(1f),
+            )
+            r.route.bookUrl?.let { u -> TextButton(onClick = { open(ctx, u) }) { Text(tr("จอง", "Book")) } }
+        }
+    }
+    if (j.rides.isEmpty()) Text(tr("เรียกรถ / ขับรถ ประมาณ ", "Ride or drive, about ") + durationText(j.minutes), fontSize = 13.sp)
+}

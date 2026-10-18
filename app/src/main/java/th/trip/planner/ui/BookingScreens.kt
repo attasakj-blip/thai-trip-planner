@@ -363,7 +363,8 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                     Card(Modifier.fillMaxWidth().padding(start = 24.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F7FF))) {
                         Column(Modifier.padding(12.dp)) {
                             Text((mode?.let { modeLabel(it, thai) } ?: tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")) + (date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
-                            if (mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
+                            if (leg.plan != null && fromPlace != null && toPlace != null) ChosenPlanSummary(vm, leg, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
+                            else if (mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text("• ${h.label}", fontSize = 13.sp, modifier = Modifier.weight(1f))
                                     if (h.url != null) TextButton(onClick = { open(ctx, h.url) }) { Text(tr("เปิด", "Open")) }
