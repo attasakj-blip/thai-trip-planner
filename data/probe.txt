@@ -1,0 +1,10 @@
+https://overpass-api.de/api/interpreter restaurant 0.6s ERR HTTP Error 502: Bad Gateway
+https://overpass-api.de/api/interpreter hospital 52.8s 200 n=400 rem=
+https://overpass.private.coffee/api/interpreter restaurant 0.8s ERR HTTP Error 500: Internal Server Error
+https://overpass.private.coffee/api/interpreter hospital 0.4s ERR HTTP Error 500: Internal Server Error
+https://maps.mail.ru/osm/tools/overpass/api/interpreter restaurant 44.3s ERR HTTP Error 504: Gateway Timeout
+https://maps.mail.ru/osm/tools/overpass/api/interpreter hospital 18.7s 200 n=400 rem=
+https://overpass.kumi.systems/api/interpreter restaurant 4.6s 200 n=58 rem=
+https://overpass.kumi.systems/api/interpreter hospital 0.4s ERR HTTP Error 500: Internal Server Error
+https://overpass.osm.jp/api/interpreter restaurant 0.5s ERR <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'overpass.osm.jp'. (_ssl.c:1000)>
+https://overpass.osm.jp/api/interpreter hospital 0.5s ERR <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'overpass.osm.jp'. (_ssl.c:1000)>
