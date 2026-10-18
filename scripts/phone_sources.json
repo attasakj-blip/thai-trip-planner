@@ -1,0 +1,5 @@
+[
+  {"kind": "fire", "format": "json", "path": "result.records",
+   "url": "https://data.go.th/api/3/action/datastore_search?resource_id=1fbcd661-8085-4f59-9c32-9276f37c8bf3&limit=100",
+   "name": "vehicle_firestation_t", "phone": "vehicle_telephone", "lat": "vehicle_latitude", "lon": "vehicle_longitude"}
+]
