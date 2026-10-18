@@ -271,6 +271,9 @@ object Itinerary {
             is Step.Ride -> { add(s.board.id); add(s.alight.id); pathKm += TripLogic.distanceKm(s.board.lat, s.board.lon, s.alight.lat, s.alight.lon) }
         }
         if (seq.size != seq.toSet().size) return false
+        // Going through an airport only makes sense when catching a flight there.
+        if (j.rides.none { it.route.mode == TravelMode.FLIGHT } &&
+            j.rides.any { it.board.type == HubType.AIRPORT || it.alight.type == HubType.AIRPORT }) return false
         // A long taxi at the start or end that covers a big part of the trip means the ride went the wrong way.
         if (j.rides.isNotEmpty()) for (g in listOfNotNull(j.steps.first() as? Step.Ground, j.steps.last() as? Step.Ground))
             if (g.km > 25 && g.km > directKm * 0.4) return false
