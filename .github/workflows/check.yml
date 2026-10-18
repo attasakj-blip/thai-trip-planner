@@ -2,16 +2,16 @@ name: Coordinate check
 on:
   push:
     branches: [coordcheck]
-    paths: [data/places.json, data/hubs.json, check.py, check2.py, check3.py]
+    paths: [data/places_new.json, check4.py]
 permissions:
   contents: write
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
-      - run: python3 check3.py
+      - run: python3 check4.py
       - run: |
           git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
-          git add data/result3.json; git commit -m "coordinate check result"; git push
+          git add data/result4.json; git commit -m "coordinate check result"; git pull --rebase; git push
