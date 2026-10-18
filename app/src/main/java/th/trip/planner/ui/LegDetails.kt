@@ -445,7 +445,7 @@ fun TravelOptions(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (
                     if (j0.rides.isEmpty()) Line(tr("ประมาณ ", "About ") + durationText(j0.minutes) + " · " + kmText(roadKm(a.lat, a.lon, b.lat, b.lon)))
                     else {
                         Line(tr("ใช้เวลาประมาณ ", "Takes about ") + durationText(o.journeys.minOf { it.minutes }) + tr(" รวมรอต่อรถ", " incl. connections"))
-                        Line(tr("รอบที่ออกได้: ", "Departures: ") + o.journeys.joinToString(", ") { Itinerary.formatTime(it.depart) + "→" + Itinerary.formatTime(it.arrive) + (if (Itinerary.dayOffset(it.arrive) > 0) "⁺¹" else "") }, size = 12)
+                        Line(tr("รอบที่ออกได้: ", "Departures: ") + o.journeys.joinToString(", ") { Itinerary.formatTime(it.depart) + "→" + Itinerary.formatTime(it.arrive) + (Itinerary.dayOffset(it.arrive).takeIf { d -> d > 0 }?.let { d -> tr(" (+$d วัน)", " (+$d day)") } ?: "") }, size = 12)
                     }
                     if (selected) {
                         HorizontalDivider(Modifier.padding(vertical = 4.dp))
