@@ -513,7 +513,7 @@ fun PoiPhoto(poi: Poi) {
 fun mapsPoint(poi: Poi) = "https://www.google.com/maps/search/?api=1&query=" + enc("${poi.name} ${poi.lat},${poi.lon}")
 
 @Composable
-fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier: Modifier = Modifier, onPick: ((Poi) -> Unit)?, placeId: String? = null) {
+fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier: Modifier = Modifier, placeId: String? = null, onPick: ((Poi) -> Unit)?) {
     val thai = LocalThai.current
     val ctx = LocalContext.current
     var attempt by remember { mutableStateOf(0) }
@@ -579,8 +579,8 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                                 modifier = Modifier.padding(top = 4.dp).clickable { dial(ctx, ph) })
                         }
                         if (poi.phone == null && emergencyType) {
-                            val (num, th, en) = hotlines(type).first()
-                            Text(tr("ไม่มีเบอร์ตรงในข้อมูลเปิด โทรสายด่วน$th: $num", "No direct number in open data; call the $en hotline: $num"),
+                            val num = hotlines(type).first().first
+                            Text(tr("📞 ไม่มีเบอร์ตรงในข้อมูลเปิด กดโทรสายด่วน $num", "📞 No direct number in open data; tap to call hotline $num"),
                                 fontSize = 13.sp, color = Color(0xFF1565C0), modifier = Modifier.padding(top = 4.dp).clickable { dial(ctx, num) })
                         }
                         FlowRow {
