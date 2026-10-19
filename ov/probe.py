@@ -6,9 +6,18 @@ rel = rels[-1]
 con = duckdb.connect()
 con.execute("INSTALL httpfs; LOAD httpfs; INSTALL spatial; LOAD spatial; SET s3_region='us-west-2';")
 src = f"read_parquet('s3://overturemaps-us-west-2/release/{rel}/theme=places/type=place/*', hive_partitioning=1)"
-con.execute(f"""CREATE TABLE th AS SELECT id, names.primary AS name, names.common AS common, categories.primary AS cat, categories.alternate AS alt,
+cols = con.execute(f"DESCRIBE SELECT * FROM {src} LIMIT 0").fetchall()
+for c in cols: print("COL", c[0], str(c[1])[:300])
+names = [c[0] for c in cols]
+if "categories" in names: cat = "categories.primary"
+elif "basic_category" in names: cat = "basic_category"
+elif "taxonomy" in names: cat = "taxonomy.primary"
+else: cat = "NULL"
+extra = ", ".join(n for n in ("taxonomy", "basic_category", "categories", "operating_status") if n in names)
+con.execute(f"""CREATE TABLE th AS SELECT id, names.primary AS name, names.common AS common, {cat} AS cat, {extra},
   confidence, phones, websites, socials, addresses, brand, sources, bbox.xmin AS lon, bbox.ymin AS lat
   FROM {src} WHERE bbox.xmin BETWEEN 97.3 AND 105.7 AND bbox.ymin BETWEEN 5.6 AND 20.5""")
+print(con.execute("SELECT * FROM th WHERE confidence > 0.9 LIMIT 2").fetchall())
 print(con.execute("SELECT count(*) FROM th").fetchall())
 print(con.execute("DESCRIBE th").fetchall())
 for row in con.execute("SELECT cat, count(*) c FROM th GROUP BY cat ORDER BY c DESC LIMIT 60").fetchall(): print(row)
