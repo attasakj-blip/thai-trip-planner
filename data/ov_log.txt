@@ -1,9 +1,154 @@
 releases ['2026-08-19.0', '2026-09-23.0', '2026-09-23.1']
-Traceback (most recent call last):
-  File "/home/runner/work/thai-trip-planner/thai-trip-planner/ov/probe.py", line 9, in <module>
-    con.execute(f"""CREATE TABLE th AS SELECT id, names.primary AS name, names.common AS common, categories.primary AS cat, categories.alternate AS alt,
-_duckdb.BinderException: Binder Error: Referenced table "categories" not found!
-Candidate tables: "read_parquet"
-
-LINE 1: ... AS SELECT id, names.primary AS name, names.common AS common, categories.primary AS cat, categories.alternate AS alt,
-                                                                         ^
+COL id VARCHAR
+COL geometry GEOMETRY('OGC:CRS84')
+COL confidence DOUBLE
+COL websites VARCHAR[]
+COL emails VARCHAR[]
+COL socials VARCHAR[]
+COL phones VARCHAR[]
+COL brand STRUCT(wikidata VARCHAR, "names" STRUCT("primary" VARCHAR, common MAP(VARCHAR, VARCHAR), rules STRUCT(variant VARCHAR, "language" VARCHAR, perspectives STRUCT("mode" VARCHAR, countries VARCHAR[]), "value" VARCHAR, "between" DOUBLE[], side VARCHAR)[]))
+COL addresses STRUCT(freeform VARCHAR, locality VARCHAR, postcode VARCHAR, region VARCHAR, country VARCHAR)[]
+COL names STRUCT("primary" VARCHAR, common MAP(VARCHAR, VARCHAR), rules STRUCT(variant VARCHAR, "language" VARCHAR, perspectives STRUCT("mode" VARCHAR, countries VARCHAR[]), "value" VARCHAR, "between" DOUBLE[], side VARCHAR)[])
+COL sources STRUCT(property VARCHAR, dataset VARCHAR, license VARCHAR, record_id VARCHAR, update_time VARCHAR, confidence DOUBLE, "between" DOUBLE[], provider VARCHAR, resource VARCHAR, "version" VARCHAR)[]
+COL operating_status VARCHAR
+COL basic_category VARCHAR
+COL taxonomy STRUCT("primary" VARCHAR, hierarchy VARCHAR[], alternates VARCHAR[])
+COL version INTEGER
+COL bbox STRUCT(xmin DOUBLE, xmax DOUBLE, ymin DOUBLE, ymax DOUBLE)
+COL theme VARCHAR
+COL type VARCHAR
+[('0d1c84ea-dc10-4974-9990-a6fe1fd8b5d1', 'Seaspray Yacht Sales and Marine Services', None, 'vehicle_dealer', {'primary': 'boat_dealer', 'hierarchy': ['shopping', 'vehicle_dealer', 'boat_dealer'], 'alternates': None}, 'vehicle_dealer', None, 0.9220396280288696, ['+60174814869'], ['http://www.syslangkawi.com/'], ['https://www.facebook.com/2094953434070843'], [{'freeform': 'Rebak Island Resort and Marina, Rebak Marina, 1, Hardstand', 'locality': 'Pantai Cenang', 'postcode': '07000', 'region': '02', 'country': 'MY'}], {'wikidata': None, 'names': {'primary': None, 'common': None, 'rules': None}}, [{'property': '', 'dataset': 'meta', 'license': 'CDLA-Permissive-2.0', 'record_id': '2094953434070843', 'update_time': '2026-09-14T00:00:00.000Z', 'confidence': 0.9220396280288696, 'between': None, 'provider': 'meta', 'resource': 'meta', 'version': '2026-09-14'}, {'property': '/properties/confidence', 'dataset': 'Overture', 'license': 'CDLA-Permissive-2.0', 'record_id': None, 'update_time': '2026-09-17T22:52:12Z', 'confidence': None, 'between': None, 'provider': 'overture', 'resource': 'confidence_calculation', 'version': '2026-09-17'}], 99.6979751586914, 6.29635763168335), ('c429d87a-7f3a-4b97-a93b-0663d2355b7f', 'Senari Restaurant at Rebak Island Resort', None, 'restaurant', {'primary': 'restaurant', 'hierarchy': ['food_and_drink', 'restaurant'], 'alternates': None}, 'restaurant', None, 0.9752055257558823, ['049665566'], ['https://www.rebakislandresort.com/dining/senari-restaurant/'], None, [{'freeform': 'Rebak Island Resort & Marina', 'locality': 'Langkawi', 'postcode': '07000', 'region': 'Kedah', 'country': 'MY'}], None, [{'property': '', 'dataset': 'Microsoft', 'license': 'CDLA-Permissive-2.0', 'record_id': '1970324840284550', 'update_time': '2022-08-16T06:27:42.793Z', 'confidence': 0.85, 'between': None, 'provider': 'microsoft', 'resource': 'microsoft', 'version': '2025-10-20'}, {'property': '/properties/confidence', 'dataset': 'Overture', 'license': 'CDLA-Permissive-2.0', 'record_id': None, 'update_time': '2026-09-17T22:52:12Z', 'confidence': None, 'between': None, 'provider': 'overture', 'resource': 'confidence_calculation', 'version': '2026-09-17'}], 99.70008850097656, 6.294381141662598)]
+[(2364763,)]
+[('id', 'VARCHAR', 'YES', None, None, None), ('name', 'VARCHAR', 'YES', None, None, None), ('common', 'MAP(VARCHAR, VARCHAR)', 'YES', None, None, None), ('cat', 'VARCHAR', 'YES', None, None, None), ('taxonomy', 'STRUCT("primary" VARCHAR, hierarchy VARCHAR[], alternates VARCHAR[])', 'YES', None, None, None), ('basic_category', 'VARCHAR', 'YES', None, None, None), ('operating_status', 'VARCHAR', 'YES', None, None, None), ('confidence', 'DOUBLE', 'YES', None, None, None), ('phones', 'VARCHAR[]', 'YES', None, None, None), ('websites', 'VARCHAR[]', 'YES', None, None, None), ('socials', 'VARCHAR[]', 'YES', None, None, None), ('addresses', 'STRUCT(freeform VARCHAR, locality VARCHAR, postcode VARCHAR, region VARCHAR, country VARCHAR)[]', 'YES', None, None, None), ('brand', 'STRUCT(wikidata VARCHAR, "names" STRUCT("primary" VARCHAR, common MAP(VARCHAR, VARCHAR), rules STRUCT(variant VARCHAR, "language" VARCHAR, perspectives STRUCT("mode" VARCHAR, countries VARCHAR[]), "value" VARCHAR, "between" DOUBLE[], side VARCHAR)[]))', 'YES', None, None, None), ('sources', 'STRUCT(property VARCHAR, dataset VARCHAR, license VARCHAR, record_id VARCHAR, update_time VARCHAR, confidence DOUBLE, "between" DOUBLE[], provider VARCHAR, resource VARCHAR, "version" VARCHAR)[]', 'YES', None, None, None), ('lon', 'DOUBLE', 'YES', None, None, None), ('lat', 'DOUBLE', 'YES', None, None, None)]
+('restaurant', 364493)
+(None, 147737)
+('lodging', 83495)
+('coffee_shop', 79363)
+('personal_or_beauty_service', 70747)
+('automotive_service', 70598)
+('hotel', 66255)
+('fashion_and_apparel_store', 56955)
+('buddhist_place_of_worship', 56498)
+('cafe', 51801)
+('shopping', 51197)
+('government_office', 49152)
+('professional_service', 47788)
+('historic_site', 47266)
+('food_and_beverage_store', 43960)
+('casual_eatery', 40189)
+('hospital', 39693)
+('place_of_learning', 38651)
+('real_estate_service', 36784)
+('hardware_home_and_garden_store', 36531)
+('event_or_party_service', 31843)
+('wellness_service', 30222)
+('electronics_store', 27549)
+('convenience_store', 24648)
+('education', 22484)
+('auto_dealer', 22211)
+('manufacturer', 20166)
+('bar', 19185)
+('social_or_community_service', 18583)
+('travel_service', 18332)
+('home_service', 18263)
+('farm', 18102)
+('b2b_service', 17516)
+('financial_service', 17338)
+('gas_station', 15532)
+('religious_organization', 15088)
+('fast_food_restaurant', 14656)
+('bank_or_credit_union', 13378)
+('corporate_or_business_office', 12948)
+('college_university', 12874)
+('community_and_government', 12676)
+('vehicle_parts_store', 12516)
+('pharmacy_and_drug_store', 12333)
+('elementary_school', 12270)
+('food_and_drink', 11504)
+('community_center', 11305)
+('second_hand_store', 10004)
+('christian_place_of_worship', 9452)
+('travel_and_transportation', 9335)
+('non_alcoholic_beverage_venue', 9284)
+('dental_clinic', 9128)
+('arts_and_entertainment', 9049)
+('health_care', 9038)
+('flowers_and_gifts_store', 8908)
+('resort', 8906)
+('animal_or_pet_service', 8553)
+('vehicle_service', 8520)
+('personal_care_and_beauty_store', 8227)
+('agricultural_service', 8168)
+('park', 8124)
+restaurant [(364493, 274235, 0.6741483458761784)]
+thai_restaurant [(0, 0, None)]
+cafe [(51801, 41505, 0.703054938329174)]
+coffee_shop [(79363, 59067, 0.7044808676501395)]
+hospital [(39693, 13727, 0.7982793776086701)]
+police_department [(0, 0, None)]
+fire_department [(0, 0, None)]
+== grand palace
+   ('ST Vegas', 'restaurant', 0.53, ['+66994512888'], 0.07)
+   ('Doi Kham', 'cafe', 0.77, None, 0.14)
+   ('ร้านดอยคำ', 'cafe', 0.52, ['+6621634360'], 0.14)
+   ('อรรถวิจารณ์ศาลา', 'coffee_shop', 0.4, None, 0.15)
+   ('Cedric Boswell', 'restaurant', 0.28, None, 0.15)
+   ('ห้องอาหารในวัง', 'restaurant', 0.8, None, 0.16)
+   ('Rongros Bangkok', 'restaurant', 0.93, None, 0.18)
+   ('ร้านอีสานโลโซ กระบี่', 'restaurant', 0.53, None, 0.18)
+   ('U369', 'restaurant', 0.21, ['+66645520166'], 0.19)
+   ('โกตั้ม ติ่มซำ สาขาท่าข้าม พระราม2', 'restaurant', 0.68, ['+66642511936'], 0.19)
+   ("Swensen's", 'restaurant', 0.51, ['+6622262954'], 0.2)
+   ('Robert Lee White', 'restaurant', 0.31, None, 0.2)
+  count within ~5km [(13463,)]
+== khao yai
+   ('ร้านกาแฟกลางเขา at เขาใหญ่', 'coffee_shop', 0.77, None, 0.06)
+   ('ศูนย์อาหารเขาใหญ่', 'restaurant', 0.82, None, 0.09)
+   ('เขาใหญ่คอฟฟี่', 'coffee_shop', 0.82, None, 0.11)
+   ('กาแฟเขาใหญ่Khaoyai Coffee Khao Yai National Park', 'coffee_shop', 0.59, None, 2.28)
+   ('Chomview CAFE’', 'cafe', 0.92, ['+66653457484'], 4.4)
+   ('ร้านกาแฟจุดชมวิว Khaoyai', 'cafe', 0.86, None, 4.42)
+  count within ~5km [(6,)]
+== chiang mai
+   ('sub seafood', 'restaurant', 0.87, ['+66899084722'], 0.01)
+   ('Ratchadumnern Coffee and Food', 'cafe', 0.98, ['+66982928958'], 0.01)
+   ('คุโมะชา Kumo Cha สาขาราชดำเนิน เชียงใหม่', 'coffee_shop', 0.91, ['+66982928958'], 0.02)
+   ('K-Mango', 'cafe', 0.59, None, 0.02)
+   ('ร้านช่อรักดอกไม้สด เทศบาลป่าแดด', 'restaurant', 0.57, ['+66940299418'], 0.03)
+   ('ครัวดาบลพ', 'restaurant', 0.7, None, 0.03)
+   ('ขาหมูชัยพระเกียรติ์', 'restaurant', 0.63, None, 0.04)
+   ('Krua Dabb Lob', 'restaurant', 0.96, ['+66946181646'], 0.04)
+   ('ร้านอาหารผู้เฒ่าอินดี้ เชียงใหม่', 'restaurant', 0.84, ['+66949496147'], 0.04)
+   ('มาดามนัว by dao', 'restaurant', 0.78, ['+66802960691'], 0.05)
+   ('Nomad Coffee', 'coffee_shop', 0.84, ['+66622187000'], 0.06)
+   ('Applemade.hotdogs', 'restaurant', 0.57, ['+66946348983'], 0.06)
+  count within ~5km [(9402,)]
+== phu hin rong kla
+   ('NITT', 'coffee_shop', 0.58, None, 0.15)
+   ('9% Coffee', 'coffee_shop', 0.89, ['+66909543315'], 0.17)
+   ('ร้านพิซซ่าหน้าเว่อร์', 'restaurant', 0.9, ['+66946938267'], 0.35)
+   ('ป้าอ้อย อาหารตามสั่ง', 'restaurant', 0.24, ['+66881555160'], 0.36)
+   ('ชาละวันรวมดาว', 'restaurant', 0.91, ['+66896442196'], 0.59)
+   ('บ้านต้นข้าว(หนองนารี)', 'restaurant', 0.78, ['+66819924721'], 0.7)
+   ('แม่บ้านสายช้อป', 'restaurant', 0.09, None, 1.02)
+   ('แดงแหนมเนือง', 'restaurant', 0.45, ['+6656712933'], 1.13)
+   ('Din Dee StudiO', 'cafe', 0.67, ['+66956204059'], 1.2)
+   ('ร้านลาบติดแอร์เพชรบูรณ์', 'restaurant', 0.49, ['+66648936546'], 1.3)
+   ('ร้านลาบเหนือหนองนารี', 'restaurant', 0.55, ['+66911290965'], 1.31)
+   ('ยายกะตาคาเฟ่', 'coffee_shop', 0.96, ['+66862149167'], 1.39)
+  count within ~5km [(734,)]
+== phuket
+   ('Rak Rot Seafood', 'restaurant', 0.41, ['+66887573433'], 0.01)
+   ('16:44 Cafe Phuket', 'coffee_shop', 0.33, ['+66966793430'], 0.01)
+   ('หมี่ต้นโพธิ์', 'restaurant', 0.98, ['+6676216293'], 0.02)
+   ('Somchit Noodle Soup', 'restaurant', 0.93, ['+66816937705'], 0.02)
+   ('ร้านอาหารไทยฟูต&ซีฟูต', 'restaurant', 0.43, ['+66835209296'], 0.02)
+   ('หม่าล่าหอนาฬิกา', 'restaurant', 0.97, ['+66623176713'], 0.02)
+   ('ไก่ทอด หาดใหญ่', 'restaurant', 0.56, ['+66945811917'], 0.02)
+   ('ร้านโพธิ์ทอง', 'restaurant', 0.9, ['+1076223487'], 0.02)
+   ('The Circle Coffee Boutique', 'coffee_shop', 0.4, ['+6676216396'], 0.02)
+   ('น้ำพริกบ้านคุณนาย by Bite for health', 'restaurant', 0.59, ['+66655504245'], 0.02)
+   ('ต.ตามสั่ง', 'restaurant', 0.32, None, 0.03)
+   ('เนี่ยนเอินอาหารเจ', 'restaurant', 0.65, ['+66897265160'], 0.03)
+  count within ~5km [(3380,)]
+[('Global Doctors Clinic Langkawi', 'hospital', ['+6049556399'], ['http://globaldoctorslangkawi.business.site/'], ['https://www.facebook.com/953150538052494'], [{'property': '', 'dataset': 'meta', 'license': 'CDLA-Permissive-2.0', 'record_id': '953150538052494', 'update_time': '2026-09-14T00:00:00.000Z', 'confidence': 0.9115179181098938, 'between': None, 'provider': 'meta', 'resource': 'meta', 'version': '2026-09-14'}, {'property': '/properties/confidence', 'dataset': 'Overture', 'license': 'CDLA-Permissive-2.0', 'record_id': None, 'update_time': '2026-09-17T22:52:12Z', 'confidence': None, 'between': None, 'provider': 'overture', 'resource': 'confidence_calculation', 'version': '2026-09-17'}]), ('Chenang Clinic', 'hospital', ['+6049551418'], None, ['https://www.facebook.com/529582030521708'], [{'property': '', 'dataset': 'meta', 'license': 'CDLA-Permissive-2.0', 'record_id': '529582030521708', 'update_time': '2026-09-14T00:00:00.000Z', 'confidence': 0.9861060380935669, 'between': None, 'provider': 'meta', 'resource': 'meta', 'version': '2026-09-14'}, {'property': '/properties/confidence', 'dataset': 'Overture', 'license': 'CDLA-Permissive-2.0', 'record_id': None, 'update_time': '2026-09-17T22:52:12Z', 'confidence': None, 'between': None, 'provider': 'overture', 'resource': 'confidence_calculation', 'version': '2026-09-17'}]), ('Klinik Mahsuri', 'hospital', ['+60108888875'], None, ['https://www.facebook.com/448199068656566'], [{'property': '', 'dataset': 'meta', 'license': 'CDLA-Permissive-2.0', 'record_id': '448199068656566', 'update_time': '2026-09-14T00:00:00.000Z', 'confidence': 0.9706548452377319, 'between': None, 'provider': 'meta', 'resource': 'meta', 'version': '2026-09-14'}, {'property': '/properties/confidence', 'dataset': 'Overture', 'license': 'CDLA-Permissive-2.0', 'record_id': None, 'update_time': '2026-09-17T22:52:12Z', 'confidence': None, 'between': None, 'provider': 'overture', 'resource': 'confidence_calculation', 'version': '2026-09-17'}])]
