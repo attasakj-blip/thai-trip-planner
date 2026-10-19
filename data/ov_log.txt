@@ -1,0 +1,9 @@
+releases ['2026-08-19.0', '2026-09-23.0', '2026-09-23.1']
+Traceback (most recent call last):
+  File "/home/runner/work/thai-trip-planner/thai-trip-planner/ov/probe.py", line 9, in <module>
+    con.execute(f"""CREATE TABLE th AS SELECT id, names.primary AS name, names.common AS common, categories.primary AS cat, categories.alternate AS alt,
+_duckdb.BinderException: Binder Error: Referenced table "categories" not found!
+Candidate tables: "read_parquet"
+
+LINE 1: ... AS SELECT id, names.primary AS name, names.common AS common, categories.primary AS cat, categories.alternate AS alt,
+                                                                         ^
