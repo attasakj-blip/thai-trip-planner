@@ -3,6 +3,8 @@ Overture rows kept 338739
 OSM: 35445 named places in 1s Counter({'restaurant': 19131, 'cafe': 11157, 'hospital': 3799, 'police': 1226, 'fire': 132})
 Overture: 338739 Counter({'restaurant': 214161, 'cafe': 92632, 'hospital': 26927, 'police': 4484, 'fire': 535})
 phone list failed https://data.go.th/api/3/action/datastore_search?resource_id=1fbcd661-8085-4f59-9c32-9276f37c8bf3&limit=100 HTTP Error 403: Forbidden
-places done in 112s; wikidata ids 83
+places done in 101s; wikidata ids 83
+commons name search 6887 found 271
+dish photos 29 of 29 missing []
 places with under 5 restaurants: ['ang_thong', 'ko_tachai', 'ko_tarutao', 'phu_soi_dao', 'similan', 'surin_islands']
-{'restaurant': 32216, 'restaurant_phone': 26227, 'restaurant_photo': 5, 'cafe': 21139, 'cafe_phone': 17366, 'cafe_photo': 2, 'hospital': 8719, 'hospital_phone': 2983, 'hospital_photo': 362, 'police': 5472, 'police_phone': 2630, 'police_photo': 165, 'fire': 2406, 'fire_phone': 1022, 'fire_photo': 49, 'places_few_restaurants': 6}
+{'restaurant': 32216, 'restaurant_phone': 26227, 'restaurant_photo': 5, 'restaurant_dish': 15445, 'restaurant_highlights': 3950, 'cafe': 21139, 'cafe_phone': 17366, 'cafe_photo': 2, 'cafe_dish': 21139, 'cafe_highlights': 2540, 'hospital': 8719, 'hospital_phone': 2983, 'hospital_photo': 795, 'hospital_dish': 0, 'hospital_highlights': 0, 'police': 5472, 'police_phone': 2630, 'police_photo': 289, 'police_dish': 0, 'police_highlights': 0, 'fire': 2406, 'fire_phone': 1022, 'fire_photo': 68, 'fire_dish': 0, 'fire_highlights': 0, 'places_few_restaurants': 6}
