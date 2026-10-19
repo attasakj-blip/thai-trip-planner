@@ -151,7 +151,7 @@ DISHES = [
     ("coffee", r"กาแฟ|coffee|cafe|café|คาเฟ่|espresso|roaster|brew|amazon|อเมซอน", ["Latte art", "Coffee"], "กาแฟ", "Coffee"),
 ]
 DISH_RX = [(k, re.compile("(?i)" + rx), titles, th, en) for k, rx, titles, th, en in DISHES]
-CAT_DISH = {"seafood_restaurant": "seafood", "ramen_restaurant": "ramen", "japanese_restaurant": "sushi", "sushi_restaurant": "sushi",
+CAT_DISH = {"seafood_restaurant": "seafood", "ramen_restaurant": "noodles", "japanese_restaurant": "sushi", "sushi_restaurant": "sushi",
             "korean_restaurant": "korean", "pizza_restaurant": "pizza", "italian_restaurant": "pizza", "burger_restaurant": "burger",
             "steakhouse": "steak", "chicken_restaurant": "fried_chicken", "dim_sum_restaurant": "dim_sum", "vegetarian_restaurant": "vegetarian",
             "barbecue_restaurant": "mu_kratha", "noodles_restaurant": "noodles", "soup_restaurant": "noodles", "bubble_tea_shop": "bubble_tea",
