@@ -1,0 +1,20 @@
+name: Overture probe
+on:
+  push:
+    branches: [coordcheck]
+    paths: [ov/probe.py]
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -q duckdb
+      - run: python3 ov/probe.py 2>&1 | tee data/ov_log.txt; ls -la th_places.parquet || true
+      - run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git add data/ov_log.txt; git commit -m "overture probe"; git pull --rebase; git push
