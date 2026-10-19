@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Cari nombor",
   "🌐 Website": "🌐 Laman web",
   "More: health centres and clinics ({0})": "Lagi: pusat kesihatan dan klinik ({0})",
-  "📞 Hotline {0}": "📞 Talian hotline {0}"
+  "📞 Hotline {0}": "📞 Talian hotline {0}",
+  " (you're here)": " (anda di sini)",
+  "this trip": "perjalanan ini",
+  "Delete this trip?": "Padam perjalanan ini?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nFoto album dan tayangan slaid perjalanan ini juga akan dipadam. Tindakan ini tidak boleh dibuat asal.",
+  "Press and hold a trip to delete it once it has ended": "Tekan dan tahan perjalanan untuk memadamnya selepas tamat",
+  "You can delete a trip once it has ended": "Anda boleh memadam perjalanan selepas ia tamat",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Data © penyumbang OpenStreetMap dan Overture Maps Foundation"
 }

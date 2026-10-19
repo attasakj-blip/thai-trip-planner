@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 নম্বর খুঁজুন",
   "🌐 Website": "🌐 ওয়েবসাইট",
   "More: health centres and clinics ({0})": "আরও: স্বাস্থ্যকেন্দ্র ও ক্লিনিক ({0})",
-  "📞 Hotline {0}": "📞 হটলাইন {0}"
+  "📞 Hotline {0}": "📞 হটলাইন {0}",
+  " (you're here)": " (আপনি এখানে)",
+  "this trip": "এই ট্রিপ",
+  "Delete this trip?": "এই ট্রিপ মুছবেন?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nএর অ্যালবামের ছবি ও স্লাইডশোও মুছে যাবে। এটি ফেরানো যাবে না।",
+  "Press and hold a trip to delete it once it has ended": "ট্রিপ শেষ হলে মুছতে সেটি চেপে ধরে রাখুন",
+  "You can delete a trip once it has ended": "ট্রিপ শেষ হলে আপনি তা মুছতে পারবেন",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "ডেটা © OpenStreetMap-এর অবদানকারী ও Overture Maps Foundation"
 }

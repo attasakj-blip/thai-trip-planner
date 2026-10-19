@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Chercher le numéro",
   "🌐 Website": "🌐 Site web",
   "More: health centres and clinics ({0})": "Plus : centres de santé et cliniques ({0})",
-  "📞 Hotline {0}": "📞 Ligne d'urgence {0}"
+  "📞 Hotline {0}": "📞 Ligne d'urgence {0}",
+  " (you're here)": " (vous êtes ici)",
+  "this trip": "ce voyage",
+  "Delete this trip?": "Supprimer ce voyage ?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nLes photos de son album et son diaporama seront aussi supprimés. Cette action est irréversible.",
+  "Press and hold a trip to delete it once it has ended": "Appuyez longuement sur un voyage pour le supprimer une fois terminé",
+  "You can delete a trip once it has ended": "Vous pouvez supprimer un voyage une fois terminé",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Données © contributeurs OpenStreetMap et Overture Maps Foundation"
 }

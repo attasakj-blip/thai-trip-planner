@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 ស្វែងរកលេខ",
   "🌐 Website": "🌐 គេហទំព័រ",
   "More: health centres and clinics ({0})": "ផ្សេងទៀត៖ មជ្ឈមណ្ឌលសុខភាព និងគ្លីនិក ({0})",
-  "📞 Hotline {0}": "📞 ទូរស័ព្ទបន្ទាន់ {0}"
+  "📞 Hotline {0}": "📞 ទូរស័ព្ទបន្ទាន់ {0}",
+  " (you're here)": " (អ្នកនៅទីនេះ)",
+  "this trip": "ដំណើរកម្សាន្តនេះ",
+  "Delete this trip?": "លុបដំណើរកម្សាន្តនេះ?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nរូបថតក្នុងអាល់ប៊ុម និងស្លាយបង្ហាញរបស់វាក៏នឹងត្រូវលុបដែរ។ មិនអាចត្រឡប់វិញបានទេ។",
+  "Press and hold a trip to delete it once it has ended": "ចុចជាប់លើដំណើរកម្សាន្តដើម្បីលុប នៅពេលវាបានបញ្ចប់",
+  "You can delete a trip once it has ended": "អ្នកអាចលុបដំណើរកម្សាន្តបាន នៅពេលវាបានបញ្ចប់",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "ទិន្នន័យ © អ្នកចូលរួម OpenStreetMap និង Overture Maps Foundation"
 }

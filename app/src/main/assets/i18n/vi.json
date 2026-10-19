@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Tìm số",
   "🌐 Website": "🌐 Trang web",
   "More: health centres and clinics ({0})": "Xem thêm: trạm y tế và phòng khám ({0})",
-  "📞 Hotline {0}": "📞 Đường dây nóng {0}"
+  "📞 Hotline {0}": "📞 Đường dây nóng {0}",
+  " (you're here)": " (bạn ở đây)",
+  "this trip": "chuyến đi này",
+  "Delete this trip?": "Xóa chuyến đi này?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nẢnh trong album và trình chiếu của chuyến đi cũng sẽ bị xóa. Không thể hoàn tác.",
+  "Press and hold a trip to delete it once it has ended": "Nhấn giữ một chuyến đi để xóa khi chuyến đi đã kết thúc",
+  "You can delete a trip once it has ended": "Bạn có thể xóa chuyến đi sau khi nó kết thúc",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Dữ liệu © những người đóng góp OpenStreetMap và Overture Maps Foundation"
 }

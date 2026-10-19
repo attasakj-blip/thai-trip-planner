@@ -594,7 +594,7 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
             }
             item {
                 if (shown.size < all.size) TextButton(onClick = { showAll = true }) { Text(tr("ดูเพิ่ม: สถานีอนามัยและคลินิก (${all.size - shown.size})", "More: health centres and clinics (${all.size - shown.size})")) }
-                Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap เรียงจากใกล้ไปไกล", "Data © OpenStreetMap contributors, nearest first"), fontSize = 11.sp, color = Color.Gray)
+                Text(tr("ข้อมูล © ผู้ร่วมพัฒนา OpenStreetMap และ Overture Maps Foundation", "Data © OpenStreetMap contributors and Overture Maps Foundation"), fontSize = 11.sp, color = Color.Gray)
                 if (type == "hospital") Text(tr("แสดงเฉพาะโรงพยาบาล สถานีอนามัย และคลินิกที่มีอาคารบนแผนที่ ไม่รวมร้านนวด สปา คลินิกความงามและทันตกรรม โลโก้จาก Wikimedia Commons", "Only hospitals, health centres and clinics with a mapped building; massage, spa, beauty and dental shops are left out. Logos from Wikimedia Commons."), fontSize = 11.sp, color = Color.Gray)
                 if (type == "restaurant" || type == "cafe") Text(tr("คะแนนรีวิวดูได้จากปุ่ม Google / Wongnai / Tripadvisor ของแต่ละร้าน", "Review scores open from each place's Google / Wongnai / Tripadvisor button"), fontSize = 11.sp, color = Color.Gray)
             }

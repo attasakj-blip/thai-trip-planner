@@ -15,6 +15,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "app" / "src" / "main" / "assets"
 OUT = ROOT / "site" / "data" / "v1" / "pois"
 PBF = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "thailand-latest.osm.pbf"
+# Optional Overture Maps extract (scripts/overture_extract.py): many more restaurants and phone numbers.
+OVERTURE = pathlib.Path(sys.argv[2]) if len(sys.argv) > 2 else None
 UA = "ThaiTripPlanner-data/0.2 (https://github.com/attasakj-blip/thai-trip-planner)"
 
 # ------------------------------------------------------------------ health rules (same as logic/PoiRules.kt)
@@ -93,6 +95,35 @@ def read_osm(path):
     return items
 
 
+def read_overture(path):
+    """Overture places as the same (kind, lat, lon, is_area, tags, id) tuples as OSM, with tags made up from its fields."""
+    items = []
+    if not path or not path.exists():
+        return items
+    amen = {"restaurant": "restaurant", "cafe": "cafe", "hospital": "hospital", "police": "police", "fire": "fire_station"}
+    for line in path.open(encoding="utf-8"):
+        o = json.loads(line)
+        t = {"name": o["name"], "amenity": amen[o["kind"]], "_src": "overture", "_conf": o["conf"]}
+        if o.get("th"): t["name:th"] = o["th"]
+        if o.get("en"): t["name:en"] = o["en"]
+        if o.get("phone"): t["phone"] = o["phone"]
+        if o.get("website") or o.get("social"): t["website"] = o.get("website") or o.get("social")
+        if o.get("address"): t["_address"] = o["address"]
+        cat = (o.get("cat") or "").replace("_restaurant", "").replace("_", " ")
+        if cat and cat not in ("restaurant", "cafe", "coffee shop", "food and drink", "hospital", "police station", "fire station"): t["cuisine"] = cat
+        items.append((o["kind"], o["lat"], o["lon"], False, t, "o" + o["id"][:12]))
+    return items
+
+
+def same_place(a, b):
+    """Two records of one place: close together with matching names."""
+    if km(a["lat"], a["lon"], b["lat"], b["lon"]) > 0.15: return False
+    na, nb = norm(a["name"]["th"] or ""), norm(b["name"]["th"] or "")
+    ea, eb = norm(a["name"]["en"] or ""), norm(b["name"]["en"] or "")
+    def close(x, y): return len(x) >= 3 and len(y) >= 3 and (x == y or x in y or y in x)
+    return close(na, nb) or close(ea, eb) or close(na, eb) or close(ea, nb)
+
+
 # ------------------------------------------------------------------ helpers
 def km(a, b, c, d):
     r = math.radians
@@ -120,7 +151,16 @@ def thumb(file, width=480):
 
 def phone_of(t):
     p = t.get("phone") or t.get("contact:phone") or t.get("contact:mobile") or t.get("emergency:phone")
-    return p.split(";")[0].strip() if p else None
+    return fmt_phone(p.split(";")[0].strip()) if p else None
+
+
+def fmt_phone(p):
+    """+66 2 123 4567 / +6621234567 -> 02 123 4567; mobiles 08x xxx xxxx. Others unchanged."""
+    d = re.sub(r"\D", "", p)
+    if d.startswith("66"): d = "0" + d[2:]
+    if not d.startswith("0") or len(d) not in (9, 10): return p
+    if len(d) == 10: return f"{d[:3]} {d[3:6]} {d[6:]}"
+    return f"{d[:2]} {d[2:5]} {d[5:]}" if d[1] == "2" else f"{d[:3]} {d[3:6]} {d[6:]}"
 
 
 def norm(s):
@@ -183,6 +223,9 @@ def main():
     t0 = time.time()
     items = read_osm(PBF)
     print(f"OSM: {len(items)} named places in {time.time() - t0:.0f}s", collections.Counter(i[0] for i in items))
+    ov = read_overture(OVERTURE)
+    print(f"Overture: {len(ov)}", collections.Counter(i[0] for i in ov))
+    items += ov
     grid = collections.defaultdict(list)
     for it in items:
         grid[(int(it[1] * 10), int(it[2] * 10))].append(it)
@@ -202,6 +245,8 @@ def main():
     for p in places:
         res = {}
         for kind, radius in RADIUS.items():
+          # Food: widen the circle in the countryside until there is a fair choice.
+          for radius in ((radius, 8, 15, 25) if kind in ("restaurant", "cafe") else (radius,)):
             cands = []
             for d, (k, lat, lon, is_area, t, oid) in around(p["lat"], p["lon"], radius):
                 if k != kind: continue
@@ -222,11 +267,27 @@ def main():
                 addr = " ".join(dict.fromkeys(x for x in (t.get("addr:housenumber"), t.get("addr:street"), t.get("addr:subdistrict"),
                                                          t.get("addr:district"), t.get("addr:city"), t.get("addr:province")) if x))
                 if addr: e["address"] = addr
+                elif t.get("_address"): e["address"] = t["_address"]
+                e["src"] = t.get("_src", "osm")
                 img = t.get("image", "") if t.get("image", "").startswith("File:") else t.get("wikimedia_commons", "")
                 if img.startswith("File:"): e["photo"] = thumb(img); e["photoPage"] = "https://commons.wikimedia.org/wiki/" + urllib.parse.quote(img.replace(" ", "_"))
                 if re.fullmatch(r"Q\d+", t.get("wikidata", "")): e["wikidata"] = t["wikidata"]
-                rich = sum(1 for x in ("phone", "hours", "cuisine", "website", "wikidata") if x in e)
+                rich = sum(1 for x in ("phone", "hours", "cuisine", "website", "wikidata") if x in e) + 2 * t.get("_conf", 0.7)
                 cands.append((e, rich))
+            # Merge the same place found in both sources (OSM first: it has hours and photos).
+            cands.sort(key=lambda c: (c[0]["src"] != "osm", c[0]["km"]))
+            merged = []
+            grid2 = collections.defaultdict(list)
+            for e, rich in cands:
+                cell = (round(e["lat"] * 100), round(e["lon"] * 100))
+                dup = next((m for x in range(cell[0] - 1, cell[0] + 2) for y in range(cell[1] - 1, cell[1] + 2) for m in grid2[(x, y)] if same_place(m[0], e)), None)
+                if dup:
+                    for f in ("phone", "website", "address", "cuisine"):
+                        if f not in dup[0] and f in e: dup[0][f] = e[f]
+                    continue
+                m = [e, rich]; merged.append(m); grid2[cell].append(m)
+            cands = [(m[0], m[1]) for m in merged]
+            if kind not in ("restaurant", "cafe") or len(cands) >= 10: break
             if kind in ("restaurant", "cafe"):
                 # Nearest first, but places with more information (phone, hours...) move up a little.
                 cands.sort(key=lambda c: c[0]["km"] - 0.25 * c[1])
@@ -315,6 +376,9 @@ def main():
             stats[k + "_photo"] += sum(1 for e in v if "photo" in e)
             for e in v: e.pop("wikidata", None)
         (OUT / f"{pid}.json").write_text(json.dumps({"place": pid, "updated": time.strftime("%Y-%m-%d"), **res}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    few = sorted(pid for pid, res in per_place.items() if len(res.get("restaurant", [])) < 5)
+    stats["places_few_restaurants"] = len(few)
+    print("places with under 5 restaurants:", few[:40])
     (OUT / "index.json").write_text(json.dumps({"updated": time.strftime("%Y-%m-%d"), "places": len(per_place), "stats": stats}, ensure_ascii=False), encoding="utf-8")
     print(dict(stats))
 

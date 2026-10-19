@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Hae numeroa",
   "🌐 Website": "🌐 Verkkosivusto",
   "More: health centres and clinics ({0})": "Lisää: terveysasemat ja klinikat ({0})",
-  "📞 Hotline {0}": "📞 Hätäpuhelin {0}"
+  "📞 Hotline {0}": "📞 Hätäpuhelin {0}",
+  " (you're here)": " (olet tässä)",
+  "this trip": "tämä matka",
+  "Delete this trip?": "Poistetaanko tämä matka?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nMyös sen albumikuvat ja diaesitys poistetaan. Tätä ei voi perua.",
+  "Press and hold a trip to delete it once it has ended": "Pidä matkaa painettuna poistaaksesi sen, kun se on päättynyt",
+  "You can delete a trip once it has ended": "Voit poistaa matkan, kun se on päättynyt",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Tiedot © OpenStreetMapin tekijät ja Overture Maps Foundation"
 }

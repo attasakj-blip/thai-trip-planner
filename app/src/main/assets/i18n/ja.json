@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 番号を検索",
   "🌐 Website": "🌐 ウェブサイト",
   "More: health centres and clinics ({0})": "その他: 保健センターとクリニック ({0})",
-  "📞 Hotline {0}": "📞 ホットライン {0}"
+  "📞 Hotline {0}": "📞 ホットライン {0}",
+  " (you're here)": "（現在地）",
+  "this trip": "この旅行",
+  "Delete this trip?": "この旅行を削除しますか？",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nアルバムの写真とスライドショーも削除されます。この操作は元に戻せません。",
+  "Press and hold a trip to delete it once it has ended": "終了した旅行を長押しすると削除できます",
+  "You can delete a trip once it has ended": "旅行は終了後に削除できます",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "データ © OpenStreetMap の貢献者および Overture Maps Foundation"
 }

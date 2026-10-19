@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Numara ara",
   "🌐 Website": "🌐 Web sitesi",
   "More: health centres and clinics ({0})": "Daha fazla: sağlık merkezleri ve klinikler ({0})",
-  "📞 Hotline {0}": "📞 Acil hat {0}"
+  "📞 Hotline {0}": "📞 Acil hat {0}",
+  " (you're here)": " (buradasınız)",
+  "this trip": "bu gezi",
+  "Delete this trip?": "Bu gezi silinsin mi?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nAlbüm fotoğrafları ve slayt gösterisi de silinecek. Bu işlem geri alınamaz.",
+  "Press and hold a trip to delete it once it has ended": "Bittikten sonra silmek için bir geziye basılı tutun",
+  "You can delete a trip once it has ended": "Bir geziyi bittikten sonra silebilirsiniz",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Veriler © OpenStreetMap katkıda bulunanlar ve Overture Maps Foundation"
 }

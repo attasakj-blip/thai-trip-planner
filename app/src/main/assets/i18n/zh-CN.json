@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 搜索号码",
   "🌐 Website": "🌐 网站",
   "More: health centres and clinics ({0})": "更多：卫生中心和诊所（{0}）",
-  "📞 Hotline {0}": "📞 热线 {0}"
+  "📞 Hotline {0}": "📞 热线 {0}",
+  " (you're here)": "（你在这里）",
+  "this trip": "此行程",
+  "Delete this trip?": "删除此行程？",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\n其相册照片和幻灯片也会一并删除，且无法恢复。",
+  "Press and hold a trip to delete it once it has ended": "行程结束后，长按行程即可删除",
+  "You can delete a trip once it has ended": "行程结束后即可删除",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "数据 © OpenStreetMap 贡献者和 Overture Maps Foundation"
 }

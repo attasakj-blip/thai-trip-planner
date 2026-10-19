@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 번호 검색",
   "🌐 Website": "🌐 웹사이트",
   "More: health centres and clinics ({0})": "더보기: 보건소 및 클리닉 ({0})",
-  "📞 Hotline {0}": "📞 핫라인 {0}"
+  "📞 Hotline {0}": "📞 핫라인 {0}",
+  " (you're here)": " (현재 위치)",
+  "this trip": "이 여행",
+  "Delete this trip?": "이 여행을 삭제할까요?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\n앨범 사진과 슬라이드쇼도 함께 삭제됩니다. 되돌릴 수 없습니다.",
+  "Press and hold a trip to delete it once it has ended": "종료된 여행을 길게 눌러 삭제하세요",
+  "You can delete a trip once it has ended": "여행이 끝나면 삭제할 수 있어요",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "데이터 © OpenStreetMap 기여자 및 Overture Maps Foundation"
 }

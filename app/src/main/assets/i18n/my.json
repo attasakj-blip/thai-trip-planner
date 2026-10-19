@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 နံပါတ်ရှာရန်",
   "🌐 Website": "🌐 ဝက်ဘ်ဆိုက်",
   "More: health centres and clinics ({0})": "ထပ်ကြည့်ရန်- ကျန်းမာရေးစင်တာများနှင့် ဆေးခန်းများ ({0})",
-  "📞 Hotline {0}": "📞 ဟော့လိုင်း {0}"
+  "📞 Hotline {0}": "📞 ဟော့လိုင်း {0}",
+  " (you're here)": " (သင်ဤနေရာတွင်ရှိသည်)",
+  "this trip": "ဤခရီးစဉ်",
+  "Delete this trip?": "ဤခရီးစဉ်ကို ဖျက်မလား။",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nခရီးစဉ်၏ အယ်လ်ဘမ်ဓာတ်ပုံများနှင့် စလိုက်ရှိုးများလည်း ပါဖျက်မည်။ ပြန်ယူ၍မရပါ။",
+  "Press and hold a trip to delete it once it has ended": "ပြီးဆုံးသွားသော ခရီးစဉ်ကို ဖျက်ရန် ဖိထားပါ",
+  "You can delete a trip once it has ended": "ခရီးစဉ်ပြီးဆုံးပြီးမှ ဖျက်နိုင်သည်",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "ဒေတာ © OpenStreetMap ပူးပေါင်းဆောင်ရွက်သူများနှင့် Overture Maps Foundation"
 }

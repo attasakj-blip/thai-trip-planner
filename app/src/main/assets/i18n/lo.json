@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 ຄົ້ນຫາເບີ",
   "🌐 Website": "🌐 ເວັບໄຊ",
   "More: health centres and clinics ({0})": "ເພີ່ມເຕີມ: ສຸກສາລາ ແລະ ຄລີນິກ ({0})",
-  "📞 Hotline {0}": "📞 ສາຍດ່ວນ {0}"
+  "📞 Hotline {0}": "📞 ສາຍດ່ວນ {0}",
+  " (you're here)": " (ເຈົ້າຢູ່ບ່ອນນີ້)",
+  "this trip": "ທິບນີ້",
+  "Delete this trip?": "ລຶບທິບນີ້ບໍ?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nຮູບໃນອັນບັມ ແລະ ສະໄລໂຊຂອງທິບນີ້ຈະຖືກລຶບນຳ. ບໍ່ສາມາດກູ້ຄືນໄດ້.",
+  "Press and hold a trip to delete it once it has ended": "ກົດຄ້າງທີ່ທິບເພື່ອລຶບເມື່ອຈົບແລ້ວ",
+  "You can delete a trip once it has ended": "ເຈົ້າລຶບທິບໄດ້ເມື່ອຈົບແລ້ວ",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "ຂໍ້ມູນ © ຜູ້ຮ່ວມພັດທະນາ OpenStreetMap ແລະ Overture Maps Foundation"
 }

@@ -461,5 +461,12 @@
   "🔎 Search number": "🔎 Maghanap ng numero",
   "🌐 Website": "🌐 Website",
   "More: health centres and clinics ({0})": "Higit pa: mga health center at klinika ({0})",
-  "📞 Hotline {0}": "📞 Hotline {0}"
+  "📞 Hotline {0}": "📞 Hotline {0}",
+  " (you're here)": " (nandito ka)",
+  "this trip": "biyaheng ito",
+  "Delete this trip?": "Tanggalin ang biyaheng ito?",
+  "{0}\nIts album photos and slideshow will be deleted too. This can't be undone.": "{0}\nMade-delete din ang mga larawan sa album at slideshow nito. Hindi na ito mababawi.",
+  "Press and hold a trip to delete it once it has ended": "Pindutin nang matagal ang biyahe para tanggalin ito kapag tapos na",
+  "You can delete a trip once it has ended": "Maaari mong tanggalin ang biyahe kapag tapos na ito",
+  "Data © OpenStreetMap contributors and Overture Maps Foundation": "Data © mga contributor ng OpenStreetMap at Overture Maps Foundation"
 }
