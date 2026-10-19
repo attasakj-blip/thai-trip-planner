@@ -762,16 +762,16 @@ fun ChosenPlanSummary(vm: TripViewModel, leg: th.trip.planner.model.Leg, from: P
             ).firstOrNull { it.signature == leg.plan }?.let { o -> o.journeys.firstOrNull { it.depart == leg.depart } ?: o.first }
         }
     }
-    val j = journey ?: return
-    j.rides.forEach { r ->
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                "${Itinerary.formatTime(r.start)} ${modeIcon(r.route.mode)} ${r.board.name.get(thai)} → ${r.alight.name.get(thai)} ${timeText(r.end)}\n" +
-                    r.route.operator.get(thai) + (r.code?.let { " · $it" } ?: ""),
-                fontSize = 13.sp, modifier = Modifier.weight(1f),
-            )
-            r.route.bookUrl?.let { u -> TextButton(onClick = { open(ctx, u) }) { Text(tr("จอง", "Book")) } }
+    val j = journey ?: run { Loading(); return }
+    val (a, b) = ends ?: return
+    // The same step-by-step details as on the planning screen.
+    Column(Modifier.fillMaxWidth().padding(top = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        if (j.rides.isEmpty()) {
+            Line(tr("ประมาณ ", "About ") + durationText(j.minutes) + " · " + kmText(roadKm(a.lat, a.lon, b.lat, b.lon)))
+            CarDetails(vm, a, b)
+        } else {
+            Line(tr("ออก ", "Leave ") + Itinerary.formatTime(j.depart) + tr(" ถึง ", ", arrive ") + timeText(j.arrive) + " · " + durationText(j.minutes), Color.Black, bold = true)
+            JourneySteps(vm, j, a, b)
         }
     }
-    if (j.rides.isEmpty()) Text(tr("เรียกรถ / ขับรถ ประมาณ ", "Ride or drive, about ") + durationText(j.minutes), fontSize = 13.sp)
 }

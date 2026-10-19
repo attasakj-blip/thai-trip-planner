@@ -60,6 +60,13 @@ data class Poi(
     val wikidata: String? = null,
     /** Wikimedia Commons page of the photo (credit). */
     val photoPage: String? = null,
+    /** Short facts about a restaurant or café (keys such as "late", "view", "veg"); see ui highlightLabel. */
+    val highlights: List<String> = emptyList(),
+    /** Example photo of the kind of food or drink the place serves (not of the place itself), with its Commons page and dish name. */
+    val dishPhoto: String? = null,
+    val dishPage: String? = null,
+    val dishName: String? = null,
+    val brand: String? = null,
 )
 
 /** Calls to outside services. Every call returns a Result so the UI can show "not available". */
@@ -331,6 +338,10 @@ class Remote {
                         health = o["health"].str()?.let { h -> th.trip.planner.logic.Health.Kind.entries.firstOrNull { it.name == h } },
                         owner = o["owner"].str()?.let { h -> th.trip.planner.logic.Health.Owner.entries.firstOrNull { it.name == h } },
                         logo = o["photo"].str(), beds = o["beds"].num()?.toInt(), photoPage = o["photoPage"].str(),
+                        highlights = o["highlights"].arr().orEmpty().mapNotNull { it.str() },
+                        dishPhoto = o["dishPhoto"].str(), dishPage = o["dishPage"].str(),
+                        dishName = o["dishName"].obj()?.let { d -> (if (thai) d["th"].str() else d["en"].str()) ?: d["th"].str() },
+                        brand = o["brand"].str(),
                     )
                 }
             }

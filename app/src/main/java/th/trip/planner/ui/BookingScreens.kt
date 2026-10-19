@@ -2,6 +2,9 @@
 
 package th.trip.planner.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -364,7 +367,8 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                         Column(Modifier.padding(12.dp)) {
                             Text((mode?.let { modeLabel(it, thai) } ?: tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")) + (date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
                             if (leg.plan != null && fromPlace != null && toPlace != null) ChosenPlanSummary(vm, leg, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
-                            else if (mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
+                            else if (mode != null && fromPlace != null && toPlace != null) LegDetails(vm, mode, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
+                            if (leg.plan == null && mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text("• ${h.label}", fontSize = 13.sp, modifier = Modifier.weight(1f))
                                     if (h.url != null) TextButton(onClick = { open(ctx, h.url) }) { Text(tr("เปิด", "Open")) }
@@ -488,6 +492,42 @@ fun HotlineCard(kind: String) {
     }
 }
 
+/** What each highlight key means, in the menu language. */
+@Composable
+fun highlightLabel(key: String, brand: String?): String? = when (key) {
+    "late" -> tr("🌙 เปิดดึก", "🌙 Open late")
+    "early" -> tr("🌅 เปิดเช้า", "🌅 Opens early")
+    "veg" -> tr("🥦 มีเมนูมังสวิรัติ/เจ", "🥦 Vegetarian options")
+    "halal" -> tr("☪️ ฮาลาล", "☪️ Halal")
+    "view" -> tr("🏞️ วิวสวย/ริมน้ำ", "🏞️ Views or waterside")
+    "garden" -> tr("🌳 บรรยากาศสวน", "🌳 Garden setting")
+    "buffet" -> tr("🍽️ บุฟเฟ่ต์", "🍽️ Buffet")
+    "outdoor" -> tr("☀️ มีที่นั่งกลางแจ้ง", "☀️ Outdoor seating")
+    "aircon" -> tr("❄️ ห้องแอร์", "❄️ Air-conditioned")
+    "wifi" -> tr("📶 มี Wi-Fi", "📶 Wi-Fi")
+    "delivery" -> tr("🛵 มีบริการส่ง", "🛵 Delivery")
+    "takeaway" -> tr("🥡 สั่งกลับบ้านได้", "🥡 Takeaway")
+    "wheelchair" -> tr("♿ รถเข็นเข้าได้", "♿ Wheelchair access")
+    "chain" -> if (brand != null) tr("🏷️ ร้านเครือ $brand", "🏷️ Part of $brand") else null
+    else -> null
+}
+
+/** An example photo of the kind of food or drink served, clearly marked as an example. */
+@Composable
+fun DishPhoto(poi: Poi) {
+    val ctx = LocalContext.current
+    val url = poi.dishPhoto ?: return
+    Box(Modifier.padding(vertical = 4.dp).fillMaxWidth().height(120.dp).clip(RoundedCornerShape(8.dp))) {
+        AsyncImage(url, null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
+        Text(
+            tr("ภาพตัวอย่าง: ${poi.dishName ?: ""}", "Example: ${poi.dishName ?: ""}"), fontSize = 11.sp, color = Color.White,
+            modifier = Modifier.align(Alignment.BottomStart).background(Color(0x99000000)).padding(horizontal = 6.dp, vertical = 2.dp),
+        )
+    }
+    if (poi.dishPage != null) Text(tr("ภาพตัวอย่างเมนูประเภทนี้ ไม่ใช่ภาพของร้าน · Wikimedia Commons", "Example of this kind of food, not of this place · Wikimedia Commons"),
+        fontSize = 10.sp, color = Color.Gray, modifier = Modifier.clickable { open(ctx, poi.dishPage) })
+}
+
 /** Photo of the place under its name, with the Wikimedia Commons credit when there is one. */
 @Composable
 fun PoiPhoto(poi: Poi) {
@@ -546,6 +586,10 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                     Column(Modifier.padding(12.dp)) {
                         Text(poi.name, fontWeight = FontWeight.SemiBold)
                         PoiPhoto(poi)
+                        if (poi.logo == null) DishPhoto(poi)
+                        if (poi.highlights.isNotEmpty()) FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(vertical = 2.dp)) {
+                            poi.highlights.forEach { h -> highlightLabel(h, poi.brand)?.let { Text(it, fontSize = 11.sp, modifier = Modifier.clip(RoundedCornerShape(10.dp)).background(Color(0xFFFFF3E0)).padding(horizontal = 8.dp, vertical = 2.dp)) } }
+                        }
                         val kindLabel = when (poi.health) {
                             Health.Kind.HOSPITAL -> when (poi.owner) {
                                 Health.Owner.PUBLIC -> tr("🏥 โรงพยาบาลรัฐ", "🏥 Public hospital")
@@ -578,7 +622,6 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                         FlowRow {
                             if (poi.phone == null && emergencyType) TextButton(onClick = { open(ctx, findPhoneUrl(poi.name)) }) { Text(tr("🔎 ค้นเบอร์เพิ่มเติม", "🔎 Search number"), fontSize = 12.sp) }
                             poi.website?.let { w -> TextButton(onClick = { open(ctx, w) }) { Text(tr("🌐 เว็บไซต์", "🌐 Website")) } }
-                            if (emergencyType && poi.logo == null) TextButton(onClick = { open(ctx, streetView(poi.lat, poi.lon)) }) { Text(tr("📷 ภาพหน้าอาคาร", "📷 Street view")) }
                             TextButton(onClick = { open(ctx, "https://www.google.com/maps/dir/?api=1&destination=${poi.lat},${poi.lon}") }) { Text(tr("🧭 นำทาง", "🧭 Directions")) }
                         }
                         if (type == "restaurant" || type == "cafe") {
