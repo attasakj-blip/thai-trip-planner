@@ -1,3 +1,8 @@
-OSM: 35437 named places in 1s Counter({'restaurant': 19130, 'cafe': 11150, 'hospital': 3799, 'police': 1226, 'fire': 132})
-places done in 3s; wikidata ids 72
-{'restaurant': 4008, 'restaurant_phone': 968, 'restaurant_photo': 4, 'cafe': 2323, 'cafe_phone': 420, 'cafe_photo': 0, 'hospital': 2453, 'hospital_phone': 203, 'hospital_photo': 126, 'police': 1389, 'police_phone': 80, 'police_photo': 60, 'fire': 362, 'fire_phone': 41, 'fire_photo': 10}
+Overture release 2026-09-23.1
+Overture rows kept 385786
+OSM: 35445 named places in 1s Counter({'restaurant': 19131, 'cafe': 11157, 'hospital': 3799, 'police': 1226, 'fire': 132})
+Overture: 385786 Counter({'restaurant': 239969, 'cafe': 101134, 'hospital': 39180, 'police': 4831, 'fire': 672})
+phone list failed https://data.go.th/api/3/action/datastore_search?resource_id=1fbcd661-8085-4f59-9c32-9276f37c8bf3&limit=100 HTTP Error 403: Forbidden
+places done in 426s; wikidata ids 0
+places with under 5 restaurants: ['abhaibhubejhr', 'aiyoeweng_skywalk', 'amnat_charoen_city_pillar', 'amphawa', 'amphawa_chaipattana', 'ancient_city', 'ang_sila_market', 'ang_thong', 'anoru_old_town', 'ao_manao', 'ao_manao_narathiwat', 'ao_nang', 'ao_prao_samet', 'ao_thalane', 'ao_wong_duean', 'art_in_paradise_pattaya', 'asiatique', 'ayutthaya', 'ayutthaya_elephant_kraal', 'baan_dam', 'baan_sao_nak', 'bacc', 'ban_bang_pu_mangrove', 'ban_bang_ya_phraek', 'ban_chiang', 'ban_hat_siao', 'ban_khok_mo_weaving', 'ban_khwao_silk', 'ban_kruat_ancient_kilns', 'ban_krut_beach', 'ban_mai_market', 'ban_na_kha_weaving', 'ban_na_pho_silk', 'ban_na_ton_chan', 'ban_nam_chiao', 'ban_nam_khem_tsunami_memorial', 'ban_phe_market', 'ban_phon_phrae_wa', 'ban_pla_khao_amnat', 'ban_prasat_archaeological_site']
+{'restaurant': 1183, 'restaurant_phone': 812, 'restaurant_photo': 0, 'cafe': 1384, 'cafe_phone': 1038, 'cafe_photo': 0, 'places_few_restaurants': 833}
