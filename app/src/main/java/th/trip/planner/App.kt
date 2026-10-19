@@ -246,6 +246,20 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         CheckInScheduler.cancel(getApplication())
     }
 
+    /** Removes a trip and its photos for good. The current trip can only go once it has finished. */
+    fun deleteTrip(id: String): Boolean {
+        if (id == trip.id) {
+            if (!trip.finished) return false
+            repo.tripDir(id).deleteRecursively()
+            update { Trip(id = repo.newTripId(), createdAt = System.currentTimeMillis()) }
+        } else repo.tripDir(id).deleteRecursively()
+        tripsVersion++
+        return true
+    }
+
+    /** Bumped when trips are deleted so lists reload. */
+    var tripsVersion by mutableStateOf(0)
+
     fun newTrip() {
         // Keep the old trip (and its photos) in its own folder under "My trips".
         if (trip.stops.isNotEmpty() || trip.photos.isNotEmpty()) repo.archive(trip)

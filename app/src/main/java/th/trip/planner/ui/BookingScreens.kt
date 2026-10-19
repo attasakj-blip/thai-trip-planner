@@ -385,12 +385,6 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                                 Text("📍 ${i + 1}. ${p.name.get(thai)}", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                                 Text(fmtDates(d, thai), fontSize = 13.sp, color = Color.Gray)
                                 if (lodging != null && !lodging.isEmpty) StaySummary(lodging)
-                                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                    OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "food")) }) { Text(tr("🍜 ร้านอาหาร/กาแฟ", "🍜 Food & cafés")) }
-                                    OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "hospital")) }) { Text(tr("🏥 โรงพยาบาล", "🏥 Hospitals")) }
-                                    OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "police")) }) { Text(tr("👮 สถานีตำรวจ", "👮 Police")) }
-                                    OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "fire")) }) { Text(tr("🚒 สถานีดับเพลิง", "🚒 Fire stations")) }
-                                }
                             }
                         }
                         // Gap days after this stop.
@@ -403,8 +397,6 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                 }
             }
             item {
-                VSpace(12)
-                EmergencyCard()
                 Spacer(Modifier.height(24.dp))
             }
         }

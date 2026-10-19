@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 
 package th.trip.planner.ui
 
@@ -39,6 +39,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
@@ -129,7 +131,6 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
     LaunchedEffect(status) {
         if (trip.activated && status == TripStatus.Finished) nav.navigate(Routes.FINALE)
     }
-    var menuFor by remember { mutableStateOf<Int?>(null) }
 
     val scene = when (status) {
         is TripStatus.Travelling -> SceneKind.Moving(trip.legs.getOrNull(status.toStop - 1)?.mode ?: TravelMode.CAR)
@@ -164,8 +165,26 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
                 tr("เปิด GPS และอนุญาตตำแหน่งเพื่อให้แอปรู้ว่าคุณอยู่ที่ไหน ตอนนี้ใช้วันที่ในปฏิทินแทน", "Turn on GPS and allow location so the app knows where you are. Using calendar dates for now."),
                 fontSize = 12.sp, color = Coral, modifier = Modifier.padding(16.dp, 8.dp),
             )
-            ProgressPath(vm, status) { menuFor = it }
-            Text(tr("แตะสถานที่เพื่อดูร้านอาหาร โรงพยาบาล และสถานีตำรวจ", "Tap a place to see food, hospitals and police"), fontSize = 12.sp, color = Color.Gray, modifier = Modifier.padding(horizontal = 16.dp))
+            ProgressPath(vm, status) { }
+            // Each place with its food, hospitals, police and fire stations (moved here from the trip summary).
+            Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                trip.stops.forEachIndexed { i, s ->
+                    val p = vm.repo.placeById[s.placeId] ?: return@forEachIndexed
+                    val here = status is TripStatus.AtPlace && status.stopIndex == i
+                    Card(Modifier.fillMaxWidth(), colors = if (here) CardDefaults.cardColors(containerColor = Color(0xFFFFF3E0)) else CardDefaults.cardColors()) {
+                        Column(Modifier.padding(12.dp)) {
+                            Text("📍 ${i + 1}. ${p.name.get(thai)}" + if (here) tr(" (อยู่ที่นี่)", " (you're here)") else "", fontWeight = FontWeight.Bold)
+                            Text(fmtDates(TripLogic.dates(s), thai), fontSize = 12.sp, color = Color.Gray)
+                            FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "food")) }) { Text(tr("🍜 ร้านอาหาร/กาแฟ", "🍜 Food & cafés")) }
+                                OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "hospital")) }) { Text(tr("🏥 โรงพยาบาล", "🏥 Hospitals")) }
+                                OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "police")) }) { Text(tr("👮 สถานีตำรวจ", "👮 Police")) }
+                                OutlinedButton(onClick = { nav.navigate(Routes.nearby(i, "fire")) }) { Text(tr("🚒 สถานีดับเพลิง", "🚒 Fire stations")) }
+                            }
+                        }
+                    }
+                }
+            }
             VSpace(12)
 
             val first = TripLogic.firstDay(trip)
@@ -205,23 +224,6 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
         }
     }
 
-    menuFor?.let { i ->
-        ModalBottomSheet(onDismissRequest = { menuFor = null }) {
-            val p = vm.repo.placeById[trip.stops[i].placeId]
-            Column(Modifier.padding(16.dp).padding(bottom = 24.dp)) {
-                Text(p?.name?.get(thai) ?: "", fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                VSpace()
-                listOf(
-                    "food" to tr("1. 🍜 ร้านอาหาร / ร้านกาแฟ", "1. 🍜 Restaurants / cafés"),
-                    "hospital" to tr("2. 🏥 โรงพยาบาล", "2. 🏥 Hospitals"),
-                    "police" to tr("3. 👮 สถานีตำรวจ", "3. 👮 Police stations"),
-                    "fire" to tr("4. 🚒 สถานีดับเพลิง", "4. 🚒 Fire stations"),
-                ).forEach { (kind, label) ->
-                    Button(onClick = { menuFor = null; nav.navigate(Routes.nearby(i, kind)) }, modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)) { Text(label) }
-                }
-            }
-        }
-    }
 }
 
 /** The places in order, with the traveller's position marked. */

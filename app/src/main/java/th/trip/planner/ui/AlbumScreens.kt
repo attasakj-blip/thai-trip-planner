@@ -35,6 +35,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -434,18 +435,36 @@ fun SlideshowPlayerScreen(vm: TripViewModel, nav: NavHostController, tripId: Str
 
 // ---------------------------------------------------------------- My trips
 
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
 fun MyTripsScreen(vm: TripViewModel, nav: NavHostController) {
     val thai = LocalThai.current
-    val trips = remember(vm.trip) { (listOf(vm.trip) + vm.repo.archivedTrips().filter { it.id != vm.trip.id }).filter { it.stops.isNotEmpty() || it.photos.isNotEmpty() } }
+    val ctx = androidx.compose.ui.platform.LocalContext.current
+    var toDelete by remember { mutableStateOf<th.trip.planner.model.Trip?>(null) }
+    val trips = remember(vm.trip, vm.tripsVersion) { (listOf(vm.trip) + vm.repo.archivedTrips().filter { it.id != vm.trip.id }).filter { it.stops.isNotEmpty() || it.photos.isNotEmpty() } }
+    toDelete?.let { t ->
+        val name = t.stops.mapNotNull { vm.repo.placeById[it.placeId]?.name?.get(thai) }.joinToString(" → ").ifBlank { tr("ทริปนี้", "this trip") }
+        AlertDialog(
+            onDismissRequest = { toDelete = null },
+            title = { Text(tr("ลบทริปนี้ไหม?", "Delete this trip?")) },
+            text = { Text(tr("$name\nรูปในอัลบั้มและสไลด์โชว์ของทริปนี้จะถูกลบด้วย และกู้คืนไม่ได้", "$name\nIts album photos and slideshow will be deleted too. This can't be undone.")) },
+            confirmButton = { TextButton(onClick = { vm.deleteTrip(t.id); toDelete = null }) { Text(tr("ลบ", "Delete"), color = Color(0xFFD32F2F)) } },
+            dismissButton = { TextButton(onClick = { toDelete = null }) { Text(tr("ยกเลิก", "Cancel")) } },
+        )
+    }
     Page(tr("ทริปของฉัน", "My trips"), nav) { pad ->
         LazyColumn(Modifier.padding(pad), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             if (trips.isEmpty()) item { Text(tr("ยังไม่มีทริป", "No trips yet"), color = Color.Gray) }
+            if (trips.isNotEmpty()) item { Text(tr("กดค้างที่ทริปเพื่อลบทริปที่จบแล้ว", "Press and hold a trip to delete it once it has ended"), fontSize = 12.sp, color = Color.Gray) }
             items(trips, key = { it.id }) { t ->
                 val places = t.stops.mapNotNull { vm.repo.placeById[it.placeId]?.name?.get(thai) }
                 val first = TripLogic.firstDay(t); val last = TripLogic.lastDay(t)
                 val cover = t.photos.firstOrNull()?.let { File(vm.repo.tripDir(t.id), it.file) }
-                Card(Modifier.fillMaxWidth()) {
+                val current = t.id == vm.trip.id && !t.finished
+                Card(Modifier.fillMaxWidth().combinedClickable(onClick = { nav.navigate(Routes.album(t.id)) }, onLongClick = {
+                    if (current) android.widget.Toast.makeText(ctx, tr("ลบได้เมื่อจบทริปแล้ว", "You can delete a trip once it has ended"), android.widget.Toast.LENGTH_SHORT).show()
+                    else toDelete = t
+                })) {
                     Column(Modifier.padding(12.dp)) {
                         if (cover != null) AsyncImage(cover, null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxWidth().height(140.dp).clip(RoundedCornerShape(10.dp)))
                         Text(places.joinToString(" → "), fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 6.dp))
