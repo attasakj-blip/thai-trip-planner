@@ -109,10 +109,85 @@ def read_overture(path):
         if o.get("phone"): t["phone"] = o["phone"]
         if o.get("website") or o.get("social"): t["website"] = o.get("website") or o.get("social")
         if o.get("address"): t["_address"] = o["address"]
+        if o.get("brand"): t["brand"] = o["brand"]
+        t["_cat"] = o.get("cat") or ""
         cat = (o.get("cat") or "").replace("_restaurant", "").replace("_", " ")
         if cat and cat not in ("restaurant", "cafe", "coffee shop", "food and drink", "hospital", "police station", "fire station"): t["cuisine"] = cat
         items.append((o["kind"], o["lat"], o["lon"], False, t, "o" + o["id"][:12]))
     return items
+
+
+# ------------------------------------------------------------------ food: highlights and an example dish photo
+# (key, words in the name / cuisine / category, Wikipedia articles whose free lead photo shows the dish, Thai and English label)
+DISHES = [
+    ("khao_soi", r"ข้าวซอย|khao ?soi", ["Khao soi"], "ข้าวซอย", "Khao soi"),
+    ("boat_noodles", r"ก๋วยเตี๋ยวเรือ|boat noodle", ["Boat noodles"], "ก๋วยเตี๋ยวเรือ", "Boat noodles"),
+    ("khao_man_kai", r"ข้าวมันไก่|chicken rice", ["Hainanese chicken rice"], "ข้าวมันไก่", "Chicken rice"),
+    ("khao_kha_mu", r"ขาหมู|khao kha mu|pork leg", ["Khao kha mu"], "ข้าวขาหมู", "Stewed pork leg on rice"),
+    ("som_tam", r"ส้มตำ|ตำ(ปู|ไทย|ลาว|แซ่บ|ถาด|ป่า|มั่ว|ซั่ว)|papaya|som ?tam|อีสาน|isan|isaan|ลาบ|larb|ไก่ย่าง", ["Som tam", "Green papaya salad"], "ส้มตำ อาหารอีสาน", "Som tam and Isan food"),
+    ("mu_kratha", r"หมูกระทะ|mu ?kratha|moo ?kata|ปิ้งย่าง|yakiniku", ["Mu kratha"], "หมูกระทะ ปิ้งย่าง", "Thai barbecue"),
+    ("suki", r"ชาบู|สุกี้|shabu|suki|hot ?pot|หม้อไฟ|mala|หม่าล่า", ["Hot pot", "Thai suki"], "ชาบู สุกี้", "Hot pot"),
+    ("dim_sum", r"ติ่มซำ|dim ?sum", ["Dim sum"], "ติ่มซำ", "Dim sum"),
+    ("congee", r"โจ๊ก|ข้าวต้ม|congee|jok\b", ["Congee"], "โจ๊ก ข้าวต้ม", "Congee"),
+    ("pad_thai", r"ผัดไทย|pad ?thai|หอยทอด", ["Pad thai"], "ผัดไทย", "Pad thai"),
+    ("khanom_chin", r"ขนมจีน|khanom ?chin", ["Khanom chin"], "ขนมจีน", "Khanom chin"),
+    ("noodles", r"ก๋วยเตี๋ยว|กวยเตยว|เตี๋ยว|บะหมี่|เย็นตาโฟ|noodle", ["Kuai tiao", "Rice noodles"], "ก๋วยเตี๋ยว", "Noodle soup"),
+    ("kaphrao", r"ตามสั่ง|กะเพรา|กระเพรา|kaphrao|krapow", ["Phat kaphrao"], "อาหารตามสั่ง", "Made-to-order Thai dishes"),
+    ("seafood", r"ซีฟู้ด|seafood|อาหารทะเล|กุ้งเผา|ปูม้า|หอยนางรม|ปลาเผา", ["Seafood"], "อาหารทะเล", "Seafood"),
+    ("ramen", r"ราเมง|ramen", ["Ramen"], "ราเมง", "Ramen"),
+    ("sushi", r"ซูชิ|sushi|japanese|ญี่ปุ่น|izakaya|โอมากาเสะ|omakase", ["Sushi"], "อาหารญี่ปุ่น", "Japanese food"),
+    ("korean", r"เกาหลี|korean", ["Bibimbap"], "อาหารเกาหลี", "Korean food"),
+    ("pizza", r"พิซซ่า|pizza|italian|อิตาเลียน|pasta|พาสต้า", ["Pizza"], "พิซซ่า พาสต้า", "Pizza and pasta"),
+    ("burger", r"เบอร์เกอร์|burger", ["Hamburger"], "เบอร์เกอร์", "Burgers"),
+    ("steak", r"สเต็ก|steak", ["Steak"], "สเต็ก", "Steak"),
+    ("fried_chicken", r"ไก่ทอด|fried chicken|chicken", ["Fried chicken"], "ไก่ทอด", "Fried chicken"),
+    ("vegetarian", r"มังสวิรัติ|อาหารเจ|ร้านเจ|โรงเจ|vegan|vegetarian", ["Vegetarian cuisine"], "อาหารมังสวิรัติ", "Vegetarian food"),
+    ("bingsu", r"บิงซู|bingsu|bingsoo", ["Bingsu"], "บิงซู", "Bingsu"),
+    ("ice_cream", r"ไอศกรีม|ไอติม|ice ?cream|gelato", ["Ice cream"], "ไอศกรีม", "Ice cream"),
+    ("bubble_tea", r"ชานม|ไข่มุก|bubble|boba|ชาไข่มุก", ["Bubble tea"], "ชานมไข่มุก", "Bubble tea"),
+    ("thai_tea", r"ชาไทย|ชาชัก|thai tea|cha ?thai", ["Thai tea"], "ชาไทย", "Thai tea"),
+    ("smoothie", r"น้ำปั่น|smoothie|juice|ผลไม้", ["Smoothie"], "น้ำปั่น น้ำผลไม้", "Smoothies and juice"),
+    ("bakery", r"เบเกอรี่|bakery|ขนมปัง|bread|เค้ก|cake|ครัวซอง|croissant|patisserie|dessert|ขนม", ["Cake", "Bakery"], "เบเกอรี่ ขนม", "Cakes and bakes"),
+    ("coffee", r"กาแฟ|coffee|cafe|café|คาเฟ่|espresso|roaster|brew|amazon|อเมซอน", ["Latte art", "Coffee"], "กาแฟ", "Coffee"),
+]
+DISH_RX = [(k, re.compile("(?i)" + rx), titles, th, en) for k, rx, titles, th, en in DISHES]
+CAT_DISH = {"seafood_restaurant": "seafood", "ramen_restaurant": "ramen", "japanese_restaurant": "sushi", "sushi_restaurant": "sushi",
+            "korean_restaurant": "korean", "pizza_restaurant": "pizza", "italian_restaurant": "pizza", "burger_restaurant": "burger",
+            "steakhouse": "steak", "chicken_restaurant": "fried_chicken", "dim_sum_restaurant": "dim_sum", "vegetarian_restaurant": "vegetarian",
+            "barbecue_restaurant": "mu_kratha", "noodles_restaurant": "noodles", "soup_restaurant": "noodles", "bubble_tea_shop": "bubble_tea",
+            "ice_cream_shop": "ice_cream", "bakery": "bakery", "dessert_shop": "bakery", "cupcake_shop": "bakery", "smoothie_juice_bar": "smoothie",
+            "coffee_shop": "coffee", "cafe": "coffee", "tea_room": "thai_tea", "hot_pot_restaurant": "suki"}
+
+
+def dish_of(kind, name, t):
+    text = " ".join(x for x in (name, t.get("name:en", ""), t.get("cuisine", "")) if x)
+    for k, rx, *_ in DISH_RX:
+        if rx.search(text): return k
+    k = CAT_DISH.get(t.get("_cat", ""))
+    if k: return k
+    return "coffee" if kind == "cafe" else None
+
+
+def highlights(name, t):
+    """Short facts worth knowing about a restaurant or café, from what the map data says."""
+    text = " ".join(x for x in (name, t.get("name:en", ""), t.get("cuisine", "")) if x)
+    h = []
+    oh = t.get("opening_hours", "")
+    if re.search(r"24/7|-(2[2-4]|0[0-4]):\d\d", oh): h.append("late")
+    if re.search(r"(^|[ ,;])0[5-7]:\d\d-", oh): h.append("early")
+    if t.get("diet:vegetarian") in ("yes", "only") or t.get("diet:vegan") in ("yes", "only") or re.search(r"(?i)มังสวิรัติ|อาหารเจ|vegan|vegetarian", text): h.append("veg")
+    if t.get("diet:halal") in ("yes", "only") or re.search(r"(?i)ฮาลาล|halal|มุสลิม|อิสลาม", text): h.append("halal")
+    if re.search(r"(?i)rooftop|ดาดฟ้า|ริมน้ำ|ริมโขง|ริมทะเล|ริมหาด|ริมแม่น้ำ|riverside|river view|sea ?view|seaside|beachfront|วิว|view", text): h.append("view")
+    if re.search(r"(?i)สวน|garden|ไร่|farm", text): h.append("garden")
+    if re.search(r"(?i)บุฟเฟ่ต์|บุฟเฟต์|buffet", text) or t.get("_cat") == "buffet_restaurant": h.append("buffet")
+    if t.get("outdoor_seating") == "yes": h.append("outdoor")
+    if t.get("air_conditioning") == "yes" or re.search(r"ติดแอร์", text): h.append("aircon")
+    if t.get("internet_access") in ("wlan", "yes", "wifi"): h.append("wifi")
+    if t.get("delivery") == "yes": h.append("delivery")
+    if t.get("takeaway") in ("yes", "only"): h.append("takeaway")
+    if t.get("wheelchair") == "yes": h.append("wheelchair")
+    if t.get("brand"): h.append("chain")
+    return h
 
 
 def same_place(a, b):
@@ -264,6 +339,12 @@ def main():
                 for src, dst in (("website", "website"), ("contact:website", "website"), ("opening_hours", "hours")):
                     if t.get(src) and dst not in e: e[dst] = t[src]
                 if t.get("cuisine"): e["cuisine"] = t["cuisine"].replace(";", ", ").replace("_", " ")
+                if kind in ("restaurant", "cafe"):
+                    hl = highlights(e["name"]["th"], t)
+                    if hl: e["highlights"] = hl
+                    dk = dish_of(kind, e["name"]["th"], t)
+                    if dk: e["dish"] = dk
+                    if t.get("brand"): e["brand"] = t["brand"]
                 addr = " ".join(dict.fromkeys(x for x in (t.get("addr:housenumber"), t.get("addr:street"), t.get("addr:subdistrict"),
                                                          t.get("addr:district"), t.get("addr:city"), t.get("addr:province")) if x))
                 if addr: e["address"] = addr
@@ -376,6 +457,58 @@ def main():
                     e["photo"] = thumb(best[1]); e["photoPage"] = "https://commons.wikimedia.org/wiki/" + urllib.parse.quote(best[1].replace(" ", "_"))
         time.sleep(0.3)
 
+    # Commons search by name for emergency places still without a photo (a photo of the building or its sign).
+    searched = {}
+    def generic(n): return norm(n)
+    for pid, res in per_place.items():
+        for kind in ("hospital", "police", "fire"):
+            for e in res.get(kind, []):
+                if "photo" in e or e["km"] > 15: continue
+                if e["id"] in searched:
+                    if searched[e["id"]]: e["photo"], e["photoPage"] = searched[e["id"]]
+                    continue
+                found = None
+                key = generic(e["name"]["th"] or "")
+                if len(key) >= 3:
+                    d = get_json("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(
+                        {"action": "query", "format": "json", "formatversion": "2", "list": "search", "srnamespace": "6",
+                         "srsearch": e["name"]["th"], "srlimit": "10"}), tries=2)
+                    for hit in ((d or {}).get("query") or {}).get("search", []):
+                        title = hit["title"]
+                        if not re.search(r"(?i)\.(jpe?g|png|webp)$", title): continue
+                        if re.search(r"(?i)360|panorama|pano|map|แผนที่|logo|โลโก้|ตรา|seal|emblem|\.svg", title): continue
+                        if key in norm(title) and re.search("(?i)" + word[kind], title):
+                            found = (thumb(title), "https://commons.wikimedia.org/wiki/" + urllib.parse.quote(title.replace(" ", "_")))
+                            break
+                    time.sleep(0.1)
+                searched[e["id"]] = found
+                if found: e["photo"], e["photoPage"] = found
+    print("commons name search", len(searched), "found", sum(1 for v in searched.values() if v))
+
+    # Example dish photos: the free lead photo of each dish's Wikipedia article.
+    titles = sorted({tt for _, _, ts, _, _ in DISHES for tt in ts})
+    lead = {}
+    for i in range(0, len(titles), 40):
+        d = get_json("https://en.wikipedia.org/w/api.php?" + urllib.parse.urlencode(
+            {"action": "query", "format": "json", "formatversion": "2", "prop": "pageimages", "piprop": "name",
+             "pilicense": "free", "redirects": "1", "titles": "|".join(titles[i:i + 40])}))
+        q = (d or {}).get("query") or {}
+        back = {}
+        for n in q.get("normalized", []) + q.get("redirects", []): back[n["to"]] = back.get(n["from"], n["from"])
+        for pg in q.get("pages", []):
+            if pg.get("pageimage"): lead[back.get(pg["title"], pg["title"])] = pg["pageimage"]
+    dish_photo = {}
+    for k, _, ts, th, en in DISHES:
+        f = next((lead[x] for x in ts if x in lead), None)
+        if f and not f.lower().endswith(".svg"):
+            dish_photo[k] = {"photo": thumb(f), "page": "https://commons.wikimedia.org/wiki/File:" + urllib.parse.quote(f.replace(" ", "_")), "th": th, "en": en}
+    print("dish photos", len(dish_photo), "of", len(DISHES), "missing", [k for k, *_ in DISHES if k not in dish_photo])
+    for res in per_place.values():
+        for kind in ("restaurant", "cafe"):
+            for e in res.get(kind, []):
+                dp = dish_photo.get(e.pop("dish", None))
+                if dp: e["dishPhoto"], e["dishPage"], e["dishName"] = dp["photo"], dp["page"], {"th": dp["th"], "en": dp["en"]}
+
     OUT.mkdir(parents=True, exist_ok=True)
     stats = collections.Counter()
     for pid, res in per_place.items():
@@ -383,6 +516,8 @@ def main():
             stats[k] += len(v)
             stats[k + "_phone"] += sum(1 for e in v if "phone" in e)
             stats[k + "_photo"] += sum(1 for e in v if "photo" in e)
+            stats[k + "_dish"] += sum(1 for e in v if "dishPhoto" in e)
+            stats[k + "_highlights"] += sum(1 for e in v if "highlights" in e)
             for e in v: e.pop("wikidata", None)
         (OUT / f"{pid}.json").write_text(json.dumps({"place": pid, "updated": time.strftime("%Y-%m-%d"), **res}, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     few = sorted(pid for pid, res in per_place.items() if len(res.get("restaurant", [])) < 5)

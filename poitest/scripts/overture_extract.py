@@ -17,7 +17,7 @@ NOT_A_PLACE = re.compile(r"(?i)บริษัท|จำกัด|หจก|ห�
 HOSPITAL_PART = re.compile(r"(?i)\bicu\b|i\.c\.u|แผนก|หอผู้ป่วย|ward|ตึก|อาคาร|คลินิก|clinic|department|ห้องฉุกเฉิน|ห้อง|ชั้น|floor|ศูนย์")
 rows = con.execute(f"""
   SELECT id, names.primary, names.common['en'], names.common['th'], taxonomy.primary, taxonomy.hierarchy[1], confidence,
-         phones[1], websites[1], socials[1], addresses[1].freeform, bbox.ymin, bbox.xmin, operating_status
+         phones[1], websites[1], socials[1], addresses[1].freeform, bbox.ymin, bbox.xmin, operating_status, brand.names.primary
   FROM {src}
   WHERE bbox.xmin BETWEEN 97.3 AND 105.7 AND bbox.ymin BETWEEN 5.6 AND 20.5
     AND coalesce(addresses[1].country, 'TH') = 'TH' AND coalesce(operating_status, 'open') = 'open'
@@ -26,7 +26,7 @@ rows = con.execute(f"""
 """).fetchall()
 n = 0
 with open(sys.argv[1], "w", encoding="utf-8") as f:
-    for (oid, name, en, th, tp, top, conf, phone, web, social, addr, lat, lon, st) in rows:
+    for (oid, name, en, th, tp, top, conf, phone, web, social, addr, lat, lon, st, brand) in rows:
         if not name: continue
         tp = tp or ""
         if NOT_A_PLACE.search(name): continue
@@ -41,6 +41,6 @@ with open(sys.argv[1], "w", encoding="utf-8") as f:
         floor = {"restaurant": 0.65, "cafe": 0.65, "hospital": 0.6}.get(kind, 0.4)
         if (conf or 0) < floor: continue
         f.write(json.dumps({"id": oid, "kind": kind, "name": name, "en": en, "th": th, "cat": tp, "conf": round(conf, 2), "phone": phone,
-                            "website": web, "social": social, "address": addr, "lat": lat, "lon": lon}, ensure_ascii=False) + "\n")
+                            "website": web, "social": social, "address": addr, "brand": brand, "lat": lat, "lon": lon}, ensure_ascii=False) + "\n")
         n += 1
 print("Overture rows kept", n)
