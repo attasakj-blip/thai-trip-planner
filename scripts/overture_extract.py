@@ -1,6 +1,6 @@
 """Pulls Thai restaurants, cafés, hospitals, police and fire stations from Overture Maps places (free, CDLA-Permissive-2.0)
 into a JSON-lines file for build_pois.py. Usage: python3 scripts/overture_extract.py out.jsonl"""
-import json, subprocess, sys
+import json, re, subprocess, sys
 import duckdb
 
 out = subprocess.run(["aws", "s3", "ls", "--no-sign-request", "s3://overturemaps-us-west-2/release/"], capture_output=True, text=True).stdout
@@ -11,6 +11,10 @@ con.execute("INSTALL httpfs; LOAD httpfs; SET s3_region='us-west-2';")
 src = f"read_parquet('s3://overturemaps-us-west-2/release/{rel}/theme=places/type=place/*', hive_partitioning=1)"
 CAFE = ("coffee_shop", "cafe", "tea_room", "bubble_tea_shop", "dessert_shop", "bakery", "ice_cream_shop", "cupcake_shop", "donut_shop", "smoothie_juice_bar")
 SKIP_FOOD = ("bar", "pub", "lounge", "cocktail_bar", "beer_bar", "internet_cafe", "candy_store", "wine_bar", "hookah_bar", "night_club")
+# Records that are offices, shops or buildings rather than somewhere to eat or get help.
+NOT_A_PLACE = re.compile(r"(?i)บริษัท|จำกัด|หจก|ห้างหุ้นส่วน|ศูนย์กระจายสินค้า|^อาคาร|ซัพพลาย|supply|co\.,? ?ltd|limited|เครื่องดับเพลิง|ถังดับเพลิง|อุปกรณ์")
+# Departments and wards listed as if they were hospitals.
+HOSPITAL_PART = re.compile(r"(?i)\bicu\b|i\.c\.u|แผนก|หอผู้ป่วย|ward|ตึก|อาคาร|คลินิก|clinic|department|ห้องฉุกเฉิน|ห้อง|ชั้น|floor|ศูนย์")
 rows = con.execute(f"""
   SELECT id, names.primary, names.common['en'], names.common['th'], taxonomy.primary, taxonomy.hierarchy[1], confidence,
          phones[1], websites[1], socials[1], addresses[1].freeform, bbox.ymin, bbox.xmin, operating_status
@@ -25,12 +29,16 @@ with open(sys.argv[1], "w", encoding="utf-8") as f:
     for (oid, name, en, th, tp, top, conf, phone, web, social, addr, lat, lon, st) in rows:
         if not name: continue
         tp = tp or ""
-        if tp == "police_station" or name.startswith(("สถานีตำรวจ", "สภ.")): kind = "police"
-        elif tp == "fire_station" or ("ดับเพลิง" in name and top != "food_and_drink"): kind = "fire"
-        elif tp in ("hospital", "emergency_department") or name.startswith("โรงพยาบาล"): kind = "hospital"
+        if NOT_A_PLACE.search(name): continue
+        public = tp in ("", "government_office", "community_and_government", "social_or_community_service", "military_site")
+        if tp == "police_station" or (name.startswith(("สถานีตำรวจ", "สภ.")) and public): kind = "police"
+        elif tp == "fire_station" or (re.match(r"(สถานี|หน่วย|กอง|ศูนย์)?.{0,12}ดับเพลิง", name) and public): kind = "fire"
+        elif tp == "hospital" or (name.startswith("โรงพยาบาล") and (public or tp == "health_care")):
+            if HOSPITAL_PART.search(name): continue
+            kind = "hospital"
         elif top == "food_and_drink" and tp not in SKIP_FOOD: kind = "cafe" if tp in CAFE else "restaurant"
         else: continue
-        floor = 0.6 if kind in ("restaurant", "cafe") else 0.4
+        floor = {"restaurant": 0.65, "cafe": 0.65, "hospital": 0.6}.get(kind, 0.4)
         if (conf or 0) < floor: continue
         f.write(json.dumps({"id": oid, "kind": kind, "name": name, "en": en, "th": th, "cat": tp, "conf": round(conf, 2), "phone": phone,
                             "website": web, "social": social, "address": addr, "lat": lat, "lon": lon}, ensure_ascii=False) + "\n")

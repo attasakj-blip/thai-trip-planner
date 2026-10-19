@@ -296,7 +296,14 @@ def main():
               keep = [c[0] for c in cands[: 40 if kind == "restaurant" else 25]]
           elif kind == "hospital":
               order = {"HOSPITAL": 0, "HEALTH_CENTRE": 1, "CLINIC": 2}
-              hs = sorted((c[0] for c in cands if c[0]["health"] == "HOSPITAL"), key=lambda e: e["km"])[:8]
+              # Map records first: Overture often repeats a big hospital's position for its departments.
+              hs = sorted((c[0] for c in cands if c[0]["health"] == "HOSPITAL"), key=lambda e: e["km"] + (0 if e["src"] == "osm" else 1.5))
+              spots, hs2 = set(), []
+              for e in hs:
+                  spot = (round(e["lat"], 4), round(e["lon"], 4))
+                  if e["src"] != "osm" and spot in spots: continue
+                  spots.add(spot); hs2.append(e)
+              hs = hs2[:8]
               hc = sorted((c[0] for c in cands if c[0]["health"] == "HEALTH_CENTRE" and c[0]["km"] <= 10), key=lambda e: e["km"])[:3]
               cl = sorted((c[0] for c in cands if c[0]["health"] == "CLINIC" and c[0]["km"] <= 5), key=lambda e: e["km"])[:3]
               keep = sorted(hs + hc + cl, key=lambda e: (order[e["health"]], e["km"]))
