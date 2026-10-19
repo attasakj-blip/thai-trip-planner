@@ -275,6 +275,8 @@ def main():
                 rich = sum(1 for x in ("phone", "hours", "cuisine", "website", "wikidata") if x in e) + 2 * t.get("_conf", 0.7)
                 cands.append((e, rich))
             # Merge the same place found in both sources (OSM first: it has hours and photos).
+            if kind in ("restaurant", "cafe"):
+                cands = sorted(cands, key=lambda c: c[0]["km"])[:400]  # plenty to pick 40 from, keeps the city centre fast
             cands.sort(key=lambda c: (c[0]["src"] != "osm", c[0]["km"]))
             merged = []
             grid2 = collections.defaultdict(list)
@@ -288,34 +290,34 @@ def main():
                 m = [e, rich]; merged.append(m); grid2[cell].append(m)
             cands = [(m[0], m[1]) for m in merged]
             if kind not in ("restaurant", "cafe") or len(cands) >= 10: break
-            if kind in ("restaurant", "cafe"):
-                # Nearest first, but places with more information (phone, hours...) move up a little.
-                cands.sort(key=lambda c: c[0]["km"] - 0.25 * c[1])
-                keep = [c[0] for c in cands[: 40 if kind == "restaurant" else 25]]
-            elif kind == "hospital":
-                order = {"HOSPITAL": 0, "HEALTH_CENTRE": 1, "CLINIC": 2}
-                hs = sorted((c[0] for c in cands if c[0]["health"] == "HOSPITAL"), key=lambda e: e["km"])[:8]
-                hc = sorted((c[0] for c in cands if c[0]["health"] == "HEALTH_CENTRE" and c[0]["km"] <= 10), key=lambda e: e["km"])[:3]
-                cl = sorted((c[0] for c in cands if c[0]["health"] == "CLINIC" and c[0]["km"] <= 5), key=lambda e: e["km"])[:3]
-                keep = sorted(hs + hc + cl, key=lambda e: (order[e["health"]], e["km"]))
-            elif kind == "police":
-                cands.sort(key=lambda c: (0 if POLICE_STATION.search(c[0]["name"]["th"] + " " + c[0]["name"]["en"]) else 1, c[0]["km"]))
-                keep = [c[0] for c in cands[:6]]
-            else:
-                cands.sort(key=lambda c: c[0]["km"])
-                keep = [c[0] for c in cands[:5]]
-            # De-duplicate the same place mapped twice (a dot and a building).
-            seen, uniq = set(), []
-            for e in keep:
-                key = (e["name"]["th"], round(e["lat"], 2), round(e["lon"], 2))
-                if key in seen: continue
-                seen.add(key); uniq.append(e)
-            for e in uniq:
-                if "wikidata" in e: wikidata_ids.add(e["wikidata"])
-                if "phone" not in e and kind in ("hospital", "police", "fire"):
-                    ph = match_phone(lists, kind, e["name"]["th"], e["lat"], e["lon"], p["province"]["th"])
-                    if ph: e["phone"] = ph; e["phoneSource"] = "official"
-            res[kind] = uniq
+          if kind in ("restaurant", "cafe"):
+              # Nearest first, but places with more information (phone, hours...) move up a little.
+              cands.sort(key=lambda c: c[0]["km"] - 0.25 * c[1])
+              keep = [c[0] for c in cands[: 40 if kind == "restaurant" else 25]]
+          elif kind == "hospital":
+              order = {"HOSPITAL": 0, "HEALTH_CENTRE": 1, "CLINIC": 2}
+              hs = sorted((c[0] for c in cands if c[0]["health"] == "HOSPITAL"), key=lambda e: e["km"])[:8]
+              hc = sorted((c[0] for c in cands if c[0]["health"] == "HEALTH_CENTRE" and c[0]["km"] <= 10), key=lambda e: e["km"])[:3]
+              cl = sorted((c[0] for c in cands if c[0]["health"] == "CLINIC" and c[0]["km"] <= 5), key=lambda e: e["km"])[:3]
+              keep = sorted(hs + hc + cl, key=lambda e: (order[e["health"]], e["km"]))
+          elif kind == "police":
+              cands.sort(key=lambda c: (0 if POLICE_STATION.search(c[0]["name"]["th"] + " " + c[0]["name"]["en"]) else 1, c[0]["km"]))
+              keep = [c[0] for c in cands[:6]]
+          else:
+              cands.sort(key=lambda c: c[0]["km"])
+              keep = [c[0] for c in cands[:5]]
+          # De-duplicate the same place mapped twice (a dot and a building).
+          seen, uniq = set(), []
+          for e in keep:
+              key = (e["name"]["th"], round(e["lat"], 2), round(e["lon"], 2))
+              if key in seen: continue
+              seen.add(key); uniq.append(e)
+          for e in uniq:
+              if "wikidata" in e: wikidata_ids.add(e["wikidata"])
+              if "phone" not in e and kind in ("hospital", "police", "fire"):
+                  ph = match_phone(lists, kind, e["name"]["th"], e["lat"], e["lon"], p["province"]["th"])
+                  if ph: e["phone"] = ph; e["phoneSource"] = "official"
+          res[kind] = uniq
         per_place[p["id"]] = res
     print(f"places done in {time.time() - t0:.0f}s; wikidata ids {len(wikidata_ids)}")
 
