@@ -133,7 +133,7 @@ private fun joinPoints(vm: TripViewModel, trip: Trip, today: LocalDate, planner:
                 val to = vm.repo.placeById[s.placeId]?.name?.get(thai) ?: ""
                 out += JoinPoint(
                     Rejoin.Target.Board(legIdx),
-                    tr("${modeIcon(ride.route.mode)} ขึ้น${ride.route.name.th}ที่ ${ride.board.name.th}", "${modeIcon(ride.route.mode)} Catch ${ride.route.name.en} at ${ride.board.name.en}"),
+                    tr("${modeIcon(ride.route.mode)} ขึ้น${modeWord(ride.route.mode)} ${ride.route.name.th} ที่ ${ride.board.name.th}", "${modeIcon(ride.route.mode)} Catch the ${modeWord(ride.route.mode)} ${ride.route.name.en} at ${ride.board.name.en}"),
                     tr("ออก ${Itinerary.formatTime(ride.start)} · ${fmt(date!!, true)} · ช่วง $from → $to", "Leaves ${Itinerary.formatTime(ride.start)} · ${fmt(date!!, false)} · $from → $to"),
                     End(ride.board.name.get(thai), ride.board.lat, ride.board.lon, false),
                     Itinerary.Point(ride.board.lat, ride.board.lon, ride.board.islandGroup != null, ride.board.islandGroup),
