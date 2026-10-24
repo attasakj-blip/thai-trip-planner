@@ -20,7 +20,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 UA = "ThaiTripPlanner/1.0 (https://github.com/attasakj-blip/thai-trip-planner)"
 MAX = 4
-SKIP = re.compile(r"(?i)flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
+SKIP = re.compile(r"(?i)bird|flowerpecker|bulbul|sunbird|warbler|butterfly|moth\b|insect|beetle|spider|frog|lizard|gecko|snake|orchid|flower|fungus|mushroom|portrait|selfie|wedding|flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
 
 
 def get(url, params, tries=4):
@@ -85,8 +85,9 @@ def infos(titles):
     return [out[t] for t in titles if t in out]
 
 
-def article_images(lang, titles):
-    """File titles used in Wikipedia articles, lead image first."""
+def article_images(lang, titles, ws=(), core=""):
+    """Images of Wikipedia articles: the lead image, then images whose file name matches the place
+    (other images in an article are often of something else: a map, a comparison, an animal)."""
     files = []
     for t in titles:
         d = get(f"https://{lang}.wikipedia.org/w/api.php", {
@@ -96,7 +97,11 @@ def article_images(lang, titles):
         for p in d.get("query", {}).get("pages", []):
             if p.get("pageimage"):
                 files.append("File:" + p["pageimage"])
-            files += [i["title"].replace("ไฟล์:", "File:") for i in p.get("images", [])]
+            for i in p.get("images", []):
+                f = re.sub(r"^[^:]+:", "File:", i["title"])
+                fl = f.lower()
+                if any(w in fl for w in ws) or (core and core in f):
+                    files.append(f)
     seen = set()
     return [f for f in files if not (f in seen or seen.add(f))]
 
@@ -185,6 +190,11 @@ def words(name_en):
     return [w for w in re.findall(r"[a-z]{3,}", (name_en or "").lower()) if w not in stop]
 
 
+def thai_core(name_th):
+    n = re.sub(r"\s*\(.*\)\s*", "", name_th or "")
+    return re.sub(r"^(วัด|อุทยานแห่งชาติ|เกาะ|หาด|ตลาด|พิพิธภัณฑ์|ดอย|น้ำตก|ถ้ำ|เขา)", "", n)[:6]
+
+
 def geo_files(lat, lon, radius, name_th, name_en):
     d = get("https://commons.wikimedia.org/w/api.php", {
         "action": "query", "format": "json", "formatversion": "2", "list": "geosearch",
@@ -192,12 +202,12 @@ def geo_files(lat, lon, radius, name_th, name_en):
     })
     hits = d.get("query", {}).get("geosearch", [])
     ws = words(name_en)
-    core = re.sub(r"^(วัด|อุทยานแห่งชาติ|เกาะ|หาด|ตลาด|พิพิธภัณฑ์|ดอย|น้ำตก|ถ้ำ|เขา)", "", name_th or "")[:6]
+    core = thai_core(name_th)
     def match(t):
         tl = t.lower()
         return any(w in tl for w in ws) or (core and core in t)
     named = [h["title"] for h in hits if match(h["title"])]
-    near = [h["title"] for h in sorted(hits, key=lambda h: h["dist"]) if h["title"] not in named]
+    near = [h["title"] for h in sorted(hits, key=lambda h: h["dist"]) if h["dist"] <= 600 and h["title"] not in named]
     return named, near
 
 
@@ -218,8 +228,10 @@ def photos_for(p):
             got.append(ph)
         seen.update(files)
 
+    ws = words(en)
+    core = thai_core(th)
     if p.get("wikiTitles"):
-        add(article_images("en", p["wikiTitles"]))
+        add(article_images("en", p["wikiTitles"], ws, core))
     for n in variants(th)[:2]:
         if len(got) < MAX:
             add(wikidata_image(n, "th", lat, lon, limit))
@@ -228,23 +240,25 @@ def photos_for(p):
             add(wikidata_image(n, "en", lat, lon, limit))
     for n in variants(th):
         if len(got) < MAX:
-            add(article_images("th", search_articles("th", n, lat, lon, limit)))
+            add(article_images("th", search_articles("th", n, lat, lon, limit), ws, core))
     for n in variants(en):
         if len(got) < MAX:
-            add(article_images("en", search_articles("en", n, lat, lon, limit)))
+            add(article_images("en", search_articles("en", n, lat, lon, limit), ws, core))
     if len(got) < 2:
         named, near = geo_files(lat, lon, 3000 if big else 1000, th, en)
         add(named)
         if not got:
             add(near)
     if not got:
-        ws = words(en)
         for n in variants(en) + variants(th):
             if not got:
                 add(commons_search(n, lat, lon, limit, ws))
     if not got:
         # Anything photographed close by, a bit further out.
-        add(geo_files(lat, lon, 5000 if big else 2000, th, en)[1] + geo_files(lat, lon, 5000 if big else 2000, th, en)[0])
+        named, near = geo_files(lat, lon, 5000 if big else 2000, th, en)
+        add(named)
+        if not got:
+            add(near[:15])
     return got
 
 
@@ -270,7 +284,7 @@ def main():
             print("error", p["id"], e, file=sys.stderr)
             return p["id"], old.get(p["id"], [])
 
-    with ThreadPoolExecutor(2 if only_missing else 6) as ex:
+    with ThreadPoolExecutor(2 if only_missing else 4) as ex:
         for n, (pid, ph) in enumerate(ex.map(work, places), 1):
             out[pid] = ph or old.get(pid, [])
             if n % 100 == 0:
