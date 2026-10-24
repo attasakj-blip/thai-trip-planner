@@ -1,6 +1,5 @@
 package th.trip.planner
 
-import th.trip.planner.ui.tr
 
 import android.app.Application
 import android.os.Bundle
@@ -11,26 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
-import android.net.Uri
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import androidx.lifecycle.viewModelScope
-import th.trip.planner.data.Candidate
-import th.trip.planner.data.Photos
-import th.trip.planner.logic.TripStatus
-import th.trip.planner.model.AlbumPhoto
-import th.trip.planner.model.Slideshow
-import th.trip.planner.model.MusicChoice
-import th.trip.planner.audio.MusicGen
-import th.trip.planner.logic.SlideTimeline
-import th.trip.planner.video.FrameRenderer
-import th.trip.planner.video.SectionContent
-import th.trip.planner.video.VideoExporter
-import kotlinx.coroutines.Job
-import java.io.File
-import th.trip.planner.model.Tempo
-import th.trip.planner.ui.fmtDates
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import okhttp3.OkHttpClient
@@ -56,6 +35,8 @@ class TripApp : Application(), ImageLoaderFactory {
         repo = Repository(this)
         remote.cacheDir = java.io.File(filesDir, "pois").apply { mkdirs() }
         CheckInScheduler.createChannel(this)
+        // Older versions kept album photo copies and slideshow videos here; the album is gone.
+        Thread { runCatching { repo.tripsDir.listFiles().orEmpty().forEach { d -> java.io.File(d, "photos").deleteRecursively(); java.io.File(d, "slideshow.mp4").delete() } } }.start()
         // Check GitHub Pages for this week's data; offline is fine, the app keeps what it has.
         Thread { runCatching { th.trip.planner.data.DataSync.run(repo) } }.start()
     }
@@ -91,8 +72,7 @@ class MainActivity : ComponentActivity() {
         if (text.isNotBlank()) vm.onSharedText(text)
     }
 
-    // The album collects photos taken while the user switched away to the camera app.
-    override fun onStop() { super.onStop(); vm.onAppLeft() }
+    // Coming back from Booking.com / Agoda: ask about the stay.
     override fun onStart() { super.onStart(); vm.onAppReturned() }
 }
 
@@ -104,11 +84,6 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
     var trip by mutableStateOf(repo.loadTrip().also { repo.saveTrip(it) })
         private set
 
-    /** New gallery photos waiting for the user to pick which go into the album. */
-    var candidates by mutableStateOf<List<Candidate>>(emptyList())
-        private set
-    /** Set when photos were found but GPS was off, so they can't be accepted. */
-    var gpsOffNotice by mutableStateOf(false)
     init {
         val saved = repo.lang
         th.trip.planner.ui.I18n.set(app, saved.ifBlank { th.trip.planner.ui.I18n.deviceDefault() })
@@ -246,7 +221,7 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
         CheckInScheduler.cancel(getApplication())
     }
 
-    /** Removes a trip and its photos for good. The current trip can only go once it has finished. */
+    /** Removes a trip for good. The current trip can only go once it has finished. */
     fun deleteTrip(id: String): Boolean {
         if (id == trip.id) {
             if (!trip.finished) return false
@@ -261,151 +236,14 @@ class TripViewModel(app: Application) : AndroidViewModel(app) {
     var tripsVersion by mutableStateOf(0)
 
     fun newTrip() {
-        // Keep the old trip (and its photos) in its own folder under "My trips".
-        if (trip.stops.isNotEmpty() || trip.photos.isNotEmpty()) repo.archive(trip)
+        // Keep the old trip in its own folder under "My trips".
+        if (trip.stops.isNotEmpty()) repo.archive(trip)
         update { Trip(id = repo.newTripId(), createdAt = System.currentTimeMillis()) }
         CheckInScheduler.cancel(getApplication())
     }
 
-    // ------------------------------------------------------------ Album
-
-    private fun collectingToday() = trip.activated && !trip.albumFinalized && trip.albumDays[LocalDate.now().toString()] == true
-
-    fun answerAlbumToday(yes: Boolean) = update { it.copy(albumDays = it.albumDays + (LocalDate.now().toString() to yes)) }
-
-    fun onAppLeft() { if (collectingToday()) repo.leftAt = System.currentTimeMillis() }
-
-    fun onAppReturned() {
-        checkBookingReturn()
-        val since = repo.leftAt
-        if (since == 0L || !collectingToday()) return
-        repo.leftAt = 0L
-        val ctx = getApplication<Application>()
-        viewModelScope.launch {
-            val places = trip.stops.mapNotNull { repo.placeById[it.placeId] }
-            val found = withContext(Dispatchers.IO) {
-                val list = Photos.newPhotos(ctx, since).filter { c -> trip.photos.none { it.takenAt == c.takenAt } }
-                val here = if (list.isEmpty()) null else Photos.lastLocation(ctx)
-                list.map { c -> locate(ctx, c, here, places) }
-            }
-            if (found.isEmpty()) return@launch
-            if (!Photos.gpsOn(ctx) && found.none { it.allowed }) { gpsOffNotice = true; return@launch }
-            candidates = found
-        }
-    }
-
-    /**
-     * Works out where a photo was taken (its own GPS tag, or the phone's position if it was taken
-     * in the last 3 hours) and which planned place it belongs to. Photos more than 40 km from
-     * every planned place are marked as not allowed.
-     */
-    private fun locate(ctx: Application, c: Candidate, here: android.location.Location?, places: List<th.trip.planner.model.Place>): Candidate {
-        val exif = Photos.exifLocation(ctx, c.uri)
-        val recent = here != null && kotlin.math.abs(c.takenAt - here.time) < 3 * 3600_000L && System.currentTimeMillis() - c.takenAt < 3 * 3600_000L
-        val (lat, lon) = exif ?: if (recent) here!!.latitude to here.longitude else return c
-        val nearest = TripLogic.nearestPlace(places, lat, lon)
-        return c.copy(
-            lat = lat, lon = lon,
-            placeId = TripLogic.albumPlace(places, lat, lon)?.id,
-            nearestKm = nearest?.second, nearestPlaceId = nearest?.first?.id,
-        )
-    }
-
-    fun dismissCandidates() { candidates = emptyList() }
-
-    /** Copies the chosen photos into the trip folder, filed under the place where each was taken. */
-    fun importPhotos(chosen: List<Candidate>) {
-        val ctx = getApplication<Application>()
-        val snapshot = trip
-        candidates = emptyList()
-        viewModelScope.launch {
-            val added = withContext(Dispatchers.IO) {
-                chosen.filter { it.allowed }.mapNotNull { c ->
-                    val placeId = c.placeId!!
-                    val date = java.time.Instant.ofEpochMilli(c.takenAt).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
-                    val rel = "photos/$placeId/${date}_${c.takenAt}.jpg"
-                    if (Photos.copyInto(ctx, c.uri, repo.photoFile(snapshot.id, rel))) AlbumPhoto(rel, placeId, date.toString(), c.takenAt, c.lat, c.lon) else null
-                }
-            }
-            if (added.isNotEmpty()) update { it.copy(photos = (it.photos + added).sortedBy { p -> p.takenAt }) }
-        }
-    }
-
-    /** Deletes a photo from the current trip, or from an archived one when [tripId] is given. */
-    fun deletePhoto(photo: AlbumPhoto, tripId: String = trip.id) {
-        repo.photoFile(tripId, photo.file).delete()
-        if (tripId == trip.id) update { it.copy(photos = it.photos - photo) }
-        else repo.archivedTrip(tripId)?.let { t -> repo.archive(t.copy(photos = t.photos - photo)) }
-    }
-
-    fun finalizeAlbum(show: Slideshow) {
-        update { it.copy(albumFinalized = true, slideshow = show) }
-        repo.archive(trip)
-    }
-
-    // ------------------------------------------------------------ slideshow video
-
-    /** Progress of the video being made: null = idle, 0..1 = working. */
-    var exportProgress by mutableStateOf<Float?>(null)
-        private set
-    var exportError by mutableStateOf<String?>(null)
-        private set
-    var exportingTrip by mutableStateOf<String?>(null)
-        private set
-    private var exportJob: Job? = null
-
-    fun videoFile(tripId: String): File = File(repo.tripDir(tripId), "slideshow.mp4")
-
-    /** Builds the slideshow video: for each place a decorated title card, its photos, and its music looped to fit. */
-    fun exportVideo(tripId: String) {
-        if (exportJob?.isActive == true) return
-        val t = tripById(tripId) ?: return
-        val show = t.slideshow ?: return
-        val isThai = thai
-        exportError = null
-        exportingTrip = tripId
-        exportProgress = 0f
-        exportJob = viewModelScope.launch(Dispatchers.Default) {
-            try {
-                val byPlace = t.photos.groupBy { it.placeId }
-                val parts = show.sections.map { sec -> sec to byPlace[sec.placeId].orEmpty().sortedBy { it.takenAt } }
-                val withPhotos = parts.count { it.second.isNotEmpty() }
-                var n = 0
-                val contents = parts.map { (sec, photos) ->
-                    if (photos.isNotEmpty()) n++
-                    val place = sec.placeId?.let { repo.placeById[it] }
-                    SectionContent(
-                        name = place?.name?.get(isThai) ?: tr("ระหว่างการเดินทาง", "On the way"),
-                        subtitle = place?.let { if (!isThai) it.province.en else if (it.province.th.startsWith("กรุงเทพ")) it.province.th else "จังหวัด${it.province.th}" } ?: "",
-                        dates = fmtDates(photos.map { LocalDate.parse(it.date) }.distinct(), isThai),
-                        badge = tr("จุดหมายที่ $n จาก $withPhotos", "STOP $n OF $withPhotos"),
-                        photos = photos.map { repo.photoFile(t.id, it.file) },
-                    )
-                }
-                val timeline = SlideTimeline.build(show.sections.mapIndexed { i, sec ->
-                    SlideTimeline.Section(contents[i].photos.size, sec.music?.tempo ?: Tempo.MEDIUM, sec.transition)
-                })
-                val pieces = HashMap<MusicChoice, ShortArray>()
-                val pcm = if (show.sections.any { it.music != null }) timeline.soundtrack(MusicGen.RATE) { i ->
-                    show.sections[i].music?.let { m -> pieces.getOrPut(m) { MusicGen.render(m) } }
-                } else null
-                val out = videoFile(t.id)
-                VideoExporter.export(out, timeline, FrameRenderer(VideoExporter.WIDTH, VideoExporter.HEIGHT, contents), pcm, MusicGen.RATE) { p ->
-                    exportProgress = p
-                }
-                VideoExporter.saveToGallery(getApplication(), out, "${t.id}.mp4")
-            } catch (e: kotlinx.coroutines.CancellationException) {
-                throw e
-            } catch (e: Throwable) {
-                exportError = e.message ?: e.javaClass.simpleName
-            } finally {
-                exportProgress = null
-                exportingTrip = null
-            }
-        }
-    }
-
-    fun cancelExport() { exportJob?.cancel() }
+    /** Back in the app: offer the stay form if the user was booking a stay. */
+    fun onAppReturned() = checkBookingReturn()
 
     /** The current trip if [id] matches it, otherwise an archived trip. */
     fun tripById(id: String): Trip? = if (id == trip.id) trip else repo.archivedTrip(id)

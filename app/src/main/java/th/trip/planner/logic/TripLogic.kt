@@ -183,15 +183,4 @@ object TripLogic {
         out += TravelMode.CAR
         return out.distinct()
     }
-
-    /** Photos further than this from every planned place can't go into the trip album. */
-    const val ALBUM_RADIUS_KM = 40.0
-
-    /** The nearest planned place to a photo location and how far it is (km), or null if the trip has no places. */
-    fun nearestPlace(places: List<Place>, lat: Double, lon: Double): Pair<Place, Double>? =
-        places.map { it to distanceKm(lat, lon, it.lat, it.lon) }.minByOrNull { it.second }
-
-    /** The planned place a photo taken at (lat, lon) belongs to, or null when it is outside [ALBUM_RADIUS_KM] of all of them. */
-    fun albumPlace(places: List<Place>, lat: Double, lon: Double): Place? =
-        nearestPlace(places, lat, lon)?.takeIf { it.second <= ALBUM_RADIUS_KM }?.first
 }

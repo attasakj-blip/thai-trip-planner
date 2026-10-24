@@ -87,7 +87,7 @@ import th.trip.planner.ui.scenes.TravelScene
 import java.time.LocalDate
 import java.time.LocalTime
 
-private fun hasLocation(ctx: Context) =
+internal fun hasLocation(ctx: Context) =
     ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
         ContextCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
 
@@ -199,7 +199,6 @@ fun ActiveScreen(vm: TripViewModel, nav: NavHostController) {
                     }
                 }
             }
-            AlbumCards(vm, nav)
             Column(Modifier.padding(16.dp)) {
                 OutlinedButton(onClick = { nav.navigate(Routes.SUMMARY) }, modifier = Modifier.fillMaxWidth()) { Text(tr("ดูสรุปทริป", "Trip summary")) }
                 OutlinedButton(onClick = { nav.navigate(Routes.REPLAN) }, modifier = Modifier.fillMaxWidth()) { Text(tr("ปรับแผนการเดินทาง", "Adjust the plan")) }
@@ -299,12 +298,9 @@ fun ReplanScreen(vm: TripViewModel, nav: NavHostController) {
 fun FinaleScreen(vm: TripViewModel, nav: NavHostController, onExit: () -> Unit) {
     val thai = LocalThai.current
     val places = vm.trip.stops.mapNotNull { vm.repo.placeById[it.placeId] }
-    // The traveller's own album photos when there are any, otherwise library photos of the places.
-    val own = vm.trip.photos.map { p ->
-        Photo(vm.repo.photoFile(vm.trip.id, p.file).toURI().toString(), tr("ภาพของคุณ", "Your photo"), "", "")
-    }
-    val photos = produceState(own, places) {
-        if (own.isEmpty()) value = places.flatMap { vm.remote.photos(it.wikiTitles, max = 2).getOrDefault(emptyList()) }
+    // Library photos of the places (Wikimedia Commons).
+    val photos = produceState(emptyList<Photo>(), places) {
+        value = places.flatMap { vm.remote.photos(it.wikiTitles, max = 2).getOrDefault(emptyList()) }
     }.value
 
     // Music: render once, loop forever without a gap, fade in.
@@ -362,12 +358,6 @@ fun FinaleScreen(vm: TripViewModel, nav: NavHostController, onExit: () -> Unit) 
             )
             Text(places.joinToString(" · ") { it.name.get(thai) }, color = Color.White.copy(alpha = 0.8f), fontSize = 12.sp, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 8.dp))
             Spacer(Modifier.height(16.dp))
-            if (vm.trip.photos.isNotEmpty() && !vm.trip.albumFinalized) {
-                OutlinedButton(onClick = { player.stop(); nav.navigate(Routes.SLIDESHOW_SETUP) }, modifier = Modifier.fillMaxWidth()) {
-                    Text(tr("📔 ทำอัลบั้มให้สมบูรณ์และสร้างสไลด์โชว์", "📔 Finish album & make slideshow"), color = Color.White)
-                }
-                Spacer(Modifier.height(8.dp))
-            }
             Button(
                 onClick = { player.stop(); vm.finishTrip(); onExit() },
                 colors = ButtonDefaults.buttonColors(containerColor = Coral),

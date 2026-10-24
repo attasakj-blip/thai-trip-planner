@@ -62,12 +62,12 @@ import java.time.LocalDate
 import kotlin.math.roundToInt
 
 /** A point a leg starts or ends at: the stay when we know where it is, otherwise the place. */
-private data class End(val label: String, val lat: Double, val lon: Double, val isStay: Boolean)
+internal data class End(val label: String, val lat: Double, val lon: Double, val isStay: Boolean)
 
 private fun enc(s: String) = URLEncoder.encode(s, "UTF-8")
 
 /** Rough road distance from a straight line (roads are rarely straight). */
-private fun roadKm(lat1: Double, lon1: Double, lat2: Double, lon2: Double) = TripLogic.distanceKm(lat1, lon1, lat2, lon2) * 1.3
+internal fun roadKm(lat1: Double, lon1: Double, lat2: Double, lon2: Double) = TripLogic.distanceKm(lat1, lon1, lat2, lon2) * 1.3
 
 fun kmText(km: Double): String = if (km < 1) "${(km * 1000 / 50).roundToInt() * 50} " + tr("ม.", "m") else "${if (km < 10) "%.1f".format(km) else km.roundToInt().toString()} " + tr("กม.", "km")
 
@@ -82,28 +82,28 @@ fun durationText(minutes: Int): String {
 }
 
 /** Ride-hailing apps: opens the app, or its Play Store page when it isn't installed. */
-private val RIDE_APPS = listOf(
+internal val RIDE_APPS = listOf(
     "Grab" to "com.grabtaxi.passenger",
     "Bolt" to "ee.mtakso.client",
     "LINE MAN" to "com.linecorp.linemanth",
 )
 
-private fun openApp(ctx: Context, pkg: String) {
+internal fun openApp(ctx: Context, pkg: String) {
     val launch = ctx.packageManager.getLaunchIntentForPackage(pkg)
     if (launch != null) runCatching { ctx.startActivity(launch) }
     else runCatching { ctx.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$pkg"))) }
         .onFailure { open(ctx, "https://play.google.com/store/apps/details?id=$pkg") }
 }
 
-private fun transitUrl(a: End, b: End) =
+internal fun transitUrl(a: End, b: End) =
     "https://www.google.com/maps/dir/?api=1&origin=${a.lat},${a.lon}&destination=${b.lat},${b.lon}&travelmode=transit"
 
 @Composable
-private fun Line(text: String, color: Color = Color.DarkGray, bold: Boolean = false, size: Int = 13) =
+internal fun Line(text: String, color: Color = Color.DarkGray, bold: Boolean = false, size: Int = 13) =
     Text(text, fontSize = size.sp, color = color, fontWeight = if (bold) FontWeight.SemiBold else null)
 
 @Composable
-private fun Loading() = Row(verticalAlignment = Alignment.CenterVertically) {
+internal fun Loading() = Row(verticalAlignment = Alignment.CenterVertically) {
     CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp)
     Text("  " + tr("กำลังค้นหาข้อมูลการเดินทาง…", "Looking up travel details…"), fontSize = 12.sp, color = Color.Gray)
 }
@@ -214,7 +214,7 @@ private fun FlightDetails(vm: TripViewModel, a: End, b: End, from: Place, to: Pl
 // ---------------------------------------------------------------- Car / ride-hailing
 
 @Composable
-private fun CarDetails(vm: TripViewModel, a: End, b: End) {
+internal fun CarDetails(vm: TripViewModel, a: End, b: End) {
     val ctx = LocalContext.current
     val drive by produceState<Result<Pair<Double, Int>>?>(null, a, b) { value = vm.remote.drive(a.lat, a.lon, b.lat, b.lon) }
     val d = drive
@@ -261,7 +261,7 @@ private fun CityTransit(vm: TripViewModel, a: End, b: End, mode: TravelMode) {
     Text(tr("ข้อมูลสายรถจาก OpenStreetMap อาจไม่ครบทุกสาย", "Line data comes from OpenStreetMap and may be incomplete."), fontSize = 11.sp, color = Color.Gray)
 }
 
-private fun kindLabel(k: TransitKind) = when (k) {
+internal fun kindLabel(k: TransitKind) = when (k) {
     TransitKind.BUS -> tr("🚌 รถเมล์", "🚌 Bus")
     TransitKind.SONGTHAEW -> tr("🛻 รถสองแถว", "🛻 Songthaew")
     TransitKind.METRO -> tr("🚇 รถไฟฟ้า", "🚇 Metro")
@@ -285,7 +285,7 @@ private fun TransitPlanView(n: Int, plan: TransitPlan, a: End, b: End) {
     Line(tr("🚶 เดิน ${kmText(plan.walkFromAlightKm)} ถึง${b.label}", "🚶 Walk ${kmText(plan.walkFromAlightKm)} to ${b.label}"))
 }
 
-private fun stopName(s: String) = s.ifBlank { tr("ป้ายไม่มีชื่อ", "an unnamed stop") }
+internal fun stopName(s: String) = s.ifBlank { tr("ป้ายไม่มีชื่อ", "an unnamed stop") }
 
 // ---------------------------------------------------------------- Intercity bus / minivan / train
 
@@ -396,19 +396,19 @@ fun modeIcon(m: TravelMode) = when (m) {
     TravelMode.BOAT -> "⛴️"; TravelMode.CAR -> "🚕"; TravelMode.VAN -> "🚐"
 }
 
-private fun modeWord(m: TravelMode) = when (m) {
+internal fun modeWord(m: TravelMode) = when (m) {
     TravelMode.FLIGHT -> tr("เครื่องบิน", "flight"); TravelMode.TRAIN -> tr("รถไฟ", "train"); TravelMode.BUS -> tr("รถทัวร์", "bus")
     TravelMode.BOAT -> tr("เรือ", "boat"); TravelMode.CAR -> tr("เรียกรถ / ขับรถ", "ride / drive"); TravelMode.VAN -> tr("รถตู้", "minivan")
 }
 
 /** "06:20" or "06:20 (+1 day)". */
-private fun timeText(min: Int): String {
+internal fun timeText(min: Int): String {
     val d = Itinerary.dayOffset(min)
     return Itinerary.formatTime(min) + when { d > 0 -> tr(" (+$d วัน)", " (+$d day)"); d < 0 -> tr(" (วันก่อน)", " (day before)"); else -> "" }
 }
 
 /** Title of an option: the chain of rides, e.g. "🚐 รถตู้ → 🚌 รถทัวร์ → ⛴️ เรือ". */
-private fun optionTitle(o: Itinerary.Option): String =
+internal fun optionTitle(o: Itinerary.Option): String =
     if (o.first.rides.isEmpty()) "🚕 " + tr("เรียกรถ / แท็กซี่ / ขับรถไปเอง", "Ride-hailing, taxi or drive")
     else o.first.rides.joinToString(" → ") { "${modeIcon(it.route.mode)} ${modeWord(it.route.mode)}" }
 
@@ -522,7 +522,7 @@ fun TravelOptions(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (
 }
 
 @Composable
-private fun JourneySteps(vm: TripViewModel, j: Itinerary.Journey, a: End, b: End) {
+internal fun JourneySteps(vm: TripViewModel, j: Itinerary.Journey, a: End, b: End) {
     j.steps.forEach { s ->
         Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color.White).padding(8.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             when (s) {
@@ -587,10 +587,10 @@ private fun accessKind(k: String): String = when (k) {
     else -> k
 }
 
-private fun parseColor(hex: String?): Color? = hex?.let { runCatching { Color(android.graphics.Color.parseColor(it)) }.getOrNull() }
+internal fun parseColor(hex: String?): Color? = hex?.let { runCatching { Color(android.graphics.Color.parseColor(it)) }.getOrNull() }
 
 @Composable
-private fun ColorDot(c: Color?) {
+internal fun ColorDot(c: Color?) {
     if (c == null) return
     Box(Modifier.size(10.dp).clip(CircleShape).background(c))
     Spacer(Modifier.width(4.dp))
@@ -630,7 +630,7 @@ private fun AccessItem(x: HubAccess) {
 }
 
 @Composable
-private fun RailPlanView(p: RailPlan, fromName: String, toName: String) {
+internal fun RailPlanView(p: RailPlan, fromName: String, toName: String) {
     val thai = LocalThai.current
     Line(tr("🚆 ไปด้วยรถไฟฟ้า ประมาณ ${durationText(p.minutes)}", "🚆 By rail, about ${durationText(p.minutes)}"), Color.Black, bold = true)
     Line(tr("🚶 เดิน ${kmText(p.walkInKm * 1.2)} จาก $fromName ไปสถานี ${p.rides[0].board.name.get(thai)}", "🚶 Walk ${kmText(p.walkInKm * 1.2)} from $fromName to ${p.rides[0].board.name.get(thai)} station"), size = 12)

@@ -547,4 +547,33 @@ class Remote {
             }
         }
     }
+
+    /**
+     * A named building, shop, temple, school or similar right next to a point (within [radiusM]),
+     * so a bus stop can be described as "near 7-Eleven". Null when nothing is found.
+     */
+    suspend fun landmark(lat: Double, lon: Double, thai: Boolean, radiusM: Int = 150): Result<Pair<String, Double>?> = runCatching {
+        cached("lm:%.5f,%.5f:$thai".format(lat, lon)) {
+            val query = "[out:json][timeout:20];nwr(around:$radiusM,$lat,$lon)[name]" +
+                "[~\"^(amenity|shop|tourism|leisure|office|historic|building|railway|public_transport)$\"~\".\"];out center tags 60;"
+            val elements = json.parseToJsonElement(overpass(query)).jsonObject["elements"].arr() ?: JsonArray(emptyList())
+            val prominent = Regex("^(place_of_worship|school|university|college|hospital|clinic|marketplace|bank|fuel|post_office|police|townhall|cinema|mall|supermarket|convenience|department_store|attraction|museum|hotel|park|station)$")
+            val best = elements.mapNotNull { e ->
+                val o = e.obj() ?: return@mapNotNull null
+                val t = o["tags"].obj() ?: return@mapNotNull null
+                // Skip the stops themselves.
+                if (t["highway"].str() == "bus_stop" || t["public_transport"].str() in setOf("platform", "stop_position")) return@mapNotNull null
+                val name = (if (thai) t["name:th"].str() else t["name:en"].str()) ?: t["name"].str() ?: return@mapNotNull null
+                val la = o["lat"].num() ?: o["center"].obj()?.get("lat").num() ?: return@mapNotNull null
+                val lo = o["lon"].num() ?: o["center"].obj()?.get("lon").num() ?: return@mapNotNull null
+                val km = th.trip.planner.logic.TripLogic.distanceKm(lat, lon, la, lo)
+                val kind = listOf("amenity", "shop", "tourism", "leisure", "railway").firstNotNullOfOrNull { t[it].str() } ?: ""
+                Triple(name, km, km * (if (prominent.matches(kind)) 0.5 else 1.0))
+            }.minByOrNull { it.third }
+            Opt(best?.let { it.first to it.second })
+        }.v
+    }
+
+    /** Lets "nothing found" be cached too. */
+    private class Opt<T>(val v: T?)
 }

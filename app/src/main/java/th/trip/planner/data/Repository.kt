@@ -76,10 +76,9 @@ class Repository(private val context: Context) {
 
     fun newTripId(): String = "trip-" + java.text.SimpleDateFormat("yyyyMMdd-HHmmss", java.util.Locale.US).format(java.util.Date())
 
-    /** Every trip gets its own folder: trips/<id>/ holding trip.json and photos/<place>/. */
+    /** Every trip gets its own folder: trips/<id>/ holding trip.json. */
     val tripsDir: File get() = File(context.filesDir, "trips").apply { mkdirs() }
     fun tripDir(id: String): File = File(tripsDir, id).apply { mkdirs() }
-    fun photoFile(tripId: String, relative: String) = File(tripDir(tripId), relative)
 
     /** Saves a copy of the trip into its own folder so it shows in "My trips". */
     fun archive(trip: Trip) {
@@ -92,11 +91,6 @@ class Repository(private val context: Context) {
         .sortedByDescending { it.createdAt }
 
     fun archivedTrip(id: String): Trip? = runCatching { json.decodeFromString<Trip>(File(tripDir(id), "trip.json").readText()) }.getOrNull()
-
-    /** When the app last went to the background while collecting photos (ms), 0 = not set. */
-    var leftAt: Long
-        get() = prefs.getLong("left_at", 0L)
-        set(v) = prefs.edit().putLong("left_at", v).apply()
 
     fun saveTrip(trip: Trip) {
         val tmp = File(tripFile.parentFile, "trip.json.tmp")

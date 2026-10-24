@@ -195,37 +195,9 @@ data class Lodging(
     val isEmpty: Boolean get() = name.isBlank() && address.isBlank() && phone.isBlank() && bookingRef.isBlank() && note.isBlank()
 }
 
-/** A photo the traveller added to the trip album. [file] is relative to the trip folder. */
-@Serializable
-data class AlbumPhoto(
-    val file: String,
-    val placeId: String? = null,
-    /** ISO date the photo was taken. */
-    val date: String,
-    val takenAt: Long,
-    val lat: Double? = null,
-    val lon: Double? = null,
-)
-
-enum class MusicStyle { THAI_LOCAL, MUSIC_BOX, HARP, JAZZ, SAMBA, FLUTE }
-
-enum class Tempo { SLOW, MEDIUM, FAST }
-
-enum class Transition { MORPH, CROSSFADE_ZOOM, SLIDE }
-
-@Serializable
-data class MusicChoice(val style: MusicStyle, val tempo: Tempo, val variant: Int)
-
-/** One place's part of the slideshow. [music] null = no music. */
-@Serializable
-data class SlideSection(val placeId: String?, val music: MusicChoice? = null, val transition: Transition = Transition.MORPH)
-
-@Serializable
-data class Slideshow(val sections: List<SlideSection>, val createdAt: Long)
-
 @Serializable
 data class Trip(
-    /** Folder name for this trip's photos and slideshow. */
+    /** Folder name for this trip under "My trips". */
     val id: String = "",
     val createdAt: Long = 0,
     /** Stops in the visiting order chosen by the user. */
@@ -243,10 +215,25 @@ data class Trip(
     val finished: Boolean = false,
     /** Daily check-in answers. key = ISO date, value = on plan? */
     val checkIns: Map<String, Boolean> = emptyMap(),
-    /** Daily answer to "collect photos for the album today?". key = ISO date. */
-    val albumDays: Map<String, Boolean> = emptyMap(),
-    val photos: List<AlbumPhoto> = emptyList(),
-    /** True once the album is complete: no more imports. */
-    val albumFinalized: Boolean = false,
-    val slideshow: Slideshow? = null,
+    /** The last time the traveller used GPS to get back onto the plan (null = never). */
+    val rejoin: RejoinInfo? = null,
+)
+
+/**
+ * A way back onto the plan picked from the trip summary: from where (GPS), when, to which
+ * part of the plan ([target]: "s<stop>" or "l<leg>"), by which way ([way], see the rejoin
+ * screen), and what had to change in the rest of the trip.
+ */
+@Serializable
+data class RejoinInfo(
+    val atMillis: Long,
+    val fromLat: Double,
+    val fromLon: Double,
+    val target: String,
+    val way: String,
+    val wayTitle: String,
+    /** Expected arrival at the join point, ISO local date-time. */
+    val arrive: String,
+    /** What changed in the rest of the trip, one line each (in the language used at the time). */
+    val notes: List<String> = emptyList(),
 )

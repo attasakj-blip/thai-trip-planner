@@ -91,7 +91,7 @@ fun HomeScreen(vm: TripViewModel, nav: NavHostController) {
                 color = Color.DarkGray,
             )
             VSpace(8)
-            OutlinedButton(onClick = { nav.navigate(Routes.MY_TRIPS) }, modifier = Modifier.fillMaxWidth()) { Text(tr("🗂 ทริปของฉัน (อัลบั้มและสไลด์โชว์)", "🗂 My trips (albums & slideshows)")) }
+            OutlinedButton(onClick = { nav.navigate(Routes.MY_TRIPS) }, modifier = Modifier.fillMaxWidth()) { Text(tr("🗂 ทริปของฉัน", "🗂 My trips")) }
             VSpace(16)
             when {
                 trip.finished -> {

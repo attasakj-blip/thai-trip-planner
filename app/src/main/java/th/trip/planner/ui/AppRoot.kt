@@ -85,12 +85,9 @@ object Routes {
     const val REPLAN = "replan"
     const val FINALE = "finale"
     const val SETTINGS = "settings"
-    const val ALBUM = "album/{trip}"
-    const val SLIDESHOW_SETUP = "slideshow_setup"
-    const val PLAYER = "player/{trip}"
     const val MY_TRIPS = "my_trips"
-    fun album(trip: String) = "album/$trip"
-    fun player(trip: String) = "player/$trip"
+    const val REJOIN = "rejoin"
+    const val REJOIN_VIEW = "rejoin_view"
     fun place(id: String) = "place/$id"
     fun nearby(stop: Int, kind: String) = "nearby/$stop/$kind"
 }
@@ -132,16 +129,10 @@ fun AppRoot(vm: TripViewModel, onExit: () -> Unit) {
                     composable(Routes.REPLAN) { ReplanScreen(vm, nav) }
                     composable(Routes.FINALE) { FinaleScreen(vm, nav, onExit) }
                     composable(Routes.SETTINGS) { SettingsScreen(vm, nav) }
-                    composable(Routes.ALBUM, listOf(navArgument("trip") { type = NavType.StringType })) {
-                        AlbumScreen(vm, nav, it.arguments?.getString("trip") ?: "")
-                    }
-                    composable(Routes.SLIDESHOW_SETUP) { SlideshowSetupScreen(vm, nav) }
-                    composable(Routes.PLAYER, listOf(navArgument("trip") { type = NavType.StringType })) {
-                        SlideshowPlayerScreen(vm, nav, it.arguments?.getString("trip") ?: "")
-                    }
                     composable(Routes.MY_TRIPS) { MyTripsScreen(vm, nav) }
+                    composable(Routes.REJOIN) { RejoinScreen(vm, nav) }
+                    composable(Routes.REJOIN_VIEW) { RejoinScreen(vm, nav, view = true) }
                 }
-                ImportDialog(vm)
                 StayFormDialog(vm)
               }
             }

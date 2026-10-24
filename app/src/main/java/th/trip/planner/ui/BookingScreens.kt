@@ -352,6 +352,7 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
         },
     ) { pad ->
         LazyColumn(Modifier.padding(pad), contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            item(key = "rejoin") { RejoinOffer(vm, nav) }
             for (i in trip.stops.indices) {
                 if (i > 0) item(key = "leg${i - 1}") {
                     val leg = trip.legs.getOrNull(i - 1) ?: Leg()
