@@ -66,7 +66,7 @@ object Rejoin {
         val leg = trip.legs.getOrNull(i) ?: return null
         val sig = leg.plan ?: return null
         val date = TripLogic.legDate(trip, i) ?: return null
-        val opt = planner.options(i, date, 5 * 60).firstOrNull { it.signature == sig } ?: return null
+        val opt = planner.options(i, date, leg.leaveAt ?: (5 * 60)).firstOrNull { it.signature == sig } ?: return null
         return opt.journeys.firstOrNull { it.depart == leg.depart } ?: opt.first
     }
 
@@ -113,17 +113,18 @@ object Rejoin {
                     entries += Entry.Leg(i, date, at(date, planned.depart), at(date, planned.arrive), planned, false, false)
                     return at(date, planned.arrive)
                 }
-                // Missed it: the next departure of the same way, else the quickest other way, in the next 3 days.
-                for (d in 0..2) {
+                // Missed it: the next departure of the same way in the next 3 days, else the quickest other way.
+                // The same way is the smallest change, so look for it on every day before trying others.
+                for (pass in 0..1) for (d in 0..2) {
                     val day = ready.toLocalDate().plusDays(d.toLong())
                     val readyMin = if (d == 0) ready.hour * 60 + ready.minute else 0
                     val opts = planner.options(i, day, maxOf(0, readyMin - if (atHub) 120 else 0))
                     fun ok(j: Itinerary.Journey) = (if (atHub) startAtHub(j) else j.depart) >= readyMin && j.depart < 1440
-                    val same = opts.firstOrNull { it.signature == leg.plan }?.journeys?.filter(::ok)?.minByOrNull { it.arrive }
-                    val pick = same ?: opts.flatMap { o -> o.journeys.filter(::ok).map { o to it } }.minByOrNull { it.second.arrive }?.second
+                    val pick = if (pass == 0) opts.firstOrNull { it.signature == leg.plan }?.journeys?.filter(::ok)?.minByOrNull { it.arrive }
+                    else opts.flatMap { o -> o.journeys.filter(::ok).map { o to it } }.minByOrNull { it.second.arrive }?.second
                     if (pick != null) {
                         val o = opts.first { o -> o.journeys.any { it === pick } }
-                        legs[i] = leg.copy(mode = o.mainMode, plan = o.signature, depart = pick.depart)
+                        legs[i] = leg.copy(mode = o.mainMode, plan = o.signature, depart = pick.depart, leaveAt = pick.depart)
                         chosenDates[i] = day
                         changes += Change.LegTime(i, date, leg.depart, day, pick.depart, o.signature != leg.plan)
                         entries += Entry.Leg(i, day, at(day, pick.depart), at(day, pick.arrive), pick, true, false)
@@ -136,7 +137,8 @@ object Rejoin {
             }
             // No timetable: leave once there and on the planned day at the earliest.
             val day = if (date.isBefore(ready.toLocalDate())) ready.toLocalDate() else date
-            val depart = maxOf(ready, at(day, 9 * 60))
+            val depart = maxOf(ready, at(day, leg.leaveAt ?: (9 * 60)))
+            if (depart != at(day, leg.leaveAt ?: (9 * 60)) && leg.leaveAt != null) legs[i] = leg.copy(leaveAt = depart.hour * 60 + depart.minute)
             chosenDates[i] = day
             val moved = day != date
             if (moved) changes += Change.LegTime(i, date, null, day, null, false)

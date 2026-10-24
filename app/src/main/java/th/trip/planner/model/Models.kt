@@ -133,6 +133,10 @@ data class Leg(
     val depart: Int? = null,
     /** The kind of travel the user prefers for this leg (a TravelMode name), "ALL" to see every way, null = not asked yet. */
     val prefer: String? = null,
+    /** When the traveller wants to leave the place (minutes after midnight of [date]); null = not asked yet. */
+    val leaveAt: Int? = null,
+    /** The chosen local way for a short leg in or near town (walk, taxi, rail, a bus line…), see the rejoin screen's Way keys. */
+    val local: String? = null,
 )
 
 /** One way to get to or from a terminal, station, pier or airport by local transport. */

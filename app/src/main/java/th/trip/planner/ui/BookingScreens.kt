@@ -256,7 +256,7 @@ fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
     val repo = vm.repo
     LaunchedEffect(Unit) { vm.ensureLegs() }
     val n = TripLogic.legCount(trip)
-    val ready = trip.legs.size == n && trip.legs.all { it.mode != null }
+    val ready = trip.legs.size == n && trip.legs.all { it.mode != null && it.leaveAt != null }
     Page(
         tr("3. วางแผนการเดินทาง", "3. Plan your transport"), nav, step = 3,
         bottom = { NextButton(tr("สรุปแผนการเดินทาง", "Summarise the plan"), enabled = ready) { nav.navigate(Routes.SUMMARY) } },
@@ -282,17 +282,49 @@ fun TransportScreen(vm: TripViewModel, nav: NavHostController) {
                             val km = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
                             Text(tr("ระยะทางตรงราว ${km.toInt()} กม.", "About ${km.toInt()} km in a straight line"), fontSize = 12.sp, color = Color.Gray)
                             val date = TripLogic.legDate(trip, i)
-                            if (date != null) Row(verticalAlignment = Alignment.CenterVertically) {
-                                Text(tr("วันเดินทาง: ", "Travel day: ") + fmt(date, thai), fontSize = 13.sp, modifier = Modifier.weight(1f))
-                                TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.minusDays(1).toString())) }) { Text("−1") }
-                                TextButton(onClick = { vm.setLeg(i, leg.copy(date = date.plusDays(1).toString())) }) { Text("+1") }
-                            }
+                            LeaveWhen(leg, date, from.name.get(thai)) { vm.setLeg(i, it) }
                             TravelOptions(vm, leg, { vm.setLeg(i, it) }, from, to, trip.lodgings[from.id], trip.lodgings[to.id], date)
                         }
                     }
                 }
             }
             item { Spacer(Modifier.height(24.dp)) }
+        }
+    }
+}
+
+/** Asks when the traveller will leave a place: the day, and the time (quick picks or a clock). */
+@Composable
+private fun LeaveWhen(leg: Leg, date: LocalDate?, fromName: String, onChange: (Leg) -> Unit) {
+    val thai = LocalThai.current
+    val ctx = LocalContext.current
+    Column(
+        Modifier.fillMaxWidth().padding(top = 8.dp).clip(RoundedCornerShape(10.dp))
+            .background(if (leg.leaveAt == null) Color(0xFFFFF3E0) else Color(0xFFF1F7FF)).padding(10.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        Text(tr("จะออกจาก$fromName วันไหน เวลาเท่าไร?", "When will you leave $fromName?"), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+        if (date != null) Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(tr("วันที่ ", "Day: ") + fmt(date, thai), fontSize = 13.sp, modifier = Modifier.weight(1f))
+            TextButton(onClick = {
+                android.app.DatePickerDialog(ctx, { _, y, m, d -> onChange(leg.copy(date = LocalDate.of(y, m + 1, d).toString(), depart = null)) }, date.year, date.monthValue - 1, date.dayOfMonth).show()
+            }) { Text(tr("เปลี่ยนวัน", "Change"), fontSize = 12.sp) }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            val t = leg.leaveAt
+            Text(
+                if (t == null) tr("ยังไม่ได้เลือกเวลาออก", "No time picked yet") else tr("เวลาออก ", "Leave at ") + th.trip.planner.logic.Itinerary.formatTime(t),
+                fontSize = 13.sp, color = if (t == null) Coral else Color.Black, fontWeight = if (t != null) FontWeight.SemiBold else null, modifier = Modifier.weight(1f),
+            )
+            TextButton(onClick = {
+                val cur = t ?: (9 * 60)
+                android.app.TimePickerDialog(ctx, { _, h, m -> onChange(leg.copy(leaveAt = h * 60 + m, depart = null)) }, cur / 60, cur % 60, true).show()
+            }) { Text(tr("เลือกเวลาเอง", "Pick a time"), fontSize = 12.sp) }
+        }
+        androidx.compose.foundation.layout.FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            listOf(7, 9, 12, 15, 18).forEach { h ->
+                androidx.compose.material3.FilterChip(selected = leg.leaveAt == h * 60, onClick = { onChange(leg.copy(leaveAt = h * 60, depart = null)) }, label = { Text("%02d:00".format(h), fontSize = 12.sp) })
+            }
         }
     }
 }
@@ -366,10 +398,11 @@ fun SummaryScreen(vm: TripViewModel, nav: NavHostController) {
                     val mode = leg.mode
                     Card(Modifier.fillMaxWidth().padding(start = 24.dp), colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F7FF))) {
                         Column(Modifier.padding(12.dp)) {
-                            Text((mode?.let { modeLabel(it, thai) } ?: tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")) + (date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
-                            if (leg.plan != null && fromPlace != null && toPlace != null) ChosenPlanSummary(vm, leg, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
+                            Text(legTitle(leg, thai) + (date?.let { " · " + fmt(it, thai) } ?: "") + (leg.leaveAt?.let { tr(" · ออก ", " · leave ") + th.trip.planner.logic.Itinerary.formatTime(it) } ?: ""), fontWeight = FontWeight.SemiBold)
+                            if (leg.local != null && fromPlace != null && toPlace != null) LocalWaySummary(vm, leg, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
+                            else if (leg.plan != null && fromPlace != null && toPlace != null) ChosenPlanSummary(vm, leg, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
                             else if (mode != null && fromPlace != null && toPlace != null) LegDetails(vm, mode, fromPlace, toPlace, trip.lodgings[fromPlace.id], trip.lodgings[toPlace.id], date)
-                            if (leg.plan == null && mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
+                            if (leg.plan == null && leg.local == null && mode != null) bookingHelp(mode, fromName, toName, date, fromPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, toPlace?.let { TripLogic.hubsFor(it, repo.hubs).firstOrNull { h -> h.type == HubType.PIER } }, fromLL, toLL, thai).forEach { h ->
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Text("• ${h.label}", fontSize = 13.sp, modifier = Modifier.weight(1f))
                                     if (h.url != null) TextButton(onClick = { open(ctx, h.url) }) { Text(tr("เปิด", "Open")) }

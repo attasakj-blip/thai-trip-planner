@@ -56,6 +56,9 @@ object Itinerary {
 
     // ------------------------------------------------------------------ tunables
 
+    /** Legs shorter than this (straight line, same land) are planned with local transport. */
+    const val LOCAL_KM = 30.0
+
     /** Minutes to be at the station before departure. */
     fun buffer(mode: TravelMode) = when (mode) {
         TravelMode.FLIGHT -> 90
@@ -220,7 +223,10 @@ object Itinerary {
         // Door to door by car / ride-hailing when there's a road.
         val directKm = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
         val sameGround = from.islandGroup == to.islandGroup && (from.islandGroup != null || (!from.island && !to.island) || directKm <= 10)
-        if (sameGround && directKm <= 1000 && (require == null || require == TravelMode.CAR)) keep(Journey(listOf(Step.Ground(null, null, directKm, earliest + 180, earliest + 180 + groundMinutes(directKm)))))
+        if (sameGround && directKm <= 1000 && (require == null || require == TravelMode.CAR)) keep(Journey(listOf(Step.Ground(null, null, directKm, earliest, earliest + groundMinutes(directKm)))))
+        // Short hops in or near town: intercity coaches, trains and flights only mean long detours
+        // through big terminals. Local buses, rail and taxis are planned separately.
+        if (sameGround && directKm < LOCAL_KM) return found.values.map { Option(listOf(it)) }
 
         // Different searches give different kinds of answers: by start time and with / without flying.
         val modeSets = when (require) {
@@ -424,7 +430,7 @@ object Itinerary {
         val a = j.steps[anchor] as Step.Ride
         val tt = byId[a.route.id] ?: return emptyList()
         val out = tt.runs.indices.mapNotNull { run -> follow(j, byId, anchor, run) }
-            .filter { it.depart >= earliest - 60 && it.depart < earliest + 1440 }
+            .filter { it.depart >= earliest - 15 && it.depart < earliest + 1440 }
         return out.groupBy { it.arrive }.values.map { g -> g.maxBy { it.depart } }.sortedBy { it.depart }.let { list ->
             // Spread the choices over the day when there are many.
             if (list.size <= max) list else {

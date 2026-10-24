@@ -179,7 +179,7 @@ internal sealed class Way {
     }
 }
 
-private fun wayTitle(w: Way): String = when (w) {
+internal fun wayTitle(w: Way): String = when (w) {
     is Way.Taxi -> tr("🚕 แท็กซี่ / เรียกรถ (Grab, Bolt, LINE MAN)", "🚕 Taxi / ride-hailing (Grab, Bolt, LINE MAN)")
     is Way.Walk -> tr("🚶 เดินไป", "🚶 Walk")
     is Way.Rail -> w.plan.rides.joinToString(" → ") { "🚆 " + it.line.name.get(I18n.thai) }
@@ -188,28 +188,36 @@ private fun wayTitle(w: Way): String = when (w) {
 }
 
 /** Up to four quickest ways from ([lat], [lon]) to [to], leaving at minute [nowMin] of [date]. */
-private suspend fun findWays(vm: TripViewModel, lat: Double, lon: Double, to: JoinPoint, date: LocalDate, nowMin: Int, thai: Boolean): List<Way> {
-    val km = TripLogic.distanceKm(lat, lon, to.end.lat, to.end.lon)
-    val from = gpsPoint(vm, lat, lon)
-    val target = to.point
+private suspend fun findWays(vm: TripViewModel, lat: Double, lon: Double, to: JoinPoint, date: LocalDate, nowMin: Int, thai: Boolean): List<Way> =
+    waysBetween(vm, gpsPoint(vm, lat, lon), to.point, to.end, date, nowMin, thai).take(4)
+
+/**
+ * Every practical way between two points, quickest first: walking, taxi, Bangkok rail, local
+ * buses / songthaews / boats (OpenStreetMap), and timetabled services for longer trips.
+ */
+internal suspend fun waysBetween(vm: TripViewModel, from: Itinerary.Point, target: Itinerary.Point, to: End, date: LocalDate, nowMin: Int, thai: Boolean): List<Way> {
+    val lat = from.lat; val lon = from.lon
+    val km = TripLogic.distanceKm(lat, lon, to.lat, to.lon)
     val sameLand = from.islandGroup == target.islandGroup && (from.islandGroup != null || (!from.island && !target.island) || km <= 10)
     val out = ArrayList<Way>()
     if (km <= 2.5) out += Way.Walk(km * 1.25, (km * 1.25 * 13).roundToInt().coerceAtLeast(2))
     if (sameLand && km > 0.4) {
-        val drive = vm.remote.drive(lat, lon, to.end.lat, to.end.lon).getOrNull()
+        val drive = vm.remote.drive(lat, lon, to.lat, to.lon).getOrNull()
         // A few minutes for the car to come.
         out += Way.Taxi(drive?.first ?: km * 1.3, (drive?.second ?: Itinerary.groundMinutes(km)) + 6)
     }
-    if (km > 1.2) withContext(Dispatchers.Default) { RailPlanner.plan(vm.repo.rail, lat, lon, to.end.lat, to.end.lon) }?.let { out += Way.Rail(it) }
-    if (km in 0.8..40.0) vm.remote.transitLines(lat, lon, to.end.lat, to.end.lon, thai).getOrNull()?.let { lines ->
-        TransitPlanner.plan(lines, lat, lon, to.end.lat, to.end.lon, limit = 6).forEach { out += Way.Bus(it) }
+    if (km > 1.2) withContext(Dispatchers.Default) { RailPlanner.plan(vm.repo.rail, lat, lon, to.lat, to.lon) }?.let { out += Way.Rail(it) }
+    if (km in 0.8..40.0) vm.remote.transitLines(lat, lon, to.lat, to.lon, thai).getOrNull()?.let { lines ->
+        TransitPlanner.plan(lines, lat, lon, to.lat, to.lon, limit = 6).forEach { out += Way.Bus(it) }
     }
     if (km > 8) withContext(Dispatchers.Default) {
         Itinerary.options(from, target, date, vm.repo.hubs, vm.repo.routes, earliest = nowMin, maxOptions = 6)
     }.forEach { o ->
         o.journeys.filter { it.rides.isNotEmpty() && it.depart >= nowMin - 5 }.minByOrNull { it.arrive }?.let { out += Way.Scheduled(it, nowMin) }
     }
-    return out.distinctBy { it.key }.sortedBy { it.minutes }.take(4)
+    // A bus that takes much longer than walking the same short way isn't worth it.
+    val walk = out.firstOrNull { it is Way.Walk }?.minutes
+    return out.distinctBy { it.key }.filter { walk == null || it is Way.Walk || it.minutes < walk }.sortedBy { it.minutes }
 }
 
 // ---------------------------------------------------------------- GPS
@@ -523,7 +531,7 @@ private fun RestOfTrip(vm: TripViewModel, trip: Trip, r: Rejoin.Result, saved: R
                 val leg = newTrip.legs.getOrNull(e.index) ?: return@forEach
                 Card(Modifier.fillMaxWidth().padding(start = 20.dp), colors = CardDefaults.cardColors(containerColor = if (e.changed) Color(0xFFFFF3E0) else Color(0xFFF1F7FF))) {
                     Column(Modifier.padding(12.dp)) {
-                        Text((leg.mode?.let { modeLabel(it, thai) } ?: tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")) + (e.date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
+                        Text(legTitle(leg, thai) + (e.date?.let { " · " + fmt(it, thai) } ?: ""), fontWeight = FontWeight.SemiBold)
                         when {
                             e.noConnection -> Text(tr("ไม่พบรอบที่ต่อได้ ต้องเลือกการเดินทางช่วงนี้ใหม่", "No connection found; pick this leg's transport again."), color = Coral, fontSize = 13.sp)
                             e.journey != null && e.depart != null && e.arrive != null ->
@@ -536,7 +544,8 @@ private fun RestOfTrip(vm: TripViewModel, trip: Trip, r: Rejoin.Result, saved: R
                             Text((if (open) "▾ " else "▸ ") + tr("รายละเอียดการเดินทาง", "Travel details"), fontSize = 12.sp)
                         }
                         if (open) {
-                            if (leg.plan != null) ChosenPlanSummary(vm, leg, from, to, newTrip.lodgings[from.id], newTrip.lodgings[to.id], e.date)
+                            if (leg.local != null) LocalWaySummary(vm, leg, from, to, newTrip.lodgings[from.id], newTrip.lodgings[to.id], e.date)
+                            else if (leg.plan != null) ChosenPlanSummary(vm, leg, from, to, newTrip.lodgings[from.id], newTrip.lodgings[to.id], e.date)
                             else leg.mode?.let { LegDetails(vm, it, from, to, newTrip.lodgings[from.id], newTrip.lodgings[to.id], e.date) }
                         }
                     }
@@ -550,7 +559,7 @@ private fun RestOfTrip(vm: TripViewModel, trip: Trip, r: Rejoin.Result, saved: R
 // ---------------------------------------------------------------- Step-by-step details of a way
 
 @Composable
-private fun WayDetails(vm: TripViewModel, w: Way, a: End, b: End) {
+internal fun WayDetails(vm: TripViewModel, w: Way, a: End, b: End) {
     val ctx = LocalContext.current
     Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color(0xFFF7FAFF)).padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         when (w) {

@@ -110,7 +110,7 @@ internal fun Loading() = Row(verticalAlignment = Alignment.CenterVertically) {
 
 /** Where the leg really starts and ends: the stays, when we know (or can find) where they are. */
 @Composable
-private fun rememberEnds(vm: TripViewModel, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?): Pair<End, End>? {
+internal fun rememberEnds(vm: TripViewModel, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?): Pair<End, End>? {
     val thai = LocalThai.current
     val ends by produceState<Pair<End, End>?>(null, from.id, to.id, fromStay, toStay) {
         suspend fun end(p: Place, stay: Lodging?): End {
@@ -424,22 +424,28 @@ fun TravelOptions(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (
     val day = date ?: LocalDate.now()
     val prefer = leg.prefer?.let { p -> TravelMode.entries.firstOrNull { it.name == p } }
     fun points(e: Pair<End, End>) = Itinerary.Point(e.first.lat, e.first.lon, from.island, from.islandGroup) to Itinerary.Point(e.second.lat, e.second.lon, to.island, to.islandGroup)
-    val options by produceState<List<Itinerary.Option>?>(null, ends, day) {
+    val earliest = leg.leaveAt ?: (5 * 60)
+    val options by produceState<List<Itinerary.Option>?>(null, ends, day, earliest) {
         val e = ends ?: return@produceState
         val (pa, pb) = points(e)
-        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) { Itinerary.options(pa, pb, day, vm.repo.hubs, vm.repo.routes) }
+        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) { Itinerary.options(pa, pb, day, vm.repo.hubs, vm.repo.routes, earliest = earliest) }
     }
     // Ways built around the kind of travel the user prefers, connected all the way.
-    val preferred by produceState<List<Itinerary.Option>?>(null, ends, day, prefer) {
+    val preferred by produceState<List<Itinerary.Option>?>(null, ends, day, prefer, earliest) {
         val e = ends ?: return@produceState
         if (prefer == null) { value = null; return@produceState }
         value = null
         val (pa, pb) = points(e)
-        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) { Itinerary.options(pa, pb, day, vm.repo.hubs, vm.repo.routes, require = prefer) }
+        value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) { Itinerary.options(pa, pb, day, vm.repo.hubs, vm.repo.routes, earliest = earliest, require = prefer) }
     }
     Column(Modifier.fillMaxWidth().padding(top = 8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(tr("ทางเลือกในการเดินทาง", "Ways to travel"), fontWeight = FontWeight.Bold, fontSize = 15.sp)
+        if (leg.leaveAt == null) {
+            Line(tr("เลือกเวลาที่จะออกจาก${from.name.th}ด้านบนก่อน แล้วแอปจะหาเส้นทางที่ออกได้หลังเวลานั้น", "Pick when you'll leave ${from.name.en} above first; the app then finds ways leaving after that time."), Coral)
+            return@Column
+        }
         val e = ends
+        if (e != null && isLocalLeg(from, to)) { LocalOptions(vm, leg, onChange, from, to, e.first, e.second, day); return@Column }
         val all = options
         if (e == null || all == null) { Loading(); return@Column }
         val (a, b) = e
@@ -752,13 +758,13 @@ fun ChosenPlanSummary(vm: TripViewModel, leg: th.trip.planner.model.Leg, from: P
     val ctx = LocalContext.current
     val ends = rememberEnds(vm, from, to, fromStay, toStay)
     val day = date ?: LocalDate.now()
-    val journey by produceState<Itinerary.Journey?>(null, ends, day, leg.plan, leg.depart) {
+    val journey by produceState<Itinerary.Journey?>(null, ends, day, leg.plan, leg.depart, leg.leaveAt) {
         val e = ends ?: return@produceState
         value = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.Default) {
             Itinerary.options(
                 Itinerary.Point(e.first.lat, e.first.lon, from.island, from.islandGroup),
                 Itinerary.Point(e.second.lat, e.second.lon, to.island, to.islandGroup),
-                day, vm.repo.hubs, vm.repo.routes,
+                day, vm.repo.hubs, vm.repo.routes, earliest = leg.leaveAt ?: (5 * 60),
             ).firstOrNull { it.signature == leg.plan }?.let { o -> o.journeys.firstOrNull { it.depart == leg.depart } ?: o.first }
         }
     }
@@ -772,6 +778,103 @@ fun ChosenPlanSummary(vm: TripViewModel, leg: th.trip.planner.model.Leg, from: P
         } else {
             Line(tr("ออก ", "Leave ") + Itinerary.formatTime(j.depart) + tr(" ถึง ", ", arrive ") + timeText(j.arrive) + " · " + durationText(j.minutes), Color.Black, bold = true)
             JourneySteps(vm, j, a, b)
+        }
+    }
+}
+
+// ---------------------------------------------------------------- Short legs in or near town
+
+/** A short hop on the same land: planned with walking, taxis, local buses, rail and boats, not intercity services. */
+fun isLocalLeg(from: Place, to: Place): Boolean {
+    val km = TripLogic.distanceKm(from.lat, from.lon, to.lat, to.lon)
+    val sameLand = from.islandGroup == to.islandGroup && (from.islandGroup != null || (!from.island && !to.island) || km <= 10)
+    return sameLand && km < Itinerary.LOCAL_KM
+}
+
+/** The trip's travel mode that best describes a local way. */
+internal fun modeOf(w: Way): TravelMode = when (w) {
+    is Way.Taxi, is Way.Walk -> TravelMode.CAR
+    is Way.Rail -> TravelMode.TRAIN
+    is Way.Bus -> when {
+        w.plan.rides.any { it.line.kind == TransitKind.BOAT } -> TravelMode.BOAT
+        w.plan.rides.all { it.line.kind == TransitKind.METRO || it.line.kind == TransitKind.TRAIN } -> TravelMode.TRAIN
+        else -> TravelMode.BUS
+    }
+    is Way.Scheduled -> w.journey.mainMode
+}
+
+/** Title of a leg in lists: the local way when one was picked, else the travel mode. */
+fun legTitle(leg: th.trip.planner.model.Leg, thai: Boolean): String = when {
+    leg.local == "walk" -> tr("🚶 เดิน", "🚶 Walk")
+    leg.local == "taxi" -> tr("🚕 แท็กซี่ / เรียกรถ", "🚕 Taxi / ride-hailing")
+    leg.mode != null -> modeLabel(leg.mode, thai)
+    else -> tr("ยังไม่เลือกวิธีเดินทาง", "No transport chosen")
+}
+
+private fun localPoints(from: Place, to: Place, a: End, b: End) =
+    Itinerary.Point(a.lat, a.lon, from.island, from.islandGroup) to Itinerary.Point(b.lat, b.lon, to.island, to.islandGroup)
+
+/** Ways for a short leg, quickest first, each with every step (walk to which stop, which line, where to get off). */
+@Composable
+private fun LocalOptions(vm: TripViewModel, leg: th.trip.planner.model.Leg, onChange: (th.trip.planner.model.Leg) -> Unit, from: Place, to: Place, a: End, b: End, day: LocalDate) {
+    val thai = LocalThai.current
+    val ctx = LocalContext.current
+    val start = leg.leaveAt ?: (9 * 60)
+    val ways by produceState<List<Way>?>(null, a, b, day, start, thai) {
+        val (pa, pb) = localPoints(from, to, a, b)
+        value = runCatching { waysBetween(vm, pa, pb, b, day, start, thai) }.getOrDefault(emptyList())
+    }
+    Line(tr("สองที่นี้อยู่ใกล้กัน (ราว ${kmText(roadKm(a.lat, a.lon, b.lat, b.lon))}) แอปจึงหาเฉพาะการเดินทางในเมือง เร็วที่สุดก่อน", "These two are close (about ${kmText(roadKm(a.lat, a.lon, b.lat, b.lon))}), so the app looks for local ways, quickest first."), size = 12)
+    val ws = ways
+    when {
+        ws == null -> Loading()
+        ws.isEmpty() -> Line(tr("ไม่พบวิธีเดินทางในข้อมูลของแอป ลองดูใน Google Maps", "No way found in the app's data; try Google Maps."), Coral)
+        else -> ws.take(6).forEach { w ->
+            val selected = leg.local == w.key
+            fun pick() = onChange(leg.copy(mode = modeOf(w), plan = null, depart = null, local = w.key))
+            androidx.compose.material3.Card(
+                Modifier.fillMaxWidth().clickable { if (!selected) pick() },
+                colors = androidx.compose.material3.CardDefaults.cardColors(containerColor = if (selected) Color(0xFFE3F4EF) else Color(0xFFF6F8FB)),
+            ) {
+                Column(Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        androidx.compose.material3.RadioButton(selected = selected, onClick = { pick() })
+                        Column(Modifier.weight(1f)) {
+                            Text(wayTitle(w), fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+                            Line(tr("ราว ${durationText(w.minutes)} · ออก ${Itinerary.formatTime(start)} ถึงประมาณ ${timeText(start + w.minutes)}", "About ${durationText(w.minutes)} · leave ${Itinerary.formatTime(start)}, arrive around ${timeText(start + w.minutes)}"), Teal, size = 12)
+                        }
+                    }
+                    if (selected) { HorizontalDivider(); WayDetails(vm, w, a, b) }
+                }
+            }
+        }
+    }
+    OutlinedButton(onClick = { open(ctx, transitUrl(a, b)) }) { Text(tr("เทียบกับเส้นทางใน Google Maps", "Compare with Google Maps"), fontSize = 12.sp) }
+}
+
+/** The local way picked for a short leg, step by step (for the trip summary). */
+@Composable
+fun LocalWaySummary(vm: TripViewModel, leg: th.trip.planner.model.Leg, from: Place, to: Place, fromStay: Lodging?, toStay: Lodging?, date: LocalDate?) {
+    val thai = LocalThai.current
+    val ends = rememberEnds(vm, from, to, fromStay, toStay)
+    val day = date ?: LocalDate.now()
+    val start = leg.leaveAt ?: (9 * 60)
+    val found by produceState<Pair<Boolean, Way?>>(false to null, ends, day, start, leg.local, thai) {
+        val e = ends ?: return@produceState
+        val (pa, pb) = localPoints(from, to, e.first, e.second)
+        value = true to runCatching { waysBetween(vm, pa, pb, e.second, day, start, thai) }.getOrDefault(emptyList()).firstOrNull { it.key == leg.local }
+    }
+    val e = ends ?: run { Loading(); return }
+    if (!found.first) { Loading(); return }
+    val w = found.second
+    Column(Modifier.fillMaxWidth().padding(top = 6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        if (w == null) {
+            // The same way isn't found any more (bus data changed): show the general details for the mode.
+            leg.mode?.let { LegDetails(vm, it, from, to, fromStay, toStay, date) }
+        } else {
+            Line(wayTitle(w), Color.Black, bold = true)
+            Line(tr("ออก ", "Leave ") + Itinerary.formatTime(start) + tr(" ถึงประมาณ ", ", arrive around ") + timeText(start + w.minutes) + " · " + durationText(w.minutes), Teal, bold = true)
+            WayDetails(vm, w, e.first, e.second)
         }
     }
 }

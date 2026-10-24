@@ -89,4 +89,11 @@ class RejoinTest {
         assertEquals(d4, last.date)
         assertTrue(last.depart!! >= d4.atTime(20, 0))
     }
+
+    @Test fun shortHopsNeverUseIntercityServices() {
+        // 1.5 km apart, both near bus terminal A: no coach trips, only door to door.
+        val opts = Itinerary.options(Itinerary.Point(13.0, 100.0), Itinerary.Point(13.012, 100.008), d2, hubs, routes)
+        assertTrue(opts.all { it.first.rides.isEmpty() })
+        assertTrue(Itinerary.options(Itinerary.Point(13.0, 100.0), Itinerary.Point(13.012, 100.008), d2, hubs, routes, require = TravelMode.BUS).isEmpty())
+    }
 }
