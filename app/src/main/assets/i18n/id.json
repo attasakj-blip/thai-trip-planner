@@ -559,5 +559,18 @@
   "no. {0}": "no. {0}",
   "   Ride {0} stops, get off at ": "   Naik {0} halte, turun di ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "Jalur dan halte berasal dari OpenStreetMap dan mungkin tidak lengkap; tanyakan ke pengemudi sebelum naik.",
-  "{0} Catch the {1} {2} at {3}": "{0} Naik {1} {2} di {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} Naik {1} {2} di {3}",
+  "When will you leave {0}?": "Kapan Anda berangkat dari {0}?",
+  "Day: ": "Hari: ",
+  "Change": "Ubah",
+  "No time picked yet": "Belum ada waktu yang dipilih",
+  "Leave at ": "Berangkat pukul ",
+  "Pick a time": "Pilih waktu",
+  " · leave ": " · berangkat ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "Pilih dulu kapan Anda berangkat dari {0} di atas; lalu aplikasi akan mencari rute yang berangkat setelah waktu itu.",
+  "🚕 Taxi / ride-hailing": "🚕 Taksi / ojek online",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "Kedua tempat ini dekat (sekitar {0}), jadi aplikasi mencari cara lokal, yang tercepat dulu.",
+  "No way found in the app's data; try Google Maps.": "Tidak ada rute di data aplikasi; coba Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "Sekitar {0} · berangkat {1}, tiba sekitar {2}",
+  ", arrive around ": ", tiba sekitar "
 }

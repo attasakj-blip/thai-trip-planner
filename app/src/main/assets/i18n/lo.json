@@ -559,5 +559,18 @@
   "no. {0}": "ເລກ {0}",
   "   Ride {0} stops, get off at ": "   ນັ່ງ {0} ປ້າຍ, ລົງທີ່ ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "ສາຍລົດ ແລະ ປ້າຍຢຸດມາຈາກ OpenStreetMap ແລະ ອາດບໍ່ຄົບຖ້ວນ; ກະລຸນາຖາມຄົນຂັບກ່ອນຂຶ້ນ.",
-  "{0} Catch the {1} {2} at {3}": "{0} ຂຶ້ນ {1} {2} ທີ່ {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} ຂຶ້ນ {1} {2} ທີ່ {3}",
+  "When will you leave {0}?": "ທ່ານຈະອອກຈາກ {0} ເວລາໃດ?",
+  "Day: ": "ມື້: ",
+  "Change": "ປ່ຽນ",
+  "No time picked yet": "ຍັງບໍ່ໄດ້ເລືອກເວລາ",
+  "Leave at ": "ອອກເວລາ ",
+  "Pick a time": "ເລືອກເວລາ",
+  " · leave ": " · ອອກ ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "ກະລຸນາເລືອກເວລາອອກຈາກ {0} ຂ້າງເທິງກ່ອນ; ແລ້ວແອັບຈະຊອກຫາວິທີເດີນທາງທີ່ອອກຫຼັງເວລານັ້ນ.",
+  "🚕 Taxi / ride-hailing": "🚕 ແທັກຊີ / ເອີ້ນລົດ",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "ສອງບ່ອນນີ້ຢູ່ໃກ້ກັນ (ປະມານ {0}), ແອັບຈຶ່ງຊອກຫາວິທີໃນທ້ອງຖິ່ນ, ໄວທີ່ສຸດກ່ອນ.",
+  "No way found in the app's data; try Google Maps.": "ບໍ່ພົບວິທີໃນຂໍ້ມູນຂອງແອັບ; ລອງໃຊ້ Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "ປະມານ {0} · ອອກ {1}, ຮອດປະມານ {2}",
+  ", arrive around ": ", ຮອດປະມານ "
 }

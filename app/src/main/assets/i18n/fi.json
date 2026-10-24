@@ -559,5 +559,18 @@
   "no. {0}": "nro {0}",
   "   Ride {0} stops, get off at ": "   Matkusta {0} pysäkkiä, jää pois pysäkillä ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "Linjat ja pysäkit tulevat OpenStreetMapista ja voivat olla puutteellisia; varmista kuljettajalta ennen kyytiin nousua.",
-  "{0} Catch the {1} {2} at {3}": "{0} Ota {1} {2} pysäkiltä {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} Ota {1} {2} pysäkiltä {3}",
+  "When will you leave {0}?": "Milloin lähdet paikasta {0}?",
+  "Day: ": "Päivä: ",
+  "Change": "Vaihda",
+  "No time picked yet": "Aikaa ei ole vielä valittu",
+  "Leave at ": "Lähtö klo ",
+  "Pick a time": "Valitse aika",
+  " · leave ": " · lähtö ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "Valitse ensin yllä, milloin lähdet paikasta {0}; sovellus etsii sitten sen jälkeen lähtevät yhteydet.",
+  "🚕 Taxi / ride-hailing": "🚕 Taksi / kyytipalvelu",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "Nämä kaksi ovat lähellä toisiaan (noin {0}), joten sovellus etsii paikallisia tapoja, nopein ensin.",
+  "No way found in the app's data; try Google Maps.": "Sovelluksen tiedoista ei löytynyt yhteyttä; kokeile Google Mapsia.",
+  "About {0} · leave {1}, arrive around {2}": "Noin {0} · lähtö {1}, perillä noin {2}",
+  ", arrive around ": ", perillä noin "
 }

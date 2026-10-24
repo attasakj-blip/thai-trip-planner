@@ -559,5 +559,18 @@
   "no. {0}": "{0}번",
   "   Ride {0} stops, get off at ": "   {0}개 정류장 이동, 하차: ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "노선과 정류장은 OpenStreetMap 데이터라 부정확할 수 있어요. 탑승 전에 기사님께 확인하세요.",
-  "{0} Catch the {1} {2} at {3}": "{0} {3}에서 {1} {2} 탑승"
+  "{0} Catch the {1} {2} at {3}": "{0} {3}에서 {1} {2} 탑승",
+  "When will you leave {0}?": "{0}에서 언제 출발하시나요?",
+  "Day: ": "날짜: ",
+  "Change": "변경",
+  "No time picked yet": "아직 시간을 선택하지 않았어요",
+  "Leave at ": "출발 시간: ",
+  "Pick a time": "시간 선택",
+  " · leave ": " · 출발 ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "먼저 위에서 {0}에서 출발할 시간을 선택하세요. 그러면 앱이 그 시간 이후 출발하는 방법을 찾아요.",
+  "🚕 Taxi / ride-hailing": "🚕 택시 / 호출 서비스",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "두 곳은 가까워서(약 {0}) 앱이 현지 교통수단을 빠른 순으로 찾아요.",
+  "No way found in the app's data; try Google Maps.": "앱 데이터에서 방법을 찾지 못했어요. Google Maps를 이용해 보세요.",
+  "About {0} · leave {1}, arrive around {2}": "약 {0} · {1} 출발, {2}경 도착",
+  ", arrive around ": ", 도착 시간 약 "
 }

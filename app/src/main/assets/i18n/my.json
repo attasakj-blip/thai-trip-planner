@@ -559,5 +559,18 @@
   "no. {0}": "အမှတ် {0}",
   "   Ride {0} stops, get off at ": "   မှတ်တိုင် {0} ခု စီးပြီး ဆင်းရန်: ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "လိုင်းများနှင့် မှတ်တိုင်များသည် OpenStreetMap မှ ဖြစ်ပြီး မပြည့်စုံနိုင်ပါ၊ မစီးမီ ယာဉ်မောင်းကို မေးပါ။",
-  "{0} Catch the {1} {2} at {3}": "{0} {3} တွင် {1} {2} စီးပါ"
+  "{0} Catch the {1} {2} at {3}": "{0} {3} တွင် {1} {2} စီးပါ",
+  "When will you leave {0}?": "{0} မှ ဘယ်အချိန်ထွက်မလဲ။",
+  "Day: ": "ရက်- ",
+  "Change": "ပြောင်းရန်",
+  "No time picked yet": "အချိန် မရွေးရသေးပါ",
+  "Leave at ": "ထွက်ချိန် ",
+  "Pick a time": "အချိန်ရွေးပါ",
+  " · leave ": " · ထွက်ချိန် ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "အပေါ်တွင် {0} မှ ထွက်မည့်အချိန်ကို အရင်ရွေးပါ။ ထို့နောက် အက်ပ်က ထိုအချိန်နောက်ပိုင်း ထွက်သော နည်းလမ်းများကို ရှာပေးပါမည်။",
+  "🚕 Taxi / ride-hailing": "🚕 တက္ကစီ / ကား‌ခေါ်ဝန်ဆောင်မှု",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "ဤနေရာနှစ်ခုသည် နီးကပ်သဖြင့် (ခန့်မှန်း {0}) အက်ပ်က ဒေသန္တရနည်းလမ်းများကို အမြန်ဆုံးမှစ၍ ရှာပေးပါသည်။",
+  "No way found in the app's data; try Google Maps.": "အက်ပ်ဒေတာတွင် နည်းလမ်း မတွေ့ပါ။ Google Maps ကို စမ်းကြည့်ပါ။",
+  "About {0} · leave {1}, arrive around {2}": "ခန့်မှန်း {0} · {1} ထွက်၊ {2} ခန့်ရောက်",
+  ", arrive around ": "၊ ရောက်ချိန်ခန့်မှန်း "
 }

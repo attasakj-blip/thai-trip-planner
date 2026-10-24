@@ -559,5 +559,18 @@
   "no. {0}": "n. {0}",
   "   Ride {0} stops, get off at ": "   Viaggia per {0} fermate, scendi a ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "Linee e fermate provengono da OpenStreetMap e potrebbero essere incomplete; chiedi all'autista prima di salire.",
-  "{0} Catch the {1} {2} at {3}": "{0} Prendi {1} {2} a {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} Prendi {1} {2} a {3}",
+  "When will you leave {0}?": "Quando lasci {0}?",
+  "Day: ": "Giorno: ",
+  "Change": "Cambia",
+  "No time picked yet": "Nessun orario scelto",
+  "Leave at ": "Partenza alle ",
+  "Pick a time": "Scegli un orario",
+  " · leave ": " · partenza ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "Scegli prima qui sopra quando lasci {0}; poi l'app cerca i mezzi in partenza dopo quell'orario.",
+  "🚕 Taxi / ride-hailing": "🚕 Taxi / app di trasporto",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "I due posti sono vicini (circa {0}), quindi l'app cerca opzioni locali, dalla più veloce.",
+  "No way found in the app's data; try Google Maps.": "Nessun mezzo trovato nei dati dell'app; prova Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "Circa {0} · partenza {1}, arrivo verso le {2}",
+  ", arrive around ": ", arrivo verso le "
 }

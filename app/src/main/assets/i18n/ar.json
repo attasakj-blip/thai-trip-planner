@@ -559,5 +559,18 @@
   "no. {0}": "رقم {0}",
   "   Ride {0} stops, get off at ": "   اركب {0} مواقف، وانزل عند ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "الخطوط والمواقف مأخوذة من OpenStreetMap وقد تكون ناقصة؛ اسأل السائق قبل الركوب.",
-  "{0} Catch the {1} {2} at {3}": "{0} استقل {1} {2} من {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} استقل {1} {2} من {3}",
+  "When will you leave {0}?": "متى ستغادر {0}؟",
+  "Day: ": "اليوم: ",
+  "Change": "تغيير",
+  "No time picked yet": "لم يتم اختيار وقت بعد",
+  "Leave at ": "المغادرة في ",
+  "Pick a time": "اختر وقتًا",
+  " · leave ": " · المغادرة ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "اختر أولاً وقت مغادرة {0} أعلاه؛ ثم يبحث التطبيق عن وسائل تغادر بعد ذلك الوقت.",
+  "🚕 Taxi / ride-hailing": "🚕 سيارة أجرة / تطبيق نقل",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "المكانان قريبان (حوالي {0})، لذا يبحث التطبيق عن وسائل محلية، الأسرع أولاً.",
+  "No way found in the app's data; try Google Maps.": "لم يتم العثور على وسيلة في بيانات التطبيق؛ جرّب Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "حوالي {0} · المغادرة {1}، الوصول حوالي {2}",
+  ", arrive around ": "، الوصول حوالي "
 }

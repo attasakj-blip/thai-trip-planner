@@ -559,5 +559,18 @@
   "no. {0}": "nr. {0}",
   "   Ride {0} stops, get off at ": "   Reis {0} stoppesteder, gå av ved ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "Linjer og stoppesteder kommer fra OpenStreetMap og kan være ufullstendige; sjekk med sjåføren før du går på.",
-  "{0} Catch the {1} {2} at {3}": "{0} Ta {1} {2} ved {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} Ta {1} {2} ved {3}",
+  "When will you leave {0}?": "Når drar du fra {0}?",
+  "Day: ": "Dag: ",
+  "Change": "Endre",
+  "No time picked yet": "Ingen tid valgt ennå",
+  "Leave at ": "Avreise kl. ",
+  "Pick a time": "Velg et tidspunkt",
+  " · leave ": " · avreise ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "Velg først ovenfor når du drar fra {0}; så finner appen ruter som går etter det tidspunktet.",
+  "🚕 Taxi / ride-hailing": "🚕 Drosje / samkjøringstjeneste",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "De to stedene ligger nær hverandre (ca. {0}), så appen ser etter lokale alternativer, raskeste først.",
+  "No way found in the app's data; try Google Maps.": "Fant ingen rute i appens data; prøv Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "Ca. {0} · avreise {1}, ankomst rundt {2}",
+  ", arrive around ": ", ankomst rundt "
 }

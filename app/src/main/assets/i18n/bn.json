@@ -559,5 +559,18 @@
   "no. {0}": "নং {0}",
   "   Ride {0} stops, get off at ": "   {0}টি স্টপ যান, নামুন: ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "লাইন ও স্টপের তথ্য OpenStreetMap থেকে নেওয়া এবং অসম্পূর্ণ হতে পারে; ওঠার আগে চালকের সাথে মিলিয়ে নিন।",
-  "{0} Catch the {1} {2} at {3}": "{0} {3}-এ {1} {2} ধরুন"
+  "{0} Catch the {1} {2} at {3}": "{0} {3}-এ {1} {2} ধরুন",
+  "When will you leave {0}?": "{0} থেকে কখন রওনা দেবেন?",
+  "Day: ": "দিন: ",
+  "Change": "পরিবর্তন",
+  "No time picked yet": "এখনও সময় বাছা হয়নি",
+  "Leave at ": "রওনা: ",
+  "Pick a time": "সময় বাছুন",
+  " · leave ": " · রওনা ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "আগে উপরে {0} থেকে কখন রওনা দেবেন তা বাছুন; তারপর অ্যাপ ওই সময়ের পরে ছাড়া উপায় খুঁজবে।",
+  "🚕 Taxi / ride-hailing": "🚕 ট্যাক্সি / রাইড-হেইলিং",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "এ দুটি কাছাকাছি (প্রায় {0}), তাই অ্যাপ স্থানীয় উপায় খুঁজছে, দ্রুততমটি আগে।",
+  "No way found in the app's data; try Google Maps.": "অ্যাপের ডেটায় কোনো উপায় পাওয়া যায়নি; Google Maps চেষ্টা করুন।",
+  "About {0} · leave {1}, arrive around {2}": "প্রায় {0} · রওনা {1}, পৌঁছাবেন প্রায় {2}",
+  ", arrive around ": ", পৌঁছাবেন প্রায় "
 }

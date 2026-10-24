@@ -559,5 +559,18 @@
   "no. {0}": "מס' {0}",
   "   Ride {0} stops, get off at ": "   נסעו {0} תחנות, רדו בתחנת ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "הקווים והתחנות מגיעים מ-OpenStreetMap ויכולים להיות חלקיים; בדקו עם הנהג לפני העלייה.",
-  "{0} Catch the {1} {2} at {3}": "{0} עלו על {1} {2} ב{3}"
+  "{0} Catch the {1} {2} at {3}": "{0} עלו על {1} {2} ב{3}",
+  "When will you leave {0}?": "מתי תעזבו את {0}?",
+  "Day: ": "יום: ",
+  "Change": "שינוי",
+  "No time picked yet": "עדיין לא נבחרה שעה",
+  "Leave at ": "יציאה ב-",
+  "Pick a time": "בחרו שעה",
+  " · leave ": " · יציאה ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "קודם בחרו למעלה מתי תעזבו את {0}; אחר כך האפליקציה תחפש דרכים שיוצאות אחרי השעה הזו.",
+  "🚕 Taxi / ride-hailing": "🚕 מונית / שירות הסעות",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "שני המקומות קרובים (בערך {0}), ולכן האפליקציה מחפשת דרכים מקומיות, מהמהירה ביותר.",
+  "No way found in the app's data; try Google Maps.": "לא נמצאה דרך בנתוני האפליקציה; נסו את Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "בערך {0} · יציאה {1}, הגעה בסביבות {2}",
+  ", arrive around ": ", הגעה בסביבות "
 }

@@ -559,5 +559,18 @@
   "no. {0}": "nr. {0}",
   "   Ride {0} stops, get off at ": "   Reis {0} haltes, stap uit bij ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "Lijnen en haltes komen van OpenStreetMap en kunnen onvolledig zijn; vraag het de chauffeur voordat je instapt.",
-  "{0} Catch the {1} {2} at {3}": "{0} Neem {1} {2} bij {3}"
+  "{0} Catch the {1} {2} at {3}": "{0} Neem {1} {2} bij {3}",
+  "When will you leave {0}?": "Wanneer vertrek je bij {0}?",
+  "Day: ": "Dag: ",
+  "Change": "Wijzigen",
+  "No time picked yet": "Nog geen tijd gekozen",
+  "Leave at ": "Vertrek om ",
+  "Pick a time": "Kies een tijd",
+  " · leave ": " · vertrek ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "Kies hierboven eerst wanneer je vertrekt bij {0}; daarna zoekt de app verbindingen die na die tijd vertrekken.",
+  "🚕 Taxi / ride-hailing": "🚕 Taxi / ritdienst",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "Deze twee plekken liggen dicht bij elkaar (ca. {0}), dus de app zoekt lokale opties, snelste eerst.",
+  "No way found in the app's data; try Google Maps.": "Geen verbinding gevonden in de gegevens van de app; probeer Google Maps.",
+  "About {0} · leave {1}, arrive around {2}": "Ca. {0} · vertrek {1}, aankomst rond {2}",
+  ", arrive around ": ", aankomst rond "
 }

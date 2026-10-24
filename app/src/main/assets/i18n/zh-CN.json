@@ -559,5 +559,18 @@
   "no. {0}": "{0} 号",
   "   Ride {0} stops, get off at ": "   乘坐 {0} 站，在 ",
   "Lines and stops come from OpenStreetMap and may be incomplete; check with the driver before boarding.": "线路和站点来自 OpenStreetMap，可能不完整；上车前请向司机确认。",
-  "{0} Catch the {1} {2} at {3}": "{0} 在{3}乘坐{1} {2}"
+  "{0} Catch the {1} {2} at {3}": "{0} 在{3}乘坐{1} {2}",
+  "When will you leave {0}?": "你什么时候离开{0}？",
+  "Day: ": "日期：",
+  "Change": "更改",
+  "No time picked yet": "尚未选择时间",
+  "Leave at ": "出发时间：",
+  "Pick a time": "选择时间",
+  " · leave ": " · 出发 ",
+  "Pick when you'll leave {0} above first; the app then finds ways leaving after that time.": "请先在上方选择离开{0}的时间；应用随后会查找该时间之后出发的方式。",
+  "🚕 Taxi / ride-hailing": "🚕 出租车 / 网约车",
+  "These two are close (about {0}), so the app looks for local ways, quickest first.": "这两处距离很近（约{0}），所以应用会查找本地出行方式，最快的排在前面。",
+  "No way found in the app's data; try Google Maps.": "应用数据中未找到出行方式；请试试 Google Maps。",
+  "About {0} · leave {1}, arrive around {2}": "约{0} · {1}出发，约{2}到达",
+  ", arrive around ": "，预计到达 "
 }
