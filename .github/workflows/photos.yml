@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: cd photos && time python3 place_photos.py places.json place_photos.json 2>&1 | tee photos_log.txt
+      - run: cd photos && time python3 place_photos.py places.json place_photos.json old.json --missing 2>&1 | tee photos_log.txt
       - run: |
           git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
           git add photos/place_photos.json photos/photos_log.txt; git commit -m "place photos"; git pull --rebase; git push

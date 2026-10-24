@@ -12,7 +12,7 @@ Sources, best first:
 Only JPEG photos with CC / public-domain / GFDL licences are kept; maps, logos, flags,
 panoramas and 360 images are skipped.
 
-usage: place_photos.py places.json out.json [old.json]
+usage: place_photos.py places.json out.json [old.json [--missing]]
 """
 import json, math, re, sys, time, html
 import urllib.parse, urllib.request
@@ -146,6 +146,40 @@ def wikidata_image(name, lang, lat, lon, limit_km):
     return files
 
 
+def variants(name):
+    """The name, the name without a bracketed part, and the bracketed part."""
+    if not name:
+        return []
+    out = [name]
+    m = re.match(r"^(.*?)\s*\((.*)\)\s*$", name)
+    if m:
+        out += [m.group(1), m.group(2)]
+    out += [x.strip() for x in re.split(r",", name)[:1]]
+    seen = set()
+    return [x for x in out if x and not (x in seen or seen.add(x))]
+
+
+def commons_search(name, lat, lon, limit_km, ws):
+    """Commons files found by name; kept when taken near the place, or when the name matches well."""
+    if not name:
+        return []
+    d = get("https://commons.wikimedia.org/w/api.php", {
+        "action": "query", "format": "json", "formatversion": "2", "generator": "search",
+        "gsrsearch": name, "gsrnamespace": "6", "gsrlimit": "20", "prop": "coordinates",
+    })
+    out = []
+    for p in sorted(d.get("query", {}).get("pages", []), key=lambda p: p.get("index", 99)):
+        t = p["title"]
+        c = (p.get("coordinates") or [None])[0]
+        hits = sum(1 for w in ws if w in t.lower())
+        if c:
+            if km(lat, lon, c["lat"], c["lon"]) <= limit_km:
+                out.append(t)
+        elif hits >= 2 or (name in t and len(name) >= 6):
+            out.append(t)
+    return out
+
+
 def words(name_en):
     stop = {"the", "of", "and", "national", "park", "temple", "wat", "beach", "island", "market", "museum", "mount", "ko", "koh", "khao", "ban"}
     return [w for w in re.findall(r"[a-z]{3,}", (name_en or "").lower()) if w not in stop]
@@ -163,7 +197,7 @@ def geo_files(lat, lon, radius, name_th, name_en):
         tl = t.lower()
         return any(w in tl for w in ws) or (core and core in t)
     named = [h["title"] for h in hits if match(h["title"])]
-    near = [h["title"] for h in hits if h["dist"] <= min(radius, 400) and h["title"] not in named]
+    near = [h["title"] for h in sorted(hits, key=lambda h: h["dist"]) if h["title"] not in named]
     return named, near
 
 
@@ -186,17 +220,31 @@ def photos_for(p):
 
     if p.get("wikiTitles"):
         add(article_images("en", p["wikiTitles"]))
-    if len(got) < MAX:
-        add(wikidata_image(th, "th", lat, lon, limit) or wikidata_image(en, "en", lat, lon, limit))
-    if len(got) < MAX:
-        add(article_images("th", search_articles("th", th, lat, lon, limit)))
-    if len(got) < MAX:
-        add(article_images("en", search_articles("en", en, lat, lon, limit)))
+    for n in variants(th)[:2]:
+        if len(got) < MAX:
+            add(wikidata_image(n, "th", lat, lon, limit))
+    for n in variants(en)[:2]:
+        if len(got) < MAX:
+            add(wikidata_image(n, "en", lat, lon, limit))
+    for n in variants(th):
+        if len(got) < MAX:
+            add(article_images("th", search_articles("th", n, lat, lon, limit)))
+    for n in variants(en):
+        if len(got) < MAX:
+            add(article_images("en", search_articles("en", n, lat, lon, limit)))
     if len(got) < 2:
-        named, near = geo_files(lat, lon, 3000 if big else 800, th, en)
+        named, near = geo_files(lat, lon, 3000 if big else 1000, th, en)
         add(named)
         if not got:
             add(near)
+    if not got:
+        ws = words(en)
+        for n in variants(en) + variants(th):
+            if not got:
+                add(commons_search(n, lat, lon, limit, ws))
+    if not got:
+        # Anything photographed close by, a bit further out.
+        add(geo_files(lat, lon, 5000 if big else 2000, th, en)[1] + geo_files(lat, lon, 5000 if big else 2000, th, en)[0])
     return got
 
 
@@ -210,6 +258,11 @@ def main():
             pass
     out = {}
 
+    only_missing = len(sys.argv) > 4 and sys.argv[4] == "--missing"
+    if only_missing:
+        places = [p for p in places if not old.get(p["id"])]
+        out.update({k: v for k, v in old.items() if v})
+
     def work(p):
         try:
             return p["id"], photos_for(p)
@@ -217,13 +270,13 @@ def main():
             print("error", p["id"], e, file=sys.stderr)
             return p["id"], old.get(p["id"], [])
 
-    with ThreadPoolExecutor(6) as ex:
+    with ThreadPoolExecutor(2 if only_missing else 6) as ex:
         for n, (pid, ph) in enumerate(ex.map(work, places), 1):
             out[pid] = ph or old.get(pid, [])
             if n % 100 == 0:
                 print(n, "places", sum(1 for v in out.values() if v), "with photos", flush=True)
     missing = [p["id"] for p in places if not out.get(p["id"])]
-    print("places", len(places), "with photos", len(places) - len(missing), "missing", len(missing))
+    print("places", len(places), "with photos", len(places) - len(missing), "missing", len(missing), "total with photos", sum(1 for v in out.values() if v))
     print("missing:", " ".join(missing))
     json.dump(out, open(sys.argv[2], "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 
