@@ -43,6 +43,10 @@ data class Place(
     val hubIds: List<String> = emptyList(),
 )
 
+/** A freely licensed photo of a place (Wikimedia Commons), with the credit the licence asks for. */
+@Serializable
+data class PlacePhoto(val url: String, val author: String = "", val license: String = "", val page: String = "")
+
 enum class HubType { AIRPORT, BUS, TRAIN, PIER }
 
 @Serializable

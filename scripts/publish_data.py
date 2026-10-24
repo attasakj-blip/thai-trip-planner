@@ -52,6 +52,8 @@ def main():
     routes = json.loads(routes_text).get("routes", [])
     access_text = (ASSETS / "access.json").read_text(encoding="utf-8")
     rail_text = (ASSETS / "rail.json").read_text(encoding="utf-8")
+    photos_path = ASSETS / "place_photos.json"
+    photos_text = photos_path.read_text(encoding="utf-8") if photos_path.exists() else "{}"
     access, rail = json.loads(access_text).get("access", {}), json.loads(rail_text).get("lines", [])
     places, hubs, flights = json.loads(places_text), json.loads(hubs_text), json.loads(flights_text)
     errors = check_places(places) + check_hubs(hubs)
@@ -95,7 +97,8 @@ def main():
     (OUT / "routes.json").write_text(routes_text, encoding="utf-8")
     (OUT / "access.json").write_text(access_text, encoding="utf-8")
     (OUT / "rail.json").write_text(rail_text, encoding="utf-8")
-    version = hashlib.sha256((places_text + hubs_text + flights_text + routes_text + access_text + rail_text).encode("utf-8")).hexdigest()[:16]
+    (OUT / "place_photos.json").write_text(photos_text, encoding="utf-8")
+    version = hashlib.sha256((places_text + hubs_text + flights_text + routes_text + access_text + rail_text + photos_text).encode("utf-8")).hexdigest()[:16]
     meta = {
         "version": version,
         "updatedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),

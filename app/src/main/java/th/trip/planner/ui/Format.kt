@@ -86,7 +86,9 @@ fun purposeLabel(p: GapPurpose, thai: Boolean) = when (p) {
 @Composable
 fun rememberPhotos(vm: TripViewModel, place: Place): List<Photo>? =
     produceState<List<Photo>?>(initialValue = null, place.id) {
-        value = vm.remote.photos(place.wikiTitles).getOrDefault(emptyList())
+        // Photos found ahead of time for every place first, then the ones in its Wikipedia articles.
+        val ready = vm.repo.placePhotos[place.id].orEmpty().map { Photo(it.url, it.author.ifBlank { "Wikimedia Commons" }, it.license, it.page) }
+        value = ready.ifEmpty { if (place.wikiTitles.isEmpty()) emptyList() else vm.remote.photos(place.wikiTitles).getOrDefault(emptyList()) }
     }.value
 
 /** A photo with its author and licence written on it, as the licence requires. */

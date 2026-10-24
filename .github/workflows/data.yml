@@ -12,6 +12,7 @@ on:
       - app/src/main/assets/routes.json
       - app/src/main/assets/access.json
       - app/src/main/assets/rail.json
+      - app/src/main/assets/place_photos.json
       - scripts/publish_data.py
       - scripts/build_pois.py
       - scripts/overture_extract.py

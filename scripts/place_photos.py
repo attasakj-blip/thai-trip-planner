@@ -12,7 +12,7 @@ Sources, best first:
 Only JPEG photos with CC / public-domain / GFDL licences are kept; maps, logos, flags,
 panoramas and 360 images are skipped.
 
-usage: place_photos.py places.json out.json [old.json]
+usage: place_photos.py places.json out.json [old.json [--missing]]
 """
 import json, math, re, sys, time, html
 import urllib.parse, urllib.request
@@ -20,7 +20,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 UA = "ThaiTripPlanner/1.0 (https://github.com/attasakj-blip/thai-trip-planner)"
 MAX = 4
-SKIP = re.compile(r"(?i)flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
+SKIP = re.compile(r"(?i)\bISS\d|view.of.earth|satellite|traffic|road.sign|_sign|hotel|condo|apartment|airplane|aircraft|bird|flowerpecker|bulbul|sunbird|warbler|butterfly|moth\b|insect|beetle|spider|frog|lizard|gecko|snake|orchid|flower|fungus|mushroom|portrait|selfie|wedding|flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
 
 
 def get(url, params, tries=4):
@@ -85,8 +85,9 @@ def infos(titles):
     return [out[t] for t in titles if t in out]
 
 
-def article_images(lang, titles):
-    """File titles used in Wikipedia articles, lead image first."""
+def article_images(lang, titles, ws=(), core=""):
+    """Images of Wikipedia articles: the lead image, then images whose file name matches the place
+    (other images in an article are often of something else: a map, a comparison, an animal)."""
     files = []
     for t in titles:
         d = get(f"https://{lang}.wikipedia.org/w/api.php", {
@@ -96,13 +97,18 @@ def article_images(lang, titles):
         for p in d.get("query", {}).get("pages", []):
             if p.get("pageimage"):
                 files.append("File:" + p["pageimage"])
-            files += [i["title"].replace("ไฟล์:", "File:") for i in p.get("images", [])]
+            for i in p.get("images", []):
+                f = re.sub(r"^[^:]+:", "File:", i["title"])
+                fl = f.lower()
+                if any(w in fl for w in ws) or (core and core in f):
+                    files.append(f)
     seen = set()
     return [f for f in files if not (f in seen or seen.add(f))]
 
 
-def search_articles(lang, name, lat, lon, limit_km):
-    """Wikipedia articles matching the name whose coordinates are within limit_km."""
+def search_articles(lang, name, lat, lon, limit_km, ws=(), core=""):
+    """Wikipedia articles matching the name whose coordinates are within limit_km and whose title
+    shares a word with the place name (a nearby district article is not a photo of the place)."""
     if not name:
         return []
     d = get(f"https://{lang}.wikipedia.org/w/api.php", {
@@ -113,6 +119,9 @@ def search_articles(lang, name, lat, lon, limit_km):
     for p in sorted(d.get("query", {}).get("pages", []), key=lambda p: p.get("index", 99)):
         c = (p.get("coordinates") or [None])[0]
         if not c or km(lat, lon, c["lat"], c["lon"]) > limit_km:
+            continue
+        tl = p["title"].lower()
+        if not (any(w in tl for w in ws) or (core and core in p["title"])):
             continue
         out.append(p["title"])
     return out[:2]
@@ -146,9 +155,48 @@ def wikidata_image(name, lang, lat, lon, limit_km):
     return files
 
 
+def variants(name):
+    """The name, the name without a bracketed part, and the bracketed part."""
+    if not name:
+        return []
+    out = [name]
+    m = re.match(r"^(.*?)\s*\((.*)\)\s*$", name)
+    if m:
+        out += [m.group(1), m.group(2)]
+    out += [x.strip() for x in re.split(r",", name)[:1]]
+    seen = set()
+    return [x for x in out if x and not (x in seen or seen.add(x))]
+
+
+def commons_search(name, lat, lon, limit_km, ws):
+    """Commons files found by name; kept when taken near the place, or when the name matches well."""
+    if not name:
+        return []
+    d = get("https://commons.wikimedia.org/w/api.php", {
+        "action": "query", "format": "json", "formatversion": "2", "generator": "search",
+        "gsrsearch": name, "gsrnamespace": "6", "gsrlimit": "20", "prop": "coordinates",
+    })
+    out = []
+    for p in sorted(d.get("query", {}).get("pages", []), key=lambda p: p.get("index", 99)):
+        t = p["title"]
+        c = (p.get("coordinates") or [None])[0]
+        hits = sum(1 for w in ws if w in t.lower())
+        if c:
+            if km(lat, lon, c["lat"], c["lon"]) <= limit_km:
+                out.append(t)
+        elif hits >= 2 or (name in t and len(name) >= 6):
+            out.append(t)
+    return out
+
+
 def words(name_en):
     stop = {"the", "of", "and", "national", "park", "temple", "wat", "beach", "island", "market", "museum", "mount", "ko", "koh", "khao", "ban"}
     return [w for w in re.findall(r"[a-z]{3,}", (name_en or "").lower()) if w not in stop]
+
+
+def thai_core(name_th):
+    n = re.sub(r"\s*\(.*\)\s*", "", name_th or "")
+    return re.sub(r"^(วัด|อุทยานแห่งชาติ|เกาะ|หาด|ตลาด|พิพิธภัณฑ์|ดอย|น้ำตก|ถ้ำ|เขา)", "", n)[:6]
 
 
 def geo_files(lat, lon, radius, name_th, name_en):
@@ -158,12 +206,12 @@ def geo_files(lat, lon, radius, name_th, name_en):
     })
     hits = d.get("query", {}).get("geosearch", [])
     ws = words(name_en)
-    core = re.sub(r"^(วัด|อุทยานแห่งชาติ|เกาะ|หาด|ตลาด|พิพิธภัณฑ์|ดอย|น้ำตก|ถ้ำ|เขา)", "", name_th or "")[:6]
+    core = thai_core(name_th)
     def match(t):
         tl = t.lower()
         return any(w in tl for w in ws) or (core and core in t)
     named = [h["title"] for h in hits if match(h["title"])]
-    near = [h["title"] for h in hits if h["dist"] <= min(radius, 400) and h["title"] not in named]
+    near = [h["title"] for h in sorted(hits, key=lambda h: h["dist"]) if h["dist"] <= 600 and h["title"] not in named]
     return named, near
 
 
@@ -184,19 +232,44 @@ def photos_for(p):
             got.append(ph)
         seen.update(files)
 
+    ws = words(en)
+    core = thai_core(th)
     if p.get("wikiTitles"):
-        add(article_images("en", p["wikiTitles"]))
-    if len(got) < MAX:
-        add(wikidata_image(th, "th", lat, lon, limit) or wikidata_image(en, "en", lat, lon, limit))
-    if len(got) < MAX:
-        add(article_images("th", search_articles("th", th, lat, lon, limit)))
-    if len(got) < MAX:
-        add(article_images("en", search_articles("en", en, lat, lon, limit)))
+        add(article_images("en", p["wikiTitles"], ws, core))
+    for n in variants(th)[:2]:
+        if len(got) < MAX:
+            add(wikidata_image(n, "th", lat, lon, limit))
+    for n in variants(en)[:2]:
+        if len(got) < MAX:
+            add(wikidata_image(n, "en", lat, lon, limit))
+    for n in variants(th):
+        if len(got) < MAX:
+            add(article_images("th", search_articles("th", n, lat, lon, limit, ws, core), ws, core))
+    for n in variants(en):
+        if len(got) < MAX:
+            add(article_images("en", search_articles("en", n, lat, lon, limit, ws, core), ws, core))
     if len(got) < 2:
-        named, near = geo_files(lat, lon, 3000 if big else 800, th, en)
+        named, near = geo_files(lat, lon, 3000 if big else 1000, th, en)
         add(named)
         if not got:
             add(near)
+    if not got:
+        for n in variants(en) + variants(th):
+            if not got:
+                add(commons_search(n, lat, lon, limit, ws))
+    if not got:
+        # Anything photographed close by, a bit further out.
+        named, near = geo_files(lat, lon, 5000 if big else 2000, th, en)
+        add(named)
+        if not got:
+            add([t for t in near[:15]])
+    if not got:
+        # Last resort: a photo of the surroundings (1.5 km).
+        d = get("https://commons.wikimedia.org/w/api.php", {
+            "action": "query", "format": "json", "formatversion": "2", "list": "geosearch",
+            "gscoord": f"{lat}|{lon}", "gsradius": "1500", "gsnamespace": "6", "gslimit": "30",
+        })
+        add([h["title"] for h in sorted(d.get("query", {}).get("geosearch", []), key=lambda h: h["dist"])])
     return got
 
 
@@ -210,6 +283,11 @@ def main():
             pass
     out = {}
 
+    only_missing = len(sys.argv) > 4 and sys.argv[4] == "--missing"
+    if only_missing:
+        places = [p for p in places if not old.get(p["id"])]
+        out.update({k: v for k, v in old.items() if v})
+
     def work(p):
         try:
             return p["id"], photos_for(p)
@@ -217,13 +295,13 @@ def main():
             print("error", p["id"], e, file=sys.stderr)
             return p["id"], old.get(p["id"], [])
 
-    with ThreadPoolExecutor(6) as ex:
+    with ThreadPoolExecutor(2 if only_missing else 4) as ex:
         for n, (pid, ph) in enumerate(ex.map(work, places), 1):
             out[pid] = ph or old.get(pid, [])
             if n % 100 == 0:
                 print(n, "places", sum(1 for v in out.values() if v), "with photos", flush=True)
     missing = [p["id"] for p in places if not out.get(p["id"])]
-    print("places", len(places), "with photos", len(places) - len(missing), "missing", len(missing))
+    print("places", len(places), "with photos", len(places) - len(missing), "missing", len(missing), "total with photos", sum(1 for v in out.values() if v))
     print("missing:", " ".join(missing))
     json.dump(out, open(sys.argv[2], "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 

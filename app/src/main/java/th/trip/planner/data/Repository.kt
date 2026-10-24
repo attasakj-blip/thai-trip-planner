@@ -45,6 +45,14 @@ class Repository(private val context: Context) {
         runCatching { json.decodeFromString<th.trip.planner.model.RailData>(readAsset("rail.json")).lines }.getOrDefault(emptyList())
     }
 
+    /** Real photos found for each place (place id -> photos), built by scripts/place_photos.py. */
+    val placePhotos: Map<String, List<th.trip.planner.model.PlacePhoto>> by lazy {
+        val downloaded = File(dataDir, "place_photos.json")
+        if (downloaded.exists()) runCatching { return@lazy json.decodeFromString<Map<String, List<th.trip.planner.model.PlacePhoto>>>(downloaded.readText()) }
+        runCatching { json.decodeFromString<Map<String, List<th.trip.planner.model.PlacePhoto>>>(readAsset("place_photos.json")) }.getOrDefault(emptyMap())
+    }
+    fun validPhotos(text: String) = runCatching { json.decodeFromString<Map<String, List<th.trip.planner.model.PlacePhoto>>>(text).size >= 5 }.getOrDefault(false)
+
     private fun readAsset(name: String) = context.assets.open(name).bufferedReader().use { it.readText() }
 
     /** Weekly data downloaded from GitHub Pages lives here; the copy built into the app is the fallback. */

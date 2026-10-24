@@ -300,7 +300,7 @@ fun FinaleScreen(vm: TripViewModel, nav: NavHostController, onExit: () -> Unit) 
     val places = vm.trip.stops.mapNotNull { vm.repo.placeById[it.placeId] }
     // Library photos of the places (Wikimedia Commons).
     val photos = produceState(emptyList<Photo>(), places) {
-        value = places.flatMap { vm.remote.photos(it.wikiTitles, max = 2).getOrDefault(emptyList()) }
+        value = places.flatMap { p -> vm.repo.placePhotos[p.id].orEmpty().take(2).map { Photo(it.url, it.author, it.license, it.page) }.ifEmpty { vm.remote.photos(p.wikiTitles, max = 2).getOrDefault(emptyList()) } }
     }.value
 
     // Music: render once, loop forever without a gap, fade in.
