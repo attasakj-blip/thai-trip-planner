@@ -20,7 +20,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 UA = "ThaiTripPlanner/1.0 (https://github.com/attasakj-blip/thai-trip-planner)"
 MAX = 4
-SKIP = re.compile(r"(?i)bird|flowerpecker|bulbul|sunbird|warbler|butterfly|moth\b|insect|beetle|spider|frog|lizard|gecko|snake|orchid|flower|fungus|mushroom|portrait|selfie|wedding|flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
+SKIP = re.compile(r"(?i)\bISS\d|view.of.earth|satellite|traffic|road.sign|_sign|hotel|condo|apartment|airplane|aircraft|bird|flowerpecker|bulbul|sunbird|warbler|butterfly|moth\b|insect|beetle|spider|frog|lizard|gecko|snake|orchid|flower|fungus|mushroom|portrait|selfie|wedding|flag|seal|logo|map|locator|icon|symbol|emblem|coat.of.arms|signature|360|panorama|pano\b|diagram|plan\b|chart|banner|svg|\.png|\.gif|\.tif")
 
 
 def get(url, params, tries=4):
@@ -106,8 +106,9 @@ def article_images(lang, titles, ws=(), core=""):
     return [f for f in files if not (f in seen or seen.add(f))]
 
 
-def search_articles(lang, name, lat, lon, limit_km):
-    """Wikipedia articles matching the name whose coordinates are within limit_km."""
+def search_articles(lang, name, lat, lon, limit_km, ws=(), core=""):
+    """Wikipedia articles matching the name whose coordinates are within limit_km and whose title
+    shares a word with the place name (a nearby district article is not a photo of the place)."""
     if not name:
         return []
     d = get(f"https://{lang}.wikipedia.org/w/api.php", {
@@ -118,6 +119,9 @@ def search_articles(lang, name, lat, lon, limit_km):
     for p in sorted(d.get("query", {}).get("pages", []), key=lambda p: p.get("index", 99)):
         c = (p.get("coordinates") or [None])[0]
         if not c or km(lat, lon, c["lat"], c["lon"]) > limit_km:
+            continue
+        tl = p["title"].lower()
+        if not (any(w in tl for w in ws) or (core and core in p["title"])):
             continue
         out.append(p["title"])
     return out[:2]
@@ -240,10 +244,10 @@ def photos_for(p):
             add(wikidata_image(n, "en", lat, lon, limit))
     for n in variants(th):
         if len(got) < MAX:
-            add(article_images("th", search_articles("th", n, lat, lon, limit), ws, core))
+            add(article_images("th", search_articles("th", n, lat, lon, limit, ws, core), ws, core))
     for n in variants(en):
         if len(got) < MAX:
-            add(article_images("en", search_articles("en", n, lat, lon, limit), ws, core))
+            add(article_images("en", search_articles("en", n, lat, lon, limit, ws, core), ws, core))
     if len(got) < 2:
         named, near = geo_files(lat, lon, 3000 if big else 1000, th, en)
         add(named)
@@ -258,7 +262,14 @@ def photos_for(p):
         named, near = geo_files(lat, lon, 5000 if big else 2000, th, en)
         add(named)
         if not got:
-            add(near[:15])
+            add([t for t in near[:15]])
+    if not got:
+        # Last resort: a photo of the surroundings (1.5 km).
+        d = get("https://commons.wikimedia.org/w/api.php", {
+            "action": "query", "format": "json", "formatversion": "2", "list": "geosearch",
+            "gscoord": f"{lat}|{lon}", "gsradius": "1500", "gsnamespace": "6", "gslimit": "30",
+        })
+        add([h["title"] for h in sorted(d.get("query", {}).get("geosearch", []), key=lambda h: h["dist"])])
     return got
 
 
