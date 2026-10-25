@@ -360,7 +360,8 @@ def main():
                     if hl: e["highlights"] = hl
                     dk = dish_of(kind, e["name"]["th"], t)
                     if dk: e["dish"] = dk
-                    if dk and dk in ("coffee", "thai_food") and not any(rx.search(" ".join(x for x in (e["name"]["th"], t.get("name:en", ""), t.get("cuisine", "")) if x)) for k2, rx, *_ in DISH_RX if k2 == dk) and CAT_DISH.get(t.get("_cat", "")) != dk:
+                    # "Thai food" is only a stand-in picture, never something the shop is known for.
+                    if dk == "thai_food" or dk == "coffee" and not any(rx.search(" ".join(x for x in (e["name"]["th"], t.get("name:en", ""), t.get("cuisine", "")) if x)) for k2, rx, *_ in DISH_RX if k2 == dk) and CAT_DISH.get(t.get("_cat", "")) != dk:
                         e["dishGuess"] = True
                     if t.get("brand"): e["brand"] = t["brand"]
                 addr = " ".join(dict.fromkeys(x for x in (t.get("addr:housenumber"), t.get("addr:street"), t.get("addr:subdistrict"),
