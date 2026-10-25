@@ -149,14 +149,20 @@ DISHES = [
     ("smoothie", r"น้ำปั่น|smoothie|juice|ผลไม้", ["Smoothie"], "น้ำปั่น น้ำผลไม้", "Smoothies and juice"),
     ("bakery", r"เบเกอรี่|bakery|ขนมปัง|bread|เค้ก|cake|ครัวซอง|croissant|patisserie|dessert|ขนม", ["Cake", "Bakery"], "เบเกอรี่ ขนม", "Cakes and bakes"),
     ("coffee", r"กาแฟ|coffee|cafe|café|คาเฟ่|espresso|roaster|brew|amazon|อเมซอน", ["Latte art", "Coffee"], "กาแฟ", "Coffee"),
+    ("chinese", r"อาหารจีน|chinese|เป็ดย่าง|ฮ่องกง|hong ?kong|cantonese", ["Chinese cuisine", "Peking duck"], "อาหารจีน", "Chinese food"),
+    ("indian", r"อินเดีย|indian|curry house|tandoor|นาน\b", ["Indian cuisine", "Chicken tikka masala"], "อาหารอินเดีย", "Indian food"),
+    ("vietnamese", r"เวียดนาม|vietnam|เฝอ|pho\b|แหนมเนือง", ["Pho"], "อาหารเวียดนาม", "Vietnamese food"),
+    ("thai_food", r"(?!x)x", ["Thai cuisine", "Tom yum"], "อาหาร", "Food"),
 ]
 DISH_RX = [(k, re.compile("(?i)" + rx), titles, th, en) for k, rx, titles, th, en in DISHES]
-CAT_DISH = {"seafood_restaurant": "seafood", "ramen_restaurant": "ramen", "japanese_restaurant": "sushi", "sushi_restaurant": "sushi",
+CAT_DISH = {"seafood_restaurant": "seafood", "ramen_restaurant": "noodles", "japanese_restaurant": "sushi", "sushi_restaurant": "sushi",
             "korean_restaurant": "korean", "pizza_restaurant": "pizza", "italian_restaurant": "pizza", "burger_restaurant": "burger",
             "steakhouse": "steak", "chicken_restaurant": "fried_chicken", "dim_sum_restaurant": "dim_sum", "vegetarian_restaurant": "vegetarian",
             "barbecue_restaurant": "mu_kratha", "noodles_restaurant": "noodles", "soup_restaurant": "noodles", "bubble_tea_shop": "bubble_tea",
             "ice_cream_shop": "ice_cream", "bakery": "bakery", "dessert_shop": "bakery", "cupcake_shop": "bakery", "smoothie_juice_bar": "smoothie",
-            "coffee_shop": "coffee", "cafe": "coffee", "tea_room": "thai_tea", "hot_pot_restaurant": "suki"}
+            "coffee_shop": "coffee", "cafe": "coffee", "tea_room": "thai_tea", "hot_pot_restaurant": "suki",
+            "chinese_restaurant": "chinese", "cantonese_restaurant": "chinese", "indian_restaurant": "indian", "vietnamese_restaurant": "vietnamese",
+            "fast_food_restaurant": "burger", "thai_restaurant": "thai_food", "asian_restaurant": "thai_food", "food_court": "thai_food"}
 
 
 def dish_of(kind, name, t):
@@ -165,7 +171,8 @@ def dish_of(kind, name, t):
         if rx.search(text): return k
     k = CAT_DISH.get(t.get("_cat", ""))
     if k: return k
-    return "coffee" if kind == "cafe" else None
+    # Nothing more specific known: a general example for the kind of place.
+    return "coffee" if kind == "cafe" else "thai_food"
 
 
 def highlights(name, t):
@@ -187,6 +194,15 @@ def highlights(name, t):
     if t.get("takeaway") in ("yes", "only"): h.append("takeaway")
     if t.get("wheelchair") == "yes": h.append("wheelchair")
     if t.get("brand"): h.append("chain")
+    if t.get("smoking") == "no": h.append("nosmoke")
+    if any(t.get(k) == "yes" for k in ("payment:credit_cards", "payment:visa", "payment:mastercard", "payment:qr_code", "payment:promptpay", "payment:contactless")): h.append("cards")
+    if t.get("reservation") in ("recommended", "required"): h.append("book")
+    if t.get("kids_area") == "yes" or t.get("highchair") == "yes": h.append("kids")
+    if t.get("parking") or t.get("amenity_parking") == "yes": h.append("parking")
+    if re.search(r"(?i)\bbar\b|pub|บาร์|ผับ|craft beer|คราฟ|wine|ไวน์", text) or t.get("_cat") in ("bar", "pub", "wine_bar", "beer_bar", "cocktail_bar"): h.append("drinks")
+    if re.search(r"(?i)ดนตรีสด|live music|ร้องเพลง|karaoke|คาราโอเกะ", text) or t.get("live_music") == "yes": h.append("music")
+    if re.search(r"(?i)ริมทาง|street ?food|รถเข็น|ตลาด|market", text) or t.get("_cat") == "street_vendor": h.append("street")
+    if re.search(r"(?i)\bตำนาน|ดั้งเดิม|since|เก่าแก่|\d{2,3} ปี|legend", text): h.append("old")
     return h
 
 
@@ -344,6 +360,8 @@ def main():
                     if hl: e["highlights"] = hl
                     dk = dish_of(kind, e["name"]["th"], t)
                     if dk: e["dish"] = dk
+                    if dk and dk in ("coffee", "thai_food") and not any(rx.search(" ".join(x for x in (e["name"]["th"], t.get("name:en", ""), t.get("cuisine", "")) if x)) for k2, rx, *_ in DISH_RX if k2 == dk) and CAT_DISH.get(t.get("_cat", "")) != dk:
+                        e["dishGuess"] = True
                     if t.get("brand"): e["brand"] = t["brand"]
                 addr = " ".join(dict.fromkeys(x for x in (t.get("addr:housenumber"), t.get("addr:street"), t.get("addr:subdistrict"),
                                                          t.get("addr:district"), t.get("addr:city"), t.get("addr:province")) if x))
