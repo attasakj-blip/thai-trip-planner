@@ -67,6 +67,7 @@ import th.trip.planner.logic.TransitPlan
 import th.trip.planner.logic.TransitPlanner
 import th.trip.planner.logic.TransitStop
 import th.trip.planner.logic.TripLogic
+import th.trip.planner.model.HubType
 import th.trip.planner.model.RejoinInfo
 import th.trip.planner.model.Trip
 import java.time.LocalDate
@@ -115,10 +116,113 @@ private fun legGroundMinutes(vm: TripViewModel, trip: Trip, i: Int): Int {
     return if (a == null || b == null) 120 else Itinerary.groundMinutes(TripLogic.distanceKm(a.lat, a.lon, b.lat, b.lon))
 }
 
-/** One part of the plan the traveller can go back to. */
-private data class JoinPoint(val target: Rejoin.Target, val title: String, val detail: String, val end: End, val point: Itinerary.Point)
+/**
+ * A point between two places of the plan. [rest] is the rest of the planned journey from here
+ * (still on the same bus / train) on [date], or null when the plan has no timetable through it.
+ */
+private data class MidInfo(val leg: Int, val rest: Itinerary.Journey?, val date: LocalDate?)
 
-/** The stops and scheduled departures still ahead (today or later), in trip order. */
+/** One part of the plan the traveller can go back to. */
+private data class JoinPoint(
+    val target: Rejoin.Target, val title: String, val detail: String, val end: End, val point: Itinerary.Point,
+    val mid: MidInfo? = null,
+)
+
+private fun hubPoint(h: th.trip.planner.model.Hub) = Itinerary.Point(h.lat, h.lon, h.islandGroup != null, h.islandGroup)
+
+/**
+ * Where along segment a→b (0..1) the point p lies, and how far from the line it is (km),
+ * on a flat local projection (good enough within a country).
+ */
+private fun along(aLat: Double, aLon: Double, bLat: Double, bLon: Double, lat: Double, lon: Double): Pair<Double, Double> {
+    val k = kotlin.math.cos(Math.toRadians((aLat + bLat) / 2))
+    val bx = (bLon - aLon) * k * 111.0; val by = (bLat - aLat) * 111.0
+    val px = (lon - aLon) * k * 111.0; val py = (lat - aLat) * 111.0
+    val len2 = bx * bx + by * by
+    if (len2 < 1e-6) return 0.0 to kotlin.math.hypot(px, py)
+    val t = (px * bx + py * by) / len2
+    val dx = px - t * bx; val dy = py - t * by
+    return t to kotlin.math.hypot(dx, dy)
+}
+
+/**
+ * Points between stop [i] and stop i+1: every station the planned bus / train / boat stops at,
+ * or, for a leg with no timetable, the stations and terminals close to the way between the two.
+ */
+private fun midPoints(vm: TripViewModel, trip: Trip, i: Int, date: LocalDate?, planned: Itinerary.Journey?): List<JoinPoint> {
+    val thai = I18n.thai
+    val a = stopEnd(vm, trip, i) ?: return emptyList()
+    val b = stopEnd(vm, trip, i + 1) ?: return emptyList()
+    val fromName = vm.repo.placeById[trip.stops[i].placeId]?.name?.get(thai) ?: ""
+    val toName = vm.repo.placeById[trip.stops[i + 1].placeId]?.name?.get(thai) ?: ""
+    val span = tr("ระหว่าง $fromName → $toName", "between $fromName → $toName")
+    val out = ArrayList<JoinPoint>()
+    val seen = HashSet<String>()
+    if (planned != null && date != null && planned.rides.isNotEmpty()) {
+        val steps = planned.steps
+        planned.rides.forEachIndexed { k, r ->
+            val times = runTimes(r)
+            val stepIdx = steps.indexOf(r)
+            val after = steps.drop(stepIdx + 1)
+            val last = k == planned.rides.lastIndex
+            for (m in r.boardIdx..r.alightIdx) {
+                if (k == 0 && m == r.boardIdx) continue // the first station is the "catch the ride" point
+                if (m == r.alightIdx && !last) continue // the next ride's first station covers it
+                val hub = vm.repo.hubById[r.route.stops.getOrNull(m) ?: continue] ?: continue
+                if (!seen.add(hub.id)) continue
+                val tm = (if (m == r.boardIdx) r.start else times?.getOrNull(m)) ?: continue
+                val rest = when {
+                    m < r.alightIdx -> Itinerary.Journey(listOf(r.copy(boardIdx = m, board = hub, start = tm)) + after)
+                    after.isNotEmpty() -> Itinerary.Journey(after)
+                    else -> null
+                }
+                val icon = modeIcon(r.route.mode)
+                out += JoinPoint(
+                    Rejoin.Target.Mid(i, hub.id),
+                    if (m < r.alightIdx) tr("$icon ขึ้น${modeWord(r.route.mode)}คันเดิมต่อที่ ${hub.name.th}", "$icon Get on the same ${modeWord(r.route.mode)} at ${hub.name.en}")
+                    else tr("$icon ไปที่ ${hub.name.th} (จุดลง${modeWord(r.route.mode)})", "$icon Go to ${hub.name.en} (where the ${modeWord(r.route.mode)} stops)"),
+                    (if (m < r.alightIdx) tr("ผ่านราว ${Itinerary.formatTime(tm)} · ", "Passes around ${Itinerary.formatTime(tm)} · ") else tr("ถึงราว ${Itinerary.formatTime(tm)} · ", "Arrives around ${Itinerary.formatTime(tm)} · ")) +
+                        fmt(date, thai) + " · " + span,
+                    End(hub.name.get(thai), hub.lat, hub.lon, false), hubPoint(hub),
+                    MidInfo(i, rest, date),
+                )
+            }
+        }
+        return out
+    }
+    // No timetable through this leg: stations near the way (straight line) between the two places.
+    val km = TripLogic.distanceKm(a.lat, a.lon, b.lat, b.lon)
+    if (km < 2) return emptyList()
+    val width = (km * 0.08).coerceIn(0.6, 6.0)
+    data class C(val id: String, val title: String, val lat: Double, val lon: Double, val pt: Itinerary.Point, val t: Double)
+    val cands = ArrayList<C>()
+    fun consider(id: String, title: String, lat: Double, lon: Double, pt: Itinerary.Point) {
+        val (t, off) = along(a.lat, a.lon, b.lat, b.lon, lat, lon)
+        if (t !in 0.03..0.97 || off > width) return
+        if (TripLogic.distanceKm(lat, lon, a.lat, a.lon) < 0.8 || TripLogic.distanceKm(lat, lon, b.lat, b.lon) < 0.8) return
+        cands += C(id, title, lat, lon, pt, t)
+    }
+    vm.repo.hubs.forEach { h -> if (h.type != HubType.AIRPORT) consider(h.id, hubTypeLabel(h.type, thai) + " " + h.name.get(thai), h.lat, h.lon, hubPoint(h)) }
+    vm.repo.rail.forEach { l -> l.stations.forEach { st -> consider("r_" + st.id, "🚆 " + tr("สถานี", "") + st.name.get(thai) + " (" + l.name.get(thai) + ")", st.lat, st.lon, Itinerary.Point(st.lat, st.lon)) } }
+    // Several lines share a station: keep one per spot, then at most 12 spread along the way.
+    val uniq = cands.sortedBy { it.t }.fold(ArrayList<C>()) { acc, c ->
+        if (acc.none { TripLogic.distanceKm(it.lat, it.lon, c.lat, c.lon) < 0.3 }) acc += c
+        acc
+    }
+    val picked = if (uniq.size <= 12) uniq else List(12) { uniq[(it * (uniq.size - 1)) / 11] }.distinct()
+    picked.forEach { c ->
+        if (!seen.add(c.id)) return@forEach
+        out += JoinPoint(
+            Rejoin.Target.Mid(i, c.id), c.title,
+            tr("ราว ${(c.t * 100).roundToInt()}% ของทาง · ", "About ${(c.t * 100).roundToInt()}% of the way · ") + span,
+            End(c.title.substringAfter(' '), c.lat, c.lon, false), c.pt,
+            MidInfo(i, null, date),
+        )
+    }
+    return out
+}
+
+/** The stops, scheduled departures and points between them still ahead (today or later), in trip order. */
 private fun joinPoints(vm: TripViewModel, trip: Trip, today: LocalDate, planner: Rejoin.LegPlanner): List<JoinPoint> {
     val thai = I18n.thai
     val out = ArrayList<JoinPoint>()
@@ -126,7 +230,8 @@ private fun joinPoints(vm: TripViewModel, trip: Trip, today: LocalDate, planner:
         if (i > 0) {
             val legIdx = i - 1
             val date = TripLogic.legDate(trip, legIdx)
-            val j = if (date != null && date >= today) Rejoin.plannedJourney(trip, legIdx, planner) else null
+            val ahead = date == null || date >= today
+            val j = if (date != null && ahead) Rejoin.plannedJourney(trip, legIdx, planner) else null
             val ride = j?.rides?.firstOrNull()
             if (j != null && ride != null) {
                 val from = vm.repo.placeById[trip.stops[legIdx].placeId]?.name?.get(thai) ?: ""
@@ -136,9 +241,10 @@ private fun joinPoints(vm: TripViewModel, trip: Trip, today: LocalDate, planner:
                     tr("${modeIcon(ride.route.mode)} ขึ้น${modeWord(ride.route.mode)} ${ride.route.name.th} ที่ ${ride.board.name.th}", "${modeIcon(ride.route.mode)} Catch the ${modeWord(ride.route.mode)} ${ride.route.name.en} at ${ride.board.name.en}"),
                     tr("ออก ${Itinerary.formatTime(ride.start)} · ${fmt(date!!, true)} · ช่วง $from → $to", "Leaves ${Itinerary.formatTime(ride.start)} · ${fmt(date!!, false)} · $from → $to"),
                     End(ride.board.name.get(thai), ride.board.lat, ride.board.lon, false),
-                    Itinerary.Point(ride.board.lat, ride.board.lon, ride.board.islandGroup != null, ride.board.islandGroup),
+                    hubPoint(ride.board),
                 )
             }
+            if (ahead) out += midPoints(vm, trip, legIdx, date, j)
         }
         val dates = TripLogic.dates(s)
         if (dates.isEmpty() || dates.last() >= today) {
@@ -154,6 +260,27 @@ private fun joinPoints(vm: TripViewModel, trip: Trip, today: LocalDate, planner:
         }
     }
     return out
+}
+
+/** From a point between two places on to the next place: still on the planned ride, or another way. */
+private data class MidRest(val arrive: LocalDateTime, val onPlan: Boolean, val journey: Itinerary.Journey?, val way: Way?)
+
+private suspend fun midRest(vm: TripViewModel, trip: Trip, t: JoinPoint, at: LocalDateTime): MidRest {
+    val mid = t.mid!!
+    val rest = mid.rest
+    if (rest != null && mid.date != null) {
+        val first = rest.steps.first()
+        val ready = if (first is Itinerary.Step.Ride) first.start - Itinerary.buffer(first.route.mode) else rest.depart
+        val day = mid.date.atStartOfDay()
+        if (!day.plusMinutes(ready.toLong()).isBefore(at)) return MidRest(day.plusMinutes(rest.arrive.toLong()), true, rest, null)
+    }
+    val to = stopEnd(vm, trip, mid.leg + 1)
+    val toPt = stopPoint(vm, trip, mid.leg + 1)
+    if (to == null || toPt == null) return MidRest(at, false, null, null)
+    val min = at.hour * 60 + at.minute
+    val w = runCatching { waysBetween(vm, t.point, toPt, to, at.toLocalDate(), min, I18n.thai).firstOrNull() }.getOrNull()
+    val minutes = w?.minutes ?: Itinerary.groundMinutes(TripLogic.distanceKm(t.end.lat, t.end.lon, to.lat, to.lon))
+    return MidRest(at.plusMinutes(minutes.toLong()), false, null, w)
 }
 
 // ---------------------------------------------------------------- Ways back
@@ -329,6 +456,7 @@ fun RejoinScreen(vm: TripViewModel, nav: NavHostController, view: Boolean = fals
     val planner = remember(trip) { legPlanner(vm, trip) }
     val points by produceState<List<JoinPoint>?>(null, trip) { value = withContext(Dispatchers.Default) { joinPoints(vm, trip, today, planner) } }
     var targetKey by remember { mutableStateOf(saved?.target) }
+    var openLegs by remember { mutableStateOf(setOf<Int>()) }
     val target = points?.firstOrNull { it.target.key == targetKey }
     val ways by produceState<List<Way>?>(null, from, targetKey, points) {
         value = null
@@ -341,10 +469,18 @@ fun RejoinScreen(vm: TripViewModel, nav: NavHostController, view: Boolean = fals
     var showResult by remember { mutableStateOf(saved != null) }
     val arrival = way?.let { startAt.plusMinutes(it.minutes.toLong()) }
         ?: saved?.let { runCatching { LocalDateTime.parse(it.arrive) }.getOrNull() }
-    val result by produceState<Rejoin.Result?>(null, showResult, targetKey, wayKey, arrival) {
+    // From a point between two places: how the traveller goes on to the next place.
+    val midRest by produceState<MidRest?>(null, showResult, targetKey, arrival, points) {
         value = null
         val t = target ?: return@produceState
         val a = arrival ?: return@produceState
+        if (!showResult || t.mid == null) return@produceState
+        value = midRest(vm, trip, t, a)
+    }
+    val result by produceState<Rejoin.Result?>(null, showResult, targetKey, wayKey, arrival, midRest) {
+        value = null
+        val t = target ?: return@produceState
+        val a = if (t.mid != null) midRest?.arrive ?: return@produceState else arrival ?: return@produceState
         if (!showResult) return@produceState
         value = withContext(Dispatchers.Default) { Rejoin.retime(trip, t.target, a, today, planner) { legGroundMinutes(vm, trip, it) } }
     }
@@ -397,10 +533,22 @@ fun RejoinScreen(vm: TripViewModel, nav: NavHostController, view: Boolean = fals
                 when {
                     pts == null -> Busy(tr("กำลังอ่านแผนการเดินทาง…", "Reading your plan…"))
                     pts.isEmpty() -> Text(tr("ไม่มีส่วนของทริปที่ยังมาไม่ถึง", "Nothing left ahead in this trip."), color = Color.Gray)
-                    else -> pts.forEach { p ->
+                    else -> pts.forEachIndexed { n, p ->
                         val on = p.target.key == targetKey
+                        val mid = p.mid
+                        if (mid != null) {
+                            // Points between two places fold away under one line per leg.
+                            if (pts.getOrNull(n - 1)?.mid?.leg != mid.leg) {
+                                val count = pts.count { it.mid?.leg == mid.leg }
+                                val open = mid.leg in openLegs
+                                TextButton(onClick = { openLegs = if (open) openLegs - mid.leg else openLegs + mid.leg }, modifier = Modifier.padding(start = 16.dp)) {
+                                    Text((if (open) "▾ " else "▸ ") + tr("จุดระหว่างทาง ($count จุด) เช่น สถานี ป้ายรถ จุดต่อรถ", "Points on the way ($count): stations, stops, transfers"), fontSize = 13.sp)
+                                }
+                            }
+                            if (mid.leg !in openLegs && !on) return@forEachIndexed
+                        }
                         Card(
-                            Modifier.fillMaxWidth().clickable { targetKey = p.target.key; wayKey = null },
+                            Modifier.fillMaxWidth().padding(start = if (mid != null) 20.dp else 0.dp).clickable { targetKey = p.target.key; wayKey = null },
                             colors = CardDefaults.cardColors(containerColor = if (on) Color(0xFFE3F4EF) else Color(0xFFF6F8FB)),
                         ) {
                             Row(Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -474,6 +622,8 @@ fun RejoinScreen(vm: TripViewModel, nav: NavHostController, view: Boolean = fals
                 }
                 if (saved == null) TextButton(onClick = { showResult = false }) { Text(tr("← เลือกวิธีอื่น", "← Pick another way")) }
             } else {
+                val mid = t.mid
+                if (mid != null) MidRestCard(vm, trip, t, mid, midRest, today, thai)
                 RestOfTrip(vm, trip, r, saved, today, thai)
             }
             VSpace(16)
@@ -497,6 +647,32 @@ private fun changeLines(vm: TripViewModel, trip: Trip, changes: List<Rejoin.Chan
 }
 
 /** Tab 2: every stop and leg from the join point to the end, with what changed. */
+/** The rest of the leg from a point between two places to the next place. */
+@Composable
+private fun MidRestCard(vm: TripViewModel, trip: Trip, t: JoinPoint, mid: MidInfo, rest: MidRest?, today: LocalDate, thai: Boolean) {
+    val to = stopEnd(vm, trip, mid.leg + 1) ?: return
+    val toName = vm.repo.placeById[trip.stops[mid.leg + 1].placeId]?.name?.get(thai) ?: to.label
+    Card(Modifier.fillMaxWidth(), colors = CardDefaults.cardColors(containerColor = Color(0xFFF1F7FF))) {
+        Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Text(tr("ต่อจาก ${t.end.label} ไป $toName", "From ${t.end.label} on to $toName"), fontWeight = FontWeight.Bold)
+            if (rest == null) { Busy(tr("กำลังหาทางไปต่อ…", "Finding the way on…")); return@Column }
+            Text(tr("ถึง $toName ประมาณ ${clock(rest.arrive, true, today)}", "Arrive at $toName around ${clock(rest.arrive, false, today)}"), color = Teal, fontWeight = FontWeight.SemiBold)
+            when {
+                rest.onPlan && rest.journey != null -> {
+                    Text(tr("✅ ทันรถคันเดิมตามแผน", "✅ In time for the planned ride"), fontSize = 13.sp)
+                    JourneySteps(vm, rest.journey, t.end, to)
+                }
+                rest.way != null -> {
+                    if (mid.rest != null) Text(tr("ไม่ทันรถคันเดิม ใช้วิธีที่เร็วที่สุดแทน:", "Too late for the planned ride; the quickest other way:"), fontSize = 13.sp, color = Coral)
+                    Text(wayTitle(rest.way), fontWeight = FontWeight.SemiBold)
+                    WayDetails(vm, rest.way, t.end, to)
+                }
+                else -> Text(tr("เรียกแท็กซี่หรือรถรับจ้างไปต่อ", "Take a taxi or ride-hailing car on from here."), fontSize = 13.sp)
+            }
+        }
+    }
+}
+
 @Composable
 private fun RestOfTrip(vm: TripViewModel, trip: Trip, r: Rejoin.Result, saved: RejoinInfo?, today: LocalDate, thai: Boolean) {
     val notes = saved?.notes ?: changeLines(vm, trip, r.changes, thai)

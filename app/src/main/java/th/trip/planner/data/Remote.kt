@@ -66,6 +66,8 @@ data class Poi(
     val dishPhoto: String? = null,
     val dishPage: String? = null,
     val dishName: String? = null,
+    /** True when the dish is only a general example (nothing more specific is known about the menu). */
+    val dishGuess: Boolean = false,
     val brand: String? = null,
 )
 
@@ -73,6 +75,8 @@ data class Poi(
 class Remote {
     /** Where downloaded nearby-place lists are kept for offline use (set by the app). */
     var cacheDir: java.io.File? = null
+    /** When this version of the app was installed (ms); saved lists from before it are refreshed. */
+    var appUpdatedAt: Long = 0L
     private val http = OkHttpClient.Builder()
         .connectTimeout(15, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
@@ -310,7 +314,8 @@ class Remote {
      */
     private suspend fun placePois(placeId: String): Map<String, kotlinx.serialization.json.JsonArray>? {
         val file = cacheDir?.let { java.io.File(it, "$placeId.json") }
-        val fresh = file?.takeIf { it.exists() && System.currentTimeMillis() - it.lastModified() < 7 * 86400_000L }
+        // The lists are rebuilt every week: keep a copy for a day, and drop copies older than this app version.
+        val fresh = file?.takeIf { it.exists() && System.currentTimeMillis() - it.lastModified() < 86400_000L && it.lastModified() > appUpdatedAt }
         val text = fresh?.readText() ?: runCatching { get(DataSync.BASE + "pois/$placeId.json") }.getOrNull()?.also { t -> runCatching { file?.writeText(t) } }
             ?: file?.takeIf { it.exists() }?.readText() ?: return null
         val o = runCatching { json.parseToJsonElement(text).jsonObject }.getOrNull() ?: return null
@@ -341,6 +346,7 @@ class Remote {
                         highlights = o["highlights"].arr().orEmpty().mapNotNull { it.str() },
                         dishPhoto = o["dishPhoto"].str(), dishPage = o["dishPage"].str(),
                         dishName = o["dishName"].obj()?.let { d -> (if (thai) d["th"].str() else d["en"].str()) ?: d["th"].str() },
+                        dishGuess = o["dishGuess"].str() == "true",
                         brand = o["brand"].str(),
                     )
                 }

@@ -652,7 +652,7 @@ internal fun RailPlanView(p: RailPlan, fromName: String, toName: String) {
 }
 
 /** Times of this run at each stop of the route (minutes after midnight), when known. */
-private fun runTimes(s: Itinerary.Step.Ride): List<Int?>? {
+internal fun runTimes(s: Itinerary.Step.Ride): List<Int?>? {
     val r = s.route
     val day = s.start - Itinerary.dayOffset(s.start) * 1440
     r.trips.forEach { t ->

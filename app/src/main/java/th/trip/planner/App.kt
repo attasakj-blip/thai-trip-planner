@@ -34,6 +34,7 @@ class TripApp : Application(), ImageLoaderFactory {
         super.onCreate()
         repo = Repository(this)
         remote.cacheDir = java.io.File(filesDir, "pois").apply { mkdirs() }
+        remote.appUpdatedAt = runCatching { packageManager.getPackageInfo(packageName, 0).lastUpdateTime }.getOrDefault(0L)
         CheckInScheduler.createChannel(this)
         // Older versions kept album photo copies and slideshow videos here; the album is gone.
         Thread { runCatching { repo.tripsDir.listFiles().orEmpty().forEach { d -> java.io.File(d, "photos").deleteRecursively(); java.io.File(d, "slideshow.mp4").delete() } } }.start()

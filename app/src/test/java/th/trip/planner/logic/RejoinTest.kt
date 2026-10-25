@@ -96,4 +96,12 @@ class RejoinTest {
         assertTrue(opts.all { it.first.rides.isEmpty() })
         assertTrue(Itinerary.options(Itinerary.Point(13.0, 100.0), Itinerary.Point(13.012, 100.008), d2, hubs, routes, require = TravelMode.BUS).isEmpty())
     }
+
+    @Test fun midPointArrivesAtTheNextStop() {
+        assertEquals(Rejoin.Target.Mid(0, "r_bts_e4"), Rejoin.Target.parse(Rejoin.Target.Mid(0, "r_bts_e4").key))
+        // Got off the bus halfway and reached Y by taxi on d2 at 13:00: Y and the car leg stay as planned.
+        val r = run(Rejoin.Target.Mid(0, "bus_mid"), d2.atTime(13, 0))
+        assertTrue(r.changes.toString(), r.changes.isEmpty())
+        assertEquals(Rejoin.Entry.Stop(1, listOf(d2, d3), d2.atTime(13, 0), false), r.entries.first())
+    }
 }

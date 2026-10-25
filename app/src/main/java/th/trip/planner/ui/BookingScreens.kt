@@ -543,6 +543,15 @@ fun highlightLabel(key: String, brand: String?): String? = when (key) {
     "takeaway" -> tr("🥡 สั่งกลับบ้านได้", "🥡 Takeaway")
     "wheelchair" -> tr("♿ รถเข็นเข้าได้", "♿ Wheelchair access")
     "chain" -> if (brand != null) tr("🏷️ ร้านเครือ $brand", "🏷️ Part of $brand") else null
+    "nosmoke" -> tr("🚭 ปลอดบุหรี่", "🚭 No smoking")
+    "cards" -> tr("💳 รับบัตร/สแกนจ่าย", "💳 Cards or QR payment")
+    "book" -> tr("📅 ควรจองล่วงหน้า", "📅 Booking recommended")
+    "kids" -> tr("🧒 เหมาะกับเด็ก", "🧒 Good for kids")
+    "parking" -> tr("🅿️ มีที่จอดรถ", "🅿️ Parking")
+    "drinks" -> tr("🍺 มีเครื่องดื่ม/บาร์", "🍺 Drinks / bar")
+    "music" -> tr("🎶 มีดนตรีสด", "🎶 Live music")
+    "street" -> tr("🛒 ร้านริมทาง/ในตลาด", "🛒 Street food / market stall")
+    "old" -> tr("🏛️ ร้านเก่าแก่", "🏛️ Long-established")
     else -> null
 }
 
@@ -621,8 +630,13 @@ fun PoiList(vm: TripViewModel, lat: Double, lon: Double, type: String, modifier:
                         Text(poi.name, fontWeight = FontWeight.SemiBold)
                         PoiPhoto(poi)
                         if (poi.logo == null) DishPhoto(poi)
-                        if (poi.highlights.isNotEmpty()) FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(vertical = 2.dp)) {
-                            poi.highlights.forEach { h -> highlightLabel(h, poi.brand)?.let { Text(it, fontSize = 11.sp, modifier = Modifier.clip(RoundedCornerShape(10.dp)).background(Color(0xFFFFF3E0)).padding(horizontal = 8.dp, vertical = 2.dp)) } }
+                        val chips = buildList {
+                            if (poi.dishName != null && !poi.dishGuess) add(tr("🍴 เด่นเรื่อง: ${poi.dishName}", "🍴 Known for: ${poi.dishName}"))
+                            if ((type == "restaurant" || type == "cafe") && poi.distanceKm <= 0.8) add(tr("🚶 เดินถึงได้", "🚶 Walking distance"))
+                            poi.highlights.forEach { h -> highlightLabel(h, poi.brand)?.let { add(it) } }
+                        }
+                        if (chips.isNotEmpty()) FlowRow(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp), modifier = Modifier.padding(vertical = 2.dp)) {
+                            chips.forEach { Text(it, fontSize = 11.sp, modifier = Modifier.clip(RoundedCornerShape(10.dp)).background(Color(0xFFFFF3E0)).padding(horizontal = 8.dp, vertical = 2.dp)) }
                         }
                         val kindLabel = when (poi.health) {
                             Health.Kind.HOSPITAL -> when (poi.owner) {

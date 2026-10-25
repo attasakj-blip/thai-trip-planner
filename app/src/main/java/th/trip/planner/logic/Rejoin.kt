@@ -16,9 +16,18 @@ object Rejoin {
         abstract val key: String
         data class AtStop(override val index: Int) : Target() { override val key get() = "s$index" }
         data class Board(override val index: Int) : Target() { override val key get() = "l$index" }
+        /**
+         * A point along leg [index] (a station or stop between two places, id [point]). The way on to
+         * stop index+1 is worked out by the caller, so retime gets the arrival at that stop.
+         */
+        data class Mid(override val index: Int, val point: String) : Target() { override val key get() = "m$index:$point" }
 
         companion object {
             fun parse(key: String): Target? {
+                if (key.startsWith("m")) {
+                    val n = key.drop(1).substringBefore(':').toIntOrNull() ?: return null
+                    return Mid(n, key.substringAfter(':', "").ifEmpty { return null })
+                }
                 val n = key.drop(1).toIntOrNull() ?: return null
                 return when (key.firstOrNull()) { 's' -> AtStop(n); 'l' -> Board(n); else -> null }
             }
@@ -154,6 +163,7 @@ object Rejoin {
                 t?.let { arriveAtStop(target.index + 1, it) }
                 target.index + 1
             }
+            is Target.Mid -> { arriveAtStop(target.index + 1, arrival); target.index + 1 }
         }
         while (t != null && leg < legCount) {
             t = runLeg(leg, t, atHub = false)
