@@ -1,10 +1,10 @@
-Overture release 2026-09-23.1
-Overture rows kept 338739
-OSM: 35445 named places in 1s Counter({'restaurant': 19131, 'cafe': 11157, 'hospital': 3799, 'police': 1226, 'fire': 132})
-Overture: 338739 Counter({'restaurant': 214161, 'cafe': 92632, 'hospital': 26927, 'police': 4484, 'fire': 535})
+Overture release 2026-10-21.0
+Overture rows kept 352564
+OSM: 35502 named places in 1s Counter({'restaurant': 19166, 'cafe': 11175, 'hospital': 3799, 'police': 1230, 'fire': 132})
+Overture: 352564 Counter({'restaurant': 223145, 'cafe': 96179, 'hospital': 27987, 'police': 4709, 'fire': 544})
 phone list failed https://data.go.th/api/3/action/datastore_search?resource_id=1fbcd661-8085-4f59-9c32-9276f37c8bf3&limit=100 HTTP Error 403: Forbidden
-places done in 101s; wikidata ids 83
-commons name search 6887 found 271
-dish photos 29 of 29 missing []
+places done in 127s; wikidata ids 82
+commons name search 6965 found 267
+dish photos 33 of 33 missing []
 places with under 5 restaurants: ['ang_thong', 'ko_tachai', 'ko_tarutao', 'phu_soi_dao', 'similan', 'surin_islands']
-{'restaurant': 32216, 'restaurant_phone': 26227, 'restaurant_photo': 5, 'restaurant_dish': 15445, 'restaurant_highlights': 3950, 'cafe': 21139, 'cafe_phone': 17366, 'cafe_photo': 2, 'cafe_dish': 21139, 'cafe_highlights': 2540, 'hospital': 8719, 'hospital_phone': 2983, 'hospital_photo': 795, 'hospital_dish': 0, 'hospital_highlights': 0, 'police': 5472, 'police_phone': 2630, 'police_photo': 289, 'police_dish': 0, 'police_highlights': 0, 'fire': 2406, 'fire_phone': 1022, 'fire_photo': 68, 'fire_dish': 0, 'fire_highlights': 0, 'places_few_restaurants': 6}
+{'restaurant': 32317, 'restaurant_phone': 26283, 'restaurant_photo': 5, 'restaurant_dish': 32317, 'restaurant_highlights': 5713, 'cafe': 21061, 'cafe_phone': 17311, 'cafe_photo': 2, 'cafe_dish': 21061, 'cafe_highlights': 3452, 'hospital': 8706, 'hospital_phone': 2945, 'hospital_photo': 789, 'hospital_dish': 0, 'hospital_highlights': 0, 'police': 5489, 'police_phone': 2669, 'police_photo': 284, 'police_dish': 0, 'police_highlights': 0, 'fire': 2421, 'fire_phone': 1030, 'fire_photo': 68, 'fire_dish': 0, 'fire_highlights': 0, 'places_few_restaurants': 6}
